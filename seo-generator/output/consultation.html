@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Free Consultation | Leading Tuition</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <style>
+    .consultation-shell {
+      background: linear-gradient(180deg, #eef4fb 0%, #e6f0f9 100%);
+      min-height: calc(100vh - 58px);
+      padding: 56px 24px 80px;
+    }
+
+    .consultation-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .consultation-card {
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(61,11,31,0.08);
+      border-radius: 28px;
+      padding: 38px 38px 28px;
+      box-shadow: 0 18px 40px rgba(61,11,31,0.08);
+    }
+
+    .consultation-top {
+      margin-bottom: 26px;
+    }
+
+    .step-pill {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #526070;
+      background: rgba(255,255,255,0.55);
+      border-radius: 999px;
+      padding: 7px 12px;
+      margin-bottom: 14px;
+    }
+
+    .progress-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .progress-meta {
+      font-size: 0.9rem;
+      color: #617080;
+      white-space: nowrap;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 8px;
+      background: rgba(61,11,31,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 16.66%;
+      background: linear-gradient(90deg, #3558e5 0%, #13b1e7 100%);
+      border-radius: 999px;
+      transition: width 0.25s ease;
+    }
+
+    .form-step {
+      display: none;
+    }
+
+    .form-step.active {
+      display: block;
+    }
+
+    .consultation-card h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: #172139;
+      margin-bottom: 12px;
+    }
+
+    .consultation-card .lead {
+      font-size: 1.15rem;
+      color: #48596d;
+      margin-bottom: 26px;
+      max-width: 760px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #45576a;
+      margin-bottom: 10px;
+    }
+
+    .text-input,
+    .select-input,
+    .textarea-input {
+      width: 100%;
+      border: 1px solid rgba(61,11,31,0.1);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.82);
+      padding: 18px 18px;
+      font-size: 1rem;
+      color: #172139;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .text-input:focus,
+    .select-input:focus,
+    .textarea-input:focus {
+      border-color: #5aa8ff;
+      box-shadow: 0 0 0 3px rgba(90,168,255,0.18);
+    }
+
+    .textarea-input {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .choice-grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .choice-card {
+      border: 1px solid rgba(61,11,31,0.08);
+      border-radius: 24px;
+      background: rgba(255,255,255,0.8);
+      padding: 24px 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+
+    .choice-card:hover {
+      transform: translateY(-1px);
+      border-color: rgba(61,11,31,0.18);
+      box-shadow: 0 10px 22px rgba(61,11,31,0.06);
+    }
+
+    .choice-card.active {
+      border-color: #5aa8ff;
+      box-shadow: 0 0 0 3px rgba(90,168,255,0.18);
+    }
+
+    .choice-card h3 {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.35rem;
+      color: #172139;
+      margin-bottom: 6px;
+    }
+
+    .choice-card p {
+      color: #55667a;
+      margin: 0;
+    }
+
+    .choice-radio {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid #8db8ff;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .choice-card.active .choice-radio::after {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border-radius: 50%;
+      background: linear-gradient(90deg, #3558e5 0%, #13b1e7 100%);
+    }
+
+    .chip-tabs {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      background: rgba(255,255,255,0.42);
+      border-radius: 18px;
+      padding: 6px;
+      margin-bottom: 18px;
+    }
+
+    .chip-tab {
+      border: none;
+      background: transparent;
+      color: #43556a;
+      font-weight: 700;
+      padding: 12px 18px;
+      border-radius: 14px;
+      cursor: pointer;
+    }
+
+    .chip-tab.active {
+      background: rgba(255,255,255,0.95);
+      color: #172139;
+      box-shadow: 0 4px 10px rgba(61,11,31,0.06);
+    }
+
+    .pill-panel {
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(61,11,31,0.08);
+      border-radius: 24px;
+      padding: 22px;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .pill {
+      border: 1px solid rgba(61,11,31,0.12);
+      background: rgba(255,255,255,0.88);
+      color: #172139;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+
+    .pill.active {
+      background: linear-gradient(90deg, #3558e5 0%, #13b1e7 100%);
+      color: white;
+      border-color: transparent;
+    }
+
+    .helper-note {
+      color: #5a6a7c;
+      font-size: 0.95rem;
+      margin-top: 8px;
+    }
+
+    .inline-note {
+      background: rgba(255,255,255,0.65);
+      border-radius: 18px;
+      padding: 14px 16px;
+      color: #45576a;
+      margin-top: 14px;
+      font-size: 0.95rem;
+    }
+
+    .consent-box {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: rgba(255,255,255,0.6);
+      border-radius: 18px;
+      padding: 16px 18px;
+      margin-top: 18px;
+    }
+
+    .consent-box input {
+      margin-top: 5px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .actions .btn {
+      min-width: 220px;
+      text-align: center;
+    }
+
+    .btn-light {
+      background: rgba(255,255,255,0.82);
+      border: 2px solid rgba(61,11,31,0.08);
+      color: #172139;
+    }
+
+    .microcopy {
+      margin-top: 18px;
+      color: #617080;
+      font-size: 0.95rem;
+    }
+
+    .form-success,
+    .form-error {
+      display: none;
+      margin-top: 18px;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-weight: 700;
+    }
+
+    .form-success {
+      background: rgba(0, 182, 122, 0.12);
+      color: #066d4b;
+    }
+
+    .form-error {
+      background: rgba(198, 45, 66, 0.12);
+      color: #8a1730;
+    }
+
+    .footer-mini {
+      margin-top: 24px;
+      color: #55667a;
+      font-size: 0.92rem;
+      text-align: left;
+    }
+
+    .thank-you-screen {
+      display: none;
+      text-align: center;
+      padding: 40px 20px 20px;
+    }
+
+    .thank-you-screen .lead {
+      max-width: 620px;
+      margin: 0 auto 24px;
+    }
+
+    @media (max-width: 700px) {
+      .consultation-card {
+        padding: 26px 20px 22px;
+        border-radius: 22px;
+      }
+
+      .actions .btn {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .choice-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="navbar-brand">
+    <img src="images/logo.png" alt="Leading Tuition logo" />
+    Leading Tuition
+  </a>
+  <ul class="navbar-nav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="services.html">Our Services</a></li>
+    <li><a href="tutors.html">Our Tutors</a></li>
+    <li><a href="faqs.html">FAQs</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+  </ul>
+</nav>
+
+<section class="consultation-shell">
+  <div class="consultation-wrap">
+    <div class="consultation-card">
+      <div class="consultation-top">
+        <span class="step-pill" id="stepPill">Step 1 / 6</span>
+        <div class="progress-row">
+          <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="progress-meta">Takes about 60 seconds</div>
+        </div>
+      </div>
+
+      <form id="consultationForm">
+        <input type="hidden" name="selected_support" id="selectedSupportInput" />
+        <input type="hidden" name="selected_subjects" id="selectedSubjectsInput" />
+
+        <!-- Step 1 -->
+        <div class="form-step active" data-step="1">
+          <span class="step-pill">Step 1</span>
+          <h1>Start your free consultation</h1>
+          <p class="lead">Tell us who you are so we can set things up properly.</p>
+
+          <div class="choice-grid">
+            <div class="choice-card" data-role-choice="Parent / Guardian">
+              <div>
+                <h3>Parent / Guardian</h3>
+                <p>Arrange support for your child.</p>
+              </div>
+              <div class="choice-radio"></div>
+            </div>
+
+            <div class="choice-card" data-role-choice="Student">
+              <div>
+                <h3>Student</h3>
+                <p>Get support for your own exams or application.</p>
+              </div>
+              <div class="choice-radio"></div>
+            </div>
+          </div>
+
+          <input type="hidden" name="role" id="roleInput" />
+
+          <div class="actions">
+            <button type="button" class="btn btn-dark" id="step1Next">Continue</button>
+          </div>
+
+          <div class="footer-mini">Leading Tuition • Personalised support built around outcomes, not fluff.</div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="form-step" data-step="2">
+          <span class="step-pill">Step 2</span>
+          <h1>What should we call you?</h1>
+          <p class="lead">Just your name. We’ll use it for confirmation and setup.</p>
+
+          <label class="field-label" for="fullName">Your name</label>
+          <input class="text-input" type="text" id="fullName" name="full_name" placeholder="Full name" required />
+
+          <div class="actions">
+            <button type="button" class="btn btn-light back-btn">Back</button>
+            <button type="button" class="btn btn-dark next-btn">Continue</button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="form-step" data-step="3">
+          <span class="step-pill">Step 3</span>
+          <h1>What support is this for?</h1>
+          <p class="lead">Pick the closest match. This helps us route your enquiry quickly.</p>
+
+          <div class="pill-panel">
+            <div class="pill-list" id="supportPills">
+              <button type="button" class="pill" data-support="Primary">Primary</button>
+              <button type="button" class="pill" data-support="11+">11+</button>
+              <button type="button" class="pill" data-support="13+">13+</button>
+              <button type="button" class="pill" data-support="GCSE">GCSE</button>
+              <button type="button" class="pill" data-support="A-Level">A-Level</button>
+              <button type="button" class="pill" data-support="SATs">SATs</button>
+              <button type="button" class="pill" data-support="UCAT">UCAT</button>
+              <button type="button" class="pill" data-support="MMI Interview Coaching">MMI Interview Coaching</button>
+              <button type="button" class="pill" data-support="Oxbridge Admissions">Oxbridge Admissions</button>
+              <button type="button" class="pill" data-support="University Admissions">University Admissions</button>
+              <button type="button" class="pill" data-support="Personal Statement Support">Personal Statement Support</button>
+            </div>
+            <p class="helper-note">BMAT is not included because it is no longer a current admissions test.</p>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="btn btn-light back-btn">Back</button>
+            <button type="button" class="btn btn-dark next-btn">Continue</button>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="form-step" data-step="4">
+          <span class="step-pill">Step 4</span>
+          <h1>Which subject is it for?</h1>
+          <p class="lead">Pick up to 3. If it’s admissions support, choose the nearest academic subject or leave it general.</p>
+
+          <div class="chip-tabs" id="levelTabs">
+            <button type="button" class="chip-tab active" data-level="Primary">Primary</button>
+            <button type="button" class="chip-tab" data-level="GCSE">GCSE</button>
+            <button type="button" class="chip-tab" data-level="A-Level">A-Level</button>
+            <button type="button" class="chip-tab" data-level="Admissions">Admissions</button>
+          </div>
+
+          <div class="pill-panel">
+            <div class="pill-list" id="subjectPills"></div>
+            <p class="helper-note">Not sure? Choose the closest match and we’ll confirm the details in the consultation.</p>
+          </div>
+
+          <div class="inline-note" id="subjectCountNote">0 / 3 selected</div>
+
+          <div class="actions">
+            <button type="button" class="btn btn-light back-btn">Back</button>
+            <button type="button" class="btn btn-dark next-btn">Continue</button>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="form-step" data-step="5">
+          <span class="step-pill">Step 5</span>
+          <h1>Where should we send confirmation?</h1>
+          <p class="lead">We’ll send one confirmation email, then arrange the next step.</p>
+
+          <label class="field-label" for="email">Email</label>
+          <input class="text-input" type="email" id="email" name="email" placeholder="name@example.com" required />
+
+          <label class="field-label" for="phone" style="margin-top:18px;">Best contact number</label>
+          <input class="text-input" type="tel" id="phone" name="phone" placeholder="07... or +44..." />
+
+          <div class="inline-note">Quick setup • matched by subject + level • no tutor roulette</div>
+
+          <div class="actions">
+            <button type="button" class="btn btn-light back-btn">Back</button>
+            <button type="button" class="btn btn-dark next-btn">Continue</button>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="form-step" data-step="6">
+          <span class="step-pill">Step 6</span>
+          <h1>Last step, how should we contact you?</h1>
+          <p class="lead">We’ll confirm the consultation details and next step. No chasing.</p>
+
+          <label class="field-label" for="contactMethod">Contact method</label>
+          <select class="select-input" id="contactMethod" name="contact_method" required>
+            <option value="Email">Email (Recommended)</option>
+            <option value="Phone">Phone</option>
+            <option value="WhatsApp">WhatsApp</option>
+          </select>
+
+          <label class="field-label" for="notes" style="margin-top:18px;">Anything useful to know?</label>
+          <textarea class="textarea-input" id="notes" name="notes" placeholder="Year group, exam board, target grades, school, or anything else that helps us prepare."></textarea>
+
+          <div class="consent-box">
+            <input type="checkbox" id="consent" name="consent" required />
+            <label for="consent">
+              I agree to the storage and use of my details to arrange my free consultation, in line with the
+              <a href="YOUR_PRIVACY_POLICY_URL" target="_blank" rel="noopener noreferrer"><strong>Privacy Policy</strong></a>.
+            </label>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="btn btn-light back-btn">Back</button>
+            <button type="submit" class="btn btn-dark">Submit</button>
+          </div>
+
+          <p class="microcopy">We’ll send a confirmation automatically after submission.</p>
+          <div class="form-success" id="formSuccess">Thanks, your enquiry has been sent successfully.</div>
+          <div class="form-error" id="formError">Something went wrong. Please try again or email us directly.</div>
+        </div>
+      </form>
+
+      <div id="thankYouScreen" class="thank-you-screen">
+        <span class="step-pill">Done</span>
+        <h1>Thank you</h1>
+        <p class="lead">
+          Your consultation request has been sent successfully. We’ll be in touch shortly to confirm the next step.
+        </p>
+        <a href="index.html" class="btn btn-dark">Return to Home</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <h3>Get In Touch</h3>
+  <hr />
+  <div class="footer-contact">
+    <p>+44 207 167 8440</p>
+    <p>hello@leadingtuition.co.uk</p>
+  </div>
+  <div class="copyright">COPYRIGHT ©2023, Leading Tuition. ALL RIGHTS RESERVED.</div>
+</footer>
+
+<script>
+  const webhookUrl = "https://hooks.zapier.com/hooks/catch/14804604/uxcybaj/";
+
+  const stepPill = document.getElementById("stepPill");
+  const progressFill = document.getElementById("progressFill");
+  const steps = Array.from(document.querySelectorAll(".form-step"));
+  const roleChoices = document.querySelectorAll("[data-role-choice]");
+  const roleInput = document.getElementById("roleInput");
+  const supportPills = document.querySelectorAll("#supportPills .pill");
+  const selectedSupportInput = document.getElementById("selectedSupportInput");
+  const selectedSubjectsInput = document.getElementById("selectedSubjectsInput");
+  const subjectPillsWrap = document.getElementById("subjectPills");
+  const subjectCountNote = document.getElementById("subjectCountNote");
+  const levelTabs = document.querySelectorAll(".chip-tab");
+  const form = document.getElementById("consultationForm");
+  const formSuccess = document.getElementById("formSuccess");
+  const formError = document.getElementById("formError");
+  const thankYouScreen = document.getElementById("thankYouScreen");
+
+  let currentStep = 1;
+  let selectedSupport = "";
+  let selectedSubjects = [];
+  let currentSubjectLevel = "Primary";
+
+  const subjectOptions = {
+    Primary: ["English", "Maths", "Science", "Reading", "Writing", "Reasoning"],
+    GCSE: ["Maths", "English Language", "English Literature", "Biology", "Chemistry", "Physics", "Combined Science", "History", "Geography", "Computer Science", "Economics", "Business", "French", "Spanish"],
+    "A-Level": ["Maths", "Further Maths", "Biology", "Chemistry", "Physics", "English Literature", "Economics", "History", "Politics", "Psychology", "Geography", "Computer Science", "Business"],
+    Admissions: ["Medicine Applications", "UCAT", "MMI", "Oxbridge", "Personal Statement", "Interview Preparation", "University Admissions"]
+  };
+
+  function showStep(step) {
+    currentStep = step;
+    steps.forEach(el => el.classList.toggle("active", Number(el.dataset.step) === step));
+    stepPill.textContent = `Step ${step} / 6`;
+    progressFill.style.width = `${(step / 6) * 100}%`;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function renderSubjectPills(level) {
+    currentSubjectLevel = level;
+    subjectPillsWrap.innerHTML = "";
+    const items = subjectOptions[level] || [];
+
+    items.forEach(subject => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "pill";
+      btn.textContent = subject;
+      btn.dataset.subject = subject;
+
+      if (selectedSubjects.includes(subject)) {
+        btn.classList.add("active");
+      }
+
+      btn.addEventListener("click", () => {
+        if (selectedSubjects.includes(subject)) {
+          selectedSubjects = selectedSubjects.filter(item => item !== subject);
+        } else {
+          if (selectedSubjects.length >= 3) return;
+          selectedSubjects.push(subject);
+        }
+        selectedSubjectsInput.value = selectedSubjects.join(", ");
+        updateSubjectCount();
+        renderSubjectPills(currentSubjectLevel);
+      });
+
+      subjectPillsWrap.appendChild(btn);
+    });
+  }
+
+  function updateSubjectCount() {
+    subjectCountNote.textContent = `${selectedSubjects.length} / 3 selected`;
+  }
+
+  roleChoices.forEach(card => {
+    card.addEventListener("click", () => {
+      roleChoices.forEach(c => c.classList.remove("active"));
+      card.classList.add("active");
+      roleInput.value = card.dataset.roleChoice;
+    });
+  });
+
+  document.getElementById("step1Next").addEventListener("click", () => {
+    if (!roleInput.value) {
+      alert("Please choose who the consultation is for.");
+      return;
+    }
+    showStep(2);
+  });
+
+  document.querySelectorAll(".next-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (currentStep === 2 && !document.getElementById("fullName").value.trim()) {
+        alert("Please enter your name.");
+        return;
+      }
+
+      if (currentStep === 3 && !selectedSupport) {
+        alert("Please choose the support type.");
+        return;
+      }
+
+      if (currentStep === 5) {
+        const email = document.getElementById("email").value.trim();
+        if (!email) {
+          alert("Please enter your email.");
+          return;
+        }
+      }
+
+      showStep(currentStep + 1);
+    });
+  });
+
+  document.querySelectorAll(".back-btn").forEach(btn => {
+    btn.addEventListener("click", () => showStep(currentStep - 1));
+  });
+
+  supportPills.forEach(btn => {
+    btn.addEventListener("click", () => {
+      supportPills.forEach(p => p.classList.remove("active"));
+      btn.classList.add("active");
+      selectedSupport = btn.dataset.support;
+      selectedSupportInput.value = selectedSupport;
+    });
+  });
+
+  levelTabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      levelTabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      renderSubjectPills(tab.dataset.level);
+    });
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    formSuccess.style.display = "none";
+    formError.style.display = "none";
+
+    const consent = document.getElementById("consent");
+    if (!consent.checked) {
+      alert("Please confirm consent before submitting.");
+      return;
+    }
+
+    const formData = new FormData(form);
+
+    try {
+      await fetch(webhookUrl, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+      });
+
+      form.style.display = "none";
+      thankYouScreen.style.display = "block";
+    } catch (error) {
+      formError.style.display = "block";
+    }
+  });
+
+  renderSubjectPills("Primary");
+  updateSubjectCount();
+</script>
+
+</body>
+</html>

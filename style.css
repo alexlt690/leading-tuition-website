@@ -1014,3 +1014,23 @@ footer .copyright {
     align-items: flex-start;
   }
 }
+/* Generated page article spacing */
+.container h2 {
+  margin-top: 38px;
+  margin-bottom: 14px;
+  font-size: 1.6rem;
+}
+
+.container p {
+  margin-bottom: 18px;
+  max-width: 760px;
+}
+
+.container ul {
+  margin: 18px 0 22px 20px;
+  max-width: 760px;
+}
+
+.container li {
+  margin-bottom: 8px;
+}
