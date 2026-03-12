@@ -1,0 +1,1 @@
+SEO generator working folder
