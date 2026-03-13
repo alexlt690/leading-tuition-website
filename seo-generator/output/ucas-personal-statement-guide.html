@@ -3,7 +3,15 @@
     <head>
         <title>UCAS Personal Statement Guide</title>
         <link rel="stylesheet" href="style.css">
-    </head>
+      <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D49V0X7BHL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D49V0X7BHL');
+  </script>
+</head>
     <body>
         <header>
             <h1>Leading Tuition</h1>
@@ -17,6 +25,41 @@
         <footer>
             <p>Leading Tuition ©</p>
         </footer>
-    </body>
+    
+<script>
+(function() {
+  var hamburger = document.getElementById('navHamburger');
+  var nav       = document.getElementById('navbarNav');
+  if (!hamburger || !nav) return;
+
+  hamburger.addEventListener('click', function() {
+    var open = nav.classList.toggle('open');
+    hamburger.classList.toggle('active', open);
+    hamburger.setAttribute('aria-expanded', open);
+  });
+
+  // Mobile accordion for dropdowns
+  var toggles = document.querySelectorAll('.nav-dropdown-toggle');
+  toggles.forEach(function(toggle) {
+    toggle.addEventListener('click', function(e) {
+      if (window.innerWidth <= 900) {
+        e.preventDefault();
+        var li = this.parentElement;
+        li.classList.toggle('open');
+      }
+    });
+  });
+
+  // Close menu on outside click
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.navbar')) {
+      nav.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
+</script>
+</body>
     </html>
     

@@ -1034,3 +1034,261 @@ footer .copyright {
 .container li {
   margin-bottom: 8px;
 }
+
+
+/* ================================================================
+   DROPDOWN NAVIGATION + HAMBURGER MENU  (added by update script)
+   ================================================================ */
+
+/* ── FIX MOBILE HORIZONTAL OVERFLOW ── */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* ── NAV CARET ── */
+.nav-caret {
+  font-size: 0.65em;
+  opacity: 0.72;
+  transition: transform 0.2s;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 3px;
+  line-height: 1;
+}
+
+.nav-dropdown { position: relative; }
+
+/* ── STANDARD DROPDOWN ── */
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--dark);
+  border-top: 2px solid var(--gold);
+  z-index: 1200;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  min-width: 260px;
+}
+
+.nav-dropdown:hover > .nav-dropdown-menu { display: block; }
+
+.nav-dropdown-menu a {
+  display: block;
+  padding: 10px 20px;
+  color: var(--white);
+  font-size: 0.875rem;
+  opacity: 0.88;
+  transition: background 0.15s, opacity 0.15s;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.nav-dropdown-menu a:last-child { border-bottom: none; }
+.nav-dropdown-menu a:hover { background: rgba(255,255,255,0.09); opacity: 1; }
+
+/* Two-column layout for locations */
+.nav-dropdown-menu--cols {
+  column-count: 2;
+  min-width: 300px;
+}
+
+/* ── MEGA MENU (Services) ── */
+.nav-mega-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--dark);
+  border-top: 2px solid var(--gold);
+  z-index: 1200;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  min-width: 720px;
+}
+
+.nav-dropdown:hover > .nav-mega-menu { display: block; }
+
+.nav-mega-header {
+  padding: 14px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.nav-mega-header a {
+  color: var(--gold) !important;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  opacity: 1 !important;
+}
+
+.nav-mega-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.nav-mega-col {
+  padding: 18px 22px 22px;
+  border-right: 1px solid rgba(255,255,255,0.07);
+}
+
+.nav-mega-col:last-child { border-right: none; }
+
+.nav-mega-col-title {
+  color: var(--gold);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  white-space: nowrap;
+}
+
+.nav-mega-col a {
+  display: block;
+  padding: 5px 0;
+  color: var(--white);
+  font-size: 0.855rem;
+  opacity: 0.82;
+  transition: opacity 0.15s;
+  white-space: nowrap;
+}
+
+.nav-mega-col a:hover { opacity: 1; }
+
+/* ── HAMBURGER BUTTON ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 8px;
+  z-index: 1100;
+  flex-shrink: 0;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.nav-hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-hamburger.active span:nth-child(2) { opacity: 0; }
+.nav-hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── MOBILE NAV (≤900px) ── */
+@media (max-width: 900px) {
+  .nav-hamburger { display: flex; }
+
+  /* Override existing navbar-nav gap rule */
+  .navbar-nav { gap: 0; }
+
+  .navbar-nav:not(.open) { display: none !important; }
+
+  .navbar-nav.open {
+    display: flex !important;
+    position: fixed;
+    top: 58px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--dark);
+    overflow-y: auto;
+    flex-direction: column;
+    padding: 0 0 32px;
+    z-index: 1050;
+  }
+
+  .navbar-nav > li {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .navbar-nav > li > a {
+    display: block;
+    padding: 15px 24px;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  /* Rotate caret when mobile dropdown is open */
+  .nav-dropdown.open .nav-caret {
+    transform: rotate(180deg);
+  }
+
+  /* Disable hover-triggered dropdowns on mobile */
+  .nav-dropdown:hover > .nav-dropdown-menu,
+  .nav-dropdown:hover > .nav-dropdown-menu--cols,
+  .nav-dropdown:hover > .nav-mega-menu { display: none; }
+
+  /* Reset all dropdowns to static positioning for mobile */
+  .nav-dropdown-menu,
+  .nav-dropdown-menu--cols,
+  .nav-mega-menu {
+    display: none;
+    position: static;
+    box-shadow: none;
+    border-top: none;
+    transform: none;
+    background: rgba(0,0,0,0.2);
+    min-width: 100%;
+    width: 100%;
+  }
+
+  /* Show when li has .open class (toggled by JS) */
+  .nav-dropdown.open > .nav-dropdown-menu { display: block; }
+  .nav-dropdown.open > .nav-dropdown-menu--cols { display: block; }
+  .nav-dropdown.open > .nav-mega-menu { display: block; }
+
+  /* Mega menu: stack columns vertically on mobile */
+  .nav-mega-cols { display: flex; flex-direction: column; }
+
+  .nav-mega-header {
+    padding: 12px 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .nav-mega-col {
+    border-right: none;
+    padding: 12px 32px 8px;
+  }
+
+  .nav-mega-col-title {
+    margin-top: 4px;
+  }
+
+  .nav-dropdown-menu a {
+    padding: 10px 32px;
+    white-space: normal;
+    font-size: 0.9rem;
+  }
+
+  .nav-mega-col a {
+    padding: 8px 0;
+    white-space: normal;
+  }
+
+  .nav-dropdown-menu--cols {
+    column-count: 1;
+  }
+}
+
+/* ── KEEP FULL NAV ABOVE 900px ── */
+@media (min-width: 901px) {
+  .nav-hamburger { display: none !important; }
+  .navbar-nav { display: flex !important; }
+}
+
