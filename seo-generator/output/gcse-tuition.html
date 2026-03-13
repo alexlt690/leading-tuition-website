@@ -1,31 +1,295 @@
 
-    <html>
-    <head>
-        <title>GCSE Tuition</title>
-        <link rel="stylesheet" href="style.css">
-      <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D49V0X7BHL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-D49V0X7BHL');
-  </script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GCSE Tuition | Leading Tuition</title>
+<meta name="description" content="Expert GCSE tutors across all subjects and exam boards — AQA, Edexcel, OCR. Grades 9–1. Targeted support from Year 10 through results day. Free consultation." />
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<style>
+
+/* HERO HEIGHT REDUCTION */
+.hero {
+  height:220px;
+  min-height:220px;
+}
+
+.hero-content {
+  padding:0 60px;
+}
+
+.hero-content h1 {
+  font-size:2.2rem;
+}
+
+.hero-content p {
+  font-size:1rem;
+  margin-bottom:16px;
+}
+
+.hero-cta {
+  display:inline-block;
+}
+
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D49V0X7BHL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D49V0X7BHL');
+</script>
+
 </head>
-    <body>
-        <header>
-            <h1>Leading Tuition</h1>
-        </header>
+<body>
 
-        <main>
-            <h2>GCSE Tuition</h2>
-            <p>Placeholder page for GCSE tuition.</p>
-        </main>
 
-        <footer>
-            <p>Leading Tuition ©</p>
-        </footer>
-    
+<nav class="navbar">
+  <a href="index.html" class="navbar-brand">
+    <img src="images/logo.png" alt="Leading Tuition logo" />
+    Leading Tuition
+  </a>
+
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <ul class="navbar-nav" id="navbarNav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+
+    <!-- Services mega-dropdown -->
+    <li class="nav-dropdown">
+      <a href="services.html" class="nav-dropdown-toggle">Services <span class="nav-caret">&#9660;</span></a>
+      <div class="nav-mega-menu">
+        <div class="nav-mega-header">
+          <a href="services.html">&#8592; Our Services</a>
+        </div>
+
+        <div class="nav-mega-cols">
+
+          <div class="nav-mega-col">
+            <div class="nav-mega-col-title">Subjects</div>
+            <a href="maths-tutor.html">Maths</a>
+            <a href="biology-tutor.html">Biology</a>
+            <a href="chemistry-tutor.html">Chemistry</a>
+            <a href="physics-tutor.html">Physics</a>
+            <a href="english-language-tutor.html">English Language</a>
+            <a href="english-literature-tutor.html">English Literature</a>
+            <a href="history-tutor.html">History</a>
+            <a href="geography-tutor.html">Geography</a>
+            <a href="economics-tutor.html">Economics</a>
+            <a href="politics-tutor.html">Politics</a>
+            <a href="psychology-tutor.html">Psychology</a>
+            <a href="computer-science-tutor.html">Computer Science</a>
+            <a href="business-studies-tutor.html">Business Studies</a>
+            <a href="further-maths-tutor.html">Further Maths</a>
+            <a href="statistics-tutor.html">Statistics</a>
+          </div>
+
+          <div class="nav-mega-col">
+            <div class="nav-mega-col-title">Levels</div>
+            <a href="a-level-tuition.html">A-Level Tuition</a>
+            <a href="gcse-tuition.html">GCSE Tuition</a>
+            <a href="primary-tuition.html">Primary Tuition</a>
+            <a href="sats-tuition.html">SATs Tuition</a>
+            <a href="11plus-tuition.html">11+ Tuition</a>
+            <a href="13plus-tuition.html">13+ Tuition</a>
+            <a href="university-tuition.html">University Tuition</a>
+          </div>
+
+          <div class="nav-mega-col">
+            <div class="nav-mega-col-title">Specialist &amp; Admissions</div>
+            <a href="oxbridge-admissions-preparation.html">Oxbridge Admissions</a>
+            <a href="oxbridge-subject-preparation.html">Oxbridge Subject Prep</a>
+            <a href="ucat-tutor.html">UCAT Tutor</a>
+            <a href="mmi-interview-coaching.html">MMI Interview Coaching</a>
+            <a href="medicine-prep-hub.html">Medicine Prep Hub</a>
+            <a href="university-personal-statement.html">University Personal Statement</a>
+          </div>
+
+        </div>
+      </div>
+    </li>
+
+    <!-- Blog dropdown -->
+    <li class="nav-dropdown">
+      <a href="#" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
+      <div class="nav-dropdown-menu">
+        <a href="how-long-does-gcse-revision-take.html">How Long Does GCSE Revision Take?</a>
+        <a href="how-to-find-a-good-private-tutor.html">How to Find a Good Private Tutor</a>
+        <a href="how-to-prepare-for-a-medical-school-mmi-interview.html">How to Prepare for MMI Interviews</a>
+        <a href="online-tutoring-vs-in-person-tutoring-for-gcse.html">Online vs In-Person Tutoring for GCSE</a>
+        <a href="triple-vs-double-science-gcse.html">Triple vs Double Science GCSE</a>
+        <a href="what-grade-do-you-need-for-oxbridge-chemistry.html">What Grade for Oxbridge Chemistry?</a>
+        <a href="what-is-the-11-plus-exam.html">What is the 11 Plus Exam?</a>
+        <a href="a-level-subject-choices-for-medicine-applications.html">A-Level Subjects for Medicine</a>
+        <a href="ucat-score-requirements-for-uk-medical-schools-2025.html">UCAT Score Requirements 2025</a>
+        <a href="ucas-personal-statement-guide.html">UCAS Personal Statement Guide</a>
+      </div>
+    </li>
+
+    <!-- Locations dropdown -->
+    <li class="nav-dropdown">
+      <a href="#" class="nav-dropdown-toggle">Locations <span class="nav-caret">&#9660;</span></a>
+      <div class="nav-dropdown-menu nav-dropdown-menu--cols">
+        <a href="london.html">London</a>
+        <a href="birmingham.html">Birmingham</a>
+        <a href="manchester.html">Manchester</a>
+        <a href="leeds.html">Leeds</a>
+        <a href="bristol.html">Bristol</a>
+        <a href="sheffield.html">Sheffield</a>
+        <a href="leicester.html">Leicester</a>
+        <a href="liverpool.html">Liverpool</a>
+        <a href="nottingham.html">Nottingham</a>
+        <a href="cambridge.html">Cambridge</a>
+        <a href="oxford.html">Oxford</a>
+        <a href="brighton.html">Brighton</a>
+        <a href="guildford.html">Guildford</a>
+        <a href="reading.html">Reading</a>
+      </div>
+    </li>
+
+    <li><a href="tutors.html">Our Tutors</a></li>
+    <li><a href="faqs.html">FAQs</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+  </ul>
+</nav>
+
+<section class="hero" style="background-image:url('images/hero.png');">
+<div class="hero-content">
+<h1>GCSE Tuition</h1>
+<p>Expert support from Leading Tuition</p>
+<a href="consultation.html" class="btn btn-dark hero-cta">Book a Free Consultation</a>
+</div>
+</section>
+
+<section class="section section--cream" style="padding:70px 60px;">
+<div class="container" style="max-width:900px;">
+<p>If your child is in Year 10 or Year 11, you are probably already feeling the weight of what lies ahead. GCSE exams have a way of making everything feel urgent — the mock results that weren't quite what you hoped for, the subjects your child finds genuinely difficult, the quiet worry that there isn't enough time left to turn things around. That feeling is completely understandable. GCSEs are a significant milestone, and the grades your child achieves will shape the options available to them at sixth form, college, and beyond. The good news is that with the right support, real improvement is possible — and it is rarely too late to make a meaningful difference.</p>
+
+<h2>Why GCSE Results Matter</h2>
+
+<p>GCSE results are the first formal academic record that follows a young person into adult life. Sixth forms, colleges, and employers all use them as a measure of ability and potential. Many sixth forms require a minimum of grade 5 in English and Maths for entry to A-level courses, and some of the more selective institutions set higher thresholds still. A strong set of GCSE grades keeps doors open — to the subjects your child wants to study, the schools they want to attend, and the careers they are beginning to think about.</p>
+
+<p>It is also worth remembering that GCSEs are not just about the grades themselves. The habits your child builds during this period — how they revise, how they manage exam pressure, how they approach a subject they find difficult — will serve them throughout their education. Good tutoring helps with both: the grades and the skills behind them.</p>
+
+<h2>The Most Commonly Tutored GCSE Subjects</h2>
+
+<p>Most students sit GCSEs in Year 10 and Year 11, with final exams at the end of Year 11. The subjects that parents most frequently seek tutoring support for include:</p>
+
+<ul>
+  <li><strong>Mathematics</strong> — consistently the most requested subject, covering everything from algebra and geometry to statistics and ratio</li>
+  <li><strong>English Language and English Literature</strong> — both require distinct skills, and many students struggle with the analytical writing expected at higher grades</li>
+  <li><strong>Sciences</strong> — Biology, Chemistry, and Physics, whether taken as combined Science or as separate subjects</li>
+  <li><strong>History and Geography</strong> — essay-based subjects where structure and argument matter as much as knowledge</li>
+  <li><strong>Modern Foreign Languages</strong> — French, Spanish, and German, particularly for students who find the speaking and writing components challenging</li>
+</ul>
+
+<p>That said, tutoring can be valuable in almost any GCSE subject. If your child has a specific weak spot — even in a subject they generally manage well — targeted support can make a real difference to their final grade.</p>
+
+<h2>How GCSE Grading Works — and What Each Grade Really Means</h2>
+
+<p>GCSE grades in England run from 9 (the highest) to 1 (the lowest). Grade 4 is considered a standard pass, and grade 5 is described as a strong pass. Many schools and colleges treat grade 5 as the meaningful benchmark, particularly in English and Maths, so it is worth understanding exactly where your child currently sits and what they need to reach their target.</p>
+
+<p>One thing that surprises many parents is just how rare the very top grades are. A grade 9 is awarded to roughly the top 3 to 4 per cent of students nationally in each subject. This means that a grade 9 is not simply the equivalent of full marks — it is a genuinely exceptional result, designed to distinguish the very highest performers from those who are already doing extremely well. A student achieving grade 7 or grade 8 is performing at a high level by any measure.</p>
+
+<p>This matters for tutoring because it helps set realistic and motivating targets. The jump from grade 3 to grade 5 is very achievable with consistent effort and the right guidance. The jump from grade 7 to grade 9 requires something more precise — a deep understanding of mark schemes, examiner expectations, and the specific skills that distinguish a very good answer from an outstanding one. Both are worth pursuing, but they call for different approaches.</p>
+
+<p>It is also important to understand that mock exams — which most schools run in both Year 10 and Year 11 — do not count toward final grades. They are valuable as a diagnostic tool, showing where gaps exist and how a student performs under timed conditions, but a disappointing mock result is not a fixed outcome. Many students improve significantly between their mocks and their final exams.</p>
+
+<h2>How to Get the Most from GCSE Tutoring</h2>
+
+<p>Tutoring works best when it is focused rather than general. A tutor who simply re-teaches content your child has already covered in class is unlikely to produce the improvement you are looking for. What makes a real difference is a tutor who identifies the specific gaps in your child's understanding, works through the types of questions that appear on their actual exam, and helps them develop the exam technique that turns knowledge into marks.</p>
+
+<p>The main exam boards for GCSE are AQA, Edexcel, and OCR, and different schools follow different boards — sometimes even different boards for different subjects. This matters more than many parents realise. The content across boards is broadly similar, but the style of questions, the structure of papers, and the way marks are allocated can vary considerably. A good tutor will always work from the correct specification and past papers for your child's specific board, not a generic version of the subject.</p>
+
+<p>Consistency also matters. One or two sessions before an exam can help with confidence, but sustained weekly tutoring over a term or more is where genuine progress happens. If your child is in Year 10, starting now gives them the time to build understanding steadily rather than cramming under pressure. If they are already in Year 11, there is still time — but the focus will need to be sharper and the sessions more targeted.</p>
+
+<h2>Frequently Asked Questions about GCSE Tuition</h2>
+
+<p><strong>My child has a grade target set by their school — how do I know if tutoring can help them reach it?</strong></p>
+<p>School-set targets are usually based on prior attainment data and give a reasonable indication of where a student might land without additional support. Tutoring is most effective when there is a clear gap between where a student currently is and where they need to be — for example, sitting at grade 4 with a target of grade 6. A tutor can assess your child's current level in the first session and give you an honest view of what is realistic and what it will take to get there.</p>
+
+<p><strong>Which subjects benefit most from one-to-one tutoring?</strong></p>
+<p>Maths and English are the most commonly tutored subjects, partly because they are compulsory and partly because the skills involved — problem-solving, analytical writing, exam technique — respond well to individual attention. Sciences are also highly effective to tutor, particularly where a student is strong in one area but weaker in another. That said, almost any subject can benefit from tutoring if the sessions are well-structured and focused on the right things.</p>
+
+<p><strong>Does it matter which exam board my child's school uses?</strong></p>
+<p>Yes, it does. AQA, Edexcel, and OCR each have their own specifications, question styles, and mark schemes. A tutor who prepares your child using the wrong board's past papers is not giving them the best preparation, even if the subject content overlaps. Always check which board your child's school uses for each subject — it is usually listed on the school's website or available from their teacher — and make sure your tutor works from the correct materials.</p>
+
+<p><strong>When is the right time to start GCSE tutoring?</strong></p>
+<p>There is no single right answer, but earlier is generally better. Starting in Year 10 allows time for steady, unhurried progress and means your child arrives at Year 11 with stronger foundations. Starting in Year 11 is still very worthwhile, particularly after mock exams reveal specific weaknesses. Even a focused block of tutoring in the months before final exams can make a meaningful difference — provided the sessions are targeted and the student is willing to put in the work between them.</p>
+
+<p>Whatever stage your child is at, the most important thing is that the support they receive is honest, specific, and genuinely matched to what they need. That is what we aim to provide at Leading Tuition.</p>
+</div>
+</section>
+
+
+<section class="section section--light" style="padding:35px 60px;">
+  <div class="container">
+    <div style="max-width:560px;margin:0 auto;text-align:center;">
+      <h2 style="margin-bottom:10px;">Ready to get started?</h2>
+      <p style="margin-bottom:16px;">
+        Book a free consultation and we’ll help you find the right support for your child.
+      </p>
+      <a href="consultation.html" class="btn btn-dark">Book a Free Consultation</a>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section section--cream" style="padding:60px 60px;">
+  <div class="container" style="max-width:820px;">
+    <h2>Frequently Asked Questions</h2>
+
+    <p><strong>How does the consultation work?</strong></p>
+    <p>We’ll learn more about your child, the subject or admissions support they need, and the outcomes you’re aiming for before recommending the next step.</p>
+
+    <p><strong>Is the consultation free?</strong></p>
+    <p>Yes. It is a free consultation with no obligation, designed to help you understand the best route forward.</p>
+
+    <p><strong>Can you help with specialist support like UCAT or Oxbridge admissions?</strong></p>
+    <p>Yes. We support Primary, 11+, 13+, GCSE, A-Level, SATs, UCAT, MMI interview coaching, Oxbridge admissions, university admissions, and personal statement support.</p>
+  </div>
+</section>
+
+
+
+<section class="section section--light" style="padding:35px 60px;">
+  <div class="container">
+    <div style="max-width:560px;margin:0 auto;text-align:center;">
+      <h2 style="margin-bottom:10px;">Ready to get started?</h2>
+      <p style="margin-bottom:16px;">
+        Book a free consultation and we’ll help you find the right support for your child.
+      </p>
+      <a href="consultation.html" class="btn btn-dark">Book a Free Consultation</a>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+
+<h3>Get In Touch</h3>
+<hr />
+
+<div class="footer-contact">
+<p>+44 207 167 8440</p>
+<p>hello@leadingtuition.co.uk</p>
+</div>
+
+<div class="copyright">
+COPYRIGHT ©2023, Leading Tuition. ALL RIGHTS RESERVED.
+</div>
+
+</footer>
+
 <script>
 (function() {
   var hamburger = document.getElementById('navHamburger');
@@ -38,7 +302,6 @@
     hamburger.setAttribute('aria-expanded', open);
   });
 
-  // Mobile accordion for dropdowns
   var toggles = document.querySelectorAll('.nav-dropdown-toggle');
   toggles.forEach(function(toggle) {
     toggle.addEventListener('click', function(e) {
@@ -50,7 +313,6 @@
     });
   });
 
-  // Close menu on outside click
   document.addEventListener('click', function(e) {
     if (!e.target.closest('.navbar')) {
       nav.classList.remove('open');
@@ -60,6 +322,6 @@
   });
 })();
 </script>
+
 </body>
-    </html>
-    
+</html>
