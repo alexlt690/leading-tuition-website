@@ -255,6 +255,8 @@ h1, h2, h3, h4 {
 }
 
 .bootcamp-promo img {
+  display: block;
+  width: 100%;
   max-width: 600px;
   margin: 0 auto 36px;
   border-radius: 4px;
@@ -570,6 +572,10 @@ footer .copyright {
   height: 80px;
   width: auto;
   object-fit: contain;
+}
+
+.uni-logos img:first-child {
+  height: 110px;
 }
 
 .join-team {
