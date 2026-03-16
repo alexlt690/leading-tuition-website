@@ -258,20 +258,6 @@
       font-size: 0.95rem;
     }
 
-    .consent-box {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      background: rgba(255,255,255,0.6);
-      border-radius: 18px;
-      padding: 16px 18px;
-      margin-top: 18px;
-    }
-
-    .consent-box input {
-      margin-top: 5px;
-    }
-
     .actions {
       display: flex;
       gap: 16px;
@@ -624,14 +610,6 @@
           <label class="field-label" for="notes" style="margin-top:18px;">Anything useful to know?</label>
           <textarea class="textarea-input" id="notes" name="notes" placeholder="Year group, exam board, target grades, school, or anything else that helps us prepare."></textarea>
 
-          <div class="consent-box">
-            <input type="checkbox" id="consent" name="consent" required />
-            <label for="consent">
-              I agree to the storage and use of my details to arrange my free consultation, in line with the
-              <a href="YOUR_PRIVACY_POLICY_URL" target="_blank" rel="noopener noreferrer"><strong>Privacy Policy</strong></a>.
-            </label>
-          </div>
-
           <div class="actions">
             <button type="button" class="btn btn-light back-btn">Back</button>
             <button type="submit" class="btn btn-dark">Submit</button>
@@ -807,11 +785,17 @@
     formSuccess.style.display = "none";
     formError.style.display = "none";
 
-    const consent = document.getElementById("consent");
-    if (!consent.checked) {
-      alert("Please confirm consent before submitting.");
-      return;
-    }
+    const name = document.getElementById("fullName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const role = roleInput.value.trim();
+    const support = selectedSupportInput.value.trim();
+    const contact = document.getElementById("contactMethod").value.trim();
+
+    if (!role) { alert("Please choose who the consultation is for."); return; }
+    if (!name) { alert("Please enter your name."); return; }
+    if (!support) { alert("Please choose the type of support needed."); return; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert("Please enter a valid email address."); return; }
+    if (!contact) { alert("Please choose a preferred contact method."); return; }
 
     const formData = new FormData(form);
 
