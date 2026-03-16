@@ -539,7 +539,6 @@
               <button type="button" class="pill" data-support="University Admissions">University Admissions</button>
               <button type="button" class="pill" data-support="Personal Statement Support">Personal Statement Support</button>
             </div>
-            <p class="helper-note">BMAT is not included because it is no longer a current admissions test.</p>
           </div>
 
           <div class="actions">
@@ -723,6 +722,7 @@
       roleChoices.forEach(c => c.classList.remove("active"));
       card.classList.add("active");
       roleInput.value = card.dataset.roleChoice;
+      showStep(2);
     });
   });
 
@@ -768,6 +768,7 @@
       btn.classList.add("active");
       selectedSupport = btn.dataset.support;
       selectedSupportInput.value = selectedSupport;
+      showStep(4);
     });
   });
 

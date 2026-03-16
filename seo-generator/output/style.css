@@ -574,9 +574,6 @@ footer .copyright {
   object-fit: contain;
 }
 
-.uni-logos img:first-child {
-  height: 110px;
-}
 
 .join-team {
   background: var(--cream);
