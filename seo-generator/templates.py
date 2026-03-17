@@ -1,8 +1,5 @@
 import json
 
-# Exported nav block for use by generate_static_pages()
-_NAV_BLOCK = '<nav class="navbar">\n  <a href="/" class="navbar-brand">\n    <img src="images/logo.png" alt="Leading Tuition logo" />\n    Leading Tuition\n  </a>\n\n  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">\n    <span></span><span></span><span></span>\n  </button>\n\n  <ul class="navbar-nav" id="navbarNav">\n    <li><a href="/">Home</a></li>\n    <li><a href="/about.html">About Us</a></li>\n\n    <!-- Services mega-dropdown -->\n    <li class="nav-dropdown">\n      <a href="/services.html" class="nav-dropdown-toggle">Services <span class="nav-caret">&#9660;</span></a>\n      <div class="nav-mega-menu">\n        <div class="nav-mega-header">\n          <a href="/services.html">&#8592; Our Services</a>\n        </div>\n\n        <div class="nav-mega-cols">\n\n          <div class="nav-mega-col">\n            <div class="nav-mega-col-title">Subjects</div>\n            <a href="/subjects/maths-tutor.html">Maths</a>\n            <a href="/subjects/biology-tutor.html">Biology</a>\n            <a href="/subjects/chemistry-tutor.html">Chemistry</a>\n            <a href="/subjects/physics-tutor.html">Physics</a>\n            <a href="/subjects/english-language-tutor.html">English Language</a>\n            <a href="/subjects/english-literature-tutor.html">English Literature</a>\n            <a href="/subjects/history-tutor.html">History</a>\n            <a href="/subjects/geography-tutor.html">Geography</a>\n            <a href="/subjects/economics-tutor.html">Economics</a>\n            <a href="/subjects/politics-tutor.html">Politics</a>\n            <a href="/subjects/psychology-tutor.html">Psychology</a>\n            <a href="/subjects/computer-science-tutor.html">Computer Science</a>\n            <a href="/subjects/business-studies-tutor.html">Business Studies</a>\n            <a href="/subjects/further-maths-tutor.html">Further Maths</a>\n            <a href="/subjects/statistics-tutor.html">Statistics</a>\n          </div>\n\n          <div class="nav-mega-col">\n            <div class="nav-mega-col-title">Levels</div>\n            <a href="/a-level-tuition.html">A-Level Tuition</a>\n            <a href="/gcse-tuition.html">GCSE Tuition</a>\n            <a href="/primary-tuition.html">Primary Tuition</a>\n            <a href="/sats-tuition.html">SATs Tuition</a>\n            <a href="/11plus-tuition.html">11+ Tuition</a>\n            <a href="/13plus-tuition.html">13+ Tuition</a>\n            <a href="/university-tuition.html">University Tuition</a>\n          </div>\n\n          <div class="nav-mega-col">\n            <div class="nav-mega-col-title">Specialist &amp; Admissions</div>\n            <a href="/oxbridge-admissions-preparation.html">Oxbridge Admissions</a>\n            <a href="/oxbridge-subject-preparation.html">Oxbridge Subject Prep</a>\n            <a href="/ucat-tutor.html">UCAT Tutor</a>\n            <a href="/mmi-interview-coaching.html">MMI Interview Coaching</a>\n            <a href="/medicine-prep-hub.html">Medicine Prep Hub</a>\n            <a href="/university-personal-statement.html">University Personal Statement</a>\n          </div>\n\n        </div>\n      </div>\n    </li>\n\n    <!-- Blog dropdown -->\n    <li class="nav-dropdown">\n      <a href="#" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>\n      <div class="nav-dropdown-menu">\n        <a href="/how-long-does-gcse-revision-take.html">How Long Does GCSE Revision Take?</a>\n        <a href="/how-to-find-a-good-private-tutor.html">How to Find a Good Private Tutor</a>\n        <a href="/how-to-prepare-for-a-medical-school-mmi-interview.html">How to Prepare for MMI Interviews</a>\n        <a href="/online-tutoring-vs-in-person-tutoring-for-gcse.html">Online vs In-Person Tutoring for GCSE</a>\n        <a href="/triple-vs-double-science-gcse.html">Triple vs Double Science GCSE</a>\n        <a href="/what-grade-do-you-need-for-oxbridge-chemistry.html">What Grade for Oxbridge Chemistry?</a>\n        <a href="/what-is-the-11-plus-exam.html">What is the 11 Plus Exam?</a>\n        <a href="/a-level-subject-choices-for-medicine-applications.html">A-Level Subjects for Medicine</a>\n        <a href="/ucat-score-requirements-for-uk-medical-schools-2025.html">UCAT Score Requirements 2025</a>\n        <a href="/ucas-personal-statement-guide.html">UCAS Personal Statement Guide</a>\n      </div>\n    </li>\n\n    <!-- Locations dropdown -->\n    <li class="nav-dropdown">\n      <a href="#" class="nav-dropdown-toggle">Locations <span class="nav-caret">&#9660;</span></a>\n      <div class="nav-dropdown-menu nav-dropdown-menu--cols">\n        <a href="/london.html">London</a>\n        <a href="/birmingham.html">Birmingham</a>\n        <a href="/manchester.html">Manchester</a>\n        <a href="/leeds.html">Leeds</a>\n        <a href="/bristol.html">Bristol</a>\n        <a href="/sheffield.html">Sheffield</a>\n        <a href="/leicester.html">Leicester</a>\n        <a href="/liverpool.html">Liverpool</a>\n        <a href="/nottingham.html">Nottingham</a>\n        <a href="/cambridge.html">Cambridge</a>\n        <a href="/oxford.html">Oxford</a>\n        <a href="/brighton.html">Brighton</a>\n        <a href="/guildford.html">Guildford</a>\n        <a href="/reading.html">Reading</a>\n      </div>\n    </li>\n\n    <li><a href="/tutors.html">Our Tutors</a></li>\n    <li><a href="/faqs.html">FAQs</a></li>\n    <li><a href="/contact.html">Contact Us</a></li>\n  </ul>\n</nav>'
-
 
 def breadcrumb_schema(page_type, slug, display_name, section=""):
     """Build BreadcrumbList JSON-LD. page_type: home|location|subject|level|specialist|blog"""
@@ -114,7 +111,7 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
 
 
 <nav class="navbar">
-  <a href="/" class="navbar-brand">
+  <a href="index.html" class="navbar-brand">
     <img src="images/logo.png" alt="Leading Tuition logo" />
     Leading Tuition
   </a>
@@ -124,57 +121,57 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
   </button>
 
   <ul class="navbar-nav" id="navbarNav">
-    <li><a href="/">Home</a></li>
-    <li><a href="/about.html">About Us</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
 
     <!-- Services mega-dropdown -->
     <li class="nav-dropdown">
-      <a href="/services.html" class="nav-dropdown-toggle">Services <span class="nav-caret">&#9660;</span></a>
+      <a href="services.html" class="nav-dropdown-toggle">Services <span class="nav-caret">&#9660;</span></a>
       <div class="nav-mega-menu">
         <div class="nav-mega-header">
-          <a href="/services.html">&#8592; Our Services</a>
+          <a href="services.html">&#8592; Our Services</a>
         </div>
 
         <div class="nav-mega-cols">
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Subjects</div>
-            <a href="/subjects/maths-tutor.html">Maths</a>
-            <a href="/subjects/biology-tutor.html">Biology</a>
-            <a href="/subjects/chemistry-tutor.html">Chemistry</a>
-            <a href="/subjects/physics-tutor.html">Physics</a>
-            <a href="/subjects/english-language-tutor.html">English Language</a>
-            <a href="/subjects/english-literature-tutor.html">English Literature</a>
-            <a href="/subjects/history-tutor.html">History</a>
-            <a href="/subjects/geography-tutor.html">Geography</a>
-            <a href="/subjects/economics-tutor.html">Economics</a>
-            <a href="/subjects/politics-tutor.html">Politics</a>
-            <a href="/subjects/psychology-tutor.html">Psychology</a>
-            <a href="/subjects/computer-science-tutor.html">Computer Science</a>
-            <a href="/subjects/business-studies-tutor.html">Business Studies</a>
-            <a href="/subjects/further-maths-tutor.html">Further Maths</a>
-            <a href="/subjects/statistics-tutor.html">Statistics</a>
+            <a href="maths-tutor.html">Maths</a>
+            <a href="biology-tutor.html">Biology</a>
+            <a href="chemistry-tutor.html">Chemistry</a>
+            <a href="physics-tutor.html">Physics</a>
+            <a href="english-language-tutor.html">English Language</a>
+            <a href="english-literature-tutor.html">English Literature</a>
+            <a href="history-tutor.html">History</a>
+            <a href="geography-tutor.html">Geography</a>
+            <a href="economics-tutor.html">Economics</a>
+            <a href="politics-tutor.html">Politics</a>
+            <a href="psychology-tutor.html">Psychology</a>
+            <a href="computer-science-tutor.html">Computer Science</a>
+            <a href="business-studies-tutor.html">Business Studies</a>
+            <a href="further-maths-tutor.html">Further Maths</a>
+            <a href="statistics-tutor.html">Statistics</a>
           </div>
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Levels</div>
-            <a href="/a-level-tuition.html">A-Level Tuition</a>
-            <a href="/gcse-tuition.html">GCSE Tuition</a>
-            <a href="/primary-tuition.html">Primary Tuition</a>
-            <a href="/sats-tuition.html">SATs Tuition</a>
-            <a href="/11plus-tuition.html">11+ Tuition</a>
-            <a href="/13plus-tuition.html">13+ Tuition</a>
-            <a href="/university-tuition.html">University Tuition</a>
+            <a href="a-level-tuition.html">A-Level Tuition</a>
+            <a href="gcse-tuition.html">GCSE Tuition</a>
+            <a href="primary-tuition.html">Primary Tuition</a>
+            <a href="sats-tuition.html">SATs Tuition</a>
+            <a href="11plus-tuition.html">11+ Tuition</a>
+            <a href="13plus-tuition.html">13+ Tuition</a>
+            <a href="university-tuition.html">University Tuition</a>
           </div>
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Specialist &amp; Admissions</div>
-            <a href="/oxbridge-admissions-preparation.html">Oxbridge Admissions</a>
-            <a href="/oxbridge-subject-preparation.html">Oxbridge Subject Prep</a>
-            <a href="/ucat-tutor.html">UCAT Tutor</a>
-            <a href="/mmi-interview-coaching.html">MMI Interview Coaching</a>
-            <a href="/medicine-prep-hub.html">Medicine Prep Hub</a>
-            <a href="/university-personal-statement.html">University Personal Statement</a>
+            <a href="oxbridge-admissions-preparation.html">Oxbridge Admissions</a>
+            <a href="oxbridge-subject-preparation.html">Oxbridge Subject Prep</a>
+            <a href="ucat-tutor.html">UCAT Tutor</a>
+            <a href="mmi-interview-coaching.html">MMI Interview Coaching</a>
+            <a href="medicine-prep-hub.html">Medicine Prep Hub</a>
+            <a href="university-personal-statement.html">University Personal Statement</a>
           </div>
 
         </div>
@@ -185,16 +182,16 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
-        <a href="/how-long-does-gcse-revision-take.html">How Long Does GCSE Revision Take?</a>
-        <a href="/how-to-find-a-good-private-tutor.html">How to Find a Good Private Tutor</a>
-        <a href="/how-to-prepare-for-a-medical-school-mmi-interview.html">How to Prepare for MMI Interviews</a>
-        <a href="/online-tutoring-vs-in-person-tutoring-for-gcse.html">Online vs In-Person Tutoring for GCSE</a>
-        <a href="/triple-vs-double-science-gcse.html">Triple vs Double Science GCSE</a>
-        <a href="/what-grade-do-you-need-for-oxbridge-chemistry.html">What Grade for Oxbridge Chemistry?</a>
-        <a href="/what-is-the-11-plus-exam.html">What is the 11 Plus Exam?</a>
-        <a href="/a-level-subject-choices-for-medicine-applications.html">A-Level Subjects for Medicine</a>
-        <a href="/ucat-score-requirements-for-uk-medical-schools-2025.html">UCAT Score Requirements 2025</a>
-        <a href="/ucas-personal-statement-guide.html">UCAS Personal Statement Guide</a>
+        <a href="how-long-does-gcse-revision-take.html">How Long Does GCSE Revision Take?</a>
+        <a href="how-to-find-a-good-private-tutor.html">How to Find a Good Private Tutor</a>
+        <a href="how-to-prepare-for-a-medical-school-mmi-interview.html">How to Prepare for MMI Interviews</a>
+        <a href="online-tutoring-vs-in-person-tutoring-for-gcse.html">Online vs In-Person Tutoring for GCSE</a>
+        <a href="triple-vs-double-science-gcse.html">Triple vs Double Science GCSE</a>
+        <a href="what-grade-do-you-need-for-oxbridge-chemistry.html">What Grade for Oxbridge Chemistry?</a>
+        <a href="what-is-the-11-plus-exam.html">What is the 11 Plus Exam?</a>
+        <a href="a-level-subject-choices-for-medicine-applications.html">A-Level Subjects for Medicine</a>
+        <a href="ucat-score-requirements-for-uk-medical-schools-2025.html">UCAT Score Requirements 2025</a>
+        <a href="ucas-personal-statement-guide.html">UCAS Personal Statement Guide</a>
       </div>
     </li>
 
@@ -202,26 +199,26 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Locations <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu nav-dropdown-menu--cols">
-        <a href="/london.html">London</a>
-        <a href="/birmingham.html">Birmingham</a>
-        <a href="/manchester.html">Manchester</a>
-        <a href="/leeds.html">Leeds</a>
-        <a href="/bristol.html">Bristol</a>
-        <a href="/sheffield.html">Sheffield</a>
-        <a href="/leicester.html">Leicester</a>
-        <a href="/liverpool.html">Liverpool</a>
-        <a href="/nottingham.html">Nottingham</a>
-        <a href="/cambridge.html">Cambridge</a>
-        <a href="/oxford.html">Oxford</a>
-        <a href="/brighton.html">Brighton</a>
-        <a href="/guildford.html">Guildford</a>
-        <a href="/reading.html">Reading</a>
+        <a href="london.html">London</a>
+        <a href="birmingham.html">Birmingham</a>
+        <a href="manchester.html">Manchester</a>
+        <a href="leeds.html">Leeds</a>
+        <a href="bristol.html">Bristol</a>
+        <a href="sheffield.html">Sheffield</a>
+        <a href="leicester.html">Leicester</a>
+        <a href="liverpool.html">Liverpool</a>
+        <a href="nottingham.html">Nottingham</a>
+        <a href="cambridge.html">Cambridge</a>
+        <a href="oxford.html">Oxford</a>
+        <a href="brighton.html">Brighton</a>
+        <a href="guildford.html">Guildford</a>
+        <a href="reading.html">Reading</a>
       </div>
     </li>
 
-    <li><a href="/tutors.html">Our Tutors</a></li>
-    <li><a href="/faqs.html">FAQs</a></li>
-    <li><a href="/contact.html">Contact Us</a></li>
+    <li><a href="tutors.html">Our Tutors</a></li>
+    <li><a href="faqs.html">FAQs</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
   </ul>
 </nav>
 
@@ -357,7 +354,7 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
 
 
 <nav class="navbar">
-  <a href="/" class="navbar-brand">
+  <a href="index.html" class="navbar-brand">
     <img src="images/logo.png" alt="Leading Tuition logo" />
     Leading Tuition
   </a>
@@ -367,57 +364,57 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
   </button>
 
   <ul class="navbar-nav" id="navbarNav">
-    <li><a href="/">Home</a></li>
-    <li><a href="/about.html">About Us</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
 
     <!-- Services mega-dropdown -->
     <li class="nav-dropdown">
-      <a href="/services.html" class="nav-dropdown-toggle">Services <span class="nav-caret">&#9660;</span></a>
+      <a href="services.html" class="nav-dropdown-toggle">Services <span class="nav-caret">&#9660;</span></a>
       <div class="nav-mega-menu">
         <div class="nav-mega-header">
-          <a href="/services.html">&#8592; Our Services</a>
+          <a href="services.html">&#8592; Our Services</a>
         </div>
 
         <div class="nav-mega-cols">
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Subjects</div>
-            <a href="/subjects/maths-tutor.html">Maths</a>
-            <a href="/subjects/biology-tutor.html">Biology</a>
-            <a href="/subjects/chemistry-tutor.html">Chemistry</a>
-            <a href="/subjects/physics-tutor.html">Physics</a>
-            <a href="/subjects/english-language-tutor.html">English Language</a>
-            <a href="/subjects/english-literature-tutor.html">English Literature</a>
-            <a href="/subjects/history-tutor.html">History</a>
-            <a href="/subjects/geography-tutor.html">Geography</a>
-            <a href="/subjects/economics-tutor.html">Economics</a>
-            <a href="/subjects/politics-tutor.html">Politics</a>
-            <a href="/subjects/psychology-tutor.html">Psychology</a>
-            <a href="/subjects/computer-science-tutor.html">Computer Science</a>
-            <a href="/subjects/business-studies-tutor.html">Business Studies</a>
-            <a href="/subjects/further-maths-tutor.html">Further Maths</a>
-            <a href="/subjects/statistics-tutor.html">Statistics</a>
+            <a href="maths-tutor.html">Maths</a>
+            <a href="biology-tutor.html">Biology</a>
+            <a href="chemistry-tutor.html">Chemistry</a>
+            <a href="physics-tutor.html">Physics</a>
+            <a href="english-language-tutor.html">English Language</a>
+            <a href="english-literature-tutor.html">English Literature</a>
+            <a href="history-tutor.html">History</a>
+            <a href="geography-tutor.html">Geography</a>
+            <a href="economics-tutor.html">Economics</a>
+            <a href="politics-tutor.html">Politics</a>
+            <a href="psychology-tutor.html">Psychology</a>
+            <a href="computer-science-tutor.html">Computer Science</a>
+            <a href="business-studies-tutor.html">Business Studies</a>
+            <a href="further-maths-tutor.html">Further Maths</a>
+            <a href="statistics-tutor.html">Statistics</a>
           </div>
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Levels</div>
-            <a href="/a-level-tuition.html">A-Level Tuition</a>
-            <a href="/gcse-tuition.html">GCSE Tuition</a>
-            <a href="/primary-tuition.html">Primary Tuition</a>
-            <a href="/sats-tuition.html">SATs Tuition</a>
-            <a href="/11plus-tuition.html">11+ Tuition</a>
-            <a href="/13plus-tuition.html">13+ Tuition</a>
-            <a href="/university-tuition.html">University Tuition</a>
+            <a href="a-level-tuition.html">A-Level Tuition</a>
+            <a href="gcse-tuition.html">GCSE Tuition</a>
+            <a href="primary-tuition.html">Primary Tuition</a>
+            <a href="sats-tuition.html">SATs Tuition</a>
+            <a href="11plus-tuition.html">11+ Tuition</a>
+            <a href="13plus-tuition.html">13+ Tuition</a>
+            <a href="university-tuition.html">University Tuition</a>
           </div>
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Specialist &amp; Admissions</div>
-            <a href="/oxbridge-admissions-preparation.html">Oxbridge Admissions</a>
-            <a href="/oxbridge-subject-preparation.html">Oxbridge Subject Prep</a>
-            <a href="/ucat-tutor.html">UCAT Tutor</a>
-            <a href="/mmi-interview-coaching.html">MMI Interview Coaching</a>
-            <a href="/medicine-prep-hub.html">Medicine Prep Hub</a>
-            <a href="/university-personal-statement.html">University Personal Statement</a>
+            <a href="oxbridge-admissions-preparation.html">Oxbridge Admissions</a>
+            <a href="oxbridge-subject-preparation.html">Oxbridge Subject Prep</a>
+            <a href="ucat-tutor.html">UCAT Tutor</a>
+            <a href="mmi-interview-coaching.html">MMI Interview Coaching</a>
+            <a href="medicine-prep-hub.html">Medicine Prep Hub</a>
+            <a href="university-personal-statement.html">University Personal Statement</a>
           </div>
 
         </div>
@@ -428,16 +425,16 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
-        <a href="/how-long-does-gcse-revision-take.html">How Long Does GCSE Revision Take?</a>
-        <a href="/how-to-find-a-good-private-tutor.html">How to Find a Good Private Tutor</a>
-        <a href="/how-to-prepare-for-a-medical-school-mmi-interview.html">How to Prepare for MMI Interviews</a>
-        <a href="/online-tutoring-vs-in-person-tutoring-for-gcse.html">Online vs In-Person Tutoring for GCSE</a>
-        <a href="/triple-vs-double-science-gcse.html">Triple vs Double Science GCSE</a>
-        <a href="/what-grade-do-you-need-for-oxbridge-chemistry.html">What Grade for Oxbridge Chemistry?</a>
-        <a href="/what-is-the-11-plus-exam.html">What is the 11 Plus Exam?</a>
-        <a href="/a-level-subject-choices-for-medicine-applications.html">A-Level Subjects for Medicine</a>
-        <a href="/ucat-score-requirements-for-uk-medical-schools-2025.html">UCAT Score Requirements 2025</a>
-        <a href="/ucas-personal-statement-guide.html">UCAS Personal Statement Guide</a>
+        <a href="how-long-does-gcse-revision-take.html">How Long Does GCSE Revision Take?</a>
+        <a href="how-to-find-a-good-private-tutor.html">How to Find a Good Private Tutor</a>
+        <a href="how-to-prepare-for-a-medical-school-mmi-interview.html">How to Prepare for MMI Interviews</a>
+        <a href="online-tutoring-vs-in-person-tutoring-for-gcse.html">Online vs In-Person Tutoring for GCSE</a>
+        <a href="triple-vs-double-science-gcse.html">Triple vs Double Science GCSE</a>
+        <a href="what-grade-do-you-need-for-oxbridge-chemistry.html">What Grade for Oxbridge Chemistry?</a>
+        <a href="what-is-the-11-plus-exam.html">What is the 11 Plus Exam?</a>
+        <a href="a-level-subject-choices-for-medicine-applications.html">A-Level Subjects for Medicine</a>
+        <a href="ucat-score-requirements-for-uk-medical-schools-2025.html">UCAT Score Requirements 2025</a>
+        <a href="ucas-personal-statement-guide.html">UCAS Personal Statement Guide</a>
       </div>
     </li>
 
@@ -445,26 +442,26 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Locations <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu nav-dropdown-menu--cols">
-        <a href="/london.html">London</a>
-        <a href="/birmingham.html">Birmingham</a>
-        <a href="/manchester.html">Manchester</a>
-        <a href="/leeds.html">Leeds</a>
-        <a href="/bristol.html">Bristol</a>
-        <a href="/sheffield.html">Sheffield</a>
-        <a href="/leicester.html">Leicester</a>
-        <a href="/liverpool.html">Liverpool</a>
-        <a href="/nottingham.html">Nottingham</a>
-        <a href="/cambridge.html">Cambridge</a>
-        <a href="/oxford.html">Oxford</a>
-        <a href="/brighton.html">Brighton</a>
-        <a href="/guildford.html">Guildford</a>
-        <a href="/reading.html">Reading</a>
+        <a href="london.html">London</a>
+        <a href="birmingham.html">Birmingham</a>
+        <a href="manchester.html">Manchester</a>
+        <a href="leeds.html">Leeds</a>
+        <a href="bristol.html">Bristol</a>
+        <a href="sheffield.html">Sheffield</a>
+        <a href="leicester.html">Leicester</a>
+        <a href="liverpool.html">Liverpool</a>
+        <a href="nottingham.html">Nottingham</a>
+        <a href="cambridge.html">Cambridge</a>
+        <a href="oxford.html">Oxford</a>
+        <a href="brighton.html">Brighton</a>
+        <a href="guildford.html">Guildford</a>
+        <a href="reading.html">Reading</a>
       </div>
     </li>
 
-    <li><a href="/tutors.html">Our Tutors</a></li>
-    <li><a href="/faqs.html">FAQs</a></li>
-    <li><a href="/contact.html">Contact Us</a></li>
+    <li><a href="tutors.html">Our Tutors</a></li>
+    <li><a href="faqs.html">FAQs</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
   </ul>
 </nav>
 
@@ -632,7 +629,7 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
 
 
 <nav class="navbar">
-  <a href="/" class="navbar-brand">
+  <a href="index.html" class="navbar-brand">
     <img src="images/logo.png" alt="Leading Tuition logo" />
     Leading Tuition
   </a>
@@ -642,57 +639,57 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
   </button>
 
   <ul class="navbar-nav" id="navbarNav">
-    <li><a href="/">Home</a></li>
-    <li><a href="/about.html">About Us</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
 
     <!-- Services mega-dropdown -->
     <li class="nav-dropdown">
-      <a href="/services.html" class="nav-dropdown-toggle">Services <span class="nav-caret">&#9660;</span></a>
+      <a href="services.html" class="nav-dropdown-toggle">Services <span class="nav-caret">&#9660;</span></a>
       <div class="nav-mega-menu">
         <div class="nav-mega-header">
-          <a href="/services.html">&#8592; Our Services</a>
+          <a href="services.html">&#8592; Our Services</a>
         </div>
 
         <div class="nav-mega-cols">
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Subjects</div>
-            <a href="/subjects/maths-tutor.html">Maths</a>
-            <a href="/subjects/biology-tutor.html">Biology</a>
-            <a href="/subjects/chemistry-tutor.html">Chemistry</a>
-            <a href="/subjects/physics-tutor.html">Physics</a>
-            <a href="/subjects/english-language-tutor.html">English Language</a>
-            <a href="/subjects/english-literature-tutor.html">English Literature</a>
-            <a href="/subjects/history-tutor.html">History</a>
-            <a href="/subjects/geography-tutor.html">Geography</a>
-            <a href="/subjects/economics-tutor.html">Economics</a>
-            <a href="/subjects/politics-tutor.html">Politics</a>
-            <a href="/subjects/psychology-tutor.html">Psychology</a>
-            <a href="/subjects/computer-science-tutor.html">Computer Science</a>
-            <a href="/subjects/business-studies-tutor.html">Business Studies</a>
-            <a href="/subjects/further-maths-tutor.html">Further Maths</a>
-            <a href="/subjects/statistics-tutor.html">Statistics</a>
+            <a href="maths-tutor.html">Maths</a>
+            <a href="biology-tutor.html">Biology</a>
+            <a href="chemistry-tutor.html">Chemistry</a>
+            <a href="physics-tutor.html">Physics</a>
+            <a href="english-language-tutor.html">English Language</a>
+            <a href="english-literature-tutor.html">English Literature</a>
+            <a href="history-tutor.html">History</a>
+            <a href="geography-tutor.html">Geography</a>
+            <a href="economics-tutor.html">Economics</a>
+            <a href="politics-tutor.html">Politics</a>
+            <a href="psychology-tutor.html">Psychology</a>
+            <a href="computer-science-tutor.html">Computer Science</a>
+            <a href="business-studies-tutor.html">Business Studies</a>
+            <a href="further-maths-tutor.html">Further Maths</a>
+            <a href="statistics-tutor.html">Statistics</a>
           </div>
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Levels</div>
-            <a href="/a-level-tuition.html">A-Level Tuition</a>
-            <a href="/gcse-tuition.html">GCSE Tuition</a>
-            <a href="/primary-tuition.html">Primary Tuition</a>
-            <a href="/sats-tuition.html">SATs Tuition</a>
-            <a href="/11plus-tuition.html">11+ Tuition</a>
-            <a href="/13plus-tuition.html">13+ Tuition</a>
-            <a href="/university-tuition.html">University Tuition</a>
+            <a href="a-level-tuition.html">A-Level Tuition</a>
+            <a href="gcse-tuition.html">GCSE Tuition</a>
+            <a href="primary-tuition.html">Primary Tuition</a>
+            <a href="sats-tuition.html">SATs Tuition</a>
+            <a href="11plus-tuition.html">11+ Tuition</a>
+            <a href="13plus-tuition.html">13+ Tuition</a>
+            <a href="university-tuition.html">University Tuition</a>
           </div>
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Specialist &amp; Admissions</div>
-            <a href="/oxbridge-admissions-preparation.html">Oxbridge Admissions</a>
-            <a href="/oxbridge-subject-preparation.html">Oxbridge Subject Prep</a>
-            <a href="/ucat-tutor.html">UCAT Tutor</a>
-            <a href="/mmi-interview-coaching.html">MMI Interview Coaching</a>
-            <a href="/medicine-prep-hub.html">Medicine Prep Hub</a>
-            <a href="/university-personal-statement.html">University Personal Statement</a>
+            <a href="oxbridge-admissions-preparation.html">Oxbridge Admissions</a>
+            <a href="oxbridge-subject-preparation.html">Oxbridge Subject Prep</a>
+            <a href="ucat-tutor.html">UCAT Tutor</a>
+            <a href="mmi-interview-coaching.html">MMI Interview Coaching</a>
+            <a href="medicine-prep-hub.html">Medicine Prep Hub</a>
+            <a href="university-personal-statement.html">University Personal Statement</a>
           </div>
 
         </div>
@@ -703,16 +700,16 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
-        <a href="/how-long-does-gcse-revision-take.html">How Long Does GCSE Revision Take?</a>
-        <a href="/how-to-find-a-good-private-tutor.html">How to Find a Good Private Tutor</a>
-        <a href="/how-to-prepare-for-a-medical-school-mmi-interview.html">How to Prepare for MMI Interviews</a>
-        <a href="/online-tutoring-vs-in-person-tutoring-for-gcse.html">Online vs In-Person Tutoring for GCSE</a>
-        <a href="/triple-vs-double-science-gcse.html">Triple vs Double Science GCSE</a>
-        <a href="/what-grade-do-you-need-for-oxbridge-chemistry.html">What Grade for Oxbridge Chemistry?</a>
-        <a href="/what-is-the-11-plus-exam.html">What is the 11 Plus Exam?</a>
-        <a href="/a-level-subject-choices-for-medicine-applications.html">A-Level Subjects for Medicine</a>
-        <a href="/ucat-score-requirements-for-uk-medical-schools-2025.html">UCAT Score Requirements 2025</a>
-        <a href="/ucas-personal-statement-guide.html">UCAS Personal Statement Guide</a>
+        <a href="how-long-does-gcse-revision-take.html">How Long Does GCSE Revision Take?</a>
+        <a href="how-to-find-a-good-private-tutor.html">How to Find a Good Private Tutor</a>
+        <a href="how-to-prepare-for-a-medical-school-mmi-interview.html">How to Prepare for MMI Interviews</a>
+        <a href="online-tutoring-vs-in-person-tutoring-for-gcse.html">Online vs In-Person Tutoring for GCSE</a>
+        <a href="triple-vs-double-science-gcse.html">Triple vs Double Science GCSE</a>
+        <a href="what-grade-do-you-need-for-oxbridge-chemistry.html">What Grade for Oxbridge Chemistry?</a>
+        <a href="what-is-the-11-plus-exam.html">What is the 11 Plus Exam?</a>
+        <a href="a-level-subject-choices-for-medicine-applications.html">A-Level Subjects for Medicine</a>
+        <a href="ucat-score-requirements-for-uk-medical-schools-2025.html">UCAT Score Requirements 2025</a>
+        <a href="ucas-personal-statement-guide.html">UCAS Personal Statement Guide</a>
       </div>
     </li>
 
@@ -720,26 +717,26 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Locations <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu nav-dropdown-menu--cols">
-        <a href="/london.html">London</a>
-        <a href="/birmingham.html">Birmingham</a>
-        <a href="/manchester.html">Manchester</a>
-        <a href="/leeds.html">Leeds</a>
-        <a href="/bristol.html">Bristol</a>
-        <a href="/sheffield.html">Sheffield</a>
-        <a href="/leicester.html">Leicester</a>
-        <a href="/liverpool.html">Liverpool</a>
-        <a href="/nottingham.html">Nottingham</a>
-        <a href="/cambridge.html">Cambridge</a>
-        <a href="/oxford.html">Oxford</a>
-        <a href="/brighton.html">Brighton</a>
-        <a href="/guildford.html">Guildford</a>
-        <a href="/reading.html">Reading</a>
+        <a href="london.html">London</a>
+        <a href="birmingham.html">Birmingham</a>
+        <a href="manchester.html">Manchester</a>
+        <a href="leeds.html">Leeds</a>
+        <a href="bristol.html">Bristol</a>
+        <a href="sheffield.html">Sheffield</a>
+        <a href="leicester.html">Leicester</a>
+        <a href="liverpool.html">Liverpool</a>
+        <a href="nottingham.html">Nottingham</a>
+        <a href="cambridge.html">Cambridge</a>
+        <a href="oxford.html">Oxford</a>
+        <a href="brighton.html">Brighton</a>
+        <a href="guildford.html">Guildford</a>
+        <a href="reading.html">Reading</a>
       </div>
     </li>
 
-    <li><a href="/tutors.html">Our Tutors</a></li>
-    <li><a href="/faqs.html">FAQs</a></li>
-    <li><a href="/contact.html">Contact Us</a></li>
+    <li><a href="tutors.html">Our Tutors</a></li>
+    <li><a href="faqs.html">FAQs</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
   </ul>
 </nav>
 
@@ -875,7 +872,7 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
 
 
 <nav class="navbar">
-  <a href="/" class="navbar-brand">
+  <a href="index.html" class="navbar-brand">
     <img src="images/logo.png" alt="Leading Tuition logo" />
     Leading Tuition
   </a>
@@ -885,57 +882,57 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
   </button>
 
   <ul class="navbar-nav" id="navbarNav">
-    <li><a href="/">Home</a></li>
-    <li><a href="/about.html">About Us</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
 
     <!-- Services mega-dropdown -->
     <li class="nav-dropdown">
-      <a href="/services.html" class="nav-dropdown-toggle">Services <span class="nav-caret">&#9660;</span></a>
+      <a href="services.html" class="nav-dropdown-toggle">Services <span class="nav-caret">&#9660;</span></a>
       <div class="nav-mega-menu">
         <div class="nav-mega-header">
-          <a href="/services.html">&#8592; Our Services</a>
+          <a href="services.html">&#8592; Our Services</a>
         </div>
 
         <div class="nav-mega-cols">
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Subjects</div>
-            <a href="/subjects/maths-tutor.html">Maths</a>
-            <a href="/subjects/biology-tutor.html">Biology</a>
-            <a href="/subjects/chemistry-tutor.html">Chemistry</a>
-            <a href="/subjects/physics-tutor.html">Physics</a>
-            <a href="/subjects/english-language-tutor.html">English Language</a>
-            <a href="/subjects/english-literature-tutor.html">English Literature</a>
-            <a href="/subjects/history-tutor.html">History</a>
-            <a href="/subjects/geography-tutor.html">Geography</a>
-            <a href="/subjects/economics-tutor.html">Economics</a>
-            <a href="/subjects/politics-tutor.html">Politics</a>
-            <a href="/subjects/psychology-tutor.html">Psychology</a>
-            <a href="/subjects/computer-science-tutor.html">Computer Science</a>
-            <a href="/subjects/business-studies-tutor.html">Business Studies</a>
-            <a href="/subjects/further-maths-tutor.html">Further Maths</a>
-            <a href="/subjects/statistics-tutor.html">Statistics</a>
+            <a href="maths-tutor.html">Maths</a>
+            <a href="biology-tutor.html">Biology</a>
+            <a href="chemistry-tutor.html">Chemistry</a>
+            <a href="physics-tutor.html">Physics</a>
+            <a href="english-language-tutor.html">English Language</a>
+            <a href="english-literature-tutor.html">English Literature</a>
+            <a href="history-tutor.html">History</a>
+            <a href="geography-tutor.html">Geography</a>
+            <a href="economics-tutor.html">Economics</a>
+            <a href="politics-tutor.html">Politics</a>
+            <a href="psychology-tutor.html">Psychology</a>
+            <a href="computer-science-tutor.html">Computer Science</a>
+            <a href="business-studies-tutor.html">Business Studies</a>
+            <a href="further-maths-tutor.html">Further Maths</a>
+            <a href="statistics-tutor.html">Statistics</a>
           </div>
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Levels</div>
-            <a href="/a-level-tuition.html">A-Level Tuition</a>
-            <a href="/gcse-tuition.html">GCSE Tuition</a>
-            <a href="/primary-tuition.html">Primary Tuition</a>
-            <a href="/sats-tuition.html">SATs Tuition</a>
-            <a href="/11plus-tuition.html">11+ Tuition</a>
-            <a href="/13plus-tuition.html">13+ Tuition</a>
-            <a href="/university-tuition.html">University Tuition</a>
+            <a href="a-level-tuition.html">A-Level Tuition</a>
+            <a href="gcse-tuition.html">GCSE Tuition</a>
+            <a href="primary-tuition.html">Primary Tuition</a>
+            <a href="sats-tuition.html">SATs Tuition</a>
+            <a href="11plus-tuition.html">11+ Tuition</a>
+            <a href="13plus-tuition.html">13+ Tuition</a>
+            <a href="university-tuition.html">University Tuition</a>
           </div>
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Specialist & Admissions</div>
-            <a href="/oxbridge-admissions-preparation.html">Oxbridge Admissions</a>
-            <a href="/oxbridge-subject-preparation.html">Oxbridge Subject Prep</a>
-            <a href="/ucat-tutor.html">UCAT Tutor</a>
-            <a href="/mmi-interview-coaching.html">MMI Interview Coaching</a>
-            <a href="/medicine-prep-hub.html">Medicine Prep Hub</a>
-            <a href="/university-personal-statement.html">University Personal Statement</a>
+            <a href="oxbridge-admissions-preparation.html">Oxbridge Admissions</a>
+            <a href="oxbridge-subject-preparation.html">Oxbridge Subject Prep</a>
+            <a href="ucat-tutor.html">UCAT Tutor</a>
+            <a href="mmi-interview-coaching.html">MMI Interview Coaching</a>
+            <a href="medicine-prep-hub.html">Medicine Prep Hub</a>
+            <a href="university-personal-statement.html">University Personal Statement</a>
           </div>
 
         </div>
@@ -946,16 +943,16 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
-        <a href="/how-long-does-gcse-revision-take.html">How Long Does GCSE Revision Take?</a>
-        <a href="/how-to-find-a-good-private-tutor.html">How to Find a Good Private Tutor</a>
-        <a href="/how-to-prepare-for-a-medical-school-mmi-interview.html">How to Prepare for MMI Interviews</a>
-        <a href="/online-tutoring-vs-in-person-tutoring-for-gcse.html">Online vs In-Person Tutoring for GCSE</a>
-        <a href="/triple-vs-double-science-gcse.html">Triple vs Double Science GCSE</a>
-        <a href="/what-grade-do-you-need-for-oxbridge-chemistry.html">What Grade for Oxbridge Chemistry?</a>
-        <a href="/what-is-the-11-plus-exam.html">What is the 11 Plus Exam?</a>
-        <a href="/a-level-subject-choices-for-medicine-applications.html">A-Level Subjects for Medicine</a>
-        <a href="/ucat-score-requirements-for-uk-medical-schools-2025.html">UCAT Score Requirements 2025</a>
-        <a href="/ucas-personal-statement-guide.html">UCAS Personal Statement Guide</a>
+        <a href="how-long-does-gcse-revision-take.html">How Long Does GCSE Revision Take?</a>
+        <a href="how-to-find-a-good-private-tutor.html">How to Find a Good Private Tutor</a>
+        <a href="how-to-prepare-for-a-medical-school-mmi-interview.html">How to Prepare for MMI Interviews</a>
+        <a href="online-tutoring-vs-in-person-tutoring-for-gcse.html">Online vs In-Person Tutoring for GCSE</a>
+        <a href="triple-vs-double-science-gcse.html">Triple vs Double Science GCSE</a>
+        <a href="what-grade-do-you-need-for-oxbridge-chemistry.html">What Grade for Oxbridge Chemistry?</a>
+        <a href="what-is-the-11-plus-exam.html">What is the 11 Plus Exam?</a>
+        <a href="a-level-subject-choices-for-medicine-applications.html">A-Level Subjects for Medicine</a>
+        <a href="ucat-score-requirements-for-uk-medical-schools-2025.html">UCAT Score Requirements 2025</a>
+        <a href="ucas-personal-statement-guide.html">UCAS Personal Statement Guide</a>
       </div>
     </li>
 
@@ -963,26 +960,26 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Locations <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu nav-dropdown-menu--cols">
-        <a href="/london.html">London</a>
-        <a href="/birmingham.html">Birmingham</a>
-        <a href="/manchester.html">Manchester</a>
-        <a href="/leeds.html">Leeds</a>
-        <a href="/bristol.html">Bristol</a>
-        <a href="/sheffield.html">Sheffield</a>
-        <a href="/leicester.html">Leicester</a>
-        <a href="/liverpool.html">Liverpool</a>
-        <a href="/nottingham.html">Nottingham</a>
-        <a href="/cambridge.html">Cambridge</a>
-        <a href="/oxford.html">Oxford</a>
-        <a href="/brighton.html">Brighton</a>
-        <a href="/guildford.html">Guildford</a>
-        <a href="/reading.html">Reading</a>
+        <a href="london.html">London</a>
+        <a href="birmingham.html">Birmingham</a>
+        <a href="manchester.html">Manchester</a>
+        <a href="leeds.html">Leeds</a>
+        <a href="bristol.html">Bristol</a>
+        <a href="sheffield.html">Sheffield</a>
+        <a href="leicester.html">Leicester</a>
+        <a href="liverpool.html">Liverpool</a>
+        <a href="nottingham.html">Nottingham</a>
+        <a href="cambridge.html">Cambridge</a>
+        <a href="oxford.html">Oxford</a>
+        <a href="brighton.html">Brighton</a>
+        <a href="guildford.html">Guildford</a>
+        <a href="reading.html">Reading</a>
       </div>
     </li>
 
-    <li><a href="/tutors.html">Our Tutors</a></li>
-    <li><a href="/faqs.html">FAQs</a></li>
-    <li><a href="/contact.html">Contact Us</a></li>
+    <li><a href="tutors.html">Our Tutors</a></li>
+    <li><a href="faqs.html">FAQs</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
   </ul>
 </nav>
 
