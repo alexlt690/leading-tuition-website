@@ -1,9 +1,50 @@
 import csv
 import os
+import re
+import json
 import argparse
 import anthropic
+from datetime import date
 from pathlib import Path
 from templates import page_template, location_page_template, blog_page_template, service_page_template
+
+
+def parse_faq_schema(response_text):
+    """Extract FAQ_JSON block from Claude response. Returns (clean_content, faq_schema_html)."""
+    match = re.search(r'FAQ_JSON:(\[.*?\])', response_text, re.DOTALL)
+    if not match:
+        return response_text, ""
+    content = response_text[:match.start()].strip()
+    try:
+        faqs = json.loads(match.group(1))
+        schema = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {"@type": "Question", "name": faq["q"],
+                 "acceptedAnswer": {"@type": "Answer", "text": faq["a"]}}
+                for faq in faqs
+            ]
+        }
+        return content, f'<script type="application/ld+json">\n{json.dumps(schema, indent=2)}\n</script>'
+    except (json.JSONDecodeError, KeyError):
+        return content, ""
+
+
+def build_blogposting_schema(title, meta_desc, slug):
+    """Build BlogPosting JSON-LD schema block."""
+    base_url = "https://www.leadingtuition.co.uk"
+    schema = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": title,
+        "description": meta_desc,
+        "url": f"{base_url}/{slug}",
+        "datePublished": date.today().isoformat(),
+        "author": {"@type": "Organization", "name": "Leading Tuition Team"},
+        "publisher": {"@type": "Organization", "name": "Leading Tuition", "url": base_url}
+    }
+    return f'<script type="application/ld+json">\n{json.dumps(schema, indent=2)}\n</script>'
 
 client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
@@ -89,6 +130,10 @@ Requirements:
   - UCAT is different from A-Level revision because it tests cognitive speed and decision-making, not just learned content
 - Include one short bullet list
 - In the FAQ section, include 4 specific parent-facing FAQs about UCAT timing, score expectations, retakes, and tutoring support
+- Include a natural contextual in-content link in the body of the page to the MMI coaching page at /mmi-interview-coaching — use anchor text such as 'medical school MMI interview coaching'
+
+After all HTML content, on a new line, output exactly 5 FAQ pairs in this format (no spaces, no line breaks inside):
+FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}},{{"q":"Question five","a":"Answer five"}}]
 """
 
     if slug == "mmi-interview-coaching":
@@ -121,6 +166,10 @@ Requirements:
   - A realistic preparation timeline of around 6 to 10 weeks
 - Include one short bullet list
 - In the FAQ section, include 4 specific parent-facing FAQs
+- Include a natural contextual in-content link in the body of the page to the UCAT preparation page at /ucat-tutor — use anchor text such as 'UCAT preparation'
+
+After all HTML content, on a new line, output exactly 5 FAQ pairs in this format (no spaces, no line breaks inside):
+FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}},{{"q":"Question five","a":"Answer five"}}]
 """
 
     if slug == "oxbridge-admissions-preparation":
@@ -153,6 +202,10 @@ Requirements:
   - Oxbridge interviews focus on problem-solving and academic thinking, not memorised answers
 - Include one short bullet list
 - In the FAQ section, include 4 specific parent-facing FAQs
+- Include a natural contextual in-content link in the body of the page to the University Admissions page at /university-personal-statement — use anchor text such as 'UCAS personal statement support'
+
+After all HTML content, on a new line, output exactly 5 FAQ pairs in this format (no spaces, no line breaks inside):
+FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}},{{"q":"Question five","a":"Answer five"}}]
 """
 
     if slug == "university-personal-statement":
@@ -231,6 +284,9 @@ Requirements:
 - In the FAQ section, include 4 specific parent-facing FAQs
 - Keep the page highly specific and parent-facing
 - Include concrete UK context wherever relevant
+
+After all HTML content, on a new line, output exactly 5 FAQ pairs in this format (no spaces, no line breaks inside):
+FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}},{{"q":"Question five","a":"Answer five"}}]
 """
 
 
@@ -288,8 +344,9 @@ def generate_specialist_pages(limit=None):
         keyword = row["keyword"]
 
         prompt = specialist_prompt(title=title, keyword=keyword, slug=slug)
-        content = ask_claude(prompt)
-        html = page_template(title, content)
+        raw = ask_claude(prompt)
+        content, faq_schema = parse_faq_schema(raw)
+        html = page_template(title, content, slug=slug, page_type="specialist", section="Services", schema_extra=faq_schema)
 
         file_path = OUTPUT_DIR / f"{slug}.html"
         file_path.write_text(html, encoding="utf-8")
@@ -301,16 +358,26 @@ def generate_subject_pages(limit=None):
     if limit is not None:
         subjects = subjects[:limit]
 
+    subjects_dir = OUTPUT_DIR / "subjects"
+    subjects_dir.mkdir(exist_ok=True)
+
     for row in subjects:
         subject = row["subject"]
         slug = subject.lower().replace(" ", "-")
         title = f"{subject} Tutor"
+        page_slug = f"subjects/{slug}-tutor"
 
         prompt = subject_prompt(subject)
         content = ask_claude(prompt)
-        html = page_template(title, content)
+        html = page_template(
+            title, content,
+            slug=page_slug,
+            page_type="subject",
+            section="Subjects",
+            base_tag='<base href="../" />'
+        )
 
-        file_path = OUTPUT_DIR / f"{slug}-tutor.html"
+        file_path = subjects_dir / f"{slug}-tutor.html"
         file_path.write_text(html, encoding="utf-8")
         print(f"Generated subject page: {file_path}")
 
@@ -746,7 +813,44 @@ Requirements:
 - FAQ questions must be questions a parent or student would realistically search for
 - Do not pad — every sentence must be genuinely useful
 - End with a brief natural closing paragraph
+
+After all HTML content, on a new line, output exactly 5 FAQ pairs in this format (no spaces, no line breaks inside):
+FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}},{{"q":"Question five","a":"Answer five"}}]
 """
+
+
+BLOG_RELATED_RESOURCES = {
+    "ucat-score-requirements-for-uk-medical-schools-2025": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the UCAT preparation page at /ucat-tutor using anchor text 'UCAT preparation with Leading Tuition', "
+        "and link to the Medicine Preparation hub at /medicine-prep-hub using anchor text 'Medicine Preparation hub'."
+    ),
+    "how-to-prepare-for-a-medical-school-mmi-interview": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the MMI coaching page at /mmi-interview-coaching using anchor text 'MMI interview coaching', "
+        "and link to the UCAT preparation page at /ucat-tutor using anchor text 'UCAT preparation'."
+    ),
+    "what-is-the-11-plus-exam": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the 11+ tuition page at /11plus-tuition using anchor text '11+ tuition with Leading Tuition', "
+        "and link to the Maths tutor page at /subjects/maths-tutor using anchor text 'specialist Maths tutoring'."
+    ),
+    "how-long-does-gcse-revision-take": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the GCSE tuition page at /gcse-tuition using anchor text 'GCSE tuition with Leading Tuition', "
+        "and link to the Maths tutor page at /subjects/maths-tutor using anchor text 'specialist GCSE Maths tutoring'."
+    ),
+    "triple-vs-double-science-gcse": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the GCSE tuition page at /gcse-tuition using anchor text 'GCSE tuition', "
+        "and link to the Chemistry tutor page at /subjects/chemistry-tutor using anchor text 'Chemistry tutoring'."
+    ),
+    "online-tutoring-vs-in-person-tutoring-for-gcse": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the GCSE tuition page at /gcse-tuition using anchor text 'GCSE tuition with Leading Tuition', "
+        "and link to the consultation page at /consultation using anchor text 'book a free consultation'."
+    ),
+}
 
 
 def generate_blog_pages(limit=None):
@@ -768,9 +872,14 @@ def generate_blog_pages(limit=None):
             f"Leading Tuition covers everything you need to know."
         )
 
-        prompt = blog_prompt(title=title, keyword=keyword, slug=slug)
-        content = ask_claude(prompt, max_tokens=4000)
-        html = blog_page_template(title=title, content=content, meta_desc=meta_desc)
+        related_instruction = BLOG_RELATED_RESOURCES.get(slug, "")
+        base_prompt = blog_prompt(title=title, keyword=keyword, slug=slug)
+        prompt = base_prompt + (f"\n{related_instruction}" if related_instruction else "")
+        raw = ask_claude(prompt, max_tokens=4000)
+        content, faq_schema = parse_faq_schema(raw)
+        blogposting_schema = build_blogposting_schema(title, meta_desc, slug)
+        schema_extra = faq_schema + "\n" + blogposting_schema
+        html = blog_page_template(title=title, content=content, meta_desc=meta_desc, slug=slug, og_type="article", schema_extra=schema_extra)
 
         file_path = OUTPUT_DIR / f"{slug}.html"
         file_path.write_text(html, encoding="utf-8")
@@ -878,6 +987,25 @@ Requirements:
   - Mock exams in Year 10 and Year 11 are important indicators but do not count toward final grades
 - Include one short bullet list
 - FAQ questions must address grade targets, which subjects benefit most from tutoring, exam board differences, and when to start
+- After the FAQ section, include this exact HTML block verbatim — do not modify the links or text:
+<h2>Find a GCSE Tutor by Subject</h2>
+<div class="subject-grid">
+  <a href="subjects/maths-tutor">Maths</a>
+  <a href="subjects/chemistry-tutor">Chemistry</a>
+  <a href="subjects/biology-tutor">Biology</a>
+  <a href="subjects/physics-tutor">Physics</a>
+  <a href="subjects/english-literature-tutor">English Literature</a>
+  <a href="subjects/english-language-tutor">English Language</a>
+  <a href="subjects/further-maths-tutor">Further Maths</a>
+  <a href="subjects/computer-science-tutor">Computer Science</a>
+  <a href="subjects/economics-tutor">Economics</a>
+  <a href="subjects/history-tutor">History</a>
+  <a href="subjects/geography-tutor">Geography</a>
+  <a href="subjects/psychology-tutor">Psychology</a>
+  <a href="subjects/politics-tutor">Politics</a>
+  <a href="subjects/business-studies-tutor">Business Studies</a>
+  <a href="subjects/statistics-tutor">Statistics</a>
+</div>
 """
 
     if level == "A-Level":
@@ -1104,7 +1232,7 @@ def generate_level_pages(limit=None):
 
         prompt = level_prompt(level)
         content = ask_claude(prompt, max_tokens=3600)
-        html = service_page_template(title=title, content=content, meta_desc=meta_desc)
+        html = service_page_template(title=title, content=content, meta_desc=meta_desc, slug=slug, page_type="level")
 
         file_path = OUTPUT_DIR / f"{slug}.html"
         file_path.write_text(html, encoding="utf-8")
@@ -1128,7 +1256,7 @@ def generate_location_pages(limit=None):
 
         prompt = location_prompt(city)
         content = ask_claude(prompt, max_tokens=3600)
-        html = location_page_template(city=city, title=title, content=content, meta_desc=meta_desc)
+        html = location_page_template(city=city, title=title, content=content, meta_desc=meta_desc, slug=slug)
 
         file_path = OUTPUT_DIR / f"{slug}.html"
         file_path.write_text(html, encoding="utf-8")

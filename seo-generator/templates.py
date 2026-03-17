@@ -1,6 +1,64 @@
-def service_page_template(title, content, meta_desc=""):
+import json
+
+
+def breadcrumb_schema(page_type, slug, display_name, section=""):
+    """Build BreadcrumbList JSON-LD. page_type: home|location|subject|level|specialist|blog"""
+    base_url = "https://www.leadingtuition.co.uk"
+    home = {"@type": "ListItem", "position": 1, "name": "Home", "item": base_url}
+    if page_type == "home":
+        items = [home]
+    elif page_type == "location":
+        items = [home,
+                 {"@type": "ListItem", "position": 2, "name": "Locations", "item": f"{base_url}/locations"},
+                 {"@type": "ListItem", "position": 3, "name": display_name, "item": f"{base_url}/{slug}"}]
+    elif page_type == "subject":
+        items = [home,
+                 {"@type": "ListItem", "position": 2, "name": "Subjects", "item": f"{base_url}/subjects"},
+                 {"@type": "ListItem", "position": 3, "name": display_name, "item": f"{base_url}/{slug}"}]
+    elif page_type == "level":
+        items = [home,
+                 {"@type": "ListItem", "position": 2, "name": display_name, "item": f"{base_url}/{slug}"}]
+    elif page_type == "specialist":
+        sec = section or "Services"
+        items = [home,
+                 {"@type": "ListItem", "position": 2, "name": sec, "item": f"{base_url}/services"},
+                 {"@type": "ListItem", "position": 3, "name": display_name, "item": f"{base_url}/{slug}"}]
+    elif page_type == "blog":
+        items = [home,
+                 {"@type": "ListItem", "position": 2, "name": "Blog", "item": f"{base_url}/blog"},
+                 {"@type": "ListItem", "position": 3, "name": display_name, "item": f"{base_url}/{slug}"}]
+    else:
+        items = [home]
+    schema = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": items}
+    return f'<script type="application/ld+json">\n{json.dumps(schema, indent=2)}\n</script>'
+
+
+def base_html(title, meta_desc="", slug="", og_type="website"):
+    """Returns the SEO head block: meta description, canonical, Open Graph, and Twitter Card tags."""
+    base_url = "https://www.leadingtuition.co.uk"
+    canonical_url = f"{base_url}/{slug}" if slug else base_url
+    og_image = f"{base_url}/images/og-default.jpg"
+    full_title = f"{title} | Leading Tuition"
+    meta_desc_tag = f'<meta name="description" content="{meta_desc}" />' if meta_desc else ""
+    return f"""{meta_desc_tag}
+<link rel="canonical" href="{canonical_url}" />
+<meta property="og:type" content="{og_type}" />
+<meta property="og:site_name" content="Leading Tuition" />
+<meta property="og:title" content="{full_title}" />
+<meta property="og:description" content="{meta_desc}" />
+<meta property="og:image" content="{og_image}" />
+<meta property="og:url" content="{canonical_url}" />
+<meta property="og:locale" content="en_GB" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{full_title}" />
+<meta name="twitter:description" content="{meta_desc}" />
+<meta name="twitter:image" content="{og_image}" />"""
+
+
+def service_page_template(title, content, meta_desc="", slug="", og_type="website", page_type="level", section="", schema_extra=""):
     """Template for service/level pages — adds meta description and service-appropriate hero subtext."""
-    meta_tag = f'<meta name="description" content="{meta_desc}" />' if meta_desc else ""
+    head_extras = base_html(title, meta_desc, slug, og_type)
+    breadcrumb = breadcrumb_schema(page_type, slug, title, section)
     return f"""
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +66,7 @@ def service_page_template(title, content, meta_desc=""):
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{title} | Leading Tuition</title>
-{meta_tag}
+{head_extras}
 <link rel="stylesheet" href="style.css" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -233,14 +291,17 @@ COPYRIGHT ©2023, Leading Tuition. ALL RIGHTS RESERVED.
 }})();
 </script>
 
+{breadcrumb}
+{schema_extra}
 </body>
 </html>
 """
 
 
-def blog_page_template(title, content, meta_desc=""):
+def blog_page_template(title, content, meta_desc="", slug="", og_type="article", page_type="blog", section="", schema_extra=""):
     """Template for blog post pages — adds meta description and article-appropriate hero subtext."""
-    meta_tag = f'<meta name="description" content="{meta_desc}" />' if meta_desc else ""
+    head_extras = base_html(title, meta_desc, slug, og_type)
+    breadcrumb = breadcrumb_schema(page_type, slug, title, section)
     return f"""
 <!DOCTYPE html>
 <html lang="en">
@@ -248,7 +309,7 @@ def blog_page_template(title, content, meta_desc=""):
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{title} | Leading Tuition</title>
-{meta_tag}
+{head_extras}
 <link rel="stylesheet" href="style.css" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -414,6 +475,7 @@ def blog_page_template(title, content, meta_desc=""):
 
 <section class="section section--cream" style="padding:70px 60px;">
 <div class="container" style="max-width:900px;">
+<div class="post-meta">By <strong>Leading Tuition Team</strong> &nbsp;|&nbsp; <time>Published March 2026</time></div>
 {content}
 </div>
 </section>
@@ -469,6 +531,8 @@ COPYRIGHT ©2023, Leading Tuition. ALL RIGHTS RESERVED.
 }})();
 </script>
 
+{breadcrumb}
+{schema_extra}
 </body>
 </html>
 """
@@ -509,9 +573,10 @@ def faq_block():
 """
 
 
-def location_page_template(city, title, content, meta_desc=""):
+def location_page_template(city, title, content, meta_desc="", slug="", og_type="website", schema_extra=""):
     """Variant of page_template for location pages — adds meta description and city-specific hero subtext."""
-    meta_tag = f'<meta name="description" content="{meta_desc}" />' if meta_desc else ""
+    head_extras = base_html(title, meta_desc, slug, og_type)
+    breadcrumb = breadcrumb_schema("location", slug, city)
     return f"""
 <!DOCTYPE html>
 <html lang="en">
@@ -519,7 +584,7 @@ def location_page_template(city, title, content, meta_desc=""):
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{title} | Leading Tuition</title>
-{meta_tag}
+{head_extras}
 <link rel="stylesheet" href="style.css" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -744,19 +809,25 @@ COPYRIGHT ©2023, Leading Tuition. ALL RIGHTS RESERVED.
 }})();
 </script>
 
+{breadcrumb}
+{schema_extra}
 </body>
 </html>
 """
 
 
-def page_template(title, content):
+def page_template(title, content, meta_desc="", slug="", og_type="website", page_type="specialist", section="Services", schema_extra="", base_tag=""):
+    head_extras = base_html(title, meta_desc, slug, og_type)
+    breadcrumb = breadcrumb_schema(page_type, slug, title, section)
     return f"""
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{base_tag}
 <title>{title} | Leading Tuition</title>
+{head_extras}
 <link rel="stylesheet" href="style.css" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -981,6 +1052,8 @@ COPYRIGHT ©2023, Leading Tuition. ALL RIGHTS RESERVED.
 }})();
 </script>
 
+{breadcrumb}
+{schema_extra}
 </body>
 </html>
 """
