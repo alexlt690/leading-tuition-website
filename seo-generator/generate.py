@@ -333,6 +333,213 @@ Requirements:
 """
 
 
+
+
+# ── Static page metadata ──────────────────────────────────────────────────────
+STATIC_META = {
+    "index.html": {
+        "html_title": "Leading Tuition | Expert GCSE and A-Level Tutors Online | UK",
+        "og_title":   "Expert GCSE and A-Level Tutors Online | UK",
+        "meta_desc":  ("Expert one-to-one GCSE and A-Level tutoring from Oxford and "
+                       "Cambridge-educated tutors. AQA, Edexcel and OCR. "
+                       "Book a free consultation today."),
+        "slug": "",
+    },
+    "about.html": {
+        "html_title": "About Leading Tuition | Oxford-Educated Tutors",
+        "og_title":   "About Leading Tuition | Oxford-Educated Tutors",
+        "meta_desc":  ("Meet the Leading Tuition team — Oxford and Cambridge-educated tutors "
+                       "delivering expert GCSE, A-Level and admissions support. "
+                       "4.8/5 Trustpilot. Book a free consultation."),
+        "slug": "about",
+    },
+    "contact.html": {
+        "html_title": "Contact Us | Leading Tuition",
+        "og_title":   "Contact Us | Leading Tuition",
+        "meta_desc":  ("Get in touch with Leading Tuition. Book a free consultation with our "
+                       "expert tutors. Call +44 207 167 8440 or email "
+                       "hello@leadingtuition.co.uk."),
+        "slug": "contact",
+    },
+}
+
+_GA_BLOCK = """  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D49V0X7BHL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D49V0X7BHL');
+  </script>"""
+
+
+def _static_head(html_title, og_title, meta_desc, slug):
+    """Build a complete, correct <head>...</head> block for a static page."""
+    base_url = "https://www.leadingtuition.co.uk"
+    canonical = f"{base_url}/{slug}" if slug else f"{base_url}/"
+    og_image  = f"{base_url}/images/og-default.jpg"
+    return f"""<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="google81c812594c7ae29d" />
+  <title>{html_title}</title>
+  <meta name="description" content="{meta_desc}" />
+  <link rel="canonical" href="{canonical}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Leading Tuition" />
+  <meta property="og:title" content="{og_title}" />
+  <meta property="og:description" content="{meta_desc}" />
+  <meta property="og:image" content="{og_image}" />
+  <meta property="og:url" content="{canonical}" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{og_title}" />
+  <meta name="twitter:description" content="{meta_desc}" />
+  <meta name="twitter:image" content="{og_image}" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+{_GA_BLOCK}
+</head>"""
+
+
+def generate_static_pages():
+    """Generate all 6 core pages (homepage, about, contact, plus 3 index pages).
+    No Claude API call needed — run with: python generate.py --static
+    """
+    from templates import breadcrumb_schema
+
+    # ── 1–3: Homepage, About, Contact ────────────────────────────────────────
+    for filename, meta in STATIC_META.items():
+        source = Path("..") / filename
+        if not source.exists():
+            print(f"WARNING: source file not found: {source} — skipping {filename}")
+            continue
+
+        html = source.read_text(encoding="utf-8")
+
+        # Replace the entire <head>...</head> block
+        new_head = _static_head(
+            meta["html_title"], meta["og_title"], meta["meta_desc"], meta["slug"]
+        )
+        html = re.sub(r"<head>[\s\S]*?</head>", new_head, html, count=1)
+
+        # Inject BreadcrumbList schema before </body> if not already present
+        if 'BreadcrumbList' not in html:
+            crumb = breadcrumb_schema("home", meta["slug"], meta["html_title"].split(" | ")[0])
+            html = html.replace("</body>", f"{crumb}\n</body>", 1)
+
+        out = OUTPUT_DIR / filename
+        out.write_text(html, encoding="utf-8")
+        print(f"Generated static page: {out}")
+
+    # ── 4: Locations index ────────────────────────────────────────────────────
+    cities = [row["city"] for row in load_csv("locations.csv")]
+    loc_links = "\n".join(
+        f'  <a href="{c.lower().replace(" ", "-")}" class="index-card"><strong>{c}</strong></a>'
+        for c in cities
+    )
+    loc_content = f"""<p>Leading Tuition provides expert private tutors across the UK.
+Choose your city below to find specialist GCSE, A-Level, 11+, and medicine prep tutors in your area.</p>
+<div class="subject-grid">
+{loc_links}
+</div>"""
+    loc_crumb = breadcrumb_schema("location", "locations", "Locations")
+    loc_html = page_template(
+        "Private Tutors by Location",
+        loc_content,
+        meta_desc=("Expert private tutors across the UK. Find GCSE, A-Level, 11+ and medicine "
+                   "prep tutors in your city. DBS checked. 4.8/5 Trustpilot."),
+        slug="locations",
+        page_type="location",
+        section="",
+        schema_extra=loc_crumb,
+    )
+    (OUTPUT_DIR / "locations.html").write_text(loc_html, encoding="utf-8")
+    print("Generated static page: output/locations.html")
+
+    # ── 5: Subjects index ─────────────────────────────────────────────────────
+    subjects = [row["subject"] for row in load_csv("subjects.csv")]
+    sub_links = "\n".join(
+        f'  <a href="subjects/{s.lower().replace(" ", "-")}-tutor" class="index-card"><strong>{s}</strong></a>'
+        for s in subjects
+    )
+    sub_content = f"""<p>Find a specialist tutor for your subject. Our tutors cover all GCSE and A-Level
+subjects across AQA, Edexcel, OCR, and WJEC exam boards.</p>
+<div class="subject-grid">
+{sub_links}
+</div>"""
+    sub_crumb = breadcrumb_schema("subject", "subjects", "Subjects")
+    sub_html = page_template(
+        "GCSE and A-Level Tutors by Subject",
+        sub_content,
+        meta_desc=("Expert GCSE and A-Level tutors for every subject. AQA, Edexcel, OCR and WJEC. "
+                   "DBS checked. 4.8/5 Trustpilot. Book a free consultation."),
+        slug="subjects",
+        page_type="subject",
+        section="",
+        schema_extra=sub_crumb,
+    )
+    (OUTPUT_DIR / "subjects.html").write_text(sub_html, encoding="utf-8")
+    print("Generated static page: output/subjects.html")
+
+    # ── 6: Blog index ─────────────────────────────────────────────────────────
+    posts = load_csv("blog_topics.csv")
+    blog_items = []
+    for row in posts:
+        title = row["title"]
+        slug = title.lower()
+        slug = re.sub(r"[^\w\s-]", "", slug)
+        slug = re.sub(r"\s+", "-", slug).strip("-")
+        blog_items.append(f'  <p><a href="{slug}"><strong>{title}</strong></a></p>')
+    blog_content = (
+        "<p>Practical, expert-backed guidance for UK parents and students on GCSEs, "
+        "A-Levels, medical school applications, and more.</p>\n"
+        + "\n".join(blog_items)
+    )
+    blog_crumb = breadcrumb_schema("blog", "blog", "Blog")
+    blog_html = page_template(
+        "Tutoring Advice and Guides",
+        blog_content,
+        meta_desc=("Expert tutoring advice for UK parents and students. Guides on GCSEs, A-Levels, "
+                   "UCAT, MMI, Oxbridge, and 11+. From Leading Tuition."),
+        slug="blog",
+        page_type="blog",
+        section="",
+        schema_extra=blog_crumb,
+    )
+    (OUTPUT_DIR / "blog.html").write_text(blog_html, encoding="utf-8")
+    print("Generated static page: output/blog.html")
+
+
+# ── Specialist page meta descriptions ────────────────────────────────────────
+SPECIALIST_META = {
+    "ucat-tutor": (
+        "Expert UCAT tutors with 90th-percentile scores. Proven strategies for all 5 sections. "
+        "DBS-checked tutors. 4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "mmi-interview-coaching": (
+        "Expert MMI interview coaching for medical school entry. Role-play, ethical scenarios and "
+        "structured feedback. 4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "oxbridge-admissions-preparation": (
+        "Expert Oxbridge admissions preparation: personal statements, interview practice and written "
+        "test support. 4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "university-personal-statement": (
+        "Expert personal statement help for UCAS, Russell Group and Oxbridge. Tailored coaching from "
+        "top graduates. 4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "medicine-prep-hub": (
+        "Complete medicine preparation tutoring: UCAT, BMAT, MMI and personal statements. Expert "
+        "support from medics. 4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "oxbridge-subject-preparation": (
+        "Oxbridge subject interview preparation by Oxford and Cambridge graduates. Tailored coaching "
+        "for all subjects. 4.8/5 Trustpilot. Book a free consultation."
+    ),
+}
+
+
 def generate_specialist_pages(limit=None):
     pages = load_csv("specialist_pages.csv")
     if limit is not None:
@@ -343,10 +550,16 @@ def generate_specialist_pages(limit=None):
         title = row["title"]
         keyword = row["keyword"]
 
+        meta_desc = SPECIALIST_META.get(
+            slug,
+            f"Expert {title} support from Oxford and Cambridge-educated tutors. "
+            "4.8/5 Trustpilot. Book a free consultation."
+        )
+
         prompt = specialist_prompt(title=title, keyword=keyword, slug=slug)
         raw = ask_claude(prompt)
         content, faq_schema = parse_faq_schema(raw)
-        html = page_template(title, content, slug=slug, page_type="specialist", section="Services", schema_extra=faq_schema)
+        html = page_template(title, content, meta_desc=meta_desc, slug=slug, page_type="specialist", section="Services", schema_extra=faq_schema)
 
         file_path = OUTPUT_DIR / f"{slug}.html"
         file_path.write_text(html, encoding="utf-8")
@@ -366,11 +579,16 @@ def generate_subject_pages(limit=None):
         slug = subject.lower().replace(" ", "-")
         title = f"{subject} Tutor"
         page_slug = f"subjects/{slug}-tutor"
+        meta_desc = (
+            f"Expert {subject} tutors for GCSE and A-Level. AQA, Edexcel and OCR support. "
+            f"DBS-checked tutors. 4.8/5 Trustpilot. Book a free consultation."
+        )
 
         prompt = subject_prompt(subject)
         content = ask_claude(prompt)
         html = page_template(
             title, content,
+            meta_desc=meta_desc,
             slug=page_slug,
             page_type="subject",
             section="Subjects",
@@ -631,6 +849,8 @@ Global rules:
 - Under the FAQ section, write each question as <p><strong>Question?</strong></p> followed by a <p> answer.
 - Never use generic filler phrases like "navigate the journey", "look no further", or "in today's world".
 - Never mention BMAT as a current admissions test — it was abolished in 2023. Oxford, Cambridge, and Imperial now use UCAT.
+- After all HTML content, on a new line, output exactly 4 FAQ pairs in this format (no spaces, no line breaks inside):
+FAQ_JSON:[{"q":"Question one","a":"Answer one"},{"q":"Question two","a":"Answer two"},{"q":"Question three","a":"Answer three"},{"q":"Question four","a":"Answer four"}]
 """
 
     if slug == "ucat-score-requirements-for-uk-medical-schools-2025":
@@ -867,9 +1087,10 @@ def generate_blog_pages(limit=None):
         slug = _re.sub(r"[^\w\s-]", "", slug)
         slug = _re.sub(r"\s+", "-", slug).strip("-")
 
+        _ucat_mmi_oxbridge = any(kw in slug for kw in ("ucat", "mmi", "oxbridge"))
         meta_desc = (
-            f"{title} — practical guidance for UK parents and students. "
-            f"Leading Tuition covers everything you need to know."
+            f"{title}. Expert advice from Leading Tuition."
+            + (" Book a free consultation." if _ucat_mmi_oxbridge else "")
         )
 
         related_instruction = BLOG_RELATED_RESOURCES.get(slug, "")
@@ -892,43 +1113,43 @@ LEVEL_METADATA = {
         "slug": "primary-tuition",
         "title": "Primary Tuition",
         "keyword": "primary school tutor",
-        "meta_desc": "Expert primary school tutors for Years 1–6. Maths, English, verbal reasoning, and SATs preparation. DBS checked tutors. Book a free consultation.",
+        "meta_desc": "Primary school tutoring with Oxford and Cambridge-educated tutors. Maths, English and SATs preparation. 4.8/5 Trustpilot. Book a free consultation.",
     },
     "11+": {
         "slug": "11plus-tuition",
         "title": "11+ Tuition",
         "keyword": "11 plus tutor",
-        "meta_desc": "Specialist 11+ tutors for grammar and independent school entry. Verbal reasoning, maths, English and NVR. CEM and GL Assessment preparation. Free consultation.",
+        "meta_desc": "11+ tutoring with Oxford and Cambridge-educated tutors. All subjects covered. AQA, Edexcel and OCR. 4.8/5 Trustpilot. Book a free consultation.",
     },
     "13+": {
         "slug": "13plus-tuition",
         "title": "13+ Tuition",
         "keyword": "13 plus tutor",
-        "meta_desc": "Expert 13+ and Common Entrance tutors for independent school entry at Year 9. All subjects. School-specific preparation. Book a free consultation.",
+        "meta_desc": "13+ and Common Entrance tutoring with Oxford and Cambridge-educated tutors. All subjects covered. 4.8/5 Trustpilot. Book a free consultation.",
     },
     "GCSE": {
         "slug": "gcse-tuition",
         "title": "GCSE Tuition",
         "keyword": "gcse tutor",
-        "meta_desc": "Expert GCSE tutors across all subjects and exam boards — AQA, Edexcel, OCR. Grades 9–1. Targeted support from Year 10 through results day. Free consultation.",
+        "meta_desc": "GCSE tutoring with Oxford and Cambridge-educated tutors. All subjects covered. AQA, Edexcel and OCR. 4.8/5 Trustpilot. Book a free consultation.",
     },
     "A-Level": {
         "slug": "a-level-tuition",
         "title": "A-Level Tuition",
         "keyword": "a level tutor",
-        "meta_desc": "Specialist A-Level tutors for all subjects. Linear exam preparation, Russell Group and Oxbridge entry support. AQA, Edexcel, OCR. Book a free consultation.",
+        "meta_desc": "A-Level tutoring with Oxford and Cambridge-educated tutors. All subjects covered. AQA, Edexcel and OCR. 4.8/5 Trustpilot. Book a free consultation.",
     },
     "SATs": {
         "slug": "sats-tuition",
         "title": "SATs Tuition",
         "keyword": "sats tutor",
-        "meta_desc": "Expert SATs tutors for KS1 and KS2. Year 2 and Year 6 SATs preparation in maths, reading, and grammar. Confidence-building support. Free consultation.",
+        "meta_desc": "SATs tutoring with Oxford and Cambridge-educated tutors. KS1 and KS2 maths, reading and grammar. 4.8/5 Trustpilot. Book a free consultation.",
     },
     "University": {
         "slug": "university-tuition",
         "title": "University Tuition",
         "keyword": "university tutor",
-        "meta_desc": "Expert university tutors for undergraduate and postgraduate students. Essays, dissertations, exam preparation, and subject support. Book a free consultation.",
+        "meta_desc": "University tutoring with Oxford and Cambridge-educated tutors. Essays, dissertations and exam prep. 4.8/5 Trustpilot. Book a free consultation.",
     },
 }
 
@@ -1249,9 +1470,8 @@ def generate_location_pages(limit=None):
         slug = city.lower().replace(" ", "-")
         title = f"Private Tuition in {city}"
         meta_desc = (
-            f"Expert private tutors in {city}. Leading Tuition supports GCSE, A-Level, 11+, "
-            f"and university admissions preparation across {city} and surrounding areas. "
-            f"Book a free consultation today."
+            f"Expert private tutors in {city}. DBS checked. GCSE, A-Level, 11+ and medicine prep. "
+            f"4.8/5 Trustpilot. Book a free consultation today."
         )
 
         prompt = location_prompt(city)
@@ -1265,32 +1485,41 @@ def generate_location_pages(limit=None):
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--static",     action="store_true", help="Generate homepage, about, contact, and index pages (no API)")
     parser.add_argument("--specialist", action="store_true", help="Generate specialist pages")
-    parser.add_argument("--subjects", action="store_true", help="Generate subject pages")
-    parser.add_argument("--locations", action="store_true", help="Generate location pages")
-    parser.add_argument("--blog", action="store_true", help="Generate blog posts")
-    parser.add_argument("--levels", action="store_true", help="Generate level pages")
+    parser.add_argument("--subjects",   action="store_true", help="Generate subject pages")
+    parser.add_argument("--locations",  action="store_true", help="Generate location pages")
+    parser.add_argument("--blog",       action="store_true", help="Generate blog posts")
+    parser.add_argument("--levels",     action="store_true", help="Generate level pages")
+    parser.add_argument("--all",        action="store_true", help="Generate everything (25-35 min)")
     parser.add_argument("--limit", type=int, default=None, help="Limit number of pages generated")
     args = parser.parse_args()
 
     OUTPUT_DIR.mkdir(exist_ok=True)
+    (OUTPUT_DIR / "subjects").mkdir(exist_ok=True)
 
-    if args.specialist:
+    run_all = args.all
+
+    if args.static or run_all:
+        generate_static_pages()
+
+    if args.specialist or run_all:
         generate_specialist_pages(limit=args.limit)
 
-    if args.subjects:
+    if args.subjects or run_all:
         generate_subject_pages(limit=args.limit)
 
-    if args.locations:
+    if args.locations or run_all:
         generate_location_pages(limit=args.limit)
 
-    if args.blog:
+    if args.blog or run_all:
         generate_blog_pages(limit=args.limit)
 
-    if args.levels:
+    if args.levels or run_all:
         generate_level_pages(limit=args.limit)
 
-    if not args.specialist and not args.subjects and not args.locations and not args.blog and not args.levels:
+    if not any([args.static, args.specialist, args.subjects,
+                args.locations, args.blog, args.levels, run_all]):
         parser.print_help()
 
 
