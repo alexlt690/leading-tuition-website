@@ -422,6 +422,13 @@ def generate_static_pages():
             meta["html_title"], meta["og_title"], meta["meta_desc"], meta["slug"]
         )
         html = re.sub(r"<head>[\s\S]*?</head>", new_head, html, count=1)
+        # Also replace nav block so root-relative paths are always correct
+        try:
+            from templates import _NAV_BLOCK as _nb
+            if _nb and '<nav class="navbar">' in html:
+                html = re.sub(r'<nav class="navbar">.*?</nav>', _nb, html, count=1, flags=re.DOTALL)
+        except Exception:
+            pass
 
         # Inject BreadcrumbList schema before </body> if not already present
         if 'BreadcrumbList' not in html:
