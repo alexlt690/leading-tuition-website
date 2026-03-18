@@ -530,7 +530,7 @@ SPECIALIST_META = {
         "top graduates. 4.8/5 Trustpilot. Book a free consultation."
     ),
     "medicine-prep-hub": (
-        "Complete medicine preparation tutoring: UCAT, BMAT, MMI and personal statements. Expert "
+        "Complete medicine preparation tutoring: UCAT, MMI coaching, and personal statements. Expert "
         "support from medics. 4.8/5 Trustpilot. Book a free consultation."
     ),
     "oxbridge-subject-preparation": (
@@ -1263,6 +1263,25 @@ Requirements:
   - The jump in demand between GCSE and A-Level is significant — students are expected to read independently, form arguments, and apply knowledge in unfamiliar contexts
 - Include one short bullet list
 - FAQ questions must address: when to start tutoring, what makes A-Level harder than GCSE, how tutoring supports university applications, and subject-specific advice
+- After the FAQ section, include this exact HTML block verbatim — do not modify the links or text:
+<h2>Find an A-Level Tutor by Subject</h2>
+<div class="subject-grid">
+  <a href="/services/subjects/maths-tutor">Maths</a>
+  <a href="/services/subjects/further-maths-tutor">Further Maths</a>
+  <a href="/services/subjects/chemistry-tutor">Chemistry</a>
+  <a href="/services/subjects/biology-tutor">Biology</a>
+  <a href="/services/subjects/physics-tutor">Physics</a>
+  <a href="/services/subjects/english-literature-tutor">English Literature</a>
+  <a href="/services/subjects/english-language-tutor">English Language</a>
+  <a href="/services/subjects/history-tutor">History</a>
+  <a href="/services/subjects/geography-tutor">Geography</a>
+  <a href="/services/subjects/economics-tutor">Economics</a>
+  <a href="/services/subjects/politics-tutor">Politics</a>
+  <a href="/services/subjects/psychology-tutor">Psychology</a>
+  <a href="/services/subjects/computer-science-tutor">Computer Science</a>
+  <a href="/services/subjects/business-studies-tutor">Business Studies</a>
+  <a href="/services/subjects/statistics-tutor">Statistics</a>
+</div>
 """
 
     if level == "11+":
