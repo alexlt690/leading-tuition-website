@@ -26,6 +26,14 @@ body {
 }
 
 a { text-decoration: none; color: inherit; }
+
+/* Inline body links — visible within content sections */
+.section--cream p a,
+.section--light p a,
+.container p a {
+  color: #5f192d;
+  text-decoration: underline;
+}
 img { max-width: 100%; display: block; }
 
 /* ── TYPOGRAPHY ── */
