@@ -118,16 +118,17 @@ Requirements:
   3. The 5 UCAT Subtests
   4. Why UCAT Preparation Is Different
   5. How Leading Tuition Supports UCAT Students
-  6. 10 to 12 Week Preparation Timeline
+  6. Your 10-Week UCAT Preparation Timeline
   7. Frequently Asked Questions
 - Must explicitly include:
   - The 5 UCAT subtests: Verbal Reasoning, Decision Making, Quantitative Reasoning, Abstract Reasoning, Situational Judgement
-  - 2024 average score around 615
-  - Competitive scores around 670 to 700+ for top medical schools
+  - 2024 average score around 615 per subtest (combined ~2,460)
+  - Competitive scores around 670 to 700+ per subtest for top medical schools
   - Oxford, Cambridge, and Imperial now use UCAT
   - BMAT was abolished in 2023
   - Students get one attempt per application cycle
   - UCAT is different from A-Level revision because it tests cognitive speed and decision-making, not just learned content
+  - The 10-week timeline section must be a structured <ul> list with specific weekly goals (not prose), with entries for Weeks 1-2, Weeks 3-4, Weeks 5-6, Weeks 7-8, and Weeks 9-10
 - Include one short bullet list
 - In the FAQ section, include 4 specific parent-facing FAQs about UCAT timing, score expectations, retakes, and tutoring support
 - Include a natural contextual in-content link in the body of the page to the MMI coaching page at /mmi-interview-coaching — use anchor text such as 'medical school MMI interview coaching'
@@ -153,19 +154,21 @@ Requirements:
 - Include these exact <h2> sections:
   1. What Is the MMI Format?
   2. What Medical Schools Look for at MMI
-  3. The Most Common MMI Station Types
-  4. How Leading Tuition MMI Coaching Works
-  5. MMI Preparation Timeline
-  6. Frequently Asked Questions
+  3. UK Medical Schools That Use the MMI Format
+  4. The Most Common MMI Station Types — with Example Prompts
+  5. How Leading Tuition MMI Coaching Works
+  6. Your 6-Week MMI Preparation Schedule
+  7. Frequently Asked Questions
 - Must explicitly include:
   - Typical MMI format: 5 to 10 stations
   - Typical station length: 5 to 8 minutes
   - Different assessors across stations
-  - Common station types: ethical scenarios, role play, data interpretation, written station, presentation, empathy station
   - The difference between MMI and traditional panel interviews
-  - A realistic preparation timeline of around 6 to 10 weeks
+  - Section 3 must be a <ul> list naming at least 8 UK medical schools that use MMI (including Birmingham, Bristol, King's College London, Leicester, Brighton and Sussex, Hull York, Exeter, Nottingham, Barts, St George's)
+  - Section 4 must list each station type (ethical scenario, role play, data interpretation, written, presentation, empathy) with a one-sentence example prompt for each
+  - Section 6 must be a structured <ul> week-by-week list (not prose) covering Weeks 1 through 6 with specific activities for each week
 - Include one short bullet list
-- In the FAQ section, include 4 specific parent-facing FAQs
+- In the FAQ section, include 4 specific parent-facing FAQs including one about which schools use MMI
 - Include a natural contextual in-content link in the body of the page to the UCAT preparation page at /ucat-tutor — use anchor text such as 'UCAT preparation'
 
 After all HTML content, on a new line, output exactly 5 FAQ pairs in this format (no spaces, no line breaks inside):
@@ -295,6 +298,19 @@ def subject_prompt(subject: str) -> str:
     if subject.lower() == "chemistry":
         chemistry_extra = """
 - You must explicitly mention Required Practicals and explain why students often lose marks on them.
+- Include a section on AQA Chemistry Required Practical mark scheme guidance: explain the specific types of questions that appear and common errors.
+"""
+
+    maths_extra = ""
+    if subject.lower() == "maths" or subject.lower() == "mathematics":
+        maths_extra = """
+- You must include a dedicated <h2> section titled 'AQA GCSE Maths: Paper Structure, Tiers, and Key Topics'.
+- This section must cover:
+  - AQA paper structure: Paper 1 (non-calculator), Papers 2 and 3 (calculator) — each 80 marks, 1 hour 30 minutes
+  - Foundation tier (grades 1-5, max grade 5) vs Higher tier (grades 4-9) — list what differs
+  - Key topics for the non-calculator paper: surds, exact values, algebraic manipulation, estimation, bounds
+  - Key topics for calculator papers: trigonometry, Pythagoras in 3D, volume/surface area, quadratic formula, proportionality graphs, cumulative frequency
+  - Importance of showing working for method marks
 """
 
     return f"""
@@ -327,7 +343,7 @@ Requirements:
 - Explain common student weaknesses or misconceptions in this subject
 - Explain how tutoring support helps with marks, confidence, and exam performance
 - Include one short bullet list
-{chemistry_extra}
+{chemistry_extra}{maths_extra}
 - In the FAQ section, include 4 specific parent-facing FAQs
 - End naturally
 """
@@ -872,17 +888,19 @@ Requirements:
 - Include these exact <h2> sections in this order:
   1. What Is a Good UCAT Score?
   2. How Medical Schools Use UCAT Scores
-  3. UCAT Score Benchmarks by School Tier
-  4. What Happens If Your Score Is Below Average
-  5. How to Prepare Effectively
-  6. Frequently Asked Questions
+  3. 2024 UCAT Cut-Off Scores: What Six Medical Schools Expected
+  4. UCAT Score Benchmarks by School Tier
+  5. What Happens If Your Score Is Below Average
+  6. How to Prepare Effectively
+  7. Frequently Asked Questions
 - Must include:
-  - 2024 average UCAT score approximately 615
+  - 2024 average UCAT score approximately 615 per subtest (combined ~2,460)
   - Competitive scores approximately 670 to 700+ for top medical schools
   - The 5 UCAT subtests: Verbal Reasoning, Decision Making, Quantitative Reasoning, Abstract Reasoning, Situational Judgement
   - Situational Judgement is banded (Band 1 to 4), not scored numerically
   - Oxford, Cambridge, and Imperial now use UCAT (BMAT was abolished in 2023)
   - Students have one attempt per application cycle
+  - Section 3 must contain an HTML <table> with columns: Medical School, 2024 Approximate Cut-Off (Total), Approx. Per Subtest, How UCAT Is Used. Include 6 schools: Oxford (~2,760+), Imperial (~2,720+), Edinburgh (~2,660+), Manchester (~2,620+), Sheffield (~2,580+), Nottingham (~2,540+). Add a note that SJT Band 1-2 is expected at all schools.
 - Include one short bullet or numbered list
 - FAQ questions must address timing, score expectations, retakes policy, and school-specific thresholds
 """
@@ -1011,6 +1029,39 @@ Requirements:
   - Preparation typically starts in Year 4 or early Year 5
 - Include one short bullet list
 - FAQ questions must address when to start, test providers, pass marks, and how to find out which test a specific school uses
+"""
+
+    if slug == "how-long-does-gcse-revision-take":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What do parents and Year 11 students actually want to know about revision hours and timing?
+2. What makes revision effective vs. ineffective — and what habits waste the most time?
+3. What realistic week-by-week structure would help a student starting 12 weeks before exams?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,200 to 1,500 words
+- Opening paragraph must answer the title question directly with a realistic, specific answer
+- Include these exact <h2> sections in this order:
+  1. The Short Answer: How Long Does GCSE Revision Actually Take?
+  2. Why There's No Single "Right" Number of Hours
+  3. A Realistic Revision Timeline for Year 11 Students
+  4. 12-Week GCSE Revision Schedule: Week by Week
+  5. How to Revise Efficiently — Quality Matters More Than Hours
+  6. Subject-by-Subject Estimates: What to Expect
+  7. When Students Should Consider Extra Support
+  8. Frequently Asked Questions
+- Must include:
+  - Section 4 must be a structured <ul> list with all 12 weeks numbered (Week 1 through Week 12), each with specific daily/weekly activities — not a single paragraph
+  - Mention active recall, spaced repetition, and past paper practice as key techniques
+  - Reference AQA, Edexcel, and OCR past papers as free resources
+  - Subject-specific hour estimates for Maths, English, Sciences, Humanities, and Languages
+  - The Easter break as a key intensive revision window
+- Include one short bullet or numbered list
+- FAQ questions must address total hours needed, how to start, managing multiple subjects, and what to do if behind
 """
 
     # Generic blog prompt for remaining posts
