@@ -1,32 +1,50 @@
 import json
 
 
+def page_url_path(page_type, slug):
+    """Return the full URL path for a page given its type and bare slug.
+    e.g. page_type='subject', slug='maths-tutor' -> 'services/subjects/maths-tutor'
+    """
+    prefix_map = {
+        "subject":    "services/subjects",
+        "level":      "services/levels",
+        "specialist": "services/specialist-admissions",
+        "blog":       "blog",
+        "location":   "locations",
+    }
+    prefix = prefix_map.get(page_type, "")
+    return f"{prefix}/{slug}" if prefix else slug
+
+
 def breadcrumb_schema(page_type, slug, display_name, section=""):
     """Build BreadcrumbList JSON-LD. page_type: home|location|subject|level|specialist|blog"""
     base_url = "https://www.leadingtuition.co.uk"
     home = {"@type": "ListItem", "position": 1, "name": "Home", "item": base_url}
+    full_path = page_url_path(page_type, slug)
+    full_url = f"{base_url}/{full_path}"
     if page_type == "home":
         items = [home]
     elif page_type == "location":
         items = [home,
                  {"@type": "ListItem", "position": 2, "name": "Locations", "item": f"{base_url}/locations"},
-                 {"@type": "ListItem", "position": 3, "name": display_name, "item": f"{base_url}/{slug}"}]
+                 {"@type": "ListItem", "position": 3, "name": display_name, "item": full_url}]
     elif page_type == "subject":
         items = [home,
-                 {"@type": "ListItem", "position": 2, "name": "Subjects", "item": f"{base_url}/subjects"},
-                 {"@type": "ListItem", "position": 3, "name": display_name, "item": f"{base_url}/{slug}"}]
+                 {"@type": "ListItem", "position": 2, "name": "Subjects", "item": f"{base_url}/services/subjects"},
+                 {"@type": "ListItem", "position": 3, "name": display_name, "item": full_url}]
     elif page_type == "level":
         items = [home,
-                 {"@type": "ListItem", "position": 2, "name": display_name, "item": f"{base_url}/{slug}"}]
+                 {"@type": "ListItem", "position": 2, "name": "Levels", "item": f"{base_url}/services/levels"},
+                 {"@type": "ListItem", "position": 3, "name": display_name, "item": full_url}]
     elif page_type == "specialist":
-        sec = section or "Services"
+        sec = section or "Specialist & Admissions"
         items = [home,
-                 {"@type": "ListItem", "position": 2, "name": sec, "item": f"{base_url}/services"},
-                 {"@type": "ListItem", "position": 3, "name": display_name, "item": f"{base_url}/{slug}"}]
+                 {"@type": "ListItem", "position": 2, "name": sec, "item": f"{base_url}/services/specialist-admissions"},
+                 {"@type": "ListItem", "position": 3, "name": display_name, "item": full_url}]
     elif page_type == "blog":
         items = [home,
                  {"@type": "ListItem", "position": 2, "name": "Blog", "item": f"{base_url}/blog"},
-                 {"@type": "ListItem", "position": 3, "name": display_name, "item": f"{base_url}/{slug}"}]
+                 {"@type": "ListItem", "position": 3, "name": display_name, "item": full_url}]
     else:
         items = [home]
     schema = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": items}
@@ -57,7 +75,8 @@ def base_html(title, meta_desc="", slug="", og_type="website"):
 
 def service_page_template(title, content, meta_desc="", slug="", og_type="website", page_type="level", section="", schema_extra=""):
     """Template for service/level pages — adds meta description and service-appropriate hero subtext."""
-    head_extras = base_html(title, meta_desc, slug, og_type)
+    full_slug = page_url_path(page_type, slug)
+    head_extras = base_html(title, meta_desc, full_slug, og_type)
     breadcrumb = breadcrumb_schema(page_type, slug, title, section)
     return f"""
 <!DOCTYPE html>
@@ -67,8 +86,8 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{title} | Leading Tuition</title>
 {head_extras}
-<link rel="stylesheet" href="style.css" />
-<link rel="icon" type="image/png" href="images/favicon.png" />
+<link rel="stylesheet" href="/style.css" />
+<link rel="icon" type="image/png" href="/images/favicon.png" />
 
 <style>
 
@@ -112,7 +131,7 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
 
 <nav class="navbar">
   <a href="/" class="navbar-brand">
-    <img src="images/logo.png" alt="Leading Tuition logo" />
+    <img src="/images/logo.png" alt="Leading Tuition logo" />
     Leading Tuition
   </a>
 
@@ -222,11 +241,11 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
   </ul>
 </nav>
 
-<section class="hero" style="background-image:url('images/hero.png');">
+<section class="hero" style="background-image:url('/images/hero.png');">
 <div class="hero-content">
 <h1>{title}</h1>
 <p>Expert support from Leading Tuition</p>
-<a href="consultation.html" class="btn btn-dark hero-cta">Book a Free Consultation</a>
+<a href="/consultation" class="btn btn-dark hero-cta">Book a Free Consultation</a>
 </div>
 </section>
 
@@ -300,7 +319,8 @@ COPYRIGHT ©2023, Leading Tuition. ALL RIGHTS RESERVED.
 
 def blog_page_template(title, content, meta_desc="", slug="", og_type="article", page_type="blog", section="", schema_extra=""):
     """Template for blog post pages — adds meta description and article-appropriate hero subtext."""
-    head_extras = base_html(title, meta_desc, slug, og_type)
+    full_slug = page_url_path(page_type, slug)
+    head_extras = base_html(title, meta_desc, full_slug, og_type)
     breadcrumb = breadcrumb_schema(page_type, slug, title, section)
     return f"""
 <!DOCTYPE html>
@@ -310,8 +330,8 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{title} | Leading Tuition</title>
 {head_extras}
-<link rel="stylesheet" href="style.css" />
-<link rel="icon" type="image/png" href="images/favicon.png" />
+<link rel="stylesheet" href="/style.css" />
+<link rel="icon" type="image/png" href="/images/favicon.png" />
 
 <style>
 
@@ -355,7 +375,7 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
 
 <nav class="navbar">
   <a href="/" class="navbar-brand">
-    <img src="images/logo.png" alt="Leading Tuition logo" />
+    <img src="/images/logo.png" alt="Leading Tuition logo" />
     Leading Tuition
   </a>
 
@@ -465,11 +485,11 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
   </ul>
 </nav>
 
-<section class="hero" style="background-image:url('images/hero.png');">
+<section class="hero" style="background-image:url('/images/hero.png');">
 <div class="hero-content">
 <h1>{title}</h1>
 <p>Practical guidance from the Leading Tuition team</p>
-<a href="consultation.html" class="btn btn-dark hero-cta">Book a Free Consultation</a>
+<a href="/consultation" class="btn btn-dark hero-cta">Book a Free Consultation</a>
 </div>
 </section>
 
@@ -547,7 +567,7 @@ def cta_block():
       <p style="margin-bottom:16px;">
         Book a free consultation and we’ll help you find the right support for your child.
       </p>
-      <a href="consultation.html" class="btn btn-dark">Book a Free Consultation</a>
+      <a href="/consultation" class="btn btn-dark">Book a Free Consultation</a>
     </div>
   </div>
 </section>
@@ -575,7 +595,8 @@ def faq_block():
 
 def location_page_template(city, title, content, meta_desc="", slug="", og_type="website", schema_extra=""):
     """Variant of page_template for location pages — adds meta description and city-specific hero subtext."""
-    head_extras = base_html(title, meta_desc, slug, og_type)
+    full_slug = page_url_path("location", slug)
+    head_extras = base_html(title, meta_desc, full_slug, og_type)
     breadcrumb = breadcrumb_schema("location", slug, city)
     return f"""
 <!DOCTYPE html>
@@ -585,8 +606,8 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{title} | Leading Tuition</title>
 {head_extras}
-<link rel="stylesheet" href="style.css" />
-<link rel="icon" type="image/png" href="images/favicon.png" />
+<link rel="stylesheet" href="/style.css" />
+<link rel="icon" type="image/png" href="/images/favicon.png" />
 
 <style>
 
@@ -630,7 +651,7 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
 
 <nav class="navbar">
   <a href="/" class="navbar-brand">
-    <img src="images/logo.png" alt="Leading Tuition logo" />
+    <img src="/images/logo.png" alt="Leading Tuition logo" />
     Leading Tuition
   </a>
 
@@ -740,11 +761,11 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
   </ul>
 </nav>
 
-<section class="hero" style="background-image:url('images/hero.png');">
+<section class="hero" style="background-image:url('/images/hero.png');">
 <div class="hero-content">
 <h1>{title}</h1>
 <p>Expert tutors supporting families across {city}</p>
-<a href="consultation.html" class="btn btn-dark hero-cta">Book a Free Consultation</a>
+<a href="/consultation" class="btn btn-dark hero-cta">Book a Free Consultation</a>
 </div>
 </section>
 
@@ -828,8 +849,8 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
 {base_tag}
 <title>{title} | Leading Tuition</title>
 {head_extras}
-<link rel="stylesheet" href="style.css" />
-<link rel="icon" type="image/png" href="images/favicon.png" />
+<link rel="stylesheet" href="/style.css" />
+<link rel="icon" type="image/png" href="/images/favicon.png" />
 
 <style>
 
@@ -873,7 +894,7 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
 
 <nav class="navbar">
   <a href="/" class="navbar-brand">
-    <img src="images/logo.png" alt="Leading Tuition logo" />
+    <img src="/images/logo.png" alt="Leading Tuition logo" />
     Leading Tuition
   </a>
 
@@ -983,11 +1004,11 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
   </ul>
 </nav>
 
-<section class="hero" style="background-image:url('images/hero.png');">
+<section class="hero" style="background-image:url('/images/hero.png');">
 <div class="hero-content">
 <h1>{title}</h1>
 <p>Expert support from Leading Tuition</p>
-<a href="consultation.html" class="btn btn-dark hero-cta">Book a Free Consultation</a>
+<a href="/consultation" class="btn btn-dark hero-cta">Book a Free Consultation</a>
 </div>
 </section>
 

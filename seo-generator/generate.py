@@ -39,7 +39,7 @@ def build_blogposting_schema(title, meta_desc, slug):
         "@type": "BlogPosting",
         "headline": title,
         "description": meta_desc,
-        "url": f"{base_url}/{slug}",
+        "url": f"{base_url}/blog/{slug}",
         "datePublished": date.today().isoformat(),
         "author": {"@type": "Organization", "name": "Leading Tuition Team"},
         "publisher": {"@type": "Organization", "name": "Leading Tuition", "url": base_url}
@@ -396,8 +396,8 @@ def _static_head(html_title, og_title, meta_desc, slug):
   <meta name="twitter:title" content="{og_title}" />
   <meta name="twitter:description" content="{meta_desc}" />
   <meta name="twitter:image" content="{og_image}" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
 {_GA_BLOCK}
 </head>"""
 
