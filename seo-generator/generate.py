@@ -131,7 +131,7 @@ Requirements:
   - The 10-week timeline section must be a structured <ul> list with specific weekly goals (not prose), with entries for Weeks 1-2, Weeks 3-4, Weeks 5-6, Weeks 7-8, and Weeks 9-10
 - Include one short bullet list
 - In the FAQ section, include 4 specific parent-facing FAQs about UCAT timing, score expectations, retakes, and tutoring support
-- Include a natural contextual in-content link in the body of the page to the MMI coaching page at /mmi-interview-coaching — use anchor text such as 'medical school MMI interview coaching'
+- Include a natural contextual in-content link in the body of the page to the MMI coaching page at /services/specialist-admissions/mmi-interview-coaching — use anchor text such as 'medical school MMI interview coaching'
 
 After all HTML content, on a new line, output exactly 5 FAQ pairs in this format (no spaces, no line breaks inside):
 FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}},{{"q":"Question five","a":"Answer five"}}]
@@ -169,7 +169,7 @@ Requirements:
   - Section 6 must be a structured <ul> week-by-week list (not prose) covering Weeks 1 through 6 with specific activities for each week
 - Include one short bullet list
 - In the FAQ section, include 4 specific parent-facing FAQs including one about which schools use MMI
-- Include a natural contextual in-content link in the body of the page to the UCAT preparation page at /ucat-tutor — use anchor text such as 'UCAT preparation'
+- Include a natural contextual in-content link in the body of the page to the UCAT preparation page at /services/specialist-admissions/ucat-tutor — use anchor text such as 'UCAT preparation'
 
 After all HTML content, on a new line, output exactly 5 FAQ pairs in this format (no spaces, no line breaks inside):
 FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}},{{"q":"Question five","a":"Answer five"}}]
@@ -205,7 +205,7 @@ Requirements:
   - Oxbridge interviews focus on problem-solving and academic thinking, not memorised answers
 - Include one short bullet list
 - In the FAQ section, include 4 specific parent-facing FAQs
-- Include a natural contextual in-content link in the body of the page to the University Admissions page at /university-personal-statement — use anchor text such as 'UCAS personal statement support'
+- Include a natural contextual in-content link in the body of the page to the University Admissions page at /services/specialist-admissions/university-personal-statement — use anchor text such as 'UCAS personal statement support'
 
 After all HTML content, on a new line, output exactly 5 FAQ pairs in this format (no spaces, no line breaks inside):
 FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}},{{"q":"Question five","a":"Answer five"}}]
@@ -1095,32 +1095,54 @@ FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answ
 BLOG_RELATED_RESOURCES = {
     "ucat-score-requirements-for-uk-medical-schools-2025": (
         "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
-        "link to the UCAT preparation page at /ucat-tutor using anchor text 'UCAT preparation with Leading Tuition', "
-        "and link to the Medicine Preparation hub at /medicine-prep-hub using anchor text 'Medicine Preparation hub'."
+        "link to the UCAT preparation page at /services/specialist-admissions/ucat-tutor using anchor text 'UCAT preparation with Leading Tuition', "
+        "and link to the Medicine Preparation hub at /services/specialist-admissions/medicine-prep-hub using anchor text 'Medicine Preparation hub'."
     ),
     "how-to-prepare-for-a-medical-school-mmi-interview": (
         "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
-        "link to the MMI coaching page at /mmi-interview-coaching using anchor text 'MMI interview coaching', "
-        "and link to the UCAT preparation page at /ucat-tutor using anchor text 'UCAT preparation'."
+        "link to the MMI coaching page at /services/specialist-admissions/mmi-interview-coaching using anchor text 'MMI interview coaching', "
+        "and link to the UCAT preparation page at /services/specialist-admissions/ucat-tutor using anchor text 'UCAT preparation'."
     ),
     "what-is-the-11-plus-exam": (
         "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
-        "link to the 11+ tuition page at /11plus-tuition using anchor text '11+ tuition with Leading Tuition', "
-        "and link to the Maths tutor page at /subjects/maths-tutor using anchor text 'specialist Maths tutoring'."
+        "link to the 11+ tuition page at /services/levels/11plus-tuition using anchor text '11+ tuition with Leading Tuition', "
+        "and link to the Maths tutor page at /services/subjects/maths-tutor using anchor text 'specialist Maths tutoring'."
     ),
     "how-long-does-gcse-revision-take": (
         "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
-        "link to the GCSE tuition page at /gcse-tuition using anchor text 'GCSE tuition with Leading Tuition', "
-        "and link to the Maths tutor page at /subjects/maths-tutor using anchor text 'specialist GCSE Maths tutoring'."
+        "link to the GCSE tuition page at /services/levels/gcse-tuition using anchor text 'GCSE tuition with Leading Tuition', "
+        "and link to the Maths tutor page at /services/subjects/maths-tutor using anchor text 'specialist GCSE Maths tutoring'."
     ),
     "triple-vs-double-science-gcse": (
         "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
-        "link to the GCSE tuition page at /gcse-tuition using anchor text 'GCSE tuition', "
-        "and link to the Chemistry tutor page at /subjects/chemistry-tutor using anchor text 'Chemistry tutoring'."
+        "link to the GCSE tuition page at /services/levels/gcse-tuition using anchor text 'GCSE tuition', "
+        "and link to the Chemistry tutor page at /services/subjects/chemistry-tutor using anchor text 'Chemistry tutoring'."
     ),
     "online-tutoring-vs-in-person-tutoring-for-gcse": (
         "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
-        "link to the GCSE tuition page at /gcse-tuition using anchor text 'GCSE tuition with Leading Tuition', "
+        "link to the GCSE tuition page at /services/levels/gcse-tuition using anchor text 'GCSE tuition with Leading Tuition', "
+        "and link to the consultation page at /consultation using anchor text 'book a free consultation'."
+    ),
+    "a-level-subject-choices-for-medicine-applications": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Medicine Preparation hub at /services/specialist-admissions/medicine-prep-hub using anchor text 'Medicine Preparation hub', "
+        "link to the A-Level tuition page at /services/levels/a-level-tuition using anchor text 'A-Level tuition with Leading Tuition', "
+        "and link to the UCAT preparation page at /services/specialist-admissions/ucat-tutor using anchor text 'UCAT preparation'."
+    ),
+    "ucas-personal-statement-guide": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the University Personal Statement page at /services/specialist-admissions/university-personal-statement using anchor text 'personal statement support with Leading Tuition', "
+        "and link to the Oxbridge Admissions Preparation page at /services/specialist-admissions/oxbridge-admissions-preparation using anchor text 'Oxbridge admissions preparation'."
+    ),
+    "what-grade-do-you-need-for-oxbridge-chemistry": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Admissions Preparation page at /services/specialist-admissions/oxbridge-admissions-preparation using anchor text 'Oxbridge admissions preparation', "
+        "and link to the Chemistry tutor page at /services/subjects/chemistry-tutor using anchor text 'specialist Chemistry tutoring'."
+    ),
+    "how-to-find-a-good-private-tutor": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the GCSE tuition page at /services/levels/gcse-tuition using anchor text 'GCSE tuition', "
+        "link to the A-Level tuition page at /services/levels/a-level-tuition using anchor text 'A-Level tuition', "
         "and link to the consultation page at /consultation using anchor text 'book a free consultation'."
     ),
 }
