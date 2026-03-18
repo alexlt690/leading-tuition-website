@@ -561,7 +561,9 @@ def generate_specialist_pages(limit=None):
         content, faq_schema = parse_faq_schema(raw)
         html = page_template(title, content, meta_desc=meta_desc, slug=slug, page_type="specialist", section="Services", schema_extra=faq_schema)
 
-        file_path = OUTPUT_DIR / f"{slug}.html"
+        specialist_dir = OUTPUT_DIR / "services" / "specialist-admissions"
+        specialist_dir.mkdir(parents=True, exist_ok=True)
+        file_path = specialist_dir / f"{slug}.html"
         file_path.write_text(html, encoding="utf-8")
         print(f"Generated specialist page: {file_path}")
 
@@ -571,14 +573,14 @@ def generate_subject_pages(limit=None):
     if limit is not None:
         subjects = subjects[:limit]
 
-    subjects_dir = OUTPUT_DIR / "subjects"
-    subjects_dir.mkdir(exist_ok=True)
+    subjects_dir = OUTPUT_DIR / "services" / "subjects"
+    subjects_dir.mkdir(parents=True, exist_ok=True)
 
     for row in subjects:
         subject = row["subject"]
         slug = subject.lower().replace(" ", "-")
         title = f"{subject} Tutor"
-        page_slug = f"subjects/{slug}-tutor"
+        page_slug = f"services/subjects/{slug}-tutor"
         meta_desc = (
             f"Expert {subject} tutors for GCSE and A-Level. AQA, Edexcel and OCR support. "
             f"DBS-checked tutors. 4.8/5 Trustpilot. Book a free consultation."
@@ -1102,7 +1104,9 @@ def generate_blog_pages(limit=None):
         schema_extra = faq_schema + "\n" + blogposting_schema
         html = blog_page_template(title=title, content=content, meta_desc=meta_desc, slug=slug, og_type="article", schema_extra=schema_extra)
 
-        file_path = OUTPUT_DIR / f"{slug}.html"
+        blog_dir = OUTPUT_DIR / "blog"
+        blog_dir.mkdir(parents=True, exist_ok=True)
+        file_path = blog_dir / f"{slug}.html"
         file_path.write_text(html, encoding="utf-8")
         print(f"Generated blog post: {file_path}")
 
@@ -1455,7 +1459,9 @@ def generate_level_pages(limit=None):
         content = ask_claude(prompt, max_tokens=3600)
         html = service_page_template(title=title, content=content, meta_desc=meta_desc, slug=slug, page_type="level")
 
-        file_path = OUTPUT_DIR / f"{slug}.html"
+        levels_dir = OUTPUT_DIR / "services" / "levels"
+        levels_dir.mkdir(parents=True, exist_ok=True)
+        file_path = levels_dir / f"{slug}.html"
         file_path.write_text(html, encoding="utf-8")
         print(f"Generated level page: {file_path}")
 
@@ -1478,7 +1484,9 @@ def generate_location_pages(limit=None):
         content = ask_claude(prompt, max_tokens=3600)
         html = location_page_template(city=city, title=title, content=content, meta_desc=meta_desc, slug=slug)
 
-        file_path = OUTPUT_DIR / f"{slug}.html"
+        locations_dir = OUTPUT_DIR / "locations"
+        locations_dir.mkdir(parents=True, exist_ok=True)
+        file_path = locations_dir / f"{slug}.html"
         file_path.write_text(html, encoding="utf-8")
         print(f"Generated location page: {file_path}")
 
@@ -1496,7 +1504,11 @@ def main():
     args = parser.parse_args()
 
     OUTPUT_DIR.mkdir(exist_ok=True)
-    (OUTPUT_DIR / "subjects").mkdir(exist_ok=True)
+    (OUTPUT_DIR / "services" / "subjects").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "services" / "levels").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "services" / "specialist-admissions").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "blog").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "locations").mkdir(parents=True, exist_ok=True)
 
     run_all = args.all
 
