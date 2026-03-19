@@ -451,7 +451,7 @@ def generate_static_pages():
     # ── 4: Locations index ────────────────────────────────────────────────────
     cities = [row["city"] for row in load_csv("locations.csv")]
     loc_links = "\n".join(
-        f'  <a href="{c.lower().replace(" ", "-")}" class="index-card"><strong>{c}</strong></a>'
+        f'  <a href="/locations/{c.lower().replace(" ", "-")}" class="index-card"><strong>{c}</strong></a>'
         for c in cities
     )
     loc_content = f"""<p>Leading Tuition provides expert private tutors across the UK.
@@ -476,7 +476,7 @@ Choose your city below to find specialist GCSE, A-Level, 11+, and medicine prep 
     # ── 5: Subjects index ─────────────────────────────────────────────────────
     subjects = [row["subject"] for row in load_csv("subjects.csv")]
     sub_links = "\n".join(
-        f'  <a href="subjects/{s.lower().replace(" ", "-")}-tutor" class="index-card"><strong>{s}</strong></a>'
+        f'  <a href="/services/subjects/{s.lower().replace(" ", "-")}-tutor" class="index-card"><strong>{s}</strong></a>'
         for s in subjects
     )
     sub_content = f"""<p>Find a specialist tutor for your subject. Our tutors cover all GCSE and A-Level
