@@ -546,8 +546,8 @@ SPECIALIST_META = {
         "top graduates. 4.8/5 Trustpilot. Book a free consultation."
     ),
     "medicine-prep-hub": (
-        "Complete medicine preparation tutoring: UCAT, MMI coaching, and personal statements. Expert "
-        "support from medics. 4.8/5 Trustpilot. Book a free consultation."
+        "Complete medicine preparation: UCAT, MMI coaching, and personal statements. Expert support "
+        "from medics. 4.8/5 Trustpilot. Book a free consultation."
     ),
     "oxbridge-subject-preparation": (
         "Oxbridge subject interview preparation by Oxford and Cambridge graduates. Tailored coaching "

@@ -838,7 +838,8 @@ COPYRIGHT ©2023, Leading Tuition. ALL RIGHTS RESERVED.
 
 
 def page_template(title, content, meta_desc="", slug="", og_type="website", page_type="specialist", section="Services", schema_extra="", base_tag=""):
-    head_extras = base_html(title, meta_desc, slug, og_type)
+    full_slug = page_url_path(page_type, slug) if page_type == "specialist" else slug
+    head_extras = base_html(title, meta_desc, full_slug, og_type)
     breadcrumb = breadcrumb_schema(page_type, slug, title, section)
     return f"""
 <!DOCTYPE html>
