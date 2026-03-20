@@ -274,6 +274,123 @@ Requirements:
 - In the FAQ section, include 4 specific parent-facing FAQs
 """
 
+    if slug == "medical-school-interviews":
+        return f"""
+{master_context}
+
+Now write a detailed specialist page in HTML about: {title}
+
+Requirements:
+- Length: 1,050 to 1,300 words
+- Opening paragraph must acknowledge the anxiety families feel when their child receives a medical school interview invitation
+- Include these exact <h2> sections:
+  1. The Two Main UK Medical School Interview Formats
+  2. What Medical Schools Are Actually Assessing
+  3. MMI vs Panel: Which Format Is Harder to Prepare For?
+  4. The Most Common Interview Mistakes and How to Avoid Them
+  5. How Leading Tuition Supports Interview Preparation
+  6. Frequently Asked Questions
+- Must explicitly include:
+  - The difference between MMI (Multiple Mini Interview) and traditional panel interviews
+  - Examples of which format different UK medical schools use (e.g. MMI at Leeds, Manchester, King's; panel at some others)
+  - The key competencies assessed: communication, empathy, ethical reasoning, NHS awareness, motivation for medicine
+  - Why mock interviews with structured feedback are more effective than self-study
+  - A contextual link to /services/specialist-admissions/mmi-interview-coaching using anchor text 'MMI interview coaching'
+- Include one short bullet list
+- In the FAQ section, include 4 specific parent-facing FAQs about medical school interview preparation
+
+After all HTML content, on a new line, output exactly 5 FAQ pairs in this format (no spaces, no line breaks inside):
+FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}},{{"q":"Question five","a":"Answer five"}}]
+"""
+
+    if slug == "mmi-station-types":
+        return f"""
+{master_context}
+
+Now write a detailed specialist page in HTML about: {title}
+
+Requirements:
+- Length: 1,050 to 1,300 words
+- Opening paragraph must acknowledge that most applicants have never encountered an MMI before and find the format bewildering at first
+- Include these exact <h2> sections:
+  1. What Is an MMI Station?
+  2. The Six Most Common MMI Station Types
+  3. What Assessors Are Looking for at Each Station Type
+  4. Example Prompts by Station Type
+  5. How to Prepare for Each Station Type
+  6. Frequently Asked Questions
+- Must explicitly cover these six station types with a dedicated explanation for each:
+  1. Role play / actor stations (communication with a simulated patient or colleague)
+  2. Ethical scenario stations (no right answer — process and reasoning matter)
+  3. Personal qualities and motivation stations (why medicine, work experience reflection)
+  4. NHS and healthcare awareness stations (current issues, NHS structure)
+  5. Data interpretation stations (reading a graph or table and explaining findings)
+  6. Teamwork or group task stations (less common but used at some schools)
+- Include example prompts for at least 3 station types
+- Include a contextual link to /services/specialist-admissions/mmi-interview-coaching using anchor text 'MMI interview coaching'
+- In the FAQ section, include 4 specific parent-facing FAQs
+
+After all HTML content, on a new line, output exactly 5 FAQ pairs in this format (no spaces, no line breaks inside):
+FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}},{{"q":"Question five","a":"Answer five"}}]
+"""
+
+    if slug == "mmi-practice-questions":
+        return f"""
+{master_context}
+
+Now write a detailed specialist page in HTML about: {title}
+
+Requirements:
+- Length: 1,050 to 1,300 words
+- Opening paragraph must acknowledge that reading about MMI is not the same as practising it, and that many applicants underestimate how much active practice matters
+- Include these exact <h2> sections:
+  1. How to Use MMI Practice Questions
+  2. Ethics and Scenario Questions
+  3. Role Play Station Questions
+  4. NHS Awareness and Healthcare Questions
+  5. Personal Qualities and Motivation Questions
+  6. How Leading Tuition Structures MMI Practice
+  7. Frequently Asked Questions
+- Must explicitly include:
+  - At least 3 example ethics/scenario questions with brief guidance on how to approach each
+  - At least 2 example role play station prompts
+  - At least 2 NHS awareness questions
+  - At least 2 personal qualities questions
+  - The importance of timing (each MMI station is 5-8 minutes) and structuring an answer within that window
+  - A contextual link to /services/specialist-admissions/mmi-interview-coaching using anchor text 'MMI interview coaching'
+- Present questions as <p><strong>Q: [question]</strong></p> followed by a brief approach note
+- In the FAQ section, include 4 specific parent-facing FAQs
+
+After all HTML content, on a new line, output exactly 5 FAQ pairs in this format (no spaces, no line breaks inside):
+FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}},{{"q":"Question five","a":"Answer five"}}]
+"""
+
+    if slug == "which-medical-schools-use-mmi":
+        return f"""
+{master_context}
+
+Now write a detailed specialist page in HTML about: {title}
+
+Requirements:
+- Length: 1,050 to 1,300 words
+- Opening paragraph must acknowledge that interview format varies significantly between UK medical schools and that many families do not realise this until after submitting their UCAS application
+- Include these exact <h2> sections:
+  1. Why Interview Format Matters for Preparation
+  2. UK Medical Schools That Use the MMI Format
+  3. UK Medical Schools That Use Panel or Traditional Interviews
+  4. Schools With Hybrid or Changing Formats
+  5. How to Tailor Your Preparation to Your Interview Format
+  6. Frequently Asked Questions
+- Must explicitly name specific UK medical schools in each category — do not use vague language like "many schools". Include at least 6 named schools across the three categories. Use data that was accurate as of 2024/2025.
+- Note that formats can change year to year and applicants should verify directly with each school
+- Include a contextual link to /services/specialist-admissions/mmi-interview-coaching using anchor text 'MMI interview coaching'
+- Include one short bullet list
+- In the FAQ section, include 4 specific parent-facing FAQs
+
+After all HTML content, on a new line, output exactly 5 FAQ pairs in this format (no spaces, no line breaks inside):
+FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}},{{"q":"Question five","a":"Answer five"}}]
+"""
+
     return f"""
 {master_context}
 
@@ -555,6 +672,31 @@ SPECIALIST_META = {
         "Oxbridge subject interview preparation by Oxford and Cambridge graduates. Tailored coaching "
         "for all subjects. 4.8/5 Trustpilot. Book a free consultation."
     ),
+    "medical-school-interviews": (
+        "Complete guide to UK medical school interviews — MMI and panel formats, what selectors assess, "
+        "and how to prepare. Expert coaching from medics. Book a free consultation."
+    ),
+    "mmi-station-types": (
+        "Full breakdown of MMI station types used at UK medical schools — role play, ethics, "
+        "communication, and data stations explained with example prompts. Book a free consultation."
+    ),
+    "mmi-practice-questions": (
+        "Real-style MMI practice questions for UK medical school applicants. Ethics, role play, "
+        "communication and data stations. Expert coaching from Leading Tuition."
+    ),
+    "which-medical-schools-use-mmi": (
+        "Which UK medical schools use MMI interviews in 2025? Full list of MMI, panel, and hybrid "
+        "formats by institution. Expert preparation support from Leading Tuition."
+    ),
+}
+
+
+# These slugs live under /medicine-prep/{slug}/ rather than /services/specialist-admissions/
+MEDICINE_CLUSTER_SLUGS = {
+    "medical-school-interviews",
+    "mmi-station-types",
+    "mmi-practice-questions",
+    "which-medical-schools-use-mmi",
 }
 
 
@@ -579,9 +721,17 @@ def generate_specialist_pages(limit=None):
         content, faq_schema = parse_faq_schema(raw)
         html = page_template(title, content, meta_desc=meta_desc, slug=slug, page_type="specialist", section="Services", schema_extra=faq_schema)
 
-        specialist_dir = OUTPUT_DIR / "services" / "specialist-admissions"
-        specialist_dir.mkdir(parents=True, exist_ok=True)
-        file_path = specialist_dir / f"{slug}.html"
+        # Medicine cluster pages go to output/medicine-prep/{slug}/index.html
+        # All other specialist pages go to output/services/specialist-admissions/{slug}.html
+        if slug in MEDICINE_CLUSTER_SLUGS:
+            out_dir = OUTPUT_DIR / "medicine-prep" / slug
+            out_dir.mkdir(parents=True, exist_ok=True)
+            file_path = out_dir / "index.html"
+        else:
+            out_dir = OUTPUT_DIR / "services" / "specialist-admissions"
+            out_dir.mkdir(parents=True, exist_ok=True)
+            file_path = out_dir / f"{slug}.html"
+
         file_path.write_text(html, encoding="utf-8")
         print(f"Generated specialist page: {file_path}")
 
@@ -1765,6 +1915,142 @@ def generate_location_pages(limit=None):
         print(f"Generated location page: {file_path}")
 
 
+def generate_navbar():
+    """
+    Propagate the canonical <nav> block from templates.py to every HTML file
+    in output/ that contains a navbar. No API calls required.
+
+    The canonical nav is extracted by rendering a dummy page through
+    service_page_template() — the same template used by all generated pages —
+    so this function always reflects whatever the current nav says in templates.py.
+    """
+    import re
+    from templates import service_page_template
+
+    # Extract canonical nav from a rendered sample page
+    sample = service_page_template("__dummy__", "<p>x</p>")
+    match = re.search(r'<nav class="navbar">.*?</nav>', sample, re.DOTALL)
+    if not match:
+        raise ValueError("Could not extract <nav> block from service_page_template output")
+    canonical_nav = match.group(0)
+
+    nav_pattern = re.compile(r'<nav class="navbar">.*?</nav>', re.DOTALL)
+
+    updated = 0
+    skipped = 0
+    for html_file in sorted(OUTPUT_DIR.rglob("*.html")):
+        content = html_file.read_text(encoding="utf-8")
+        if '<nav class="navbar">' not in content:
+            skipped += 1
+            continue
+        new_content = nav_pattern.sub(canonical_nav, content)
+        if new_content != content:
+            html_file.write_text(new_content, encoding="utf-8")
+            updated += 1
+        else:
+            skipped += 1
+
+    print(f"Navbar updated in {updated} files ({skipped} files unchanged or no navbar)")
+
+
+def generate_sitemap():
+    """
+    Crawl output/ and write sitemap.xml.
+    URL priority rules:
+      1.0  homepage
+      0.9  A-Level hub, GCSE hub
+      0.8  specialist/admissions, medicine-prep cluster, subject sub-pages (/subjects/)
+      0.7  location pages, original subject pages, level pages
+      0.6  blog posts, core static pages
+    """
+    import datetime
+
+    BASE_URL = "https://www.leadingtuition.co.uk"
+
+    # Static pages that live at fixed root paths — map filename → url_path
+    STATIC_ROOTS = {
+        "index.html":        "/",
+        "about.html":        "/about",
+        "contact.html":      "/contact",
+        "faqs.html":         "/faqs",
+        "services.html":     "/services",
+        "tutors.html":       "/tutors",
+        "consultation.html": "/consultation",
+        "locations.html":    "/locations",
+        "blog.html":         "/blog",
+    }
+
+    # Paths to skip entirely
+    SKIP_NAMES = {"sitemap.xml", "sitemap.html"}
+
+    def get_priority(url_path: str) -> str:
+        if url_path in ("/", ""):
+            return "1.0"
+        if url_path in ("/a-level/", "/gcse/"):
+            return "0.9"
+        if (url_path.startswith("/subjects/") or
+                url_path.startswith("/medicine-prep/") or
+                url_path.startswith("/services/specialist-admissions/")):
+            return "0.8"
+        if (url_path.startswith("/locations/") or
+                url_path.startswith("/services/subjects/") or
+                url_path.startswith("/services/levels/")):
+            return "0.7"
+        if url_path.startswith("/blog/"):
+            return "0.6"
+        return "0.6"
+
+    entries = []  # list of (url, lastmod, priority)
+
+    for html_file in sorted(OUTPUT_DIR.rglob("*.html")):
+        if html_file.name in SKIP_NAMES:
+            continue
+
+        rel = html_file.relative_to(OUTPUT_DIR)
+        parts = rel.parts  # e.g. ('locations', 'coventry.html') or ('a-level', 'index.html')
+
+        # Root-level static pages
+        if len(parts) == 1:
+            name = parts[0]
+            if name in STATIC_ROOTS:
+                url_path = STATIC_ROOTS[name]
+            else:
+                # Unknown root file — skip (gcse-maths-tutor.html etc are standalone keyword pages)
+                url_path = "/" + name.replace(".html", "")
+        elif rel.name == "index.html":
+            # Directory-style page → trailing slash URL
+            url_path = "/" + "/".join(parts[:-1]) + "/"
+        else:
+            # Flat file in a subdirectory
+            url_path = "/" + "/".join(parts).replace(".html", "")
+
+        lastmod = datetime.date.fromtimestamp(html_file.stat().st_mtime).isoformat()
+        priority = get_priority(url_path)
+        entries.append((BASE_URL + url_path, lastmod, priority))
+
+    # Sort: homepage first, then by URL
+    entries.sort(key=lambda x: (x[0] != BASE_URL + "/", x[0]))
+
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ]
+    for url, lastmod, priority in entries:
+        lines += [
+            "  <url>",
+            f"    <loc>{url}</loc>",
+            f"    <lastmod>{lastmod}</lastmod>",
+            "    <changefreq>monthly</changefreq>",
+            f"    <priority>{priority}</priority>",
+            "  </url>",
+        ]
+    lines.append("</urlset>")
+
+    sitemap_path = OUTPUT_DIR / "sitemap.xml"
+    sitemap_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"Generated sitemap.xml — {len(entries)} URLs")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--static",     action="store_true", help="Generate homepage, about, contact, and index pages (no API)")
@@ -1773,6 +2059,8 @@ def main():
     parser.add_argument("--locations",  action="store_true", help="Generate location pages")
     parser.add_argument("--blog",       action="store_true", help="Generate blog posts")
     parser.add_argument("--levels",     action="store_true", help="Generate level pages")
+    parser.add_argument("--sitemap",    action="store_true", help="Generate sitemap.xml from output/ directory (no API)")
+    parser.add_argument("--navbar",     action="store_true", help="Push canonical nav from templates.py to all HTML files in output/ (no API)")
     parser.add_argument("--all",        action="store_true", help="Generate everything (25-35 min)")
     parser.add_argument("--limit", type=int, default=None, help="Limit number of pages generated")
     args = parser.parse_args()
@@ -1804,8 +2092,18 @@ def main():
     if args.levels or run_all:
         generate_level_pages(limit=args.limit)
 
+    # --navbar runs after all generators so manually-written pages get the same nav.
+    # It can also be run standalone at any time (no API calls required).
+    if args.navbar or run_all:
+        generate_navbar()
+
+    # --sitemap runs last so the final sitemap reflects everything just generated.
+    # It can also be run standalone at any time (no API calls required).
+    if args.sitemap or run_all:
+        generate_sitemap()
+
     if not any([args.static, args.specialist, args.subjects,
-                args.locations, args.blog, args.levels, run_all]):
+                args.locations, args.blog, args.levels, args.navbar, args.sitemap, run_all]):
         parser.print_help()
 
 

@@ -948,7 +948,7 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
           </div>
 
           <div class="nav-mega-col">
-            <div class="nav-mega-col-title">Specialist & Admissions</div>
+            <div class="nav-mega-col-title">Specialist &amp; Admissions</div>
             <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
             <a href="/services/specialist-admissions/oxbridge-subject-preparation">Oxbridge Subject Prep</a>
             <a href="/services/specialist-admissions/ucat-tutor">UCAT Tutor</a>

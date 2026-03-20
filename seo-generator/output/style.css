@@ -27,9 +27,37 @@ body {
 
 a { text-decoration: none; color: inherit; }
 
-/* Inline body links — visible within content sections */
-p a {
+/* Inline body links — blue + underlined within all content sections */
+.section--cream p a,
+.section--cream li a,
+.section--cream h2 a,
+.section--cream h3 a,
+.section--light p a,
+.section--light li a,
+.section--light h2 a,
+.section--light h3 a,
+.container p a,
+.container li a,
+.container h2 a,
+.container h3 a,
+article p a,
+article li a,
+.blog-content a,
+.post-body a {
   color: #1a56a0;
+  text-decoration: underline;
+}
+.section--cream p a:hover,
+.section--cream li a:hover,
+.section--light p a:hover,
+.section--light li a:hover,
+.container p a:hover,
+.container li a:hover,
+article p a:hover,
+article li a:hover,
+.blog-content a:hover,
+.post-body a:hover {
+  color: #0d3d7a;
   text-decoration: underline;
 }
 img { max-width: 100%; display: block; }

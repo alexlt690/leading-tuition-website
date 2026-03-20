@@ -37,16 +37,29 @@
 </head>
 <body>
 <nav class="navbar">
-  <a href="/" class="navbar-brand"><img src="/images/logo.png" alt="Leading Tuition logo" />Leading Tuition</a>
-  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <a href="/" class="navbar-brand">
+    <img src="/images/logo.png" alt="Leading Tuition logo" />
+    Leading Tuition
+  </a>
+
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
   <ul class="navbar-nav" id="navbarNav">
     <li><a href="/">Home</a></li>
     <li><a href="/about">About Us</a></li>
+
+    <!-- Services mega-dropdown -->
     <li class="nav-dropdown">
       <a href="/services" class="nav-dropdown-toggle">Services <span class="nav-caret">&#9660;</span></a>
       <div class="nav-mega-menu">
-        <div class="nav-mega-header"><a href="/services">&#8592; Our Services</a></div>
+        <div class="nav-mega-header">
+          <a href="/services">&#8592; Our Services</a>
+        </div>
+
         <div class="nav-mega-cols">
+
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Subjects</div>
             <a href="/services/subjects/maths-tutor">Maths</a>
@@ -65,16 +78,18 @@
             <a href="/services/subjects/further-maths-tutor">Further Maths</a>
             <a href="/services/subjects/statistics-tutor">Statistics</a>
           </div>
+
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Levels</div>
-            <a href="/a-level/">A-Level Tutoring</a>
-            <a href="/gcse/">GCSE Tutoring</a>
+            <a href="/services/levels/a-level-tuition">A-Level Tuition</a>
+            <a href="/services/levels/gcse-tuition">GCSE Tuition</a>
             <a href="/services/levels/primary-tuition">Primary Tuition</a>
             <a href="/services/levels/sats-tuition">SATs Tuition</a>
             <a href="/services/levels/11plus-tuition">11+ Tuition</a>
             <a href="/services/levels/13plus-tuition">13+ Tuition</a>
             <a href="/services/levels/university-tuition">University Tuition</a>
           </div>
+
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Specialist &amp; Admissions</div>
             <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
@@ -84,9 +99,12 @@
             <a href="/services/specialist-admissions/medicine-prep-hub">Medicine Prep Hub</a>
             <a href="/services/specialist-admissions/university-personal-statement">University Personal Statement</a>
           </div>
+
         </div>
       </div>
     </li>
+
+    <!-- Blog dropdown -->
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
@@ -98,22 +116,32 @@
         <a href="/blog/what-grade-do-you-need-for-oxbridge-chemistry">What Grade for Oxbridge Chemistry?</a>
         <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
         <a href="/blog/a-level-subject-choices-for-medicine-applications">A-Level Subjects for Medicine</a>
-        <a href="/blog/ucat-score-requirements-for-uk-medical-schools-2025.html">UCAT Score Requirements 2025</a>
+        <a href="/blog/ucat-score-requirements-for-uk-medical-schools-2025">UCAT Score Requirements 2025</a>
         <a href="/blog/ucas-personal-statement-guide">UCAS Personal Statement Guide</a>
       </div>
     </li>
+
+    <!-- Locations dropdown -->
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Locations <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu nav-dropdown-menu--cols">
-        <a href="/locations/london">London</a><a href="/locations/birmingham">Birmingham</a>
-        <a href="/locations/manchester">Manchester</a><a href="/locations/leeds">Leeds</a>
-        <a href="/locations/bristol">Bristol</a><a href="/locations/sheffield">Sheffield</a>
-        <a href="/locations/leicester">Leicester</a><a href="/locations/liverpool">Liverpool</a>
-        <a href="/locations/nottingham">Nottingham</a><a href="/locations/cambridge">Cambridge</a>
-        <a href="/locations/oxford">Oxford</a><a href="/locations/brighton">Brighton</a>
-        <a href="/locations/guildford">Guildford</a><a href="/locations/reading">Reading</a>
+        <a href="/locations/london">London</a>
+        <a href="/locations/birmingham">Birmingham</a>
+        <a href="/locations/manchester">Manchester</a>
+        <a href="/locations/leeds">Leeds</a>
+        <a href="/locations/bristol">Bristol</a>
+        <a href="/locations/sheffield">Sheffield</a>
+        <a href="/locations/leicester">Leicester</a>
+        <a href="/locations/liverpool">Liverpool</a>
+        <a href="/locations/nottingham">Nottingham</a>
+        <a href="/locations/cambridge">Cambridge</a>
+        <a href="/locations/oxford">Oxford</a>
+        <a href="/locations/brighton">Brighton</a>
+        <a href="/locations/guildford">Guildford</a>
+        <a href="/locations/reading">Reading</a>
       </div>
     </li>
+
     <li><a href="/tutors">Our Tutors</a></li>
     <li><a href="/faqs">FAQs</a></li>
     <li><a href="/contact">Contact Us</a></li>
