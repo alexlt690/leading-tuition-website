@@ -8,7 +8,7 @@ from datetime import date
 from pathlib import Path
 from templates import page_template, location_page_template, blog_page_template, service_page_template
 
-
+print(os.getenv("ANTHROPIC_API_KEY"))
 def parse_faq_schema(response_text):
     """Extract FAQ_JSON block from Claude response. Returns (clean_content, faq_schema_html)."""
     match = re.search(r'FAQ_JSON:(\[.*?\])', response_text, re.DOTALL)
