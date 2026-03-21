@@ -6,7 +6,8 @@ import argparse
 import anthropic
 from datetime import date
 from pathlib import Path
-from templates import page_template, location_page_template, blog_page_template, service_page_template
+from templates import (page_template, location_page_template, blog_page_template,
+                       service_page_template, breadcrumb_schema)
 
 
 def parse_faq_schema(response_text):
@@ -1890,7 +1891,7 @@ def generate_level_pages(limit=None):
         print(f"Generated level page: {file_path}")
 
 
-def generate_location_pages(limit=None):
+def generate_location_pages(limit=None, new_only=False):
     cities = load_csv("locations.csv")
     if limit is not None:
         cities = cities[:limit]
@@ -1911,8 +1912,357 @@ def generate_location_pages(limit=None):
         locations_dir = OUTPUT_DIR / "locations"
         locations_dir.mkdir(parents=True, exist_ok=True)
         file_path = locations_dir / f"{slug}.html"
+        if new_only and file_path.exists():
+            print(f"  SKIP (exists): {file_path}")
+            continue
         file_path.write_text(html, encoding="utf-8")
         print(f"Generated location page: {file_path}")
+
+
+# ── Admissions Test page prompts ─────────────────────────────────────────────
+
+ADMISSIONS_TEST_META = {
+    "lnat-preparation": (
+        "Expert LNAT preparation from Oxford and Cambridge-educated tutors. "
+        "Strategies for all sections of the Law National Aptitude Test. "
+        "4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "mat-preparation": (
+        "Expert MAT preparation from Oxford and Cambridge graduates. "
+        "Strategies and practice for the Mathematics Admissions Test for Oxford and Imperial. "
+        "4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "pat-preparation": (
+        "Expert PAT preparation for Oxford Physics applicants. "
+        "Physics Aptitude Test coaching from Oxford-educated tutors. "
+        "4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "tsa-preparation": (
+        "Expert TSA preparation for Oxford and Cambridge applicants. "
+        "Thinking Skills Assessment coaching covering critical thinking and problem solving. "
+        "4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "hat-preparation": (
+        "Expert HAT preparation for Oxford History applicants. "
+        "History Aptitude Test coaching and practice from Oxford-educated tutors. "
+        "4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "elat-preparation": (
+        "Expert ELAT preparation for Oxford English Literature applicants. "
+        "English Literature Admissions Test coaching and essay practice. "
+        "4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "mlat-preparation": (
+        "Expert MLAT preparation for Oxford Modern Languages applicants. "
+        "Modern Languages Admissions Test coaching and practice. "
+        "4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "step-preparation": (
+        "Expert STEP Maths preparation for Cambridge and other university applicants. "
+        "Sixth Term Examination Paper coaching from Cambridge-educated mathematicians. "
+        "4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "tmua-preparation": (
+        "Expert TMUA preparation for Cambridge, Bath, and other university applicants. "
+        "Test of Mathematics for University Admission coaching from specialist tutors. "
+        "4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "esat-preparation": (
+        "Expert ESAT preparation for Cambridge Engineering and Science applicants. "
+        "Engineering and Science Admissions Test coaching from Cambridge-educated tutors. "
+        "4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "phil-preparation": (
+        "Expert Oxford Philosophy Admissions Test (PHIL) preparation. "
+        "Coaching on argument analysis, philosophical reasoning, and written response skills. "
+        "4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "bmat-history": (
+        "BMAT was abolished in 2023. Find out what replaced it, which universities now use UCAT, "
+        "and how Leading Tuition can support your medicine preparation."
+    ),
+}
+
+
+def admissions_test_prompt(slug: str, title: str, full_name: str, keyword: str, institution: str) -> str:
+    is_bmat = slug == "bmat-history"
+
+    if is_bmat:
+        return f"""
+You are writing an SEO service page for Leading Tuition, a UK tutoring company.
+
+Topic: BMAT — What Replaced It and What to Do Now
+The BMAT (BioMedical Admissions Test) was abolished after the 2022–23 application cycle.
+Oxford, Cambridge, and Imperial — the three universities that previously used BMAT — now use UCAT for Medicine.
+This page exists to capture "BMAT tutor" and "BMAT preparation" search traffic and redirect it usefully.
+
+Audience:
+- A student or parent who searched "BMAT" and does not yet know it was abolished
+- They need clear, honest information and a path forward
+
+Global rules:
+- Write for a UK applicant, not an SEO algorithm
+- Use a clear, warm, authoritative tone
+- Output plain HTML only — no markdown
+- Use only these tags: <p>, <h2>, <ul>, <li>, <strong>
+- Do not include <html>, <head>, or <body>
+- Do not include CTA buttons or footer text — the template handles those
+- Include one FAQ section with exactly 4 questions
+
+Requirements:
+- Length: 800 to 1,000 words
+- Opening paragraph must immediately clarify that BMAT has been abolished, without being harsh
+- Include these exact <h2> sections in this order:
+  1. What Was the BMAT?
+  2. When Was BMAT Abolished and Why?
+  3. What Replaced BMAT? UCAT at Oxford, Cambridge, and Imperial
+  4. What This Means for Your Medicine Application
+  5. Frequently Asked Questions
+- Must include:
+  - BMAT was used by Oxford, Cambridge, Imperial, and a small number of international schools
+  - BMAT was discontinued after the 2022–23 cycle by Cambridge Assessment Admissions Testing
+  - From 2024 entry, Oxford, Cambridge, and Imperial all require UCAT
+  - UCAT covers Verbal Reasoning, Decision Making, Quantitative Reasoning, Abstract Reasoning, and Situational Judgement
+  - Students who were preparing for BMAT should now focus their energy on UCAT
+- FAQ questions must address: when BMAT ended, which tests replaced it at each university, whether old BMAT prep books are still useful, and how to prepare for UCAT
+"""
+
+    return f"""
+You are writing a specialist admissions test preparation page for Leading Tuition, a UK tutoring company.
+
+Test: {full_name} ({title})
+Used by: {institution}
+Target keyword: {keyword}
+
+Audience:
+- A UK student (typically Year 12 or Year 13) preparing to apply to competitive universities
+- Their parent may also be reading — they want reassurance that the support is expert and structured
+- They are intelligent but anxious about a high-stakes test they may not fully understand yet
+
+Global rules:
+- Write for a UK applicant, not an SEO algorithm
+- Use a clear, warm, authoritative tone
+- Output plain HTML only — no markdown
+- Use only these tags: <p>, <h2>, <ul>, <li>, <strong>
+- Do not include <html>, <head>, or <body>
+- Do not include CTA buttons or footer text — the template handles those
+- Include one FAQ section with exactly 4 questions
+- Never mention BMAT as a current admissions test — it was abolished in 2023
+- Never use generic filler phrases like "look no further" or "unlock your potential"
+
+Before writing, think through:
+1. What does the student actually need to know about this test — format, timing, scoring, and what it tests?
+2. What do most applicants get wrong in their preparation, and what approach actually works?
+3. What specific support can Leading Tuition provide that makes a difference?
+
+Now write a detailed service page in HTML about: {title}
+
+Requirements:
+- Length: 950 to 1,150 words
+- Opening paragraph must acknowledge the challenge the test poses and why specialist preparation matters
+- Include these exact <h2> sections in this order:
+  1. What Is the {full_name}?
+  2. What Does the {full_name} Test?
+  3. How the {full_name} Is Scored
+  4. How to Prepare Effectively
+  5. How Leading Tuition Supports {full_name} Preparation
+  6. Frequently Asked Questions
+- Must include:
+  - Which universities and courses require this test
+  - Test format (number of sections, timing, question types)
+  - Scoring method and how universities use the score
+  - Realistic timeline for preparation (how many weeks/months before the test)
+  - Common mistakes and how to avoid them
+- Include one short bullet list
+- FAQ questions must address: registration deadlines, what score to aim for, whether past papers are available, and how tutoring helps
+"""
+
+
+def generate_admissions_test_pages(limit=None, new_only=False):
+    tests = load_csv("admissions_tests.csv")
+    if limit is not None:
+        tests = tests[:limit]
+
+    for row in tests:
+        slug = row["slug"]
+        title = row["title"]
+        full_name = row["full_name"]
+        keyword = row["keyword"]
+        institution = row["institution"]
+
+        meta_desc = ADMISSIONS_TEST_META.get(
+            slug,
+            f"Expert {full_name} preparation from Leading Tuition. "
+            "Specialist coaching from Oxbridge-educated tutors. 4.8/5 Trustpilot. Book a free consultation."
+        )
+
+        out_dir = OUTPUT_DIR / "admissions-tests" / slug
+        out_dir.mkdir(parents=True, exist_ok=True)
+        file_path = out_dir / "index.html"
+
+        if new_only and file_path.exists():
+            print(f"  SKIP (exists): admissions-tests/{slug}/")
+            continue
+
+        prompt = admissions_test_prompt(slug=slug, title=title, full_name=full_name,
+                                        keyword=keyword, institution=institution)
+        raw = ask_claude(prompt)
+        content, faq_schema = parse_faq_schema(raw)
+
+        # Build Service + AggregateRating schema
+        schema = {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": title,
+            "url": f"https://www.leadingtuition.co.uk/admissions-tests/{slug}/",
+            "description": meta_desc,
+            "provider": {
+                "@type": "Organization",
+                "name": "Leading Tuition",
+                "url": "https://www.leadingtuition.co.uk",
+                "telephone": "+44 207 167 8440",
+                "email": "hello@leadingtuition.co.uk"
+            },
+            "areaServed": {"@type": "Country", "name": "United Kingdom"},
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8", "bestRating": "5",
+                "worstRating": "1", "ratingCount": "54", "reviewCount": "54"
+            }
+        }
+        import json as _json
+        service_schema = f'<script type="application/ld+json">\n{_json.dumps(schema, indent=2, ensure_ascii=False)}\n</script>'
+        breadcrumb = breadcrumb_schema("admissions-test", slug, title)
+        schema_extra = faq_schema + "\n" + service_schema + "\n" + breadcrumb
+
+        html = page_template(
+            title, content,
+            meta_desc=meta_desc,
+            slug=f"admissions-tests/{slug}/",
+            page_type="admissions-test",
+            section="Admissions Tests",
+            schema_extra=schema_extra
+        )
+
+        file_path.write_text(html, encoding="utf-8")
+        print(f"Generated admissions test page: admissions-tests/{slug}/")
+
+
+# ── Medical School guide prompts ─────────────────────────────────────────────
+
+def medical_school_prompt(slug: str, name: str, city: str, interview_type: str, ucat_notes: str) -> str:
+    return f"""
+You are writing a medical school guide for Leading Tuition, a UK tutoring company.
+
+Medical School: {name}
+City: {city}
+Interview format: {interview_type}
+UCAT/entry notes: {ucat_notes}
+
+Audience:
+- A Year 12 or Year 13 student researching this specific medical school
+- Their parent may also be reading
+- They want detailed, accurate, and genuinely useful information — not a generic template
+
+Global rules:
+- Write for a UK applicant, not an SEO algorithm
+- Use a clear, warm, authoritative tone
+- Output plain HTML only — no markdown
+- Use only these tags: <p>, <h2>, <ul>, <li>, <strong>
+- Do not include <html>, <head>, or <body>
+- Do not include CTA buttons or footer text — the template handles those
+- Include one FAQ section with exactly 4 questions
+- Never mention BMAT as a current admissions test — it was abolished in 2023
+- Never use filler phrases like "look no further" or "we've got you covered"
+
+Before writing, think through:
+1. What is genuinely distinctive about {name} as a medical school — curriculum, location, culture, clinical access?
+2. What are the actual entry requirements — A-Level grades, UCAT thresholds, and interview format?
+3. What do successful applicants to {name} tend to have in common beyond grades?
+
+Now write a detailed medical school guide in HTML about: {name} Medicine Entry Requirements
+
+Requirements:
+- Length: 1,050 to 1,250 words
+- Opening paragraph must explain why a student would choose {name} specifically — make it genuine, not generic
+- Include these exact <h2> sections in this order:
+  1. Why Choose {name} for Medicine?
+  2. Entry Requirements and A-Level Grades
+  3. UCAT Requirements at {name}
+  4. The Interview Process at {name}
+  5. What Makes a Strong {name} Application
+  6. Frequently Asked Questions about Applying to {name}
+- Must include:
+  - Typical A-Level offer (A*AA or AAA with specific subjects)
+  - UCAT requirement: {ucat_notes}
+  - Interview format: {interview_type} — explain what this involves at {name} specifically
+  - Any personal statement or work experience considerations
+  - Approximate number of places per year (approximate is fine)
+  - Location advantage: {city} — what this means for clinical placements and student life
+- Include one short bullet list
+- FAQ questions must address: UCAT score needed, whether work experience is required, interview preparation, and whether {name} accepts international students
+"""
+
+
+def generate_medical_school_pages(limit=None, new_only=False):
+    schools = load_csv("medical_schools.csv")
+    if limit is not None:
+        schools = schools[:limit]
+
+    for row in schools:
+        slug = row["slug"]
+        name = row["name"]
+        city = row["city"]
+        interview_type = row["interview_type"]
+        ucat_notes = row["ucat_notes"]
+
+        title = f"{name} Medicine Entry Requirements"
+        meta_desc = (
+            f"Complete guide to {name} Medicine entry requirements: A-Level grades, UCAT thresholds, "
+            f"interview format, and how to build a strong application. Expert support from Leading Tuition."
+        )
+
+        out_dir = OUTPUT_DIR / "medical-schools" / slug
+        out_dir.mkdir(parents=True, exist_ok=True)
+        file_path = out_dir / "index.html"
+
+        if new_only and file_path.exists():
+            print(f"  SKIP (exists): medical-schools/{slug}/")
+            continue
+
+        prompt = medical_school_prompt(slug=slug, name=name, city=city,
+                                       interview_type=interview_type, ucat_notes=ucat_notes)
+        raw = ask_claude(prompt)
+        content, faq_schema = parse_faq_schema(raw)
+
+        import json as _json
+        schema = {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": title,
+            "url": f"https://www.leadingtuition.co.uk/medical-schools/{slug}/",
+            "description": meta_desc,
+            "publisher": {
+                "@type": "Organization",
+                "name": "Leading Tuition",
+                "url": "https://www.leadingtuition.co.uk"
+            }
+        }
+        article_schema = f'<script type="application/ld+json">\n{_json.dumps(schema, indent=2, ensure_ascii=False)}\n</script>'
+        breadcrumb = breadcrumb_schema("medical-school", slug, name)
+        schema_extra = faq_schema + "\n" + article_schema + "\n" + breadcrumb
+
+        html = page_template(
+            title, content,
+            meta_desc=meta_desc,
+            slug=f"medical-schools/{slug}/",
+            page_type="medical-school",
+            section="Medical School Guides",
+            schema_extra=schema_extra
+        )
+
+        file_path.write_text(html, encoding="utf-8")
+        print(f"Generated medical school page: medical-schools/{slug}/")
 
 
 def generate_navbar():
@@ -1998,6 +2348,10 @@ def generate_sitemap():
             return "0.7"
         if url_path.startswith("/blog/"):
             return "0.6"
+        if url_path.startswith("/admissions-tests/"):
+            return "0.8"
+        if url_path.startswith("/medical-schools/"):
+            return "0.8"
         return "0.6"
 
     entries = []  # list of (url, lastmod, priority)
@@ -2053,16 +2407,19 @@ def generate_sitemap():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--static",     action="store_true", help="Generate homepage, about, contact, and index pages (no API)")
-    parser.add_argument("--specialist", action="store_true", help="Generate specialist pages")
-    parser.add_argument("--subjects",   action="store_true", help="Generate subject pages")
-    parser.add_argument("--locations",  action="store_true", help="Generate location pages")
-    parser.add_argument("--blog",       action="store_true", help="Generate blog posts")
-    parser.add_argument("--levels",     action="store_true", help="Generate level pages")
-    parser.add_argument("--sitemap",    action="store_true", help="Generate sitemap.xml from output/ directory (no API)")
-    parser.add_argument("--navbar",     action="store_true", help="Push canonical nav from templates.py to all HTML files in output/ (no API)")
-    parser.add_argument("--all",        action="store_true", help="Generate everything (25-35 min)")
-    parser.add_argument("--limit", type=int, default=None, help="Limit number of pages generated")
+    parser.add_argument("--static",           action="store_true", help="Generate homepage, about, contact, and index pages (no API)")
+    parser.add_argument("--specialist",        action="store_true", help="Generate specialist pages")
+    parser.add_argument("--subjects",          action="store_true", help="Generate subject pages")
+    parser.add_argument("--locations",         action="store_true", help="Generate location pages")
+    parser.add_argument("--blog",              action="store_true", help="Generate blog posts")
+    parser.add_argument("--levels",            action="store_true", help="Generate level pages")
+    parser.add_argument("--admissions-tests",  action="store_true", help="Generate admissions test pages (LNAT, MAT, PAT, TSA, etc.)")
+    parser.add_argument("--medical-schools",   action="store_true", help="Generate medical school entry guide pages (~38 schools)")
+    parser.add_argument("--sitemap",           action="store_true", help="Generate sitemap.xml from output/ directory (no API)")
+    parser.add_argument("--navbar",            action="store_true", help="Push canonical nav from templates.py to all HTML files in output/ (no API)")
+    parser.add_argument("--all",               action="store_true", help="Generate everything (30-45 min)")
+    parser.add_argument("--limit",    type=int, default=None,       help="Limit number of pages generated per category")
+    parser.add_argument("--new-only", action="store_true",          help="Skip pages whose output file already exists (useful for resuming or adding new pages)")
     args = parser.parse_args()
 
     OUTPUT_DIR.mkdir(exist_ok=True)
@@ -2071,8 +2428,11 @@ def main():
     (OUTPUT_DIR / "services" / "specialist-admissions").mkdir(parents=True, exist_ok=True)
     (OUTPUT_DIR / "blog").mkdir(parents=True, exist_ok=True)
     (OUTPUT_DIR / "locations").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "admissions-tests").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "medical-schools").mkdir(parents=True, exist_ok=True)
 
     run_all = args.all
+    new_only = args.new_only
 
     if args.static or run_all:
         generate_static_pages()
@@ -2084,13 +2444,23 @@ def main():
         generate_subject_pages(limit=args.limit)
 
     if args.locations or run_all:
-        generate_location_pages(limit=args.limit)
+        generate_location_pages(limit=args.limit, new_only=new_only)
 
     if args.blog or run_all:
         generate_blog_pages(limit=args.limit)
 
     if args.levels or run_all:
         generate_level_pages(limit=args.limit)
+
+    # New Phase 3 page types
+    admissions_tests_flag = getattr(args, "admissions_tests", False)
+    medical_schools_flag  = getattr(args, "medical_schools", False)
+
+    if admissions_tests_flag or run_all:
+        generate_admissions_test_pages(limit=args.limit, new_only=new_only)
+
+    if medical_schools_flag or run_all:
+        generate_medical_school_pages(limit=args.limit, new_only=new_only)
 
     # --navbar runs after all generators so manually-written pages get the same nav.
     # It can also be run standalone at any time (no API calls required).
@@ -2103,7 +2473,9 @@ def main():
         generate_sitemap()
 
     if not any([args.static, args.specialist, args.subjects,
-                args.locations, args.blog, args.levels, args.navbar, args.sitemap, run_all]):
+                args.locations, args.blog, args.levels,
+                admissions_tests_flag, medical_schools_flag,
+                args.navbar, args.sitemap, run_all]):
         parser.print_help()
 
 

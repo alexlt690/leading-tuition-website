@@ -6,11 +6,13 @@ def page_url_path(page_type, slug):
     e.g. page_type='subject', slug='maths-tutor' -> 'services/subjects/maths-tutor'
     """
     prefix_map = {
-        "subject":    "services/subjects",
-        "level":      "services/levels",
-        "specialist": "services/specialist-admissions",
-        "blog":       "blog",
-        "location":   "locations",
+        "subject":          "services/subjects",
+        "level":            "services/levels",
+        "specialist":       "services/specialist-admissions",
+        "blog":             "blog",
+        "location":         "locations",
+        "admissions-test":  "admissions-tests",
+        "medical-school":   "medical-schools",
     }
     prefix = prefix_map.get(page_type, "")
     return f"{prefix}/{slug}" if prefix else slug
@@ -44,6 +46,14 @@ def breadcrumb_schema(page_type, slug, display_name, section=""):
     elif page_type == "blog":
         items = [home,
                  {"@type": "ListItem", "position": 2, "name": "Blog", "item": f"{base_url}/blog"},
+                 {"@type": "ListItem", "position": 3, "name": display_name, "item": full_url}]
+    elif page_type == "admissions-test":
+        items = [home,
+                 {"@type": "ListItem", "position": 2, "name": "Admissions Tests", "item": f"{base_url}/admissions-tests/"},
+                 {"@type": "ListItem", "position": 3, "name": display_name, "item": full_url}]
+    elif page_type == "medical-school":
+        items = [home,
+                 {"@type": "ListItem", "position": 2, "name": "Medical School Guides", "item": f"{base_url}/medical-schools/"},
                  {"@type": "ListItem", "position": 3, "name": display_name, "item": full_url}]
     else:
         items = [home]
@@ -186,12 +196,26 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Specialist &amp; Admissions</div>
             <a href="/services/specialist-admissions/medicine-prep-hub">Medicine Prep Hub</a>
+            <a href="/medical-schools/">Medical School Guides</a>
             <a href="/services/specialist-admissions/medical-school-interviews/">Medical School Interviews</a>
             <a href="/services/specialist-admissions/ucat-tutor">UCAT Tutor</a>
             <a href="/services/specialist-admissions/mmi-interview-coaching">MMI Interview Coaching</a>
             <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
-            <a href="/services/specialist-admissions/oxbridge-subject-preparation">Oxbridge Subject Prep</a>
             <a href="/services/specialist-admissions/university-personal-statement">University Personal Statement</a>
+          </div>
+
+          <div class="nav-mega-col">
+            <div class="nav-mega-col-title">Admissions Tests</div>
+            <a href="/admissions-tests/">All Tests Overview</a>
+            <a href="/admissions-tests/lnat-preparation/">LNAT (Law)</a>
+            <a href="/admissions-tests/mat-preparation/">MAT (Maths)</a>
+            <a href="/admissions-tests/tsa-preparation/">TSA</a>
+            <a href="/admissions-tests/pat-preparation/">PAT (Physics)</a>
+            <a href="/admissions-tests/step-preparation/">STEP (Maths)</a>
+            <a href="/admissions-tests/tmua-preparation/">TMUA</a>
+            <a href="/admissions-tests/esat-preparation/">ESAT (Engineering)</a>
+            <a href="/admissions-tests/hat-preparation/">HAT (History)</a>
+            <a href="/admissions-tests/elat-preparation/">ELAT (English)</a>
           </div>
 
         </div>
@@ -293,7 +317,7 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
 </div>
 
 <div class="copyright">
-COPYRIGHT ©2023, Leading Tuition. ALL RIGHTS RESERVED.
+COPYRIGHT ©2026, Leading Tuition. ALL RIGHTS RESERVED.
 </div>
 
 </footer>
@@ -451,12 +475,26 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Specialist &amp; Admissions</div>
             <a href="/services/specialist-admissions/medicine-prep-hub">Medicine Prep Hub</a>
+            <a href="/medical-schools/">Medical School Guides</a>
             <a href="/services/specialist-admissions/medical-school-interviews/">Medical School Interviews</a>
             <a href="/services/specialist-admissions/ucat-tutor">UCAT Tutor</a>
             <a href="/services/specialist-admissions/mmi-interview-coaching">MMI Interview Coaching</a>
             <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
-            <a href="/services/specialist-admissions/oxbridge-subject-preparation">Oxbridge Subject Prep</a>
             <a href="/services/specialist-admissions/university-personal-statement">University Personal Statement</a>
+          </div>
+
+          <div class="nav-mega-col">
+            <div class="nav-mega-col-title">Admissions Tests</div>
+            <a href="/admissions-tests/">All Tests Overview</a>
+            <a href="/admissions-tests/lnat-preparation/">LNAT (Law)</a>
+            <a href="/admissions-tests/mat-preparation/">MAT (Maths)</a>
+            <a href="/admissions-tests/tsa-preparation/">TSA</a>
+            <a href="/admissions-tests/pat-preparation/">PAT (Physics)</a>
+            <a href="/admissions-tests/step-preparation/">STEP (Maths)</a>
+            <a href="/admissions-tests/tmua-preparation/">TMUA</a>
+            <a href="/admissions-tests/esat-preparation/">ESAT (Engineering)</a>
+            <a href="/admissions-tests/hat-preparation/">HAT (History)</a>
+            <a href="/admissions-tests/elat-preparation/">ELAT (English)</a>
           </div>
 
         </div>
@@ -555,7 +593,7 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
 </div>
 
 <div class="copyright">
-COPYRIGHT ©2023, Leading Tuition. ALL RIGHTS RESERVED.
+COPYRIGHT ©2026, Leading Tuition. ALL RIGHTS RESERVED.
 </div>
 
 </footer>
@@ -748,12 +786,26 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Specialist &amp; Admissions</div>
             <a href="/services/specialist-admissions/medicine-prep-hub">Medicine Prep Hub</a>
+            <a href="/medical-schools/">Medical School Guides</a>
             <a href="/services/specialist-admissions/medical-school-interviews/">Medical School Interviews</a>
             <a href="/services/specialist-admissions/ucat-tutor">UCAT Tutor</a>
             <a href="/services/specialist-admissions/mmi-interview-coaching">MMI Interview Coaching</a>
             <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
-            <a href="/services/specialist-admissions/oxbridge-subject-preparation">Oxbridge Subject Prep</a>
             <a href="/services/specialist-admissions/university-personal-statement">University Personal Statement</a>
+          </div>
+
+          <div class="nav-mega-col">
+            <div class="nav-mega-col-title">Admissions Tests</div>
+            <a href="/admissions-tests/">All Tests Overview</a>
+            <a href="/admissions-tests/lnat-preparation/">LNAT (Law)</a>
+            <a href="/admissions-tests/mat-preparation/">MAT (Maths)</a>
+            <a href="/admissions-tests/tsa-preparation/">TSA</a>
+            <a href="/admissions-tests/pat-preparation/">PAT (Physics)</a>
+            <a href="/admissions-tests/step-preparation/">STEP (Maths)</a>
+            <a href="/admissions-tests/tmua-preparation/">TMUA</a>
+            <a href="/admissions-tests/esat-preparation/">ESAT (Engineering)</a>
+            <a href="/admissions-tests/hat-preparation/">HAT (History)</a>
+            <a href="/admissions-tests/elat-preparation/">ELAT (English)</a>
           </div>
 
         </div>
@@ -855,7 +907,7 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
 </div>
 
 <div class="copyright">
-COPYRIGHT ©2023, Leading Tuition. ALL RIGHTS RESERVED.
+COPYRIGHT ©2026, Leading Tuition. ALL RIGHTS RESERVED.
 </div>
 
 </footer>
@@ -1013,12 +1065,26 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Specialist &amp; Admissions</div>
             <a href="/services/specialist-admissions/medicine-prep-hub">Medicine Prep Hub</a>
+            <a href="/medical-schools/">Medical School Guides</a>
             <a href="/services/specialist-admissions/medical-school-interviews/">Medical School Interviews</a>
             <a href="/services/specialist-admissions/ucat-tutor">UCAT Tutor</a>
             <a href="/services/specialist-admissions/mmi-interview-coaching">MMI Interview Coaching</a>
             <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
-            <a href="/services/specialist-admissions/oxbridge-subject-preparation">Oxbridge Subject Prep</a>
             <a href="/services/specialist-admissions/university-personal-statement">University Personal Statement</a>
+          </div>
+
+          <div class="nav-mega-col">
+            <div class="nav-mega-col-title">Admissions Tests</div>
+            <a href="/admissions-tests/">All Tests Overview</a>
+            <a href="/admissions-tests/lnat-preparation/">LNAT (Law)</a>
+            <a href="/admissions-tests/mat-preparation/">MAT (Maths)</a>
+            <a href="/admissions-tests/tsa-preparation/">TSA</a>
+            <a href="/admissions-tests/pat-preparation/">PAT (Physics)</a>
+            <a href="/admissions-tests/step-preparation/">STEP (Maths)</a>
+            <a href="/admissions-tests/tmua-preparation/">TMUA</a>
+            <a href="/admissions-tests/esat-preparation/">ESAT (Engineering)</a>
+            <a href="/admissions-tests/hat-preparation/">HAT (History)</a>
+            <a href="/admissions-tests/elat-preparation/">ELAT (English)</a>
           </div>
 
         </div>
@@ -1120,7 +1186,7 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
 </div>
 
 <div class="copyright">
-COPYRIGHT ©2023, Leading Tuition. ALL RIGHTS RESERVED.
+COPYRIGHT ©2026, Leading Tuition. ALL RIGHTS RESERVED.
 </div>
 
 </footer>
