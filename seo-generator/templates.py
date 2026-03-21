@@ -174,8 +174,8 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Levels</div>
-            <a href="/services/levels/a-level-tuition">A-Level Tuition</a>
-            <a href="/services/levels/gcse-tuition">GCSE Tuition</a>
+            <a href="/a-level/">A-Level Tuition</a>
+            <a href="/gcse/">GCSE Tuition</a>
             <a href="/services/levels/primary-tuition">Primary Tuition</a>
             <a href="/services/levels/sats-tuition">SATs Tuition</a>
             <a href="/services/levels/11plus-tuition">11+ Tuition</a>
@@ -185,11 +185,12 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Specialist &amp; Admissions</div>
-            <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
-            <a href="/services/specialist-admissions/oxbridge-subject-preparation">Oxbridge Subject Prep</a>
+            <a href="/services/specialist-admissions/medicine-prep-hub">Medicine Prep Hub</a>
+            <a href="/services/specialist-admissions/medical-school-interviews/">Medical School Interviews</a>
             <a href="/services/specialist-admissions/ucat-tutor">UCAT Tutor</a>
             <a href="/services/specialist-admissions/mmi-interview-coaching">MMI Interview Coaching</a>
-            <a href="/services/specialist-admissions/medicine-prep-hub">Medicine Prep Hub</a>
+            <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
+            <a href="/services/specialist-admissions/oxbridge-subject-preparation">Oxbridge Subject Prep</a>
             <a href="/services/specialist-admissions/university-personal-statement">University Personal Statement</a>
           </div>
 
@@ -232,6 +233,26 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
         <a href="/locations/brighton">Brighton</a>
         <a href="/locations/guildford">Guildford</a>
         <a href="/locations/reading">Reading</a>
+        <a href="/locations/barnet">Barnet</a>
+        <a href="/locations/bath">Bath</a>
+        <a href="/locations/bromley">Bromley</a>
+        <a href="/locations/cheltenham">Cheltenham</a>
+        <a href="/locations/coventry">Coventry</a>
+        <a href="/locations/croydon">Croydon</a>
+        <a href="/locations/derby">Derby</a>
+        <a href="/locations/ealing">Ealing</a>
+        <a href="/locations/exeter">Exeter</a>
+        <a href="/locations/harrow">Harrow</a>
+        <a href="/locations/kingston-upon-thames">Kingston upon Thames</a>
+        <a href="/locations/luton">Luton</a>
+        <a href="/locations/milton-keynes">Milton Keynes</a>
+        <a href="/locations/northampton">Northampton</a>
+        <a href="/locations/norwich">Norwich</a>
+        <a href="/locations/portsmouth">Portsmouth</a>
+        <a href="/locations/twickenham">Twickenham</a>
+        <a href="/locations/watford">Watford</a>
+        <a href="/locations/wimbledon">Wimbledon</a>
+        <a href="/locations/york">York</a>
       </div>
     </li>
 
@@ -418,8 +439,8 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Levels</div>
-            <a href="/services/levels/a-level-tuition">A-Level Tuition</a>
-            <a href="/services/levels/gcse-tuition">GCSE Tuition</a>
+            <a href="/a-level/">A-Level Tuition</a>
+            <a href="/gcse/">GCSE Tuition</a>
             <a href="/services/levels/primary-tuition">Primary Tuition</a>
             <a href="/services/levels/sats-tuition">SATs Tuition</a>
             <a href="/services/levels/11plus-tuition">11+ Tuition</a>
@@ -429,11 +450,12 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Specialist &amp; Admissions</div>
-            <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
-            <a href="/services/specialist-admissions/oxbridge-subject-preparation">Oxbridge Subject Prep</a>
+            <a href="/services/specialist-admissions/medicine-prep-hub">Medicine Prep Hub</a>
+            <a href="/services/specialist-admissions/medical-school-interviews/">Medical School Interviews</a>
             <a href="/services/specialist-admissions/ucat-tutor">UCAT Tutor</a>
             <a href="/services/specialist-admissions/mmi-interview-coaching">MMI Interview Coaching</a>
-            <a href="/services/specialist-admissions/medicine-prep-hub">Medicine Prep Hub</a>
+            <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
+            <a href="/services/specialist-admissions/oxbridge-subject-preparation">Oxbridge Subject Prep</a>
             <a href="/services/specialist-admissions/university-personal-statement">University Personal Statement</a>
           </div>
 
@@ -476,6 +498,26 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
         <a href="/locations/brighton">Brighton</a>
         <a href="/locations/guildford">Guildford</a>
         <a href="/locations/reading">Reading</a>
+        <a href="/locations/barnet">Barnet</a>
+        <a href="/locations/bath">Bath</a>
+        <a href="/locations/bromley">Bromley</a>
+        <a href="/locations/cheltenham">Cheltenham</a>
+        <a href="/locations/coventry">Coventry</a>
+        <a href="/locations/croydon">Croydon</a>
+        <a href="/locations/derby">Derby</a>
+        <a href="/locations/ealing">Ealing</a>
+        <a href="/locations/exeter">Exeter</a>
+        <a href="/locations/harrow">Harrow</a>
+        <a href="/locations/kingston-upon-thames">Kingston upon Thames</a>
+        <a href="/locations/luton">Luton</a>
+        <a href="/locations/milton-keynes">Milton Keynes</a>
+        <a href="/locations/northampton">Northampton</a>
+        <a href="/locations/norwich">Norwich</a>
+        <a href="/locations/portsmouth">Portsmouth</a>
+        <a href="/locations/twickenham">Twickenham</a>
+        <a href="/locations/watford">Watford</a>
+        <a href="/locations/wimbledon">Wimbledon</a>
+        <a href="/locations/york">York</a>
       </div>
     </li>
 
@@ -694,8 +736,8 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Levels</div>
-            <a href="/services/levels/a-level-tuition">A-Level Tuition</a>
-            <a href="/services/levels/gcse-tuition">GCSE Tuition</a>
+            <a href="/a-level/">A-Level Tuition</a>
+            <a href="/gcse/">GCSE Tuition</a>
             <a href="/services/levels/primary-tuition">Primary Tuition</a>
             <a href="/services/levels/sats-tuition">SATs Tuition</a>
             <a href="/services/levels/11plus-tuition">11+ Tuition</a>
@@ -705,11 +747,12 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Specialist &amp; Admissions</div>
-            <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
-            <a href="/services/specialist-admissions/oxbridge-subject-preparation">Oxbridge Subject Prep</a>
+            <a href="/services/specialist-admissions/medicine-prep-hub">Medicine Prep Hub</a>
+            <a href="/services/specialist-admissions/medical-school-interviews/">Medical School Interviews</a>
             <a href="/services/specialist-admissions/ucat-tutor">UCAT Tutor</a>
             <a href="/services/specialist-admissions/mmi-interview-coaching">MMI Interview Coaching</a>
-            <a href="/services/specialist-admissions/medicine-prep-hub">Medicine Prep Hub</a>
+            <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
+            <a href="/services/specialist-admissions/oxbridge-subject-preparation">Oxbridge Subject Prep</a>
             <a href="/services/specialist-admissions/university-personal-statement">University Personal Statement</a>
           </div>
 
@@ -752,6 +795,26 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
         <a href="/locations/brighton">Brighton</a>
         <a href="/locations/guildford">Guildford</a>
         <a href="/locations/reading">Reading</a>
+        <a href="/locations/barnet">Barnet</a>
+        <a href="/locations/bath">Bath</a>
+        <a href="/locations/bromley">Bromley</a>
+        <a href="/locations/cheltenham">Cheltenham</a>
+        <a href="/locations/coventry">Coventry</a>
+        <a href="/locations/croydon">Croydon</a>
+        <a href="/locations/derby">Derby</a>
+        <a href="/locations/ealing">Ealing</a>
+        <a href="/locations/exeter">Exeter</a>
+        <a href="/locations/harrow">Harrow</a>
+        <a href="/locations/kingston-upon-thames">Kingston upon Thames</a>
+        <a href="/locations/luton">Luton</a>
+        <a href="/locations/milton-keynes">Milton Keynes</a>
+        <a href="/locations/northampton">Northampton</a>
+        <a href="/locations/norwich">Norwich</a>
+        <a href="/locations/portsmouth">Portsmouth</a>
+        <a href="/locations/twickenham">Twickenham</a>
+        <a href="/locations/watford">Watford</a>
+        <a href="/locations/wimbledon">Wimbledon</a>
+        <a href="/locations/york">York</a>
       </div>
     </li>
 
@@ -938,8 +1001,8 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Levels</div>
-            <a href="/services/levels/a-level-tuition">A-Level Tuition</a>
-            <a href="/services/levels/gcse-tuition">GCSE Tuition</a>
+            <a href="/a-level/">A-Level Tuition</a>
+            <a href="/gcse/">GCSE Tuition</a>
             <a href="/services/levels/primary-tuition">Primary Tuition</a>
             <a href="/services/levels/sats-tuition">SATs Tuition</a>
             <a href="/services/levels/11plus-tuition">11+ Tuition</a>
@@ -949,11 +1012,12 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
 
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Specialist &amp; Admissions</div>
-            <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
-            <a href="/services/specialist-admissions/oxbridge-subject-preparation">Oxbridge Subject Prep</a>
+            <a href="/services/specialist-admissions/medicine-prep-hub">Medicine Prep Hub</a>
+            <a href="/services/specialist-admissions/medical-school-interviews/">Medical School Interviews</a>
             <a href="/services/specialist-admissions/ucat-tutor">UCAT Tutor</a>
             <a href="/services/specialist-admissions/mmi-interview-coaching">MMI Interview Coaching</a>
-            <a href="/services/specialist-admissions/medicine-prep-hub">Medicine Prep Hub</a>
+            <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
+            <a href="/services/specialist-admissions/oxbridge-subject-preparation">Oxbridge Subject Prep</a>
             <a href="/services/specialist-admissions/university-personal-statement">University Personal Statement</a>
           </div>
 
@@ -996,6 +1060,26 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
         <a href="/locations/brighton">Brighton</a>
         <a href="/locations/guildford">Guildford</a>
         <a href="/locations/reading">Reading</a>
+        <a href="/locations/barnet">Barnet</a>
+        <a href="/locations/bath">Bath</a>
+        <a href="/locations/bromley">Bromley</a>
+        <a href="/locations/cheltenham">Cheltenham</a>
+        <a href="/locations/coventry">Coventry</a>
+        <a href="/locations/croydon">Croydon</a>
+        <a href="/locations/derby">Derby</a>
+        <a href="/locations/ealing">Ealing</a>
+        <a href="/locations/exeter">Exeter</a>
+        <a href="/locations/harrow">Harrow</a>
+        <a href="/locations/kingston-upon-thames">Kingston upon Thames</a>
+        <a href="/locations/luton">Luton</a>
+        <a href="/locations/milton-keynes">Milton Keynes</a>
+        <a href="/locations/northampton">Northampton</a>
+        <a href="/locations/norwich">Norwich</a>
+        <a href="/locations/portsmouth">Portsmouth</a>
+        <a href="/locations/twickenham">Twickenham</a>
+        <a href="/locations/watford">Watford</a>
+        <a href="/locations/wimbledon">Wimbledon</a>
+        <a href="/locations/york">York</a>
       </div>
     </li>
 
