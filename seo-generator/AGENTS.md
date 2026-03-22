@@ -150,6 +150,111 @@ Canonical tags must always match the actual public URL exactly:
 
 8. **Staged and committed generate.py while it had unsaved/empty state** — always verify file size before committing: `wc -l seo-generator/generate.py` should be ~3500 lines.
 
+9. **Synced navbar to standard pages from templates.py without verifying stylesheet loaded first** — when standard pages (services, consultation, faqs, tutors) had broken meta tags causing no CSS to load, the unstyled result was mistakenly attributed to the navbar change. Always verify CSS is loading before diagnosing layout issues (see Section 11).
+
+10. **Blog post links in blog.html used relative hrefs** — the page is served at `/blog` (not `/blog/`), so `href="slug"` resolves to `/slug` not `/blog/slug`. All post links in `blog.html` must use absolute paths: `href="/blog/slug"`.
+
+11. **Navbar inconsistency between standard pages and generated pages** — the standard flat pages (`seo-generator/output/*.html`) and generated pages (`blog/`, `oxbridge-interviews/`) are templated separately. After any navbar update in `templates.py`, both sets must be synced. See Section 12 for the correct sync procedure.
+
+---
+
+## 11. Critical: Meta Description Tag Syntax — Must Close with `/>`
+
+Any `<meta>` tag that is not properly closed causes the HTML5 parser to treat the next tag as an attribute rather than a new element. This means a missing `/>` on a `<meta name="description">` tag will cause the following `<link rel="stylesheet">` to be silently swallowed, resulting in **zero stylesheets loading**.
+
+**Symptom:** Page renders with a giant logo image and unstyled content. The navbar logo (`<img src="/images/logo.png">`) renders at its full natural size because no CSS is applied.
+
+**Diagnosis:** In browser DevTools console run:
+```js
+document.querySelectorAll('link[rel="stylesheet"]').length  // returns 0 if broken
+document.head.innerHTML.substring(0, 500)  // reveals the malformed tag
+```
+
+**Broken (causes no CSS to load):**
+```html
+<meta name="description" content="Some description text">
+<link rel="stylesheet" href="/style.css" />
+```
+
+**Correct:**
+```html
+<meta name="description" content="Some description text" />
+<link rel="stylesheet" href="/style.css" />
+```
+
+**Fix:** Always close meta tags with ` />`. To check all files at once:
+```bash
+grep -rn '<meta name="description" content="[^"]*">' seo-generator/output/
+```
+Any match (without `/>`) is broken. Fix with:
+```bash
+sed -i 's|<meta name="description" content="\(.*\)"$|<meta name="description" content="\1" />|' path/to/file.html
+```
+
+**Affected files historically:** `services.html`, `consultation.html`, `faqs.html`, `tutors.html` — these were restored from `main` branch without the closing `/>` and had to be manually corrected.
+
+---
+
+## 12. Navbar Sync — Canonical Source and Procedure
+
+There are **two navbar variants** in the repo:
+
+| Navbar version | Where it lives | Used by |
+|---|---|---|
+| **Canonical (newer)** | `templates.py` → propagated via `generate.py --navbar` | `blog/*.html`, `oxbridge-interviews/**/*.html`, `locations/**/*.html`, all generated pages |
+| **Flat page copies** | Manually maintained in each `seo-generator/output/*.html` | `index.html`, `about.html`, `contact.html`, `consultation.html`, `faqs.html`, `services.html`, `tutors.html`, `locations.html`, `subjects.html`, `blog.html` |
+
+**The canonical navbar** (as of March 2026) has:
+- 4 columns in the Services mega-menu: Subjects, Levels, Specialist & Admissions, **Admissions Tests**
+- Blog dropdown: 8 featured posts + "View all posts →" link
+- Includes `/oxbridge-interviews/` link under Specialist & Admissions
+
+**When to sync:** After any navbar change in `templates.py`, run:
+```bash
+cd seo-generator && python generate.py --navbar
+```
+This updates all generated pages. Then manually sync the flat standard pages using this Python snippet:
+```python
+import re, os
+
+with open('blog/oxbridge-interview-questions-100-real-examples-for-every-major-subject.html') as f:
+    canonical_navbar = re.search(r'(<nav class="navbar">.*?</nav>)', f.read(), re.DOTALL).group(1)
+
+flat_pages = [
+    'seo-generator/output/index.html',
+    'seo-generator/output/about.html',
+    'seo-generator/output/contact.html',
+    'seo-generator/output/consultation.html',
+    'seo-generator/output/faqs.html',
+    'seo-generator/output/tutors.html',
+    'seo-generator/output/locations.html',
+    'seo-generator/output/subjects.html',
+    'seo-generator/output/services.html',
+    'seo-generator/output/blog.html',
+]
+
+for path in flat_pages:
+    with open(path) as f:
+        content = f.read()
+    new_content = re.sub(r'<nav class="navbar">.*?</nav>', canonical_navbar, content, flags=re.DOTALL)
+    if new_content != content:
+        with open(path, 'w') as f:
+            f.write(new_content)
+        print(f"Updated: {path}")
+```
+
+**Verify sync with Python** (not `sed -n` / `md5sum` — those stop at first `</nav>` and give false mismatches):
+```python
+import re
+with open('blog/oxbridge-interview-questions-100-real-examples-for-every-major-subject.html') as f:
+    ref = re.search(r'<nav class="navbar">.*?</nav>', f.read(), re.DOTALL).group(0)
+with open('seo-generator/output/index.html') as f:
+    idx = re.search(r'<nav class="navbar">.*?</nav>', f.read(), re.DOTALL).group(0)
+print("Match:", ref == idx)  # Must be True
+```
+
+**Do NOT use `git checkout main -- file.html`** to restore standard pages — the `main` branch has an older navbar. This reintroduces inconsistency and requires another sync pass.
+
 ---
 
 ## 9. Workflow for Adding New Pages
