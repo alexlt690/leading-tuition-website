@@ -1142,7 +1142,7 @@ html, body {
   border-top: 2px solid var(--gold);
   z-index: 1200;
   box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-  min-width: 720px;
+  min-width: 1050px;
 }
 
 .nav-dropdown:hover > .nav-mega-menu { display: block; }
@@ -1162,7 +1162,7 @@ html, body {
 
 .nav-mega-cols {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .nav-mega-col {
@@ -1195,6 +1195,111 @@ html, body {
 }
 
 .nav-mega-col a:hover { opacity: 1; }
+
+/* ── FLY-OUT SUB-MENUS ── */
+.nav-flyout { position: relative; }
+
+.nav-flyout-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--dark);
+  border-top: 2px solid var(--gold);
+  z-index: 1400;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+  padding: 8px 0;
+  min-width: 200px;
+}
+
+/* Transparent bridge so mouse can travel from trigger to menu without gap-closing */
+.nav-flyout::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: transparent;
+  pointer-events: auto;
+}
+
+.nav-flyout:hover > .nav-flyout-menu { display: block; }
+.nav-flyout:hover > .nav-flyout-menu--cols { display: grid; grid-template-columns: repeat(3, 1fr); min-width: 520px; }
+.nav-flyout:hover > .nav-flyout-menu--two-cols { display: grid; grid-template-columns: repeat(2, 1fr); min-width: 320px; }
+
+.nav-flyout-menu a {
+  display: block;
+  padding: 5px 16px;
+  color: var(--white);
+  font-size: 0.82rem;
+  opacity: 0.85;
+  white-space: nowrap;
+  break-inside: avoid;
+  transition: opacity 0.15s;
+}
+
+.nav-flyout-menu a:hover {
+  opacity: 1;
+  background: rgba(255,255,255,0.08);
+}
+
+/* Trigger link styling inside mega-col */
+.nav-flyout > a::after {
+  content: ' ▼';
+  font-size: 0.65em;
+  opacity: 0.6;
+}
+
+/* Sub-labels within columns */
+.nav-mega-col-subtitle {
+  color: rgba(255,255,255,0.45);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+/* Blog dropdown category labels */
+.nav-dropdown-category {
+  display: block;
+  padding: 8px 20px 4px;
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  opacity: 1 !important;
+  pointer-events: none;
+  cursor: default;
+}
+
+/* Mobile: fly-outs expand inline */
+@media (max-width: 900px) {
+  .nav-flyout-menu,
+  .nav-flyout-menu--cols,
+  .nav-flyout-menu--two-cols {
+    position: static !important;
+    display: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    min-width: unset;
+    grid-template-columns: unset !important;
+  }
+  .nav-flyout.open > .nav-flyout-menu,
+  .nav-flyout.open > .nav-flyout-menu--cols,
+  .nav-flyout.open > .nav-flyout-menu--two-cols { display: block; }
+  .nav-flyout-menu a { padding-left: 24px; }
+  .nav-flyout > a::after { content: ' ▼'; }
+  .nav-flyout.open > a::after { content: ' ▲'; }
+  .nav-flyout::after { display: none; } /* no bridge needed on mobile */
+}
 
 /* ── HAMBURGER BUTTON ── */
 .nav-hamburger {
