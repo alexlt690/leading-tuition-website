@@ -49,9 +49,9 @@ def build_blogposting_schema(title, meta_desc, slug):
 
 client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
-# Script directory (seo-generator/) and repo root (parent)
+# Script directory (seo-generator/) and output directory
 SCRIPT_DIR = Path(__file__).parent
-OUTPUT_DIR = SCRIPT_DIR.parent  # repo root — Cloudflare Pages serves from here
+OUTPUT_DIR = SCRIPT_DIR / "output"  # Cloudflare Pages serves from seo-generator/output/
 
 
 def load_csv(filename):
