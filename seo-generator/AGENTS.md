@@ -150,7 +150,11 @@ Canonical tags must always match the actual public URL exactly:
 
 8. **Staged and committed generate.py while it had unsaved/empty state** — always verify file size before committing: `wc -l seo-generator/generate.py` should be ~3500 lines.
 
-9. **Synced navbar to standard pages from templates.py without verifying stylesheet loaded first** — when standard pages (services, consultation, faqs, tutors) had broken meta tags causing no CSS to load, the unstyled result was mistakenly attributed to the navbar change. Always verify CSS is loading before diagnosing layout issues (see Section 11).
+9. **Changed OUTPUT_DIR to SCRIPT_DIR.parent (repo root)** — this is wrong. OUTPUT_DIR must always be `SCRIPT_DIR / "output"` (i.e. `seo-generator/output/`). If OUTPUT_DIR is wrong, generated files land at the repo root or other wrong paths, and Cloudflare never serves them. Always verify: `grep "OUTPUT_DIR" seo-generator/generate.py` should show `SCRIPT_DIR / "output"`.
+
+10. **Regenerated pages unnecessarily when files already exist in the wrong location** — if pages were generated but landed in the wrong directory due to an OUTPUT_DIR bug, just copy them across rather than re-calling the API. Example: `Copy-Item .\locations\*.html seo-generator\output\locations\` (PowerShell). This saves API credits and time.
+
+11. **Synced navbar to standard pages from templates.py without verifying stylesheet loaded first** — when standard pages (services, consultation, faqs, tutors) had broken meta tags causing no CSS to load, the unstyled result was mistakenly attributed to the navbar change. Always verify CSS is loading before diagnosing layout issues (see Section 11).
 
 10. **Blog post links in blog.html used relative hrefs** — the page is served at `/blog` (not `/blog/`), so `href="slug"` resolves to `/slug` not `/blog/slug`. All post links in `blog.html` must use absolute paths: `href="/blog/slug"`.
 
@@ -292,7 +296,11 @@ This overrides the model's ability to vary structure even when the city/school/t
 4. **Oxbridge interview pages** — 18 pages, moderate risk (subject questions vary). Fix last.
 
 ### The Fix Pattern
-For each prompt function, replace the single fixed H2 list with a `VARIANTS` list of 3–5 genuinely different structures. Assign variants deterministically using `hash(slug) % len(variants)` so reruns produce the same page for the same city/school/test.
+For each prompt function, replace the single fixed H2 list with a `VARIANTS` list of 3–5 genuinely different structures. Assign variants deterministically using `hashlib.md5` — **never use Python's built-in `hash()`**, which is randomised per process (PYTHONHASHSEED) and will assign different variants on every run. Use this pattern:
+```python
+import hashlib
+variant = int(hashlib.md5(slug.encode()).hexdigest(), 16) % num_variants
+```
 
 Each variant must differ in: H2 order, section emphasis, opening angle, and FAQ topics — not just H2 wording.
 

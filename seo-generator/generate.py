@@ -2857,6 +2857,54 @@ Requirements:
 - FAQ questions must address: when BMAT ended, which tests replaced it at each university, whether old BMAT prep books are still useful, and how to prepare for UCAT
 """
 
+    import hashlib
+    variant = int(hashlib.md5(slug.encode()).hexdigest(), 16) % 3
+
+    if variant == 0:
+        # Leads with what the test is and tests; then preparation strategy
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. What Is the {full_name}?
+  2. What Does the {full_name} Test?
+  3. How the {full_name} Is Scored
+  4. How to Prepare Effectively
+  5. How Leading Tuition Supports {full_name} Preparation
+  6. Frequently Asked Questions
+
+Opening paragraph angle: Open by acknowledging the challenge the test poses and why specialist preparation matters. Establish clearly which universities and courses require it and what is at stake for the applicant.
+
+FAQ focus: Registration deadlines, what score to aim for, whether past papers are available, and how tutoring helps."""
+
+    elif variant == 1:
+        # Leads with common mistakes and preparation pitfalls; test mechanics explained in context
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. Why Most Students Find the {full_name} Harder Than Expected
+  2. What the {full_name} Actually Tests — Format and Structure
+  3. How Scoring Works and What Universities Do With It
+  4. A Realistic {full_name} Preparation Timeline
+  5. How Leading Tuition Approaches {full_name} Coaching
+  6. Frequently Asked Questions
+
+Opening paragraph angle: Open with the most common misconception students have about this test — what they think it tests versus what it actually tests. Immediately establish why self-study alone often underperforms and what a structured approach looks like.
+
+FAQ focus: How far in advance to start preparing, whether the test can be retaken, what a competitive score looks like at {institution}, and what resources beyond past papers are useful."""
+
+    else:
+        # variant == 2: Leads with the university context and what's at stake; test details woven in
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. The {full_name} and What It Means for Your Application
+  2. Test Format — Sections, Timing, and Question Types
+  3. Scoring and How {institution} Uses Your Result
+  4. Common Weaknesses and How to Address Them
+  5. Preparing With Leading Tuition
+  6. Frequently Asked Questions
+
+Opening paragraph angle: Open from the university application angle — frame the {full_name} as a selection tool that {institution} uses to differentiate between candidates who all have strong predicted grades. Explain what this means practically for how a student should approach preparation.
+
+FAQ focus: Whether the test score or grades matter more, how to manage preparation alongside A-Levels, what to do if the first attempt goes badly, and whether Leading Tuition offers mock tests."""
+
     return f"""
 You are writing a specialist admissions test preparation page for Leading Tuition, a UK tutoring company.
 
@@ -2887,24 +2935,23 @@ Before writing, think through:
 
 Now write a detailed service page in HTML about: {title}
 
-Requirements:
+Content requirements:
 - Length: 950 to 1,150 words
-- Opening paragraph must acknowledge the challenge the test poses and why specialist preparation matters
-- Include these exact <h2> sections in this order:
-  1. What Is the {full_name}?
-  2. What Does the {full_name} Test?
-  3. How the {full_name} Is Scored
-  4. How to Prepare Effectively
-  5. How Leading Tuition Supports {full_name} Preparation
-  6. Frequently Asked Questions
-- Must include:
-  - Which universities and courses require this test
-  - Test format (number of sections, timing, question types)
-  - Scoring method and how universities use the score
-  - Realistic timeline for preparation (how many weeks/months before the test)
-  - Common mistakes and how to avoid them
+- Which universities and courses require this test
+- Test format (number of sections, timing, question types)
+- Scoring method and how universities use the score
+- Realistic timeline for preparation (how many weeks/months before the test)
+- Common mistakes and how to avoid them
 - Include one short bullet list
-- FAQ questions must address: registration deadlines, what score to aim for, whether past papers are available, and how tutoring helps
+
+Structure to use:
+{structure}
+
+Additional requirements:
+- In the FAQ section, write 4 questions as <p><strong>Question?</strong></p> followed by a <p> answer
+- After all HTML content, on a new line, output exactly 4 FAQ pairs in this format (no spaces, no line breaks inside):
+FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}}]
+- Do not pad — every sentence must earn its place
 """
 
 
@@ -2981,6 +3028,54 @@ def generate_admissions_test_pages(limit=None, new_only=False):
 # ── Medical School guide prompts ─────────────────────────────────────────────
 
 def medical_school_prompt(slug: str, name: str, city: str, interview_type: str, ucat_notes: str) -> str:
+    import hashlib
+    variant = int(hashlib.md5(slug.encode()).hexdigest(), 16) % 3
+
+    if variant == 0:
+        # Leads with school character; entry requirements follow the why
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. Why Choose {name} for Medicine?
+  2. Entry Requirements and A-Level Grades
+  3. UCAT Requirements at {name}
+  4. The Interview Process at {name}
+  5. What Makes a Strong {name} Application
+  6. Frequently Asked Questions about Applying to {name}
+
+Opening paragraph angle: Open with what genuinely distinguishes {name} as a place to study medicine — curriculum style, clinical access, location, reputation in a specific speciality, or student culture. Make the reader feel they are learning something specific, not reading a template.
+
+FAQ focus: UCAT score threshold, whether work experience is required, how to prepare for the {interview_type} format, whether {name} accepts graduate or international applicants."""
+
+    elif variant == 1:
+        # Leads with competitive landscape and application strategy; practical and strategic tone
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. Getting Into {name} Medical School — What You're Up Against
+  2. A-Level and Academic Requirements
+  3. UCAT Strategy for {name}
+  4. The {name} Interview — Format, Style, and How to Prepare
+  5. Building a {name}-Worthy Application
+  6. Frequently Asked Questions
+
+Opening paragraph angle: Open with the competitive reality of applying to {name} — how many applicants per place, what kind of student typically succeeds here, and what makes the difference between an offer and a rejection. Ground it in specifics: interview format, UCAT weighting, or a distinctive feature of how {name} selects.
+
+FAQ focus: When to sit UCAT, minimum vs competitive UCAT scores, what {name} looks for in personal statements, and whether predicted grades affect shortlisting."""
+
+    else:
+        # variant == 2: Leads with student experience and clinical training; admissions woven in
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. Studying Medicine at {name} — The Student Experience
+  2. Course Structure and Clinical Training in {city}
+  3. Entry Requirements, UCAT, and Academic Thresholds
+  4. Interviews at {name} — What to Expect
+  5. How to Make Your Application Stand Out
+  6. Frequently Asked Questions for {name} Applicants
+
+Opening paragraph angle: Open with what it is actually like to study medicine at {name} — the curriculum model (PBL, traditional, integrated), when students first see patients, what {city} offers in terms of clinical placement variety, and the culture of the medical school. Draw the reader in before covering admissions.
+
+FAQ focus: How early clinical exposure is at {name}, what UCAT score to aim for, how the {interview_type} differs from other formats, and how to balance A-Level revision with UCAT preparation."""
+
     return f"""
 You are writing a medical school guide for Leading Tuition, a UK tutoring company.
 
@@ -3012,25 +3107,22 @@ Before writing, think through:
 
 Now write a detailed medical school guide in HTML about: {name} Medicine Entry Requirements
 
-Requirements:
+Content requirements:
 - Length: 1,050 to 1,250 words
-- Opening paragraph must explain why a student would choose {name} specifically — make it genuine, not generic
-- Include these exact <h2> sections in this order:
-  1. Why Choose {name} for Medicine?
-  2. Entry Requirements and A-Level Grades
-  3. UCAT Requirements at {name}
-  4. The Interview Process at {name}
-  5. What Makes a Strong {name} Application
-  6. Frequently Asked Questions about Applying to {name}
-- Must include:
-  - Typical A-Level offer (A*AA or AAA with specific subjects)
-  - UCAT requirement: {ucat_notes}
-  - Interview format: {interview_type} — explain what this involves at {name} specifically
-  - Any personal statement or work experience considerations
-  - Approximate number of places per year (approximate is fine)
-  - Location advantage: {city} — what this means for clinical placements and student life
+- Typical A-Level offer (A*AA or AAA with specific subjects)
+- UCAT requirement: {ucat_notes}
+- Interview format: {interview_type} — explain what this involves at {name} specifically
+- Any personal statement or work experience considerations
+- Approximate number of places per year (approximate is fine)
+- Location: {city} — what this means for clinical placements and student life
 - Include one short bullet list
-- FAQ questions must address: UCAT score needed, whether work experience is required, interview preparation, and whether {name} accepts international students
+
+Structure to use:
+{structure}
+
+Additional requirements:
+- In the FAQ section, write 4 questions as <p><strong>Question?</strong></p> followed by a <p> answer
+- Do not pad — every sentence must earn its place
 """
 
 
@@ -3175,6 +3267,39 @@ OXBRIDGE_INTERVIEW_META = {
 
 def oxbridge_interview_prompt(slug: str, title: str, subjects: str,
                               oxford_test: str, cambridge_test: str, keyword: str) -> str:
+    import hashlib
+    variant = int(hashlib.md5(slug.encode()).hexdigest(), 16) % 2
+
+    if variant == 0:
+        # Leads with what to expect; admissions tests then preparation then example questions
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. What to Expect in a {subjects} Oxbridge Interview
+  2. The Admissions Tests: {oxford_test} (Oxford) and {cambridge_test} (Cambridge)
+  3. How to Prepare for Your {subjects} Interview
+  4. Example Interview Questions for {subjects}
+  5. Common Mistakes and How to Avoid Them
+  6. Frequently Asked Questions about {subjects} Oxbridge Interviews
+
+Opening paragraph angle: Immediately explain what makes {subjects} Oxbridge interviews different from school or sixth-form expectations — the style of questioning, what tutors are actually assessing, and why standard revision alone won't prepare you.
+
+FAQ focus: How long interviews last, whether prior knowledge is tested, how to practise effectively, and what to do if you don't know the answer to a question."""
+
+    else:
+        # variant == 1: Leads with example questions and subject-specific challenge first; process explained after
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. What {subjects} Oxbridge Interviewers Are Really Looking For
+  2. Example Interview Questions for {subjects} — and How to Approach Them
+  3. The Admissions Tests: {oxford_test} (Oxford) and {cambridge_test} (Cambridge)
+  4. Building Your Preparation — A Practical Plan
+  5. The Mistakes That Cost Candidates Offers
+  6. Frequently Asked Questions
+
+Opening paragraph angle: Open with a specific example of the kind of thinking {subjects} interviews demand — something that surprises candidates who expected a more traditional format. Make the reader immediately understand this is different from anything they have done before.
+
+FAQ focus: Whether Oxford and Cambridge {subjects} interviews differ meaningfully, how many interviews candidates typically have, what super-curricular preparation matters most, and whether mock interviews are worth doing."""
+
     return f"""
 You are writing an Oxbridge interview preparation service page for Leading Tuition, a UK tutoring company.
 
@@ -3207,24 +3332,21 @@ Before writing, think through:
 
 Now write a detailed Oxbridge interview preparation service page in HTML: {title}
 
-Requirements:
+Content requirements:
 - Length: 1,050 to 1,250 words
-- Opening paragraph must immediately explain what makes {subjects} Oxbridge interviews different from school or sixth-form expectations
-- Include these exact <h2> sections in this order:
-  1. What to Expect in a {subjects} Oxbridge Interview
-  2. The Admissions Tests: {oxford_test} (Oxford) and {cambridge_test} (Cambridge)
-  3. How to Prepare for Your {subjects} Interview
-  4. Example Interview Questions for {subjects}
-  5. Common Mistakes and How to Avoid Them
-  6. Frequently Asked Questions about {subjects} Oxbridge Interviews
-- Must include:
-  - Section 4 must contain a <ul> of at least 5 genuine example interview questions for {subjects} — make them intellectually challenging and subject-specific
-  - Specific advice on thinking aloud and engaging with the question even when uncertain
-  - Distinction between what Oxford and Cambridge look for if there is a meaningful difference
-  - Admissions test context: how {oxford_test} at Oxford and {cambridge_test} at Cambridge relate to interview preparation
-  - A brief note on super-curricular preparation relevant to {subjects}
+- At least 5 genuine, intellectually challenging example interview questions for {subjects} in a <ul>
+- Specific advice on thinking aloud and engaging with questions even when uncertain
+- Distinction between what Oxford and Cambridge look for if there is a meaningful difference
+- Admissions test context: how {oxford_test} at Oxford and {cambridge_test} at Cambridge relate to interview preparation
+- A brief note on super-curricular preparation relevant to {subjects}
 - Include one short bullet list
-- FAQ questions must address: how long interviews last, whether prior knowledge is tested, how to practise, and what to do if you do not know an answer
+
+Structure to use:
+{structure}
+
+Additional requirements:
+- In the FAQ section, write 4 questions as <p><strong>Question?</strong></p> followed by a <p> answer
+- Do not pad — every sentence must earn its place
 """
 
 
