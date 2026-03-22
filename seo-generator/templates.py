@@ -234,6 +234,19 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
       </div>
     </li>
 
+    <!-- Resources dropdown -->
+    <li class="nav-dropdown">
+      <a href="#" class="nav-dropdown-toggle">Resources <span class="nav-caret">&#9660;</span></a>
+      <div class="nav-dropdown-menu">
+        <a href="/resources/pre-11-plus">Pre 11+ Resources</a>
+        <a href="/resources/11-plus">11+ Resources</a>
+        <a href="/resources/13-plus">13+ Resources</a>
+        <a href="/resources/oxbridge-interview-questions">Oxbridge Interview Questions</a>
+        <a href="/resources/gcse-resources-for-parents">GCSE Resources for Parents</a>
+        <a href="/resources/" style="font-weight:600;color:#e63946;">View all resources &rarr;</a>
+      </div>
+    </li>
+
     <!-- Blog dropdown -->
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
@@ -512,6 +525,19 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
           </div>
 
         </div>
+      </div>
+    </li>
+
+    <!-- Resources dropdown -->
+    <li class="nav-dropdown">
+      <a href="#" class="nav-dropdown-toggle">Resources <span class="nav-caret">&#9660;</span></a>
+      <div class="nav-dropdown-menu">
+        <a href="/resources/pre-11-plus">Pre 11+ Resources</a>
+        <a href="/resources/11-plus">11+ Resources</a>
+        <a href="/resources/13-plus">13+ Resources</a>
+        <a href="/resources/oxbridge-interview-questions">Oxbridge Interview Questions</a>
+        <a href="/resources/gcse-resources-for-parents">GCSE Resources for Parents</a>
+        <a href="/resources/" style="font-weight:600;color:#e63946;">View all resources &rarr;</a>
       </div>
     </li>
 
@@ -828,6 +854,19 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
       </div>
     </li>
 
+    <!-- Resources dropdown -->
+    <li class="nav-dropdown">
+      <a href="#" class="nav-dropdown-toggle">Resources <span class="nav-caret">&#9660;</span></a>
+      <div class="nav-dropdown-menu">
+        <a href="/resources/pre-11-plus">Pre 11+ Resources</a>
+        <a href="/resources/11-plus">11+ Resources</a>
+        <a href="/resources/13-plus">13+ Resources</a>
+        <a href="/resources/oxbridge-interview-questions">Oxbridge Interview Questions</a>
+        <a href="/resources/gcse-resources-for-parents">GCSE Resources for Parents</a>
+        <a href="/resources/" style="font-weight:600;color:#e63946;">View all resources &rarr;</a>
+      </div>
+    </li>
+
     <!-- Blog dropdown -->
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
@@ -1106,6 +1145,19 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
           </div>
 
         </div>
+      </div>
+    </li>
+
+    <!-- Resources dropdown -->
+    <li class="nav-dropdown">
+      <a href="#" class="nav-dropdown-toggle">Resources <span class="nav-caret">&#9660;</span></a>
+      <div class="nav-dropdown-menu">
+        <a href="/resources/pre-11-plus">Pre 11+ Resources</a>
+        <a href="/resources/11-plus">11+ Resources</a>
+        <a href="/resources/13-plus">13+ Resources</a>
+        <a href="/resources/oxbridge-interview-questions">Oxbridge Interview Questions</a>
+        <a href="/resources/gcse-resources-for-parents">GCSE Resources for Parents</a>
+        <a href="/resources/" style="font-weight:600;color:#e63946;">View all resources &rarr;</a>
       </div>
     </li>
 
