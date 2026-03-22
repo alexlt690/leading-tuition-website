@@ -163,7 +163,7 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
     <li><a href="/">Home</a></li>
     <li><a href="/about">About Us</a></li>
 
-    <!-- Services mega-dropdown (5 columns) -->
+    <!-- Services mega-dropdown (4 columns) -->
     <li class="nav-dropdown">
       <a href="/services" class="nav-dropdown-toggle">Services <span class="nav-caret">&#9660;</span></a>
       <div class="nav-mega-menu">
@@ -202,37 +202,17 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
             <div class="nav-flyout">
               <a href="/gcse/">GCSE Tuition</a>
               <div class="nav-flyout-menu">
-                <a href="/services/subjects/maths-tutor">Maths</a>
-                <a href="/services/subjects/biology-tutor">Biology</a>
-                <a href="/services/subjects/chemistry-tutor">Chemistry</a>
-                <a href="/services/subjects/physics-tutor">Physics</a>
-                <a href="/services/subjects/english-language-tutor">English Language</a>
-                <a href="/services/subjects/english-literature-tutor">English Literature</a>
-                <a href="/services/subjects/history-tutor">History</a>
-                <a href="/services/subjects/geography-tutor">Geography</a>
-                <a href="/services/subjects/economics-tutor">Economics</a>
-                <a href="/services/subjects/psychology-tutor">Psychology</a>
-                <a href="/services/subjects/computer-science-tutor">Computer Science</a>
-                <a href="/services/subjects/business-studies-tutor">Business Studies</a>
+                <a href="/subjects/gcse-maths/">Maths</a>
+                <a href="/subjects/gcse-chemistry/">Chemistry</a>
               </div>
             </div>
             <div class="nav-flyout">
               <a href="/a-level/">A-Level Tuition</a>
               <div class="nav-flyout-menu">
-                <a href="/services/subjects/maths-tutor">Maths</a>
-                <a href="/services/subjects/further-maths-tutor">Further Maths</a>
-                <a href="/services/subjects/statistics-tutor">Statistics</a>
-                <a href="/services/subjects/biology-tutor">Biology</a>
-                <a href="/services/subjects/chemistry-tutor">Chemistry</a>
-                <a href="/services/subjects/physics-tutor">Physics</a>
-                <a href="/services/subjects/english-literature-tutor">English Literature</a>
-                <a href="/services/subjects/history-tutor">History</a>
-                <a href="/services/subjects/geography-tutor">Geography</a>
-                <a href="/services/subjects/economics-tutor">Economics</a>
-                <a href="/services/subjects/politics-tutor">Politics</a>
-                <a href="/services/subjects/psychology-tutor">Psychology</a>
-                <a href="/services/subjects/computer-science-tutor">Computer Science</a>
-                <a href="/services/subjects/business-studies-tutor">Business Studies</a>
+                <a href="/subjects/a-level-maths/">Maths</a>
+                <a href="/subjects/a-level-biology/">Biology</a>
+                <a href="/subjects/a-level-chemistry/">Chemistry</a>
+                <a href="/subjects/a-level-english/">English</a>
               </div>
             </div>
             <a href="/services/levels/primary-tuition">Primary Tuition</a>
@@ -338,17 +318,6 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
                 <a href="/admissions-tests/bmat-history/">BMAT History</a>
               </div>
             </div>
-          </div>
-
-          <!-- Column 5: Free Resources -->
-          <div class="nav-mega-col">
-            <div class="nav-mega-col-title">Free Resources</div>
-            <a href="/resources/pre-11-plus">Pre 11+ Resources</a>
-            <a href="/resources/11-plus">11+ Resources</a>
-            <a href="/resources/13-plus">13+ Resources</a>
-            <a href="/resources/oxbridge-interview-questions">Oxbridge Interview Questions</a>
-            <a href="/resources/gcse-resources-for-parents">GCSE Resources for Parents</a>
-            <a href="/resources/" style="font-weight:600;color:var(--gold);">View all resources &rarr;</a>
           </div>
 
         </div>
@@ -595,7 +564,7 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
     <li><a href="/">Home</a></li>
     <li><a href="/about">About Us</a></li>
 
-    <!-- Services mega-dropdown (5 columns) -->
+    <!-- Services mega-dropdown (4 columns) -->
     <li class="nav-dropdown">
       <a href="/services" class="nav-dropdown-toggle">Services <span class="nav-caret">&#9660;</span></a>
       <div class="nav-mega-menu">
@@ -634,37 +603,17 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
             <div class="nav-flyout">
               <a href="/gcse/">GCSE Tuition</a>
               <div class="nav-flyout-menu">
-                <a href="/services/subjects/maths-tutor">Maths</a>
-                <a href="/services/subjects/biology-tutor">Biology</a>
-                <a href="/services/subjects/chemistry-tutor">Chemistry</a>
-                <a href="/services/subjects/physics-tutor">Physics</a>
-                <a href="/services/subjects/english-language-tutor">English Language</a>
-                <a href="/services/subjects/english-literature-tutor">English Literature</a>
-                <a href="/services/subjects/history-tutor">History</a>
-                <a href="/services/subjects/geography-tutor">Geography</a>
-                <a href="/services/subjects/economics-tutor">Economics</a>
-                <a href="/services/subjects/psychology-tutor">Psychology</a>
-                <a href="/services/subjects/computer-science-tutor">Computer Science</a>
-                <a href="/services/subjects/business-studies-tutor">Business Studies</a>
+                <a href="/subjects/gcse-maths/">Maths</a>
+                <a href="/subjects/gcse-chemistry/">Chemistry</a>
               </div>
             </div>
             <div class="nav-flyout">
               <a href="/a-level/">A-Level Tuition</a>
               <div class="nav-flyout-menu">
-                <a href="/services/subjects/maths-tutor">Maths</a>
-                <a href="/services/subjects/further-maths-tutor">Further Maths</a>
-                <a href="/services/subjects/statistics-tutor">Statistics</a>
-                <a href="/services/subjects/biology-tutor">Biology</a>
-                <a href="/services/subjects/chemistry-tutor">Chemistry</a>
-                <a href="/services/subjects/physics-tutor">Physics</a>
-                <a href="/services/subjects/english-literature-tutor">English Literature</a>
-                <a href="/services/subjects/history-tutor">History</a>
-                <a href="/services/subjects/geography-tutor">Geography</a>
-                <a href="/services/subjects/economics-tutor">Economics</a>
-                <a href="/services/subjects/politics-tutor">Politics</a>
-                <a href="/services/subjects/psychology-tutor">Psychology</a>
-                <a href="/services/subjects/computer-science-tutor">Computer Science</a>
-                <a href="/services/subjects/business-studies-tutor">Business Studies</a>
+                <a href="/subjects/a-level-maths/">Maths</a>
+                <a href="/subjects/a-level-biology/">Biology</a>
+                <a href="/subjects/a-level-chemistry/">Chemistry</a>
+                <a href="/subjects/a-level-english/">English</a>
               </div>
             </div>
             <a href="/services/levels/primary-tuition">Primary Tuition</a>
@@ -770,17 +719,6 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
                 <a href="/admissions-tests/bmat-history/">BMAT History</a>
               </div>
             </div>
-          </div>
-
-          <!-- Column 5: Free Resources -->
-          <div class="nav-mega-col">
-            <div class="nav-mega-col-title">Free Resources</div>
-            <a href="/resources/pre-11-plus">Pre 11+ Resources</a>
-            <a href="/resources/11-plus">11+ Resources</a>
-            <a href="/resources/13-plus">13+ Resources</a>
-            <a href="/resources/oxbridge-interview-questions">Oxbridge Interview Questions</a>
-            <a href="/resources/gcse-resources-for-parents">GCSE Resources for Parents</a>
-            <a href="/resources/" style="font-weight:600;color:var(--gold);">View all resources &rarr;</a>
           </div>
 
         </div>
@@ -1059,7 +997,7 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
     <li><a href="/">Home</a></li>
     <li><a href="/about">About Us</a></li>
 
-    <!-- Services mega-dropdown (5 columns) -->
+    <!-- Services mega-dropdown (4 columns) -->
     <li class="nav-dropdown">
       <a href="/services" class="nav-dropdown-toggle">Services <span class="nav-caret">&#9660;</span></a>
       <div class="nav-mega-menu">
@@ -1098,37 +1036,17 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
             <div class="nav-flyout">
               <a href="/gcse/">GCSE Tuition</a>
               <div class="nav-flyout-menu">
-                <a href="/services/subjects/maths-tutor">Maths</a>
-                <a href="/services/subjects/biology-tutor">Biology</a>
-                <a href="/services/subjects/chemistry-tutor">Chemistry</a>
-                <a href="/services/subjects/physics-tutor">Physics</a>
-                <a href="/services/subjects/english-language-tutor">English Language</a>
-                <a href="/services/subjects/english-literature-tutor">English Literature</a>
-                <a href="/services/subjects/history-tutor">History</a>
-                <a href="/services/subjects/geography-tutor">Geography</a>
-                <a href="/services/subjects/economics-tutor">Economics</a>
-                <a href="/services/subjects/psychology-tutor">Psychology</a>
-                <a href="/services/subjects/computer-science-tutor">Computer Science</a>
-                <a href="/services/subjects/business-studies-tutor">Business Studies</a>
+                <a href="/subjects/gcse-maths/">Maths</a>
+                <a href="/subjects/gcse-chemistry/">Chemistry</a>
               </div>
             </div>
             <div class="nav-flyout">
               <a href="/a-level/">A-Level Tuition</a>
               <div class="nav-flyout-menu">
-                <a href="/services/subjects/maths-tutor">Maths</a>
-                <a href="/services/subjects/further-maths-tutor">Further Maths</a>
-                <a href="/services/subjects/statistics-tutor">Statistics</a>
-                <a href="/services/subjects/biology-tutor">Biology</a>
-                <a href="/services/subjects/chemistry-tutor">Chemistry</a>
-                <a href="/services/subjects/physics-tutor">Physics</a>
-                <a href="/services/subjects/english-literature-tutor">English Literature</a>
-                <a href="/services/subjects/history-tutor">History</a>
-                <a href="/services/subjects/geography-tutor">Geography</a>
-                <a href="/services/subjects/economics-tutor">Economics</a>
-                <a href="/services/subjects/politics-tutor">Politics</a>
-                <a href="/services/subjects/psychology-tutor">Psychology</a>
-                <a href="/services/subjects/computer-science-tutor">Computer Science</a>
-                <a href="/services/subjects/business-studies-tutor">Business Studies</a>
+                <a href="/subjects/a-level-maths/">Maths</a>
+                <a href="/subjects/a-level-biology/">Biology</a>
+                <a href="/subjects/a-level-chemistry/">Chemistry</a>
+                <a href="/subjects/a-level-english/">English</a>
               </div>
             </div>
             <a href="/services/levels/primary-tuition">Primary Tuition</a>
@@ -1234,17 +1152,6 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
                 <a href="/admissions-tests/bmat-history/">BMAT History</a>
               </div>
             </div>
-          </div>
-
-          <!-- Column 5: Free Resources -->
-          <div class="nav-mega-col">
-            <div class="nav-mega-col-title">Free Resources</div>
-            <a href="/resources/pre-11-plus">Pre 11+ Resources</a>
-            <a href="/resources/11-plus">11+ Resources</a>
-            <a href="/resources/13-plus">13+ Resources</a>
-            <a href="/resources/oxbridge-interview-questions">Oxbridge Interview Questions</a>
-            <a href="/resources/gcse-resources-for-parents">GCSE Resources for Parents</a>
-            <a href="/resources/" style="font-weight:600;color:var(--gold);">View all resources &rarr;</a>
           </div>
 
         </div>
@@ -1491,7 +1398,7 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
     <li><a href="/">Home</a></li>
     <li><a href="/about">About Us</a></li>
 
-    <!-- Services mega-dropdown (5 columns) -->
+    <!-- Services mega-dropdown (4 columns) -->
     <li class="nav-dropdown">
       <a href="/services" class="nav-dropdown-toggle">Services <span class="nav-caret">&#9660;</span></a>
       <div class="nav-mega-menu">
@@ -1530,37 +1437,17 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
             <div class="nav-flyout">
               <a href="/gcse/">GCSE Tuition</a>
               <div class="nav-flyout-menu">
-                <a href="/services/subjects/maths-tutor">Maths</a>
-                <a href="/services/subjects/biology-tutor">Biology</a>
-                <a href="/services/subjects/chemistry-tutor">Chemistry</a>
-                <a href="/services/subjects/physics-tutor">Physics</a>
-                <a href="/services/subjects/english-language-tutor">English Language</a>
-                <a href="/services/subjects/english-literature-tutor">English Literature</a>
-                <a href="/services/subjects/history-tutor">History</a>
-                <a href="/services/subjects/geography-tutor">Geography</a>
-                <a href="/services/subjects/economics-tutor">Economics</a>
-                <a href="/services/subjects/psychology-tutor">Psychology</a>
-                <a href="/services/subjects/computer-science-tutor">Computer Science</a>
-                <a href="/services/subjects/business-studies-tutor">Business Studies</a>
+                <a href="/subjects/gcse-maths/">Maths</a>
+                <a href="/subjects/gcse-chemistry/">Chemistry</a>
               </div>
             </div>
             <div class="nav-flyout">
               <a href="/a-level/">A-Level Tuition</a>
               <div class="nav-flyout-menu">
-                <a href="/services/subjects/maths-tutor">Maths</a>
-                <a href="/services/subjects/further-maths-tutor">Further Maths</a>
-                <a href="/services/subjects/statistics-tutor">Statistics</a>
-                <a href="/services/subjects/biology-tutor">Biology</a>
-                <a href="/services/subjects/chemistry-tutor">Chemistry</a>
-                <a href="/services/subjects/physics-tutor">Physics</a>
-                <a href="/services/subjects/english-literature-tutor">English Literature</a>
-                <a href="/services/subjects/history-tutor">History</a>
-                <a href="/services/subjects/geography-tutor">Geography</a>
-                <a href="/services/subjects/economics-tutor">Economics</a>
-                <a href="/services/subjects/politics-tutor">Politics</a>
-                <a href="/services/subjects/psychology-tutor">Psychology</a>
-                <a href="/services/subjects/computer-science-tutor">Computer Science</a>
-                <a href="/services/subjects/business-studies-tutor">Business Studies</a>
+                <a href="/subjects/a-level-maths/">Maths</a>
+                <a href="/subjects/a-level-biology/">Biology</a>
+                <a href="/subjects/a-level-chemistry/">Chemistry</a>
+                <a href="/subjects/a-level-english/">English</a>
               </div>
             </div>
             <a href="/services/levels/primary-tuition">Primary Tuition</a>
@@ -1666,17 +1553,6 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
                 <a href="/admissions-tests/bmat-history/">BMAT History</a>
               </div>
             </div>
-          </div>
-
-          <!-- Column 5: Free Resources -->
-          <div class="nav-mega-col">
-            <div class="nav-mega-col-title">Free Resources</div>
-            <a href="/resources/pre-11-plus">Pre 11+ Resources</a>
-            <a href="/resources/11-plus">11+ Resources</a>
-            <a href="/resources/13-plus">13+ Resources</a>
-            <a href="/resources/oxbridge-interview-questions">Oxbridge Interview Questions</a>
-            <a href="/resources/gcse-resources-for-parents">GCSE Resources for Parents</a>
-            <a href="/resources/" style="font-weight:600;color:var(--gold);">View all resources &rarr;</a>
           </div>
 
         </div>

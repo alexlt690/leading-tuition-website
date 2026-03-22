@@ -1142,7 +1142,7 @@ html, body {
   border-top: 2px solid var(--gold);
   z-index: 1200;
   box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-  min-width: 1050px;
+  min-width: 900px;
 }
 
 .nav-dropdown:hover > .nav-mega-menu { display: block; }
@@ -1162,7 +1162,7 @@ html, body {
 
 .nav-mega-cols {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .nav-mega-col {
