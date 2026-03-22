@@ -1127,6 +1127,70 @@ def location_prompt(city: str) -> str:
 - {city} does not have grammar schools requiring 11+. Do not write about 11+ preparation as a standalone topic — instead, briefly mention that Leading Tuition supports primary-age students and early secondary preparation.
 """
 
+    # 4 structure variants assigned deterministically so reruns are consistent
+    import hashlib
+    variant = int(hashlib.md5(city.encode()).hexdigest(), 16) % 4
+
+    if variant == 0:
+        # Opens with local academic landscape; leads with GCSE/A-Level, builds up to admissions
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. Private Tuition in {city} — Understanding the Local Landscape
+  2. {gcse_section_title}
+  3. 11+ and Selective School Entry in {city}
+  4. University and Medicine Admissions Support
+  5. How Our Tutors Work with {city} Families
+  6. Frequently Asked Questions
+
+Opening paragraph angle: Start by describing the specific academic pressures and milestones that define education in {city}. Ground it in local detail — name areas, schools, or the dominant exam board. The parent should feel you understand their city, not just their postcode.
+
+FAQ focus: One question on GCSE exam boards used locally, one on 11+ or selective entry, one on online vs in-person sessions, one on how quickly students typically see progress."""
+
+    elif variant == 1:
+        # Opens with the parent's anxiety; leads with selective/grammar school pressure first
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. Tutoring in {city} — What Local Families Ask Us Most
+  2. 11+ and Grammar School Preparation in {city}
+  3. GCSE and A-Level Tuition Across {city}
+  4. Oxbridge, Medicine, and Competitive University Applications
+  5. Why {city} Parents Choose Leading Tuition
+  6. Frequently Asked Questions about Tutoring in {city}
+
+Opening paragraph angle: Open with the specific decision or worry a {city} parent is sitting with right now — whether that's a grammar school deadline, an upcoming GCSE mock, or a university application. Acknowledge the pressure without amplifying it. Name 1–2 specific schools or areas in the first paragraph.
+
+FAQ focus: One question on how early to start 11+ preparation, one on what subjects are most requested in {city}, one on DBS checks and tutor vetting, one on session frequency recommendations."""
+
+    elif variant == 2:
+        # Opens with tutors and credibility; leads with medicine/university, then works down to GCSE
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. Expert Tutors in {city} — How We're Different
+  2. Medicine, Oxbridge, and University Admissions Coaching
+  3. A-Level and GCSE Tuition in {city}
+  4. Primary, 11+, and Early Secondary Support
+  5. What {city} Families Say About Working with Us
+  6. Common Questions from {city} Parents
+
+Opening paragraph angle: Lead with the quality and specialism of Leading Tuition's tutors, grounding it immediately in what that means for a family in {city}. Mention the specific academic stakes in {city} — what students here are competing for, and why having the right tutor matters. Name at least one school or area.
+
+FAQ focus: One question on how tutors are matched to students, one on UCAT and medical school preparation, one on A-Level subject choices, one on whether tuition works for students who are already doing well."""
+
+    else:
+        # variant == 3: Opens with a specific local challenge; weaves all levels through a narrative structure
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. Supporting {city} Students from 11+ to University
+  2. Preparing for Selective Schools and the 11+ in {city}
+  3. Raising Grades at GCSE — {city} Schools and Exam Boards
+  4. A-Level Tuition and Sixth Form Support in {city}
+  5. Medical School and Oxbridge Preparation for {city} Applicants
+  6. Frequently Asked Questions
+
+Opening paragraph angle: Frame the page around a student's academic journey in {city} — from primary through to university application. Acknowledge that the challenges change at each stage and that Leading Tuition supports families at all of them. Name 2–3 specific schools or neighbourhoods to establish local credibility immediately.
+
+FAQ focus: One question on whether Leading Tuition covers the student's specific school or exam board, one on moving from GCSE to A-Level support, one on last-minute or intensive revision programmes, one on what happens if a student's grades don't improve."""
+
     return f"""
 You are writing a location SEO page for Leading Tuition, a UK tutoring company.
 
@@ -1155,7 +1219,7 @@ Before writing, think through:
 
 Now write a location page in HTML about: Private Tuition in {city}
 
-Requirements:
+Content requirements:
 - Target length: 950 to 1,100 words
 - Opening paragraph must mention {city} by name and acknowledge {local_pressure}
 - You MUST mention at least 3 of these real local schools by name: {schools_str}
@@ -1164,18 +1228,12 @@ Requirements:
 {eleven_plus_note}
 {oxbridge_note}
 
-Use exactly these <h2> sections in this order:
-  1. Tutoring in {city} — What We Offer
-  2. {gcse_section_title}
-  3. 11+ and Grammar School Preparation  [include even if 11+ is less prominent — adapt tone accordingly]
-  4. Medicine and University Admissions Preparation
-  5. Why {city} Families Choose Leading Tuition
-  6. Frequently Asked Questions about Tutoring in {city}
+Structure to use:
+{structure}
 
 Additional requirements:
 - Include one short <ul> bullet list somewhere in the page (not in the FAQ section)
 - In the FAQ section, write 4 questions as <p><strong>Question?</strong></p> followed by a <p> answer
-- FAQ questions must be specific to {city} families, not generic
 - Do not pad — every sentence must be genuinely useful
 """
 

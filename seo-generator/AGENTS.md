@@ -271,6 +271,44 @@ print("Match:", ref == idx)  # Must be True
 
 ---
 
+## 13. SEO Structural Duplication — Root Cause and Fix
+
+### The Problem
+All four generated page families (locations, medical schools, admissions tests, Oxbridge interviews) use a single fixed H2 structure for every page. Google treats pages with identical section order, same intent flow, and near-identical wording as near-duplicates — causing "Duplicate without user-selected canonical", "Crawled - currently not indexed", and "Discovered - currently not indexed" in GSC.
+
+The root cause is that every prompt in `generate.py` contains a hard-coded numbered H2 list, e.g.:
+```
+Use exactly these <h2> sections in this order:
+  1. Tutoring in {city} — What We Offer
+  2. GCSE and A-Level Support
+  ...
+```
+This overrides the model's ability to vary structure even when the city/school/test data differs.
+
+### Priority order for fixing
+1. **Location pages** — 34 pages, identical H2 skeleton, highest risk. Fixed first.
+2. **Medical school pages** — 38 pages, identical H2 skeleton. Fix second.
+3. **Admissions test pages** — 13 pages, identical H2 skeleton. Fix third.
+4. **Oxbridge interview pages** — 18 pages, moderate risk (subject questions vary). Fix last.
+
+### The Fix Pattern
+For each prompt function, replace the single fixed H2 list with a `VARIANTS` list of 3–5 genuinely different structures. Assign variants deterministically using `hash(slug) % len(variants)` so reruns produce the same page for the same city/school/test.
+
+Each variant must differ in: H2 order, section emphasis, opening angle, and FAQ topics — not just H2 wording.
+
+After modifying a prompt function, delete all existing pages in that family from `seo-generator/output/` and regenerate fresh (do NOT use `--new-only`, as existing files must be replaced).
+
+### After regenerating any page family
+Always run:
+```bash
+cd seo-generator
+python generate.py --navbar   # re-sync navbar to new files
+python generate.py --sitemap  # update sitemap
+```
+Then commit and push to `dev`, verify on preview URL, then merge to `main`.
+
+---
+
 ## 10. Sitemap
 
 - **Served at:** `leadingtuition.co.uk/sitemap.xml` → `seo-generator/output/sitemap.xml`
