@@ -3421,6 +3421,246 @@ def generate_oxbridge_interview_pages(limit=None, new_only=False):
         print(f"Generated Oxbridge interview page: oxbridge-interviews/{slug}/")
 
 
+# ── 11+ School Preparation pages ─────────────────────────────────────────────
+
+ELEVEN_PLUS_META = {
+    "tiffin-school":           "Expert Tiffin School 11+ preparation with Leading Tuition. Specialist coaching for the Kingston Grammar Test. 4.8/5 Trustpilot. Book a free consultation.",
+    "tiffin-girls-school":     "Expert Tiffin Girls' School 11+ preparation with Leading Tuition. Specialist coaching for the Kingston Grammar Test. 4.8/5 Trustpilot. Book a free consultation.",
+    "queens-elizabeth-barnet": "Expert QE Barnet 11+ preparation with Leading Tuition. Specialist coaching for one of England's most selective grammar schools. 4.8/5 Trustpilot.",
+    "henrietta-barnett-school":"Expert Henrietta Barnett School 11+ preparation with Leading Tuition. Specialist coaching for the UK's most selective state school. 4.8/5 Trustpilot.",
+    "sutton-grammar-schools":  "Expert Sutton grammar school 11+ preparation with Leading Tuition. Specialist SET coaching for Wilson's, Sutton Grammar, Wallington, Nonsuch and Greenshaw. 4.8/5 Trustpilot.",
+    "st-olaves-grammar-school":"Expert St Olave's Grammar School 11+ preparation with Leading Tuition. Specialist coaching from experienced tutors. 4.8/5 Trustpilot. Book a free consultation.",
+    "slough-grammar-schools":  "Expert Slough grammar school 11+ preparation with Leading Tuition. Specialist SET coaching for all 5 Slough grammar schools. 4.8/5 Trustpilot.",
+    "bucks-grammar-schools":   "Expert Buckinghamshire grammar school 11+ preparation with Leading Tuition. Specialist SET coaching for Bucks grammar schools. 4.8/5 Trustpilot.",
+    "dr-challoners-grammar":   "Expert Dr Challoner's 11+ preparation with Leading Tuition. Specialist Bucks SET coaching for Dr Challoner's Grammar and High School. 4.8/5 Trustpilot.",
+    "kegs-chelmsford":         "Expert KEGS Chelmsford 11+ preparation with Leading Tuition. Specialist CSSE coaching for King Edward VI Grammar School. 4.8/5 Trustpilot.",
+    "chelmsford-county-high":  "Expert Chelmsford County High School 11+ preparation with Leading Tuition. Specialist CSSE coaching. 4.8/5 Trustpilot. Book a free consultation.",
+    "altrincham-grammar-schools":"Expert Altrincham Grammar School 11+ preparation with Leading Tuition. Specialist Trafford consortium test coaching. 4.8/5 Trustpilot.",
+    "sale-grammar-school":     "Expert Sale Grammar School 11+ preparation with Leading Tuition. Specialist Trafford consortium test coaching. 4.8/5 Trustpilot. Book a free consultation.",
+    "tonbridge-grammar-school":"Expert Tonbridge Grammar School 11+ preparation with Leading Tuition. Specialist Kent Test coaching. 4.8/5 Trustpilot. Book a free consultation.",
+    "weald-of-kent-grammar":   "Expert Weald of Kent Grammar School 11+ preparation with Leading Tuition. Specialist Kent Test coaching. 4.8/5 Trustpilot. Book a free consultation.",
+}
+
+
+def eleven_plus_school_prompt(slug: str, school_name: str, location: str, region: str,
+                               exam_board: str, consortium: str, is_consortium: str,
+                               schools_covered: str, selectivity: str, keyword: str) -> str:
+    import hashlib
+    variant = int(hashlib.md5(slug.encode()).hexdigest(), 16) % 3
+
+    is_consortium_bool = is_consortium.lower() == "true"
+    consortium_note = (
+        f"This page covers the {consortium} — a shared exam used by multiple schools: {schools_covered}. "
+        f"Write about all of them together, explaining what the shared exam means for preparation."
+        if is_consortium_bool
+        else f"This page is for {school_name} specifically — a single school with its own admissions process."
+    )
+
+    if variant == 0:
+        # Leads with the school's profile and what makes it worth targeting; exam details follow
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. Why Families Target {school_name}
+  2. The {exam_board} — Format, Sections, and What It Tests
+  3. How Competitive Is Entry to {school_name}?
+  4. How to Prepare — A Realistic Timeline and Strategy
+  5. How Leading Tuition Supports {school_name} Preparation
+  6. Frequently Asked Questions about {school_name} 11+ Entry
+
+Opening paragraph angle: Open with what makes {school_name} worth the preparation investment — academic outcomes, Oxbridge send rate, reputation in the area, or what it means for a child's secondary school journey. Ground it in the local context of {location}. Make the parent understand immediately why this school is worth targeting.
+
+FAQ focus: How early to start preparing, what score or pass mark is needed, whether the exam can be sat more than once, and what happens if a child narrowly misses the mark."""
+
+    elif variant == 1:
+        # Leads with the exam itself — format and what it tests; school profile and strategy follow
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. The {exam_board} — What the Exam Looks Like
+  2. About {school_name} — Selectivity, Places, and What to Expect
+  3. Common Weaknesses and How to Address Them Before the Test
+  4. A Month-by-Month Preparation Plan
+  5. Working With Leading Tuition on {school_name} Preparation
+  6. Frequently Asked Questions
+
+Opening paragraph angle: Open by explaining what the {exam_board} actually involves — not just the subject areas but the style and difficulty of questions and why children who only do school work are typically underprepared. Establish the gap between classroom learning and what the exam demands.
+
+FAQ focus: What the {exam_board} tests that schools don't cover, whether tutoring genuinely makes a difference, typical preparation duration, and what a borderline result means for appeal prospects."""
+
+    else:
+        # variant == 2: Leads with preparation strategy and timeline; school and exam details woven in
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. Preparing for {school_name} — Where to Start
+  2. Understanding the {exam_board} — Sections, Timing, and Scoring
+  3. What Makes {school_name} So Competitive
+  4. How Leading Tuition Prepares Students for the {exam_board}
+  5. Supporting the Whole Family Through the 11+ Process
+  6. Frequently Asked Questions about the {school_name} 11+
+
+Opening paragraph angle: Open from the parent's perspective — acknowledge that starting 11+ preparation can feel overwhelming, especially when you're not sure how early to begin, what the exam actually involves, or how to judge whether your child is on track. Frame this page as the guide that answers all of those questions for {school_name} specifically.
+
+FAQ focus: When tutoring should start, how to keep a child motivated during a long preparation period, whether practice papers alone are enough, and how to manage multiple grammar school applications at once."""
+
+    return f"""
+You are writing an 11+ grammar school preparation page for Leading Tuition, a UK tutoring company.
+
+School / Consortium: {school_name}
+Location: {location}
+Region: {region}
+Exam used: {exam_board}
+Selectivity: {selectivity}
+{consortium_note}
+
+Audience:
+- A UK parent in or near {location} considering grammar school entry for their child
+- They want specific, accurate guidance about {school_name} — not a generic 11+ article
+- They are anxious, time-pressured, and want to know exactly what is required and how to prepare
+
+Global rules:
+- Write for a UK parent, not an SEO algorithm
+- Use a warm, expert, reassuring tone
+- Output plain HTML only — no markdown
+- Use only these tags: <p>, <h2>, <ul>, <li>, <strong>
+- Do not include <html>, <head>, or <body>
+- Do not include CTA buttons or footer text — the template handles those
+- Include one FAQ section with exactly 4 questions
+- Never use generic filler phrases like "look no further" or "we've got you covered"
+- Never refer to 11+ as "easy" or imply any child can pass without serious preparation
+
+Before writing, think through:
+1. What is genuinely distinctive about {school_name} — its academic record, culture, or outcomes?
+2. What does the {exam_board} actually test, and what do most children get wrong in preparation?
+3. What does a realistic, well-paced preparation timeline look like for this specific exam?
+
+Now write a detailed 11+ preparation guide in HTML about: {school_name} 11+ Preparation
+
+Content requirements:
+- Length: 1,000 to 1,200 words
+- Name {school_name} and {location} specifically in the opening paragraph
+- Explain the {exam_board} format: subjects tested, timing, question style
+- Include selectivity context: {selectivity}
+- Include at least one concrete preparation tip that is specific to the {exam_board} — not generic advice
+- Include one short <ul> bullet list (not in the FAQ section)
+- Mention that Leading Tuition provides 1-to-1 specialist tutoring for this exam
+
+Structure to use:
+{structure}
+
+Additional requirements:
+- In the FAQ section, write 4 questions as <p><strong>Question?</strong></p> followed by a <p> answer
+- After all HTML content, on a new line, output exactly 4 FAQ pairs in this format (no spaces, no line breaks inside):
+FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}}]
+- Do not pad — every sentence must earn its place
+"""
+
+
+def generate_eleven_plus_pages(limit=None, new_only=False):
+    schools = load_csv("eleven_plus_schools.csv")
+    if limit is not None:
+        schools = schools[:limit]
+
+    for row in schools:
+        slug          = row["slug"]
+        school_name   = row["school_name"]
+        location      = row["location"]
+        region        = row["region"]
+        exam_board    = row["exam_board"]
+        consortium    = row["consortium"]
+        is_consortium = row["is_consortium"]
+        schools_covered = row["schools_covered"]
+        selectivity   = row["selectivity"]
+        keyword       = row["keyword"]
+
+        meta_desc = ELEVEN_PLUS_META.get(
+            slug,
+            f"Expert {school_name} 11+ preparation with Leading Tuition. "
+            "Specialist coaching from experienced tutors. 4.8/5 Trustpilot. Book a free consultation."
+        )
+
+        out_dir = OUTPUT_DIR / "11-plus" / slug
+        out_dir.mkdir(parents=True, exist_ok=True)
+        file_path = out_dir / "index.html"
+
+        if new_only and file_path.exists():
+            print(f"  SKIP (exists): 11-plus/{slug}/")
+            continue
+
+        prompt = eleven_plus_school_prompt(
+            slug=slug, school_name=school_name, location=location, region=region,
+            exam_board=exam_board, consortium=consortium, is_consortium=is_consortium,
+            schools_covered=schools_covered, selectivity=selectivity, keyword=keyword
+        )
+        raw = ask_claude(prompt)
+        content, faq_schema = parse_faq_schema(raw)
+
+        import json as _json
+        schema = {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": f"{school_name} 11+ Preparation",
+            "url": f"https://www.leadingtuition.co.uk/11-plus/{slug}/",
+            "description": meta_desc,
+            "provider": {
+                "@type": "Organization",
+                "name": "Leading Tuition",
+                "url": "https://www.leadingtuition.co.uk",
+                "telephone": "+44 207 167 8440",
+                "email": "hello@leadingtuition.co.uk"
+            },
+            "areaServed": {"@type": "Country", "name": "United Kingdom"},
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8", "bestRating": "5",
+                "worstRating": "1", "ratingCount": "54", "reviewCount": "54"
+            }
+        }
+        service_schema = f'<script type="application/ld+json">\n{_json.dumps(schema, indent=2, ensure_ascii=False)}\n</script>'
+        breadcrumb = breadcrumb_schema("eleven-plus", slug, f"{school_name} 11+ Preparation")
+        schema_extra = faq_schema + "\n" + service_schema + "\n" + breadcrumb
+
+        html = page_template(
+            f"{school_name} 11+ Preparation | Leading Tuition",
+            content,
+            meta_desc=meta_desc,
+            slug=f"11-plus/{slug}/",
+            page_type="eleven-plus",
+            section="11+ School Preparation",
+            schema_extra=schema_extra
+        )
+
+        file_path.write_text(html, encoding="utf-8")
+        print(f"Generated 11+ page: 11-plus/{slug}/")
+
+    # Generate hub page
+    schools_all = load_csv("eleven_plus_schools.csv")
+    school_links = "\n".join(
+        f'  <a href="/11-plus/{r["slug"]}/" class="index-card"><strong>{r["school_name"]}</strong>'
+        f'<span>{r["location"]} — {r["exam_board"]}</span></a>'
+        for r in schools_all
+    )
+    hub_content = f"""<p>Leading Tuition provides specialist 11+ preparation for the most competitive grammar schools across England.
+Whether your child is sitting the Kingston Grammar Test for Tiffin, the Sutton SET, the Slough consortium exam, the Kent Test, or the Bucks SET,
+our tutors know these specific exams in depth — not just the 11+ in general.</p>
+<p>Select your target school or consortium below to find detailed preparation guidance, exam format information, and how we can help.</p>
+<div class="subject-grid">
+{school_links}
+</div>"""
+
+    hub_crumb = breadcrumb_schema("eleven-plus-hub", "11-plus", "11+ Grammar School Preparation")
+    hub_html = page_template(
+        "11+ Grammar School Preparation | Leading Tuition",
+        hub_content,
+        meta_desc="Specialist 11+ preparation for the UK's most competitive grammar schools. Tiffin, QE Barnet, Sutton SET, Slough SET, Kent Test, Bucks SET and more. 4.8/5 Trustpilot.",
+        slug="11-plus/",
+        page_type="eleven-plus-hub",
+        section="",
+        schema_extra=hub_crumb,
+    )
+    hub_path = OUTPUT_DIR / "11-plus" / "index.html"
+    hub_path.write_text(hub_html, encoding="utf-8")
+    print("Generated hub page: 11-plus/index.html")
+
+
 def generate_navbar():
     """
     Propagate the canonical <nav> block from templates.py to every HTML file
@@ -3522,6 +3762,10 @@ def generate_sitemap():
             return "0.9"
         if url_path.startswith("/oxbridge-interviews/"):
             return "0.8"
+        if url_path == "/11-plus/":
+            return "0.9"
+        if url_path.startswith("/11-plus/"):
+            return "0.8"
         return "0.6"
 
     entries = []  # list of (url, lastmod, priority)
@@ -3592,6 +3836,7 @@ def main():
     parser.add_argument("--admissions-tests",   action="store_true", help="Generate admissions test pages (LNAT, MAT, PAT, TSA, etc.)")
     parser.add_argument("--medical-schools",    action="store_true", help="Generate medical school entry guide pages (~38 schools)")
     parser.add_argument("--oxbridge-interviews", action="store_true", help="Generate Oxbridge interview prep pages by subject (~18 pages)")
+    parser.add_argument("--eleven-plus",         action="store_true", help="Generate 11+ grammar school preparation pages (~15 pages)")
     parser.add_argument("--sitemap",           action="store_true", help="Generate sitemap.xml from output/ directory (no API)")
     parser.add_argument("--navbar",            action="store_true", help="Push canonical nav from templates.py to all HTML files in output/ (no API)")
     parser.add_argument("--all",               action="store_true", help="Generate everything (30-45 min)")
@@ -3608,6 +3853,7 @@ def main():
     (OUTPUT_DIR / "admissions-tests").mkdir(parents=True, exist_ok=True)
     (OUTPUT_DIR / "medical-schools").mkdir(parents=True, exist_ok=True)
     (OUTPUT_DIR / "oxbridge-interviews").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "11-plus").mkdir(parents=True, exist_ok=True)
 
     run_all = args.all
     new_only = args.new_only
@@ -3631,9 +3877,10 @@ def main():
         generate_level_pages(limit=args.limit)
 
     # New Phase 3 page types
-    admissions_tests_flag  = getattr(args, "admissions_tests", False)
-    medical_schools_flag   = getattr(args, "medical_schools", False)
+    admissions_tests_flag    = getattr(args, "admissions_tests", False)
+    medical_schools_flag     = getattr(args, "medical_schools", False)
     oxbridge_interviews_flag = getattr(args, "oxbridge_interviews", False)
+    eleven_plus_flag         = getattr(args, "eleven_plus", False)
 
     if admissions_tests_flag or run_all:
         generate_admissions_test_pages(limit=args.limit, new_only=new_only)
@@ -3643,6 +3890,9 @@ def main():
 
     if oxbridge_interviews_flag or run_all:
         generate_oxbridge_interview_pages(limit=args.limit, new_only=new_only)
+
+    if eleven_plus_flag or run_all:
+        generate_eleven_plus_pages(limit=args.limit, new_only=new_only)
 
     # --navbar runs after all generators so manually-written pages get the same nav.
     # It can also be run standalone at any time (no API calls required).
@@ -3657,7 +3907,7 @@ def main():
     if not any([args.static, args.specialist, args.subjects,
                 args.locations, args.blog, args.levels,
                 admissions_tests_flag, medical_schools_flag, oxbridge_interviews_flag,
-                args.navbar, args.sitemap, run_all]):
+                eleven_plus_flag, args.navbar, args.sitemap, run_all]):
         parser.print_help()
 
 

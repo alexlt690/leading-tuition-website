@@ -14,6 +14,7 @@ def page_url_path(page_type, slug):
         "admissions-test":    "admissions-tests",
         "medical-school":     "medical-schools",
         "oxbridge-interview": "oxbridge-interviews",
+        "eleven-plus":        "11-plus",
     }
     prefix = prefix_map.get(page_type, "")
     return f"{prefix}/{slug}" if prefix else slug
@@ -59,6 +60,10 @@ def breadcrumb_schema(page_type, slug, display_name, section=""):
     elif page_type == "oxbridge-interview":
         items = [home,
                  {"@type": "ListItem", "position": 2, "name": "Oxbridge Interview Preparation", "item": f"{base_url}/oxbridge-interviews/"},
+                 {"@type": "ListItem", "position": 3, "name": display_name, "item": full_url}]
+    elif page_type == "eleven-plus":
+        items = [home,
+                 {"@type": "ListItem", "position": 2, "name": "11+ Grammar School Preparation", "item": f"{base_url}/11-plus/"},
                  {"@type": "ListItem", "position": 3, "name": display_name, "item": full_url}]
     else:
         items = [home]
@@ -194,6 +199,7 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
             <a href="/services/levels/primary-tuition">Primary Tuition</a>
             <a href="/services/levels/sats-tuition">SATs Tuition</a>
             <a href="/services/levels/11plus-tuition">11+ Tuition</a>
+            <a href="/11-plus/">11+ School Guides</a>
             <a href="/services/levels/13plus-tuition">13+ Tuition</a>
             <a href="/services/levels/university-tuition">University Tuition</a>
           </div>
@@ -473,6 +479,7 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
             <a href="/services/levels/primary-tuition">Primary Tuition</a>
             <a href="/services/levels/sats-tuition">SATs Tuition</a>
             <a href="/services/levels/11plus-tuition">11+ Tuition</a>
+            <a href="/11-plus/">11+ School Guides</a>
             <a href="/services/levels/13plus-tuition">13+ Tuition</a>
             <a href="/services/levels/university-tuition">University Tuition</a>
           </div>
@@ -784,6 +791,7 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
             <a href="/services/levels/primary-tuition">Primary Tuition</a>
             <a href="/services/levels/sats-tuition">SATs Tuition</a>
             <a href="/services/levels/11plus-tuition">11+ Tuition</a>
+            <a href="/11-plus/">11+ School Guides</a>
             <a href="/services/levels/13plus-tuition">13+ Tuition</a>
             <a href="/services/levels/university-tuition">University Tuition</a>
           </div>
@@ -1063,6 +1071,7 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
             <a href="/services/levels/primary-tuition">Primary Tuition</a>
             <a href="/services/levels/sats-tuition">SATs Tuition</a>
             <a href="/services/levels/11plus-tuition">11+ Tuition</a>
+            <a href="/11-plus/">11+ School Guides</a>
             <a href="/services/levels/13plus-tuition">13+ Tuition</a>
             <a href="/services/levels/university-tuition">University Tuition</a>
           </div>
