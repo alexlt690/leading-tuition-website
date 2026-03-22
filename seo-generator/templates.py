@@ -284,6 +284,7 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
         <a href="/locations/northampton">Northampton</a>
         <a href="/locations/norwich">Norwich</a>
         <a href="/locations/portsmouth">Portsmouth</a>
+        <a href="/locations/slough">Slough</a>
         <a href="/locations/twickenham">Twickenham</a>
         <a href="/locations/watford">Watford</a>
         <a href="/locations/wimbledon">Wimbledon</a>
@@ -564,6 +565,7 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
         <a href="/locations/northampton">Northampton</a>
         <a href="/locations/norwich">Norwich</a>
         <a href="/locations/portsmouth">Portsmouth</a>
+        <a href="/locations/slough">Slough</a>
         <a href="/locations/twickenham">Twickenham</a>
         <a href="/locations/watford">Watford</a>
         <a href="/locations/wimbledon">Wimbledon</a>
@@ -876,6 +878,7 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
         <a href="/locations/northampton">Northampton</a>
         <a href="/locations/norwich">Norwich</a>
         <a href="/locations/portsmouth">Portsmouth</a>
+        <a href="/locations/slough">Slough</a>
         <a href="/locations/twickenham">Twickenham</a>
         <a href="/locations/watford">Watford</a>
         <a href="/locations/wimbledon">Wimbledon</a>
@@ -1156,6 +1159,7 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
         <a href="/locations/northampton">Northampton</a>
         <a href="/locations/norwich">Norwich</a>
         <a href="/locations/portsmouth">Portsmouth</a>
+        <a href="/locations/slough">Slough</a>
         <a href="/locations/twickenham">Twickenham</a>
         <a href="/locations/watford">Watford</a>
         <a href="/locations/wimbledon">Wimbledon</a>
