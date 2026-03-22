@@ -80,7 +80,7 @@ seo-generator/output/
 
 - **`main`** — production branch, deploys to `www.leadingtuition.co.uk`
 - **`dev`** — staging branch, deploys to a preview URL like `{hash}.leading-tuition-website.pages.dev`
-- **Cloudflare project name:** `leading-tuition-seo` (under Alex@leadingtuition.co.uk account, NOT Arun's)
+- **Cloudflare project name:** `leading-tuition-seo`
 - Each push to `dev` creates a NEW preview URL. The old URL is invalidated. Always get the latest URL from the Cloudflare dashboard.
 
 ---
@@ -146,7 +146,7 @@ Canonical tags must always match the actual public URL exactly:
 
 6. **Copied generated pages to repo root** — those copies are never served. Only `seo-generator/output/` content is served.
 
-7. **Confused preview URLs** — each `git push origin dev` creates a new preview URL. Previous preview URLs stop working. Always check Cloudflare dashboard for the current URL. The project is named `leading-tuition-seo` under Alex's account.
+7. **Confused preview URLs** — each `git push origin dev` creates a new preview URL. Previous preview URLs stop working. Always check Cloudflare dashboard for the current URL. The project is named `leading-tuition-seo`.
 
 8. **Staged and committed generate.py while it had unsaved/empty state** — always verify file size before committing: `wc -l seo-generator/generate.py` should be ~3500 lines.
 
