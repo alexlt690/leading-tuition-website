@@ -883,6 +883,15 @@ CITY_CONTEXT = {
         "local_pressure": "demand for support targeting the University of Leicester's medical school and Russell Group entry, with growing interest in 11+ preparation among families in the Oadby and Stoneygate areas",
         "special": None,
     },
+    "Slough": {
+        "schools": ["Slough Grammar School", "Herschel Grammar School", "Langley Grammar School", "Upton Court Grammar School", "St Bernard's Catholic Grammar School", "Eton College"],
+        "grammar_schools": ["Slough Grammar School", "Herschel Grammar School", "Langley Grammar School", "Upton Court Grammar School", "St Bernard's Catholic Grammar School"],
+        "areas": ["Langley", "Burnham", "Windsor", "Maidenhead", "Iver"],
+        "exam_board": "AQA and OCR",
+        "eleven_plus": True,
+        "local_pressure": "exceptionally competitive 11+ preparation across the Slough grammar school consortium — five grammar schools sharing the same SET exam — with families from Slough, Langley, Windsor and Maidenhead all competing for the same places",
+        "special": None,
+    },
     "Reading": {
         "schools": ["Reading School", "Kendrick School", "The Abbey School Reading", "The Oratory School", "St Joseph's College Reading"],
         "grammar_schools": ["Reading School", "Kendrick School"],
