@@ -113,6 +113,7 @@
             <a href="/services/levels/13plus-tuition">13+ Tuition</a>
             <div class="nav-flyout">
               <a href="/gcse/">GCSE Tuition</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
               <div class="nav-flyout-menu">
                 <a href="/subjects/gcse-maths/">Maths</a>
                 <a href="/subjects/gcse-chemistry/">Chemistry</a>
@@ -120,6 +121,7 @@
             </div>
             <div class="nav-flyout">
               <a href="/a-level/">A-Level Tuition</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
               <div class="nav-flyout-menu">
                 <a href="/subjects/a-level-maths/">Maths</a>
                 <a href="/subjects/a-level-biology/">Biology</a>
@@ -138,6 +140,7 @@
             <a href="/services/specialist-admissions/medicine-prep-hub">Medicine Prep Hub</a>
             <div class="nav-flyout">
               <a href="/medical-schools/">Medical School Guides</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
               <div class="nav-flyout-menu nav-flyout-menu--cols">
                 <a href="/medical-schools/aberdeen">Aberdeen</a>
                 <a href="/medical-schools/anglia-ruskin">Anglia Ruskin</a>
@@ -189,6 +192,7 @@
             <div class="nav-mega-col-title">Oxbridge</div>
             <div class="nav-flyout">
               <a href="/oxbridge-interviews/">Oxbridge Interview Preparation</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
               <div class="nav-flyout-menu nav-flyout-menu--two-cols">
                 <a href="/oxbridge-interviews/biology-interview">Biology</a>
                 <a href="/oxbridge-interviews/chemistry-interview">Chemistry</a>
@@ -215,6 +219,7 @@
             <a href="/services/specialist-admissions/university-personal-statement">University Personal Statement Help</a>
             <div class="nav-flyout">
               <a href="/admissions-tests/">Oxbridge Admissions Tests</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
               <div class="nav-flyout-menu nav-flyout-menu--two-cols">
                 <a href="/admissions-tests/lnat-preparation/">LNAT (Law)</a>
                 <a href="/admissions-tests/mat-preparation/">MAT (Maths)</a>
@@ -512,6 +517,7 @@ COPYRIGHT ©2026, Leading Tuition. ALL RIGHTS RESERVED.
     hamburger.setAttribute('aria-expanded', open);
   });
 
+  // Mobile: top-level dropdown toggles
   var toggles = document.querySelectorAll('.nav-dropdown-toggle');
   toggles.forEach(function(toggle) {
     toggle.addEventListener('click', function(e) {
@@ -520,6 +526,18 @@ COPYRIGHT ©2026, Leading Tuition. ALL RIGHTS RESERVED.
         var li = this.parentElement;
         li.classList.toggle('open');
       }
+    });
+  });
+
+  // Mobile: fly-out sub-menu toggles (button expands; link navigates normally)
+  var flyoutToggles = document.querySelectorAll('.nav-flyout-toggle');
+  flyoutToggles.forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var flyout = this.parentElement;
+      flyout.classList.toggle('open');
+      this.setAttribute('aria-expanded', flyout.classList.contains('open'));
     });
   });
 

@@ -1,6 +1,7 @@
 """
 Standalone navbar sync script — no anthropic module needed.
-Extracts the canonical <nav> from templates.py and propagates it to all output HTML files.
+Extracts the canonical <nav> and <script> blocks from templates.py and
+propagates both to all output HTML files.
 Run from: seo-generator/ directory
 """
 import re
@@ -12,15 +13,23 @@ from templates import service_page_template
 
 OUTPUT_DIR = Path(__file__).parent / "output"
 
-# Extract canonical nav from a rendered sample page
+# Extract canonical nav + script from a rendered sample page
 sample = service_page_template("__dummy__", "<p>x</p>")
-match = re.search(r'<nav class="navbar">.*?</nav>', sample, re.DOTALL)
-if not match:
+
+nav_match = re.search(r'<nav class="navbar">.*?</nav>', sample, re.DOTALL)
+if not nav_match:
     raise ValueError("Could not extract <nav> block from service_page_template output")
-canonical_nav = match.group(0)
+canonical_nav = nav_match.group(0)
 print(f"Canonical nav extracted ({len(canonical_nav)} chars)")
 
-nav_pattern = re.compile(r'<nav class="navbar">.*?</nav>', re.DOTALL)
+script_match = re.search(r'<script>\s*\(function\(\).*?\}\)\(\);\s*</script>', sample, re.DOTALL)
+if not script_match:
+    raise ValueError("Could not extract nav <script> block from service_page_template output")
+canonical_script = script_match.group(0)
+print(f"Canonical script extracted ({len(canonical_script)} chars)")
+
+nav_pattern    = re.compile(r'<nav class="navbar">.*?</nav>', re.DOTALL)
+script_pattern = re.compile(r'<script>\s*\(function\(\).*?\}\)\(\);\s*</script>', re.DOTALL)
 
 updated = 0
 skipped = 0
@@ -30,6 +39,7 @@ for html_file in sorted(OUTPUT_DIR.rglob("*.html")):
         skipped += 1
         continue
     new_content = nav_pattern.sub(canonical_nav, content)
+    new_content = script_pattern.sub(canonical_script, new_content)
     if new_content != content:
         html_file.write_text(new_content, encoding="utf-8")
         updated += 1
@@ -37,4 +47,4 @@ for html_file in sorted(OUTPUT_DIR.rglob("*.html")):
     else:
         skipped += 1
 
-print(f"\nDone: navbar updated in {updated} files ({skipped} files unchanged or no navbar)")
+print(f"\nDone: nav+script updated in {updated} files ({skipped} files unchanged or no navbar)")

@@ -1198,6 +1198,7 @@ html, body {
 
 /* ── FLY-OUT SUB-MENUS ── */
 .nav-flyout { position: relative; }
+.nav-flyout-toggle { display: none; } /* hidden on desktop — shown via mobile media query */
 
 .nav-flyout-menu {
   display: none;
@@ -1281,24 +1282,48 @@ html, body {
 
 /* Mobile: fly-outs expand inline */
 @media (max-width: 900px) {
+  /* flyout container becomes a flex row so link + button sit side-by-side */
+  .nav-flyout { display: flex; flex-wrap: wrap; align-items: stretch; }
+  .nav-flyout > a { flex: 1; }
+
+  /* toggle button — visible on mobile only */
+  .nav-flyout-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    border-left: 1px solid rgba(255,255,255,0.12);
+    color: var(--white);
+    padding: 0 18px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    opacity: 0.75;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .nav-flyout.open > .nav-flyout-toggle { transform: rotate(180deg); }
+
+  /* sub-menus: hidden by default, full-width when open */
   .nav-flyout-menu,
   .nav-flyout-menu--cols,
   .nav-flyout-menu--two-cols {
     position: static !important;
     display: none;
+    flex-basis: 100%;
     border: none;
     box-shadow: none;
     padding: 0;
     min-width: unset;
     grid-template-columns: unset !important;
+    background: rgba(0,0,0,0.15);
   }
   .nav-flyout.open > .nav-flyout-menu,
   .nav-flyout.open > .nav-flyout-menu--cols,
   .nav-flyout.open > .nav-flyout-menu--two-cols { display: block; }
-  .nav-flyout-menu a { padding-left: 24px; }
-  .nav-flyout > a::after { content: ' ▼'; }
-  .nav-flyout.open > a::after { content: ' ▲'; }
-  .nav-flyout::after { display: none; } /* no bridge needed on mobile */
+  .nav-flyout-menu a { padding-left: 32px; }
+  .nav-flyout > a::after { content: none !important; } /* no inline ▼ — button handles it */
+  .nav-flyout::after { display: none; } /* no hover bridge on mobile */
 }
 
 /* ── HAMBURGER BUTTON ── */
