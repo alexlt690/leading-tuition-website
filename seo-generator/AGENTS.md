@@ -148,7 +148,9 @@ Canonical tags must always match the actual public URL exactly:
 
 7. **Confused preview URLs** — each `git push origin dev` creates a new preview URL. Previous preview URLs stop working. Always check Cloudflare dashboard for the current URL. The project is named `leading-tuition-seo`.
 
-8. **Staged and committed generate.py while it had unsaved/empty state** — always verify file size before committing: `wc -l seo-generator/generate.py` should be ~3500 lines.
+8. **API overload errors (529) crash the generator mid-run** — `ask_claude()` now has built-in retry logic: up to 5 attempts with 30s/60s/90s/120s/150s waits. If you still hit this after retries, the API is genuinely busy — wait a few minutes and re-run with `--new-only` to skip already-generated pages.
+
+9. **Staged and committed generate.py while it had unsaved/empty state** — always verify file size before committing: `wc -l seo-generator/generate.py` should be ~3500 lines.
 
 9. **Changed OUTPUT_DIR to SCRIPT_DIR.parent (repo root)** — this is wrong. OUTPUT_DIR must always be `SCRIPT_DIR / "output"` (i.e. `seo-generator/output/`). If OUTPUT_DIR is wrong, generated files land at the repo root or other wrong paths, and Cloudflare never serves them. Always verify: `grep "OUTPUT_DIR" seo-generator/generate.py` should show `SCRIPT_DIR / "output"`.
 

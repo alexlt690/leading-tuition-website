@@ -61,18 +61,25 @@ def load_csv(filename):
 
 
 def ask_claude(prompt: str, max_tokens: int = 3200) -> str:
-    response = client.messages.create(
-        model="claude-sonnet-4-6",
-        max_tokens=max_tokens,
-        temperature=0.35,
-        messages=[
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ]
-    )
-    return response.content[0].text.strip()
+    import time
+    max_retries = 5
+    for attempt in range(max_retries):
+        try:
+            response = client.messages.create(
+                model="claude-sonnet-4-6",
+                max_tokens=max_tokens,
+                temperature=0.35,
+                messages=[{"role": "user", "content": prompt}]
+            )
+            return response.content[0].text.strip()
+        except Exception as e:
+            if "overloaded" in str(e).lower() or "529" in str(e):
+                wait = 30 * (attempt + 1)
+                print(f"  API overloaded, retrying in {wait}s (attempt {attempt + 1}/{max_retries})...")
+                time.sleep(wait)
+            else:
+                raise
+    raise RuntimeError("API still overloaded after maximum retries — try again later")
 
 
 def specialist_prompt(title: str, keyword: str, slug: str) -> str:
@@ -2730,7 +2737,7 @@ def generate_level_pages(limit=None):
         print(f"Generated level page: {file_path}")
 
 
-def generate_location_pages(limit=None, new_only=False):
+def generate_location_pages(limit=None, new_only=False, city_filter=None):
     cities = load_csv("locations.csv")
     if limit is not None:
         cities = cities[:limit]
@@ -2738,6 +2745,20 @@ def generate_location_pages(limit=None, new_only=False):
     for row in cities:
         city = row["city"]
         slug = city.lower().replace(" ", "-")
+
+        # Filter to a single city if requested
+        if city_filter and city.lower() != city_filter.lower():
+            continue
+
+        locations_dir = OUTPUT_DIR / "locations"
+        locations_dir.mkdir(parents=True, exist_ok=True)
+        file_path = locations_dir / f"{slug}.html"
+
+        # Check new_only BEFORE calling the API
+        if new_only and file_path.exists():
+            print(f"  SKIP (exists): {file_path}")
+            continue
+
         title = f"Private Tuition in {city}"
         meta_desc = (
             f"Expert private tutors in {city}. DBS checked. GCSE, A-Level, 11+ and medicine prep. "
@@ -2748,12 +2769,6 @@ def generate_location_pages(limit=None, new_only=False):
         content = ask_claude(prompt, max_tokens=3600)
         html = location_page_template(city=city, title=title, content=content, meta_desc=meta_desc, slug=slug)
 
-        locations_dir = OUTPUT_DIR / "locations"
-        locations_dir.mkdir(parents=True, exist_ok=True)
-        file_path = locations_dir / f"{slug}.html"
-        if new_only and file_path.exists():
-            print(f"  SKIP (exists): {file_path}")
-            continue
         file_path.write_text(html, encoding="utf-8")
         print(f"Generated location page: {file_path}")
 
@@ -3850,6 +3865,7 @@ def main():
     parser.add_argument("--navbar",            action="store_true", help="Push canonical nav from templates.py to all HTML files in output/ (no API)")
     parser.add_argument("--all",               action="store_true", help="Generate everything (30-45 min)")
     parser.add_argument("--limit",    type=int, default=None,       help="Limit number of pages generated per category")
+    parser.add_argument("--city",     type=str, default=None,       help="Generate a single location page by city name (e.g. --city Slough)")
     parser.add_argument("--new-only", action="store_true",          help="Skip pages whose output file already exists (useful for resuming or adding new pages)")
     args = parser.parse_args()
 
@@ -3876,8 +3892,8 @@ def main():
     if args.subjects or run_all:
         generate_subject_pages(limit=args.limit)
 
-    if args.locations or run_all:
-        generate_location_pages(limit=args.limit, new_only=new_only)
+    if args.locations or args.city or run_all:
+        generate_location_pages(limit=args.limit, new_only=new_only, city_filter=args.city)
 
     if args.blog or run_all:
         generate_blog_pages(limit=args.limit, new_only=new_only)
@@ -3914,7 +3930,7 @@ def main():
         generate_sitemap()
 
     if not any([args.static, args.specialist, args.subjects,
-                args.locations, args.blog, args.levels,
+                args.locations, args.city, args.blog, args.levels,
                 admissions_tests_flag, medical_schools_flag, oxbridge_interviews_flag,
                 eleven_plus_flag, args.navbar, args.sitemap, run_all]):
         parser.print_help()
