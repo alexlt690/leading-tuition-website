@@ -11,8 +11,9 @@ def page_url_path(page_type, slug):
         "specialist":       "services/specialist-admissions",
         "blog":             "blog",
         "location":         "locations",
-        "admissions-test":  "admissions-tests",
-        "medical-school":   "medical-schools",
+        "admissions-test":    "admissions-tests",
+        "medical-school":     "medical-schools",
+        "oxbridge-interview": "oxbridge-interviews",
     }
     prefix = prefix_map.get(page_type, "")
     return f"{prefix}/{slug}" if prefix else slug
@@ -54,6 +55,10 @@ def breadcrumb_schema(page_type, slug, display_name, section=""):
     elif page_type == "medical-school":
         items = [home,
                  {"@type": "ListItem", "position": 2, "name": "Medical School Guides", "item": f"{base_url}/medical-schools/"},
+                 {"@type": "ListItem", "position": 3, "name": display_name, "item": full_url}]
+    elif page_type == "oxbridge-interview":
+        items = [home,
+                 {"@type": "ListItem", "position": 2, "name": "Oxbridge Interview Preparation", "item": f"{base_url}/oxbridge-interviews/"},
                  {"@type": "ListItem", "position": 3, "name": display_name, "item": full_url}]
     else:
         items = [home]
@@ -200,6 +205,7 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
             <a href="/services/specialist-admissions/medical-school-interviews/">Medical School Interviews</a>
             <a href="/services/specialist-admissions/ucat-tutor">UCAT Tutor</a>
             <a href="/services/specialist-admissions/mmi-interview-coaching">MMI Interview Coaching</a>
+            <a href="/oxbridge-interviews/">Oxbridge Interview Prep</a>
             <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
             <a href="/services/specialist-admissions/university-personal-statement">University Personal Statement</a>
           </div>
@@ -226,16 +232,15 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
-        <a href="/blog/how-long-does-gcse-revision-take">How Long Does GCSE Revision Take?</a>
-        <a href="/blog/how-to-find-a-good-private-tutor">How to Find a Good Private Tutor</a>
-        <a href="/blog/how-to-prepare-for-a-medical-school-mmi-interview">How to Prepare for MMI Interviews</a>
-        <a href="/blog/online-tutoring-vs-in-person-tutoring-for-gcse">Online vs In-Person Tutoring for GCSE</a>
-        <a href="/blog/triple-vs-double-science-gcse">Triple vs Double Science GCSE</a>
-        <a href="/blog/what-grade-do-you-need-for-oxbridge-chemistry">What Grade for Oxbridge Chemistry?</a>
-        <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
-        <a href="/blog/a-level-subject-choices-for-medicine-applications">A-Level Subjects for Medicine</a>
         <a href="/blog/ucat-score-requirements-for-uk-medical-schools-2025">UCAT Score Requirements 2025</a>
-        <a href="/blog/ucas-personal-statement-guide">UCAS Personal Statement Guide</a>
+        <a href="/blog/the-new-ucas-personal-statement-2026-a-guide-to-the-3-question-format">New UCAS Personal Statement 2026</a>
+        <a href="/blog/how-to-prepare-for-a-medical-school-mmi-interview">How to Prepare for MMI Interviews</a>
+        <a href="/blog/oxbridge-interview-questions-100-real-examples-for-every-major-subject">Oxbridge Interview Questions</a>
+        <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
+        <a href="/blog/the-6-month-11-plus-countdown-a-monthly-study-milestone-plan">11 Plus 6-Month Countdown Plan</a>
+        <a href="/blog/how-to-find-a-good-private-tutor">How to Find a Good Private Tutor</a>
+        <a href="/blog/is-private-tuition-worth-it-a-cost-benefit-analysis-of-1-to-1-learning">Is Private Tuition Worth It?</a>
+        <a href="/blog/" style="font-weight:600;color:#e63946;">View all posts &rarr;</a>
       </div>
     </li>
 
@@ -479,6 +484,7 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
             <a href="/services/specialist-admissions/medical-school-interviews/">Medical School Interviews</a>
             <a href="/services/specialist-admissions/ucat-tutor">UCAT Tutor</a>
             <a href="/services/specialist-admissions/mmi-interview-coaching">MMI Interview Coaching</a>
+            <a href="/oxbridge-interviews/">Oxbridge Interview Prep</a>
             <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
             <a href="/services/specialist-admissions/university-personal-statement">University Personal Statement</a>
           </div>
@@ -505,16 +511,15 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
-        <a href="/blog/how-long-does-gcse-revision-take">How Long Does GCSE Revision Take?</a>
-        <a href="/blog/how-to-find-a-good-private-tutor">How to Find a Good Private Tutor</a>
-        <a href="/blog/how-to-prepare-for-a-medical-school-mmi-interview">How to Prepare for MMI Interviews</a>
-        <a href="/blog/online-tutoring-vs-in-person-tutoring-for-gcse">Online vs In-Person Tutoring for GCSE</a>
-        <a href="/blog/triple-vs-double-science-gcse">Triple vs Double Science GCSE</a>
-        <a href="/blog/what-grade-do-you-need-for-oxbridge-chemistry">What Grade for Oxbridge Chemistry?</a>
-        <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
-        <a href="/blog/a-level-subject-choices-for-medicine-applications">A-Level Subjects for Medicine</a>
         <a href="/blog/ucat-score-requirements-for-uk-medical-schools-2025">UCAT Score Requirements 2025</a>
-        <a href="/blog/ucas-personal-statement-guide">UCAS Personal Statement Guide</a>
+        <a href="/blog/the-new-ucas-personal-statement-2026-a-guide-to-the-3-question-format">New UCAS Personal Statement 2026</a>
+        <a href="/blog/how-to-prepare-for-a-medical-school-mmi-interview">How to Prepare for MMI Interviews</a>
+        <a href="/blog/oxbridge-interview-questions-100-real-examples-for-every-major-subject">Oxbridge Interview Questions</a>
+        <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
+        <a href="/blog/the-6-month-11-plus-countdown-a-monthly-study-milestone-plan">11 Plus 6-Month Countdown Plan</a>
+        <a href="/blog/how-to-find-a-good-private-tutor">How to Find a Good Private Tutor</a>
+        <a href="/blog/is-private-tuition-worth-it-a-cost-benefit-analysis-of-1-to-1-learning">Is Private Tuition Worth It?</a>
+        <a href="/blog/" style="font-weight:600;color:#e63946;">View all posts &rarr;</a>
       </div>
     </li>
 
@@ -790,6 +795,7 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
             <a href="/services/specialist-admissions/medical-school-interviews/">Medical School Interviews</a>
             <a href="/services/specialist-admissions/ucat-tutor">UCAT Tutor</a>
             <a href="/services/specialist-admissions/mmi-interview-coaching">MMI Interview Coaching</a>
+            <a href="/oxbridge-interviews/">Oxbridge Interview Prep</a>
             <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
             <a href="/services/specialist-admissions/university-personal-statement">University Personal Statement</a>
           </div>
@@ -816,16 +822,15 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
-        <a href="/blog/how-long-does-gcse-revision-take">How Long Does GCSE Revision Take?</a>
-        <a href="/blog/how-to-find-a-good-private-tutor">How to Find a Good Private Tutor</a>
-        <a href="/blog/how-to-prepare-for-a-medical-school-mmi-interview">How to Prepare for MMI Interviews</a>
-        <a href="/blog/online-tutoring-vs-in-person-tutoring-for-gcse">Online vs In-Person Tutoring for GCSE</a>
-        <a href="/blog/triple-vs-double-science-gcse">Triple vs Double Science GCSE</a>
-        <a href="/blog/what-grade-do-you-need-for-oxbridge-chemistry">What Grade for Oxbridge Chemistry?</a>
-        <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
-        <a href="/blog/a-level-subject-choices-for-medicine-applications">A-Level Subjects for Medicine</a>
         <a href="/blog/ucat-score-requirements-for-uk-medical-schools-2025">UCAT Score Requirements 2025</a>
-        <a href="/blog/ucas-personal-statement-guide">UCAS Personal Statement Guide</a>
+        <a href="/blog/the-new-ucas-personal-statement-2026-a-guide-to-the-3-question-format">New UCAS Personal Statement 2026</a>
+        <a href="/blog/how-to-prepare-for-a-medical-school-mmi-interview">How to Prepare for MMI Interviews</a>
+        <a href="/blog/oxbridge-interview-questions-100-real-examples-for-every-major-subject">Oxbridge Interview Questions</a>
+        <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
+        <a href="/blog/the-6-month-11-plus-countdown-a-monthly-study-milestone-plan">11 Plus 6-Month Countdown Plan</a>
+        <a href="/blog/how-to-find-a-good-private-tutor">How to Find a Good Private Tutor</a>
+        <a href="/blog/is-private-tuition-worth-it-a-cost-benefit-analysis-of-1-to-1-learning">Is Private Tuition Worth It?</a>
+        <a href="/blog/" style="font-weight:600;color:#e63946;">View all posts &rarr;</a>
       </div>
     </li>
 
@@ -1069,6 +1074,7 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
             <a href="/services/specialist-admissions/medical-school-interviews/">Medical School Interviews</a>
             <a href="/services/specialist-admissions/ucat-tutor">UCAT Tutor</a>
             <a href="/services/specialist-admissions/mmi-interview-coaching">MMI Interview Coaching</a>
+            <a href="/oxbridge-interviews/">Oxbridge Interview Prep</a>
             <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
             <a href="/services/specialist-admissions/university-personal-statement">University Personal Statement</a>
           </div>
@@ -1095,16 +1101,15 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
-        <a href="/blog/how-long-does-gcse-revision-take">How Long Does GCSE Revision Take?</a>
-        <a href="/blog/how-to-find-a-good-private-tutor">How to Find a Good Private Tutor</a>
-        <a href="/blog/how-to-prepare-for-a-medical-school-mmi-interview">How to Prepare for MMI Interviews</a>
-        <a href="/blog/online-tutoring-vs-in-person-tutoring-for-gcse">Online vs In-Person Tutoring for GCSE</a>
-        <a href="/blog/triple-vs-double-science-gcse">Triple vs Double Science GCSE</a>
-        <a href="/blog/what-grade-do-you-need-for-oxbridge-chemistry">What Grade for Oxbridge Chemistry?</a>
-        <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
-        <a href="/blog/a-level-subject-choices-for-medicine-applications">A-Level Subjects for Medicine</a>
         <a href="/blog/ucat-score-requirements-for-uk-medical-schools-2025">UCAT Score Requirements 2025</a>
-        <a href="/blog/ucas-personal-statement-guide">UCAS Personal Statement Guide</a>
+        <a href="/blog/the-new-ucas-personal-statement-2026-a-guide-to-the-3-question-format">New UCAS Personal Statement 2026</a>
+        <a href="/blog/how-to-prepare-for-a-medical-school-mmi-interview">How to Prepare for MMI Interviews</a>
+        <a href="/blog/oxbridge-interview-questions-100-real-examples-for-every-major-subject">Oxbridge Interview Questions</a>
+        <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
+        <a href="/blog/the-6-month-11-plus-countdown-a-monthly-study-milestone-plan">11 Plus 6-Month Countdown Plan</a>
+        <a href="/blog/how-to-find-a-good-private-tutor">How to Find a Good Private Tutor</a>
+        <a href="/blog/is-private-tuition-worth-it-a-cost-benefit-analysis-of-1-to-1-learning">Is Private Tuition Worth It?</a>
+        <a href="/blog/" style="font-weight:600;color:#e63946;">View all posts &rarr;</a>
       </div>
     </li>
 

@@ -49,11 +49,13 @@ def build_blogposting_schema(title, meta_desc, slug):
 
 client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
-OUTPUT_DIR = Path("output")
+# Script directory (seo-generator/) and repo root (parent)
+SCRIPT_DIR = Path(__file__).parent
+OUTPUT_DIR = SCRIPT_DIR.parent  # repo root — Cloudflare Pages serves from here
 
 
 def load_csv(filename):
-    with open(filename, newline="", encoding="utf-8") as f:
+    with open(SCRIPT_DIR / filename, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         return list(reader)
 
@@ -1397,6 +1399,662 @@ Requirements:
 - FAQ questions must address total hours needed, how to start, managing multiple subjects, and what to do if behind
 """
 
+    if slug == "the-new-ucas-personal-statement-2026-a-guide-to-the-3-question-format":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What exactly changed in the UCAS personal statement format for 2026 entry — and what stayed the same?
+2. What are the three questions, and what does each one actually ask?
+3. What mistakes will students make if they approach 2026 the same way as older guidance?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,200 to 1,500 words
+- Opening paragraph must immediately flag that this is a major format change and who it affects (Year 13 2025-26 cohort)
+- Include these exact <h2> sections in this order:
+  1. What Changed with the UCAS Personal Statement in 2026?
+  2. The Three Questions Explained
+  3. How to Answer Question 1: Why This Subject?
+  4. How to Answer Question 2: Preparing for Higher Education
+  5. How to Answer Question 3: Broader Skills and Experiences
+  6. Common Mistakes to Avoid
+  7. Frequently Asked Questions
+- Must include:
+  - The old format was a free-form 4,000-character essay; the new format is three structured questions
+  - Question 1 focuses on subject passion and intellectual curiosity
+  - Question 2 focuses on readiness and preparation for university-level study
+  - Question 3 focuses on extracurricular activities, skills, and personal development
+  - Each question has its own character limit
+  - This applies to 2026 entry (Year 13 students in 2025-26)
+  - Mention that super-curricular activities are now more clearly separated from academic motivation
+- Include one short bullet or numbered list
+- FAQ questions must address: whether the old advice still applies, word/character limits, how to structure each answer, and whether the change helps or hinders applicants
+"""
+
+    if slug == "ucat-cut-offs-for-every-uk-medical-school-5-year-trends-and-2026-predictions":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What are the actual UCAT cut-off score trends over the past 5 years at different medical schools?
+2. Which schools are most and least score-dependent, and how does SJT interact?
+3. What can applicants in 2026 realistically predict from past trends?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph must explain why cut-offs vary so much and why tracking trends matters for 2026 applicants
+- Include these exact <h2> sections in this order:
+  1. How UCAT Cut-Offs Work (and Why They Change Each Year)
+  2. UCAT Cut-Off Trends: High-Competition Schools
+  3. UCAT Cut-Off Trends: Mid-Range Schools
+  4. UCAT Cut-Off Trends: Lower-Threshold Schools
+  5. The Role of SJT in Cut-Off Decisions
+  6. 2026 Predictions: What Scores to Target
+  7. Frequently Asked Questions
+- Must include:
+  - Section 2 must contain an HTML <table> showing approximate trends for 5 high-competition schools (Oxford, Imperial, Edinburgh, UCL, Barts): columns = School, ~2022, ~2023, ~2024, Trend
+  - Section 3 must contain an HTML <table> for mid-range schools (Bristol, Leeds, Birmingham, Nottingham, Sheffield): same columns
+  - Section 4 must contain an HTML <table> for lower-threshold schools (Lancaster, Keele, Sunderland, Lincoln, Anglia Ruskin): same columns
+  - Explain SJT Bands 1-2 are expected at most competitive schools; Band 3 may be tolerated at others
+  - Clarify that cut-offs are set post-hoc based on applicant pool — not pre-announced
+  - 2026 prediction: rising cut-offs at Oxford/Imperial given UCAT now replaces BMAT there (since 2024)
+- Include one short bullet list
+- FAQ questions must address: what is a safe UCAT score, do all schools publish cut-offs, what to do with a low SJT band, and how many schools to apply to
+"""
+
+    if slug == "oxford-cambridge-and-ucl-medicine-mastering-the-ucat-for-elite-universities":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. How do Oxford, Cambridge, and UCL each use UCAT in their admissions process — and what makes each distinctive?
+2. What score is genuinely required at each, and what does a realistic competitive application look like?
+3. What are the biggest misconceptions about applying to these three schools?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,200 to 1,500 words
+- Opening paragraph must immediately establish why these three schools are distinct and why the UCAT stakes are higher
+- Include these exact <h2> sections in this order:
+  1. Why Oxford, Cambridge, and UCL Set the UCAT Bar So High
+  2. Oxford Medicine: UCAT Requirements and What Else Matters
+  3. Cambridge Medicine: UCAT, ESAT, and the Clinical Years
+  4. UCL Medicine: A Competitive London Alternative
+  5. How to Prepare Your UCAT for Top-Three Entry
+  6. Frequently Asked Questions
+- Must include:
+  - Oxford has used UCAT since 2024 entry (previously BMAT)
+  - Cambridge does NOT use UCAT — it uses ESAT for some routes and has separate interview process
+  - UCL uses UCAT and is one of the most competitive London medical schools
+  - Approximate UCAT score targets: Oxford 2,750+, UCL 2,700+
+  - All three require exceptional interviews, not just high scores
+  - Clarify the confusion around Cambridge not using UCAT
+- Include one short bullet list
+- FAQ questions must address: whether Cambridge uses UCAT, the minimum UCAT score for Oxford, how UCL compares, and interview format differences
+"""
+
+    if slug == "low-ucat-score-top-5-strategic-uk-medical-schools-to-apply-to-in-2026":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Which medical schools genuinely weight UCAT less heavily, or have lower thresholds, in 2026?
+2. What is a "low" score in context — and what other factors can compensate?
+3. What mistakes do low-scorers make when choosing schools to apply to?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,200 to 1,500 words
+- Opening paragraph must be empathetic but pragmatic — a lower UCAT score is not the end, but strategy matters
+- Include these exact <h2> sections in this order:
+  1. What Counts as a Low UCAT Score?
+  2. Schools That Weight UCAT Less Heavily
+  3. The Top 5 Strategic Choices for 2026
+  4. What to Emphasise When Your UCAT Is Below Average
+  5. Can You Resit the UCAT?
+  6. Frequently Asked Questions
+- Must include:
+  - "Low" in context means below approximately 2,500 combined (below the national mean)
+  - Section 3 must contain an HTML <table> with columns: Medical School, Why Strategic, Approx. UCAT Threshold, Interview Style — covering 5 schools (e.g. Lancaster, Keele, Anglia Ruskin, Sunderland, Hull York)
+  - Schools that holistically review: GCSEs, personal statement, and references can outweigh a middling UCAT
+  - Resitting: one attempt per cycle; resit preparation strategy
+  - SJT Band still matters even when cognitive score is lower
+  - Encourage applicants to be realistic about school selection — avoid top-5 with sub-2,500 scores
+- Include one short bullet list
+- FAQ questions must address: can you get into medicine with a low UCAT, which schools weigh UCAT least, how to improve, and whether to resit or apply
+"""
+
+    if slug == "mmi-interviews-2026-50-real-scenarios-and-model-answer-frameworks":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What are the most commonly encountered MMI station types in 2026 UK medical school interviews?
+2. What makes a model answer framework actually useful — what structure do high-scoring candidates use?
+3. What categories of scenario trip up even well-prepared applicants?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,400 to 1,800 words
+- Opening paragraph must frame why MMI preparation requires scenario practice, not just knowledge
+- Include these exact <h2> sections in this order:
+  1. How MMI Interviews Work in 2026
+  2. Ethical Scenario Stations: Examples and Frameworks
+  3. Empathy and Communication Stations
+  4. Role Play Stations
+  5. Data Interpretation and Written Stations
+  6. NHS Knowledge and Current Affairs Stations
+  7. Common Mistakes and How to Avoid Them
+  8. Frequently Asked Questions
+- Must include:
+  - Each section (2-6) must contain at least 5 labelled scenario examples in a <ul> list
+  - For ethical scenarios: introduce the SBARR or four-principles framework (autonomy, beneficence, non-maleficence, justice)
+  - For empathy stations: introduce a simple structure — acknowledge, explore, respond
+  - Role play: explain candidates are marked on tone and listening, not on giving clinical advice
+  - NHS current affairs examples relevant to 2026: junior doctor contracts, waiting lists, AI in diagnostics
+  - Emphasise that assessors mark each station independently — bad stations can be recovered
+- Include one short bullet list
+- FAQ questions must address: how many stations are typical, whether you can ask for time to think, how to handle stations where you don't know the answer, and how to practise alone
+"""
+
+    if slug == "medical-schools-that-dont-care-about-gcses-a-strategic-selection-guide":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Which UK medical schools genuinely give less weight to GCSEs — and which still care despite claiming otherwise?
+2. What are the thresholds different schools apply, and how transparent are they about this?
+3. What strategy should applicants with weaker GCSEs follow?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,200 to 1,500 words
+- Opening paragraph must acknowledge that GCSEs matter at most schools, but not equally — and explain why
+- Include these exact <h2> sections in this order:
+  1. Why GCSEs Matter (and When They Don't)
+  2. Medical Schools With Lower GCSE Requirements
+  3. Medical Schools That Don't Screen on GCSEs at All
+  4. Graduate-Entry Courses: A Different Route
+  5. Building a Strong Application Despite Weak GCSEs
+  6. Frequently Asked Questions
+- Must include:
+  - Section 2 must contain an HTML <table>: School, GCSE Policy, What They Look For Instead — covering 5 schools (e.g. Lancaster, Keele, Sunderland, Lincoln, Hull York)
+  - Graduate-entry schools (Warwick, Swansea) typically do not screen on GCSEs at all
+  - GCSEs matter most for Oxford, Cambridge, UCL, Imperial, and Edinburgh
+  - UCAT and interview performance can compensate for weak GCSEs at many schools
+  - Mention the GAMSAT for graduate entry as an alternative to UCAT
+- Include one short bullet list
+- FAQ questions must address: what is a "low" GCSE grade for medicine, can you get in with C grades, whether schools ask for GCSE certificates, and the best advice for applicants with mixed results
+"""
+
+    if slug == "how-to-get-2800-in-the-ucat-a-week-by-week-revision-roadmap":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What preparation habits and techniques actually distinguish 2800+ scorers from average candidates?
+2. How should preparation be structured across 10-12 weeks — and what are the critical milestones?
+3. What are the most commonly wasted revision hours and how should they be redirected?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph must frame 2800+ as genuinely achievable with structured preparation — not just for exceptional students
+- Include these exact <h2> sections in this order:
+  1. What Does a 2800+ Score Actually Require?
+  2. The 12-Week UCAT Revision Roadmap
+  3. Verbal Reasoning: Speed and Accuracy Strategies
+  4. Decision Making and Quantitative Reasoning: The Logic Approach
+  5. Abstract Reasoning: Pattern Spotting Under Pressure
+  6. Situational Judgement: How to Score Band 1
+  7. Mock Exams and Final Preparation
+  8. Frequently Asked Questions
+- Must include:
+  - Section 2 must be a structured <ul> week-by-week plan (Weeks 1-12), each with specific focus areas
+  - 2800+ corresponds to approximately 700 per subtest — in the top 10% of all sitters
+  - Official UCAT practice materials (Medify, Kaplan, Question Bank) — mention at least 2
+  - Time management is critical: each subtest is strictly timed
+  - SJT Band 1 requires understanding of GMC Good Medical Practice principles
+  - Diminishing returns on practice without review — reviewing wrong answers is as important as volume
+- Include one short bullet list
+- FAQ questions must address: how many practice questions to do per day, when to start, the difference between Medify and the official question bank, and whether the UCAT can be taken more than once per cycle
+"""
+
+    if slug == "2026-grammar-school-league-tables-top-schools-ranked-by-gcse-results":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Which grammar schools consistently top GCSE league tables — and what does that data actually tell parents?
+2. How should parents interpret league table data? What is misleading about raw rankings?
+3. What do the top-performing grammar schools in 2026 have in common?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,200 to 1,500 words
+- Opening paragraph must address why parents rely on league tables — and what these tables can and cannot tell you
+- Include these exact <h2> sections in this order:
+  1. How Grammar School League Tables Work
+  2. Top Grammar Schools by GCSE Results: 2025 Data
+  3. Regional Breakdown: Where Grammar Schools Perform Best
+  4. What to Look for Beyond Raw Rankings
+  5. How to Use League Table Data Strategically
+  6. Frequently Asked Questions
+- Must include:
+  - Section 2 must contain an HTML <table>: School Name, Location, Approx. % 9-7 Grades, Value-Added Score (approx.), Notable Features — covering at least 8 schools (include: King Edward VI Five Ways, Wallington County Grammar, Dartford Grammar, Kendrick, Reading School, Aylesbury Grammar, Tiffin, Wilson's)
+  - Progress 8 and Attainment 8 explained briefly as the two main DfE metrics
+  - Distinguish between selective (grammar) and super-selective grammars (e.g. King Edward's Birmingham, Tiffin)
+  - Location matters: some grammar schools draw national applicants; others are strictly local
+  - League table position does not always predict best fit — pastoral care and culture matter
+- Include one short bullet list
+- FAQ questions must address: which grammar school is best in England, how to compare two schools in the same area, whether to prioritise league table position or school culture, and where to find official DfE data
+"""
+
+    if slug == "11-plus-pass-marks-by-region-how-high-do-you-need-to-score":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What are the actual 11+ pass marks in different regions of England — and why do they vary so much?
+2. What is standardised scoring and how does it differ from raw marks?
+3. What does a parent need to know to understand whether their child's score was sufficient?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,200 to 1,500 words
+- Opening paragraph must immediately explain that pass marks are not fixed numbers — they depend on the region, school, and year
+- Include these exact <h2> sections in this order:
+  1. Why 11 Plus Pass Marks Vary by Region
+  2. How Standardised Scores Work
+  3. 11 Plus Pass Marks by Region: 2025 Overview
+  4. Super-Selective vs. Standard Grammar Schools
+  5. What to Do If Your Child Is Near the Borderline
+  6. Frequently Asked Questions
+- Must include:
+  - Section 3 must contain an HTML <table>: Region, Test Provider (GL/CEM/Local), Standardised Score Target, Raw Score Range (approx.), Number of Grammar Schools — covering at least 8 regions (Kent, Buckinghamshire, Lincolnshire, West Midlands, Essex, Berkshire, Greater Manchester, Surrey)
+  - GL Assessment uses standardised scores (mean 100, SD 15); CEM uses percentiles
+  - Super-selectives (e.g. King Edward's, Tiffin, Henrietta Barnett) may require 130+ standardised score
+  - Standard grammars may offer places to children scoring 111-115+
+  - Borderline policies: some schools have waiting lists or second round interviews
+  - Mention that schools' own websites publish qualifying score ranges for recent years
+- Include one short bullet list
+- FAQ questions must address: what is a passing score in Kent, how CEM results are communicated, what to do if a score is borderline, and whether there is an appeal process
+"""
+
+    if slug == "gl-assessment-vs-cem-vs-local-school-exams-the-2026-format-guide":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What are the concrete differences between GL Assessment, CEM, and locally-set 11+ exams in format, content, and scoring?
+2. Which regions use which provider — and how does that determine preparation strategy?
+3. What are the most common mistakes families make in preparing for the wrong exam type?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,200 to 1,500 words
+- Opening paragraph must explain that getting the wrong preparation materials is one of the biggest 11+ mistakes
+- Include these exact <h2> sections in this order:
+  1. The Three Types of 11 Plus Exam
+  2. GL Assessment: Format and What to Expect
+  3. CEM: Format and What to Expect
+  4. Local School Exams: Who Sets Them and Why
+  5. Region-by-Region Guide: Who Uses Which Provider
+  6. Preparing for the Right Exam: What to Buy and What to Avoid
+  7. Frequently Asked Questions
+- Must include:
+  - Section 5 must contain an HTML <table>: Region, Provider, Subjects Tested, Scoring Method — covering at least 10 regions (Kent, Bucks, Lincs, Essex, Birmingham, Surrey, Wirral, Gloucestershire, Berkshire, Devon)
+  - GL Assessment: verbal reasoning, non-verbal reasoning, maths, English — often separate papers; multiple choice
+  - CEM: integrated paper mixing comprehension, vocabulary, numerical, spatial; marks awarded for speed and accuracy
+  - Local exams: e.g. Sutton schools consortium, CSSE (Essex), Hertfordshire — independently designed
+  - Preparation resources: GL official practice papers vs. CEM-style Bond books — NOT interchangeable
+  - GL questions tend to be more predictable; CEM is deliberately harder to tutor for
+- Include one short bullet list
+- FAQ questions must address: how to find out which test a school uses, whether GL or CEM is harder, whether past papers are available, and whether preparation for one helps with the other
+"""
+
+    if slug == "the-6-month-11-plus-countdown-a-monthly-study-milestone-plan":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What does a realistic 6-month 11+ preparation plan look like for a Year 5 or early Year 6 child?
+2. What should be covered in each month — and what should be left until closer to the exam?
+3. What do parents consistently underestimate or over-prioritise in 11+ preparation?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,200 to 1,500 words
+- Opening paragraph must reassure parents that 6 months is a realistic timeline if well-structured
+- Include these exact <h2> sections in this order:
+  1. Is 6 Months Enough for the 11 Plus?
+  2. Month 1: Diagnosis and Baseline Assessment
+  3. Month 2: Core Skills Foundation
+  4. Month 3: Verbal and Non-Verbal Reasoning Intensive
+  5. Month 4: Timed Practice and Stamina Building
+  6. Month 5: Mock Exams and Weak Area Focus
+  7. Month 6: Final Preparation and Exam Technique
+  8. Frequently Asked Questions
+- Must include:
+  - Each month section (2-7) must be a <ul> list of 4-6 specific milestones or activities
+  - Distinguish between GL and CEM prep timelines (CEM requires more comprehension work from the start)
+  - Month 1 should include a diagnostic test to identify weak areas
+  - Month 5 should include at least 3 full timed mock exams
+  - Final week: light revision only, prioritise sleep and confidence
+  - Mention that tutoring can help but parental involvement is also key
+- Include one short bullet list elsewhere in the post
+- FAQ questions must address: when to start 11+ preparation for Year 5 vs Year 6, how many hours per week to study, whether to use a tutor, and how to handle a child who is anxious about the test
+"""
+
+    if slug == "creative-writing-for-the-11-plus-how-to-score-in-the-top-5":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What actually distinguishes top-5% 11+ creative writing responses from merely competent ones?
+2. What structures and techniques do high-scoring students consistently use?
+3. What errors do most children make that immediately place them in the average band?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,100 to 1,400 words
+- Opening paragraph must challenge the misconception that creative writing is about imagination alone — structure and technique matter just as much
+- Include these exact <h2> sections in this order:
+  1. Why Creative Writing Matters in the 11 Plus
+  2. What Markers Are Actually Looking For
+  3. Structure: Opening, Development, and Ending
+  4. Language Techniques That Impress Markers
+  5. Common Types of 11 Plus Creative Writing Prompts
+  6. How to Practise Effectively
+  7. Frequently Asked Questions
+- Must include:
+  - Section 4 must include a <ul> of at least 8 specific techniques: e.g. varied sentence length, show don't tell, sensory detail, rule of three, simile/metaphor, direct speech, paragraph control, cyclical endings
+  - Markers want a clear narrative arc — not a rambling stream of ideas
+  - A strong opening line is disproportionately important — spend time on it
+  - Vocabulary range matters: use precise verbs, avoid overused adjectives (nice, big, good)
+  - Children should practise writing 300-400 words in 25-30 minutes under timed conditions
+  - Reading quality fiction is the single best long-term preparation
+- Include one short bullet list elsewhere in the post
+- FAQ questions must address: how long the creative writing section is, whether there is a word minimum, how to improve vocabulary, and how many creative writing pieces to practise before the exam
+"""
+
+    if slug == "grammar-school-vs-private-school-which-is-best-for-your-child":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What are the genuine differences between grammar schools and private schools — academically, socially, and financially?
+2. What factors should actually determine the choice — and what factors are overrated?
+3. In what situations is one clearly better than the other?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,200 to 1,500 words
+- Opening paragraph must acknowledge that this is a genuine dilemma for many families and that the answer is not universal
+- Include these exact <h2> sections in this order:
+  1. Grammar Schools vs. Private Schools: The Key Differences
+  2. Academic Standards: A Fair Comparison
+  3. Social Environment and Extracurricular Opportunities
+  4. The Cost Question: Grammar vs. Fees
+  5. Which Is Better for Oxbridge and Competitive University Entry?
+  6. How to Decide What Is Right for Your Child
+  7. Frequently Asked Questions
+- Must include:
+  - Section 1 must contain an HTML <table>: Factor, Grammar School, Private School — covering: cost, selectivity, academic focus, pastoral care, class sizes, sport and arts, diversity, 6th form options
+  - Grammar schools are fully state-funded; top private schools charge £15,000-£45,000 per year
+  - Academic outcomes at top grammars are comparable to selective independent schools
+  - Private schools typically offer stronger extracurricular provision and smaller class sizes
+  - Super-selective grammars (Tiffin, King Edward's, Henrietta Barnett) may out-perform mid-tier private schools
+  - The choice often depends on geography: not all areas have grammar schools
+- Include one short bullet list elsewhere in the post
+- FAQ questions must address: which produces better university results, whether private school offers better pastoral support, how to decide between a grammar offer and a private school offer, and whether grammar school is really free
+"""
+
+    if slug == "is-the-11-plus-too-stressful-how-to-build-resilience-in-your-child":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What does the research actually say about the psychological impact of 11+ preparation on children?
+2. What parental behaviours make anxiety worse — and which genuinely help?
+3. What practical strategies build resilience without simply dismissing the pressure?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,100 to 1,400 words
+- Opening paragraph must validate that the 11+ is genuinely stressful for some children — while also noting that the experience can build confidence when handled well
+- Include these exact <h2> sections in this order:
+  1. Is the 11 Plus Actually Too Stressful?
+  2. Warning Signs That Preparation Has Become Counterproductive
+  3. How Parents Accidentally Increase Anxiety
+  4. Practical Strategies to Build Resilience
+  5. Helping Children Cope with Exam Day Itself
+  6. What to Do If Your Child Does Not Pass
+  7. Frequently Asked Questions
+- Must include:
+  - Section 3 must be a <ul> of at least 6 specific parental behaviours that inadvertently add pressure (e.g. talking about results constantly, comparing to siblings, drilling for hours at weekends)
+  - Section 4 must be a <ul> of at least 6 practical strategies: e.g. separating effort from outcome, normalising mistakes in practice, mindfulness or breathing techniques, celebrating small wins
+  - Acknowledge that some children genuinely thrive on structured challenge; others need more support
+  - Recommend speaking to teachers or a child psychologist if anxiety becomes clinical
+  - The pass/fail framing is itself unhealthy — school fit matters more than the selective status
+- Include one short bullet list elsewhere in the post
+- FAQ questions must address: at what age preparation stress becomes harmful, whether to stop preparation if a child is very anxious, how to explain a failed result, and whether 11+ failure affects future outcomes
+"""
+
+    if slug == "the-new-esat-and-tmua-exams-a-preparation-guide-for-oxbridge-2026":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What exactly are the ESAT and TMUA — and which courses and universities require each?
+2. How do these exams differ from each other and from the tests they replaced (NSAA, ENGAA)?
+3. What preparation strategies work best for each?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,200 to 1,500 words
+- Opening paragraph must immediately explain that 2026 applicants face a changed admissions test landscape and that getting confused between ESAT and TMUA is a costly mistake
+- Include these exact <h2> sections in this order:
+  1. What Are the ESAT and TMUA?
+  2. Who Needs to Take Each Exam?
+  3. ESAT: Format, Content, and Scoring
+  4. TMUA: Format, Content, and Scoring
+  5. How to Prepare for the ESAT
+  6. How to Prepare for the TMUA
+  7. Frequently Asked Questions
+- Must include:
+  - Section 2 must contain an HTML <table>: Subject/Course, University, Required Test — covering at least 8 subject-university combinations (e.g. Engineering at Cambridge → ESAT; Maths at Cambridge → TMUA optional but advantageous; Economics at Cambridge → TMUA; Physics at Cambridge → ESAT; Natural Sciences at Cambridge → ESAT; Maths at Oxford → MAT, not ESAT/TMUA; Engineering at Oxford → PAT)
+  - ESAT replaced the ENGAA and NSAA in 2024; TMUA has been used since 2016 but expanded
+  - ESAT has a core Mathematics 1 module plus subject-specific modules (Physics, Chemistry, Biology)
+  - TMUA tests mathematical reasoning and application — not curriculum content directly
+  - Both are scored on a 1-9 scale; typical competitive scores: TMUA 6.5+, ESAT equivalent
+  - Free preparation materials available from Cambridge Assessment Admissions Testing
+- Include one short bullet list
+- FAQ questions must address: whether the ESAT replaces the NSAA, the difference between MAT and TMUA, how to access past papers, and whether a poor score prevents an offer
+"""
+
+    if slug == "oxbridge-interview-questions-100-real-examples-for-every-major-subject":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What types of interview questions genuinely distinguish Oxbridge interviews from typical interviews?
+2. What subject areas have the most distinctive or surprising question styles?
+3. What do these questions reveal about what Oxbridge actually wants to see in candidates?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,400 to 1,800 words
+- Opening paragraph must frame Oxbridge interviews as intellectual conversations, not knowledge tests — and explain what this means for how to answer
+- Include these exact <h2> sections in this order:
+  1. What Makes Oxbridge Interview Questions Different?
+  2. Science and Engineering Questions
+  3. Medicine and Biology Questions
+  4. Mathematics Questions
+  5. Humanities and Social Sciences Questions
+  6. Law Questions
+  7. Economics and PPE Questions
+  8. How to Approach Any Oxbridge Question
+  9. Frequently Asked Questions
+- Must include:
+  - Each subject section (2-7) must contain at least 6 specific example questions in a <ul> list — aiming for ~50 total across sections
+  - For each section, include 1-2 sentences of commentary on what the interviewer is actually looking for
+  - Emphasise: interviewers expect candidates to think out loud and be wrong — that is the point
+  - Common trap: trying to reach a definitive answer quickly rather than exploring the question
+  - Bring genuine curiosity — candidates who have done super-curricular reading often find these easier
+  - Preparation: practise with past personal statement topics and subject-specific problem sets
+- Include one short bullet list elsewhere in the post
+- FAQ questions must address: whether there are "right" answers to Oxbridge interview questions, how long interviews last, whether you should memorise sample questions, and how to handle a question you genuinely cannot answer
+"""
+
+    if slug == "what-is-super-curricular-how-to-build-a-profile-for-oxford-and-cambridge":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What is the difference between extracurricular and super-curricular — and why does this distinction matter so much for Oxbridge?
+2. What actually counts as strong super-curricular engagement for different subjects?
+3. What are common mistakes students make when trying to build a super-curricular profile?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,200 to 1,500 words
+- Opening paragraph must clearly define super-curricular and distinguish it from general extracurricular — this confusion is the most common mistake
+- Include these exact <h2> sections in this order:
+  1. What Is Super-Curricular Activity?
+  2. Why Oxbridge Cares About Super-Curricular Engagement
+  3. Super-Curricular Ideas by Subject
+  4. How to Document and Reflect on Your Super-Curricular Activities
+  5. How the New UCAS Format Changes Super-Curricular Evidence
+  6. Common Mistakes to Avoid
+  7. Frequently Asked Questions
+- Must include:
+  - Section 3 must be a <ul> list with at least 6 subject areas (Sciences, Maths, Medicine, Humanities, Social Sciences, Law) each with 3-4 specific examples of super-curricular activities
+  - Distinction: extracurricular = sport, music, volunteering; super-curricular = reading beyond the syllabus, attending lectures, independent research, online courses related to your subject
+  - The new UCAS 3-question format has a dedicated question for super-curricular engagement
+  - Quality matters more than quantity: deep engagement with one topic beats a list of surface-level activities
+  - Candidates should be prepared to discuss anything they mention in their UCAS answers during the interview
+  - Reading recommendations: journals (Nature, The Economist, JSTOR), open courseware (MIT OpenCourseWare, Coursera)
+- Include one short bullet list elsewhere in the post
+- FAQ questions must address: what counts as super-curricular, whether work experience is super-curricular, how early to start, and whether free activities are as valid as paid ones
+"""
+
+    if slug == "oxford-vs-cambridge-which-university-is-easier-for-your-subject":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Which subjects genuinely have different acceptance rates or requirements at Oxford vs. Cambridge?
+2. What factors beyond acceptance rates should inform a subject-specific choice?
+3. What are the biggest misconceptions students have when comparing the two universities?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,200 to 1,500 words
+- Opening paragraph must acknowledge that neither is universally "easier" — but subject-specific data and structural differences genuinely matter
+- Include these exact <h2> sections in this order:
+  1. The Honest Answer: Neither Is Simply Easier
+  2. Acceptance Rates by Subject: Oxford vs. Cambridge
+  3. Structural Differences That Affect Your Application
+  4. Admissions Tests: Where They Differ
+  5. The Interview: How Each University Approaches It
+  6. Which Should You Apply To for Your Subject?
+  7. Frequently Asked Questions
+- Must include:
+  - Section 2 must contain an HTML <table>: Subject, Oxford Acceptance Rate (approx.), Cambridge Acceptance Rate (approx.), Key Difference — covering at least 8 subjects (Medicine, Maths, Law, Economics, English, History, Computer Science, Engineering)
+  - Structural: Oxford uses more tutorial-based learning; Cambridge uses supervision system — similar in principle
+  - Cambridge has Natural Sciences as a broad entry route; Oxford separates Physics, Chemistry, Biology
+  - Cambridge does not use UCAT for Medicine; Oxford introduced UCAT from 2024
+  - Application timing: both apply via UCAS, same deadline — but admissions test timing varies
+  - Encourage candidates to choose based on course structure fit, not perceived ease
+- Include one short bullet list
+- FAQ questions must address: can you apply to both Oxford and Cambridge, which is more prestigious, which is harder for medicine, and whether college choice affects acceptance rate
+"""
+
+    if slug == "contextual-admissions-how-your-background-can-lower-your-offer-requirements":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What is contextual admissions and how does it actually work in practice at UK universities?
+2. Which factors count as contextual — and which universities are most transparent about how they use this information?
+3. What do students with contextual flags need to do differently in their applications?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,100 to 1,400 words
+- Opening paragraph must explain contextual admissions clearly and directly — many students have never heard of it despite being eligible
+- Include these exact <h2> sections in this order:
+  1. What Is Contextual Admissions?
+  2. Which Flags Are Used in Contextual Decisions?
+  3. Which Universities Offer Contextual Reduced Offers?
+  4. How Much Can Your Offer Be Reduced?
+  5. Do You Need to Do Anything Differently?
+  6. Frequently Asked Questions
+- Must include:
+  - Section 3 must contain an HTML <table>: University, Types of Contextual Flags Used, Typical Reduction — covering at least 6 universities (UCL, Bristol, Edinburgh, Manchester, Sheffield, Leeds)
+  - Common contextual flags: care-leaver status, first generation to university, Polar4/TUNDRA quintile 1-2 postcodes, attending a low-performing school, Free School Meals
+  - UCAS flags this automatically from postcode and school data — students do not always need to self-declare
+  - Reductions can be 1-3 grade points below standard offer
+  - Oxford, Cambridge, and Imperial also have contextual programmes (UNIQ, CUSU, Sutton Trust links)
+  - Contextual data is not disclosed to applicants at every institution
+- Include one short bullet list
+- FAQ questions must address: how to find out if you qualify, whether contextual admission affects your degree experience, how to check your school's performance rating, and whether you should mention context in your personal statement
+"""
+
+    if slug == "is-private-tuition-worth-it-a-cost-benefit-analysis-of-1-to-1-learning":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What does the research actually say about the effectiveness of private tuition on academic outcomes?
+2. When is tuition most vs. least effective — and what makes the difference?
+3. How should parents think about the cost relative to the likely benefit?
+
+Now write a detailed blog post in HTML: {title}
+
+Requirements:
+- Length: 1,100 to 1,400 words
+- Opening paragraph must be balanced — acknowledge tuition is expensive and that it is not always necessary, while also presenting the evidence that it can significantly help
+- Include these exact <h2> sections in this order:
+  1. The Evidence for Private Tuition
+  2. When Tuition Makes the Most Difference
+  3. When Tuition Is Less Likely to Help
+  4. The Real Cost of Tuition: A Breakdown
+  5. How to Get the Best Return on Tuition Investment
+  6. Frequently Asked Questions
+- Must include:
+  - Reference EEF (Education Endowment Foundation) evidence: 1-to-1 tuition shows on average +5 months learning progress
+  - Tuition is most effective when: child has specific gaps not addressed at school, preparing for high-stakes exams, working with an expert in a specialist subject
+  - Cost range: £40-£80/hr for GCSE; £60-£100/hr for A-Level; £100-£200/hr for Oxbridge/admissions prep in London
+  - Section 4 must include a simple cost scenario: e.g. 1 hour per week for 10 weeks at £60/hr = £600
+  - Quality varies enormously: an Oxbridge-educated specialist tutor is not the same as a general undergraduate
+  - Alternative: group tuition at lower cost per session may suit some learners
+- Include one short bullet list
+- FAQ questions must address: how to find a good tutor, how many sessions are typically needed, whether online tuition is as effective as in-person, and whether tuition is tax-deductible for businesses
+"""
+
     # Generic blog prompt for remaining posts
     return f"""
 {master_context}
@@ -1478,10 +2136,119 @@ BLOG_RELATED_RESOURCES = {
         "link to the A-Level tuition page at /services/levels/a-level-tuition using anchor text 'A-Level tuition', "
         "and link to the consultation page at /consultation using anchor text 'book a free consultation'."
     ),
+    # ── New blog posts (Phase C) ──────────────────────────────────────────────
+    "the-new-ucas-personal-statement-2026-a-guide-to-the-3-question-format": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the University Personal Statement page at /services/specialist-admissions/university-personal-statement using anchor text 'personal statement support with Leading Tuition', "
+        "and link to the Oxbridge Admissions Preparation page at /services/specialist-admissions/oxbridge-admissions-preparation using anchor text 'Oxbridge admissions preparation'."
+    ),
+    "ucat-cut-offs-for-every-uk-medical-school-5-year-trends-and-2026-predictions": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the UCAT preparation page at /services/specialist-admissions/ucat-tutor using anchor text 'UCAT preparation with Leading Tuition', "
+        "link to the Medical School Guides hub at /medical-schools/ using anchor text 'medical school entry guides', "
+        "and link to the Medicine Preparation hub at /services/specialist-admissions/medicine-prep-hub using anchor text 'Medicine Preparation hub'."
+    ),
+    "oxford-cambridge-and-ucl-medicine-mastering-the-ucat-for-elite-universities": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the UCAT preparation page at /services/specialist-admissions/ucat-tutor using anchor text 'UCAT preparation with Leading Tuition', "
+        "link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Oxbridge interview preparation', "
+        "and link to the Medicine Preparation hub at /services/specialist-admissions/medicine-prep-hub using anchor text 'Medicine Preparation hub'."
+    ),
+    "low-ucat-score-top-5-strategic-uk-medical-schools-to-apply-to-in-2026": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the UCAT preparation page at /services/specialist-admissions/ucat-tutor using anchor text 'UCAT preparation with Leading Tuition', "
+        "link to the Medical School Guides hub at /medical-schools/ using anchor text 'medical school entry guides', "
+        "and link to the consultation page at /consultation using anchor text 'book a free consultation to discuss your UCAT score'."
+    ),
+    "mmi-interviews-2026-50-real-scenarios-and-model-answer-frameworks": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the MMI coaching page at /services/specialist-admissions/mmi-interview-coaching using anchor text 'MMI interview coaching with Leading Tuition', "
+        "link to the Medical School Interviews page at /services/specialist-admissions/medical-school-interviews/ using anchor text 'medical school interview preparation', "
+        "and link to the Medicine Preparation hub at /services/specialist-admissions/medicine-prep-hub using anchor text 'Medicine Preparation hub'."
+    ),
+    "medical-schools-that-dont-care-about-gcses-a-strategic-selection-guide": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Medical School Guides hub at /medical-schools/ using anchor text 'complete medical school entry guides', "
+        "link to the UCAT preparation page at /services/specialist-admissions/ucat-tutor using anchor text 'UCAT preparation with Leading Tuition', "
+        "and link to the Medicine Preparation hub at /services/specialist-admissions/medicine-prep-hub using anchor text 'Medicine Preparation hub'."
+    ),
+    "how-to-get-2800-in-the-ucat-a-week-by-week-revision-roadmap": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the UCAT preparation page at /services/specialist-admissions/ucat-tutor using anchor text 'specialist UCAT tuition with Leading Tuition', "
+        "and link to the Medicine Preparation hub at /services/specialist-admissions/medicine-prep-hub using anchor text 'Medicine Preparation hub'."
+    ),
+    "2026-grammar-school-league-tables-top-schools-ranked-by-gcse-results": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the 11+ tuition page at /services/levels/11plus-tuition using anchor text '11+ tuition with Leading Tuition', "
+        "and link to the GCSE tuition page at /services/levels/gcse-tuition using anchor text 'GCSE tuition'."
+    ),
+    "11-plus-pass-marks-by-region-how-high-do-you-need-to-score": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the 11+ tuition page at /services/levels/11plus-tuition using anchor text '11+ tuition with Leading Tuition', "
+        "and link to the consultation page at /consultation using anchor text 'book a free 11+ consultation'."
+    ),
+    "gl-assessment-vs-cem-vs-local-school-exams-the-2026-format-guide": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the 11+ tuition page at /services/levels/11plus-tuition using anchor text '11+ tuition with Leading Tuition', "
+        "and link to the Maths tutor page at /services/subjects/maths-tutor using anchor text 'specialist Maths tutoring'."
+    ),
+    "the-6-month-11-plus-countdown-a-monthly-study-milestone-plan": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the 11+ tuition page at /services/levels/11plus-tuition using anchor text '11+ tuition with Leading Tuition', "
+        "and link to the consultation page at /consultation using anchor text 'book a free consultation to discuss your 11+ preparation'."
+    ),
+    "creative-writing-for-the-11-plus-how-to-score-in-the-top-5": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the 11+ tuition page at /services/levels/11plus-tuition using anchor text '11+ tuition with Leading Tuition', "
+        "and link to the English tutor page at /services/subjects/english-tutor using anchor text 'specialist English tutoring'."
+    ),
+    "grammar-school-vs-private-school-which-is-best-for-your-child": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the 11+ tuition page at /services/levels/11plus-tuition using anchor text '11+ tuition with Leading Tuition', "
+        "and link to the consultation page at /consultation using anchor text 'book a free consultation to discuss school options'."
+    ),
+    "is-the-11-plus-too-stressful-how-to-build-resilience-in-your-child": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the 11+ tuition page at /services/levels/11plus-tuition using anchor text '11+ tuition with Leading Tuition', "
+        "and link to the consultation page at /consultation using anchor text 'book a free consultation'."
+    ),
+    "the-new-esat-and-tmua-exams-a-preparation-guide-for-oxbridge-2026": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the ESAT preparation page at /admissions-tests/esat-preparation/ using anchor text 'ESAT preparation with Leading Tuition', "
+        "link to the TMUA preparation page at /admissions-tests/tmua-preparation/ using anchor text 'TMUA preparation with Leading Tuition', "
+        "and link to the Oxbridge Admissions Preparation page at /services/specialist-admissions/oxbridge-admissions-preparation using anchor text 'Oxbridge admissions preparation'."
+    ),
+    "oxbridge-interview-questions-100-real-examples-for-every-major-subject": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'subject-specific Oxbridge interview preparation', "
+        "and link to the Oxbridge Admissions Preparation page at /services/specialist-admissions/oxbridge-admissions-preparation using anchor text 'Oxbridge admissions preparation with Leading Tuition'."
+    ),
+    "what-is-super-curricular-how-to-build-a-profile-for-oxford-and-cambridge": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Admissions Preparation page at /services/specialist-admissions/oxbridge-admissions-preparation using anchor text 'Oxbridge admissions preparation', "
+        "link to the University Personal Statement page at /services/specialist-admissions/university-personal-statement using anchor text 'personal statement support', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Oxbridge interview preparation'."
+    ),
+    "oxford-vs-cambridge-which-university-is-easier-for-your-subject": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Oxbridge interview preparation by subject', "
+        "and link to the Oxbridge Admissions Preparation page at /services/specialist-admissions/oxbridge-admissions-preparation using anchor text 'Oxbridge admissions preparation with Leading Tuition'."
+    ),
+    "contextual-admissions-how-your-background-can-lower-your-offer-requirements": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the University Personal Statement page at /services/specialist-admissions/university-personal-statement using anchor text 'personal statement support with Leading Tuition', "
+        "and link to the Oxbridge Admissions Preparation page at /services/specialist-admissions/oxbridge-admissions-preparation using anchor text 'Oxbridge admissions preparation'."
+    ),
+    "is-private-tuition-worth-it-a-cost-benefit-analysis-of-1-to-1-learning": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the GCSE tuition page at /services/levels/gcse-tuition using anchor text 'GCSE tuition with Leading Tuition', "
+        "link to the A-Level tuition page at /services/levels/a-level-tuition using anchor text 'A-Level tuition', "
+        "and link to the consultation page at /consultation using anchor text 'book a free consultation'."
+    ),
 }
 
 
-def generate_blog_pages(limit=None):
+def generate_blog_pages(limit=None, new_only=False):
     posts = load_csv("blog_topics.csv")
     if limit is not None:
         posts = posts[:limit]
@@ -1494,6 +2261,14 @@ def generate_blog_pages(limit=None):
         slug = title.lower()
         slug = _re.sub(r"[^\w\s-]", "", slug)
         slug = _re.sub(r"\s+", "-", slug).strip("-")
+
+        blog_dir = OUTPUT_DIR / "blog"
+        blog_dir.mkdir(parents=True, exist_ok=True)
+        file_path = blog_dir / f"{slug}.html"
+
+        if new_only and file_path.exists():
+            print(f"  SKIP (exists): blog/{slug}.html")
+            continue
 
         _ucat_mmi_oxbridge = any(kw in slug for kw in ("ucat", "mmi", "oxbridge"))
         meta_desc = (
@@ -1510,9 +2285,6 @@ def generate_blog_pages(limit=None):
         schema_extra = faq_schema + "\n" + blogposting_schema
         html = blog_page_template(title=title, content=content, meta_desc=meta_desc, slug=slug, og_type="article", schema_extra=schema_extra)
 
-        blog_dir = OUTPUT_DIR / "blog"
-        blog_dir.mkdir(parents=True, exist_ok=True)
-        file_path = blog_dir / f"{slug}.html"
         file_path.write_text(html, encoding="utf-8")
         print(f"Generated blog post: {file_path}")
 
@@ -2265,6 +3037,210 @@ def generate_medical_school_pages(limit=None, new_only=False):
         print(f"Generated medical school page: medical-schools/{slug}/")
 
 
+# ── Oxbridge Interview page metadata ─────────────────────────────────────────
+
+OXBRIDGE_INTERVIEW_META = {
+    "medicine-interview": (
+        "Expert Oxbridge Medicine interview preparation with Leading Tuition. "
+        "MMI and panel interview coaching from Oxford and Cambridge-educated tutors. 4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "law-interview": (
+        "Expert Oxford and Cambridge Law interview preparation with Leading Tuition. "
+        "LNAT coaching and interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "maths-interview": (
+        "Expert Oxford and Cambridge Mathematics interview preparation with Leading Tuition. "
+        "MAT and STEP coaching alongside interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot."
+    ),
+    "physics-interview": (
+        "Expert Oxford and Cambridge Physics interview preparation with Leading Tuition. "
+        "PAT and ESAT coaching alongside interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot."
+    ),
+    "chemistry-interview": (
+        "Expert Oxford and Cambridge Chemistry interview preparation with Leading Tuition. "
+        "CAT and ESAT coaching alongside interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot."
+    ),
+    "biology-interview": (
+        "Expert Oxford and Cambridge Biology interview preparation with Leading Tuition. "
+        "Interview coaching and ESAT preparation from Oxbridge-educated tutors. 4.8/5 Trustpilot."
+    ),
+    "engineering-interview": (
+        "Expert Oxford and Cambridge Engineering interview preparation with Leading Tuition. "
+        "PAT and ESAT coaching alongside interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot."
+    ),
+    "economics-interview": (
+        "Expert Oxford and Cambridge Economics interview preparation with Leading Tuition. "
+        "TSA and TMUA coaching alongside interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot."
+    ),
+    "history-interview": (
+        "Expert Oxford and Cambridge History interview preparation with Leading Tuition. "
+        "HAT coaching and interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "english-interview": (
+        "Expert Oxford and Cambridge English interview preparation with Leading Tuition. "
+        "ELAT coaching and interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "ppe-interview": (
+        "Expert Oxford PPE interview preparation with Leading Tuition. "
+        "TSA coaching and interview practice from Oxford-educated tutors. 4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "computer-science-interview": (
+        "Expert Oxford and Cambridge Computer Science interview preparation with Leading Tuition. "
+        "MAT and TMUA coaching alongside interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot."
+    ),
+    "classics-interview": (
+        "Expert Oxford and Cambridge Classics interview preparation with Leading Tuition. "
+        "Interview coaching and written work preparation from Oxbridge-educated tutors. 4.8/5 Trustpilot."
+    ),
+    "modern-languages-interview": (
+        "Expert Oxford and Cambridge Modern Languages interview preparation with Leading Tuition. "
+        "MLAT coaching and interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot."
+    ),
+    "geography-interview": (
+        "Expert Oxford and Cambridge Geography interview preparation with Leading Tuition. "
+        "Interview coaching and written work preparation from Oxbridge-educated tutors. 4.8/5 Trustpilot."
+    ),
+    "psychology-interview": (
+        "Expert Oxford and Cambridge Psychology interview preparation with Leading Tuition. "
+        "Interview coaching from Oxbridge-educated tutors. 4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "natural-sciences-interview": (
+        "Expert Cambridge Natural Sciences interview preparation with Leading Tuition. "
+        "ESAT coaching and interview practice from Cambridge-educated tutors. 4.8/5 Trustpilot. Book a free consultation."
+    ),
+    "philosophy-interview": (
+        "Expert Oxford and Cambridge Philosophy interview preparation with Leading Tuition. "
+        "PHIL test coaching and interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot."
+    ),
+}
+
+
+def oxbridge_interview_prompt(slug: str, title: str, subjects: str,
+                              oxford_test: str, cambridge_test: str, keyword: str) -> str:
+    return f"""
+You are writing an Oxbridge interview preparation service page for Leading Tuition, a UK tutoring company.
+
+Subject(s): {subjects}
+Oxford admissions test: {oxford_test}
+Cambridge admissions test: {cambridge_test}
+
+Audience:
+- A Year 12 or Year 13 student (or their parent) preparing for Oxford or Cambridge interviews in {subjects}
+- They want specific, actionable guidance — not generic interview tips
+- They are anxious but ambitious, and want to know exactly what to expect and how to prepare
+
+Global rules:
+- Write for a UK student, not an SEO algorithm
+- Use a clear, warm, authoritative tone
+- Output plain HTML only — no markdown
+- Use only these tags: <p>, <h2>, <ul>, <li>, <strong>
+- Do not include <html>, <head>, or <body>
+- Do not include CTA buttons or footer text — the template handles those
+- Include one FAQ section with exactly 4 questions
+- Never mention BMAT as a current admissions test — it was abolished in 2023
+- Never use filler phrases like "look no further" or "we've got you covered"
+- After all HTML content, on a new line, output exactly 4 FAQ pairs in this format (no spaces, no line breaks inside):
+FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}}]
+
+Before writing, think through:
+1. What makes the {subjects} Oxbridge interview genuinely distinctive — what does it assess that other interviews don't?
+2. What are the most common mistakes candidates make in {subjects} interviews, and why?
+3. What does a top-1% interview performance in {subjects} actually look like?
+
+Now write a detailed Oxbridge interview preparation service page in HTML: {title}
+
+Requirements:
+- Length: 1,050 to 1,250 words
+- Opening paragraph must immediately explain what makes {subjects} Oxbridge interviews different from school or sixth-form expectations
+- Include these exact <h2> sections in this order:
+  1. What to Expect in a {subjects} Oxbridge Interview
+  2. The Admissions Tests: {oxford_test} (Oxford) and {cambridge_test} (Cambridge)
+  3. How to Prepare for Your {subjects} Interview
+  4. Example Interview Questions for {subjects}
+  5. Common Mistakes and How to Avoid Them
+  6. Frequently Asked Questions about {subjects} Oxbridge Interviews
+- Must include:
+  - Section 4 must contain a <ul> of at least 5 genuine example interview questions for {subjects} — make them intellectually challenging and subject-specific
+  - Specific advice on thinking aloud and engaging with the question even when uncertain
+  - Distinction between what Oxford and Cambridge look for if there is a meaningful difference
+  - Admissions test context: how {oxford_test} at Oxford and {cambridge_test} at Cambridge relate to interview preparation
+  - A brief note on super-curricular preparation relevant to {subjects}
+- Include one short bullet list
+- FAQ questions must address: how long interviews last, whether prior knowledge is tested, how to practise, and what to do if you do not know an answer
+"""
+
+
+def generate_oxbridge_interview_pages(limit=None, new_only=False):
+    rows = load_csv("oxbridge_interviews.csv")
+    if limit is not None:
+        rows = rows[:limit]
+
+    for row in rows:
+        slug = row["slug"]
+        title = row["title"]
+        subjects = row["subjects"]
+        oxford_test = row["oxford_test"]
+        cambridge_test = row["cambridge_test"]
+        keyword = row["keyword"]
+
+        meta_desc = OXBRIDGE_INTERVIEW_META.get(
+            slug,
+            f"Expert {title} preparation with Leading Tuition. "
+            "Specialist coaching from Oxbridge-educated tutors. 4.8/5 Trustpilot. Book a free consultation."
+        )
+
+        out_dir = OUTPUT_DIR / "oxbridge-interviews" / slug
+        out_dir.mkdir(parents=True, exist_ok=True)
+        file_path = out_dir / "index.html"
+
+        if new_only and file_path.exists():
+            print(f"  SKIP (exists): oxbridge-interviews/{slug}/")
+            continue
+
+        prompt = oxbridge_interview_prompt(slug=slug, title=title, subjects=subjects,
+                                          oxford_test=oxford_test, cambridge_test=cambridge_test,
+                                          keyword=keyword)
+        raw = ask_claude(prompt)
+        content, faq_schema = parse_faq_schema(raw)
+
+        import json as _json
+        schema = {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": title,
+            "url": f"https://www.leadingtuition.co.uk/oxbridge-interviews/{slug}/",
+            "description": meta_desc,
+            "provider": {
+                "@type": "Organization",
+                "name": "Leading Tuition",
+                "url": "https://www.leadingtuition.co.uk",
+                "telephone": "+44 207 167 8440",
+                "email": "hello@leadingtuition.co.uk"
+            },
+            "areaServed": {"@type": "Country", "name": "United Kingdom"},
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8", "bestRating": "5",
+                "worstRating": "1", "ratingCount": "54", "reviewCount": "54"
+            }
+        }
+        service_schema = f'<script type="application/ld+json">\n{_json.dumps(schema, indent=2, ensure_ascii=False)}\n</script>'
+        breadcrumb = breadcrumb_schema("oxbridge-interview", slug, title)
+        schema_extra = faq_schema + "\n" + service_schema + "\n" + breadcrumb
+
+        html = page_template(
+            title, content,
+            meta_desc=meta_desc,
+            slug=f"oxbridge-interviews/{slug}/",
+            page_type="oxbridge-interview",
+            section="Oxbridge Interview Preparation",
+            schema_extra=schema_extra
+        )
+
+        file_path.write_text(html, encoding="utf-8")
+        print(f"Generated Oxbridge interview page: oxbridge-interviews/{slug}/")
+
+
 def generate_navbar():
     """
     Propagate the canonical <nav> block from templates.py to every HTML file
@@ -2286,9 +3262,15 @@ def generate_navbar():
 
     nav_pattern = re.compile(r'<nav class="navbar">.*?</nav>', re.DOTALL)
 
+    # Top-level directories to skip (seo-generator/ is a source/tool dir, not live content)
+    NAV_SKIP_DIRS = {"seo-generator", ".git", "node_modules"}
+
     updated = 0
     skipped = 0
     for html_file in sorted(OUTPUT_DIR.rglob("*.html")):
+        rel = html_file.relative_to(OUTPUT_DIR)
+        if rel.parts and rel.parts[0] in NAV_SKIP_DIRS:
+            continue
         content = html_file.read_text(encoding="utf-8")
         if '<nav class="navbar">' not in content:
             skipped += 1
@@ -2348,19 +3330,33 @@ def generate_sitemap():
             return "0.7"
         if url_path.startswith("/blog/"):
             return "0.6"
+        if url_path == "/admissions-tests/":
+            return "0.9"
         if url_path.startswith("/admissions-tests/"):
             return "0.8"
+        if url_path == "/medical-schools/":
+            return "0.9"
         if url_path.startswith("/medical-schools/"):
+            return "0.8"
+        if url_path == "/oxbridge-interviews/":
+            return "0.9"
+        if url_path.startswith("/oxbridge-interviews/"):
             return "0.8"
         return "0.6"
 
     entries = []  # list of (url, lastmod, priority)
+
+    # Top-level directories to skip when crawling the repo root
+    SKIP_DIRS = {"seo-generator", ".git", "node_modules"}
 
     for html_file in sorted(OUTPUT_DIR.rglob("*.html")):
         if html_file.name in SKIP_NAMES:
             continue
 
         rel = html_file.relative_to(OUTPUT_DIR)
+        # Skip anything inside excluded top-level directories
+        if rel.parts and rel.parts[0] in SKIP_DIRS:
+            continue
         parts = rel.parts  # e.g. ('locations', 'coventry.html') or ('a-level', 'index.html')
 
         # Root-level static pages
@@ -2413,8 +3409,9 @@ def main():
     parser.add_argument("--locations",         action="store_true", help="Generate location pages")
     parser.add_argument("--blog",              action="store_true", help="Generate blog posts")
     parser.add_argument("--levels",            action="store_true", help="Generate level pages")
-    parser.add_argument("--admissions-tests",  action="store_true", help="Generate admissions test pages (LNAT, MAT, PAT, TSA, etc.)")
-    parser.add_argument("--medical-schools",   action="store_true", help="Generate medical school entry guide pages (~38 schools)")
+    parser.add_argument("--admissions-tests",   action="store_true", help="Generate admissions test pages (LNAT, MAT, PAT, TSA, etc.)")
+    parser.add_argument("--medical-schools",    action="store_true", help="Generate medical school entry guide pages (~38 schools)")
+    parser.add_argument("--oxbridge-interviews", action="store_true", help="Generate Oxbridge interview prep pages by subject (~18 pages)")
     parser.add_argument("--sitemap",           action="store_true", help="Generate sitemap.xml from output/ directory (no API)")
     parser.add_argument("--navbar",            action="store_true", help="Push canonical nav from templates.py to all HTML files in output/ (no API)")
     parser.add_argument("--all",               action="store_true", help="Generate everything (30-45 min)")
@@ -2430,6 +3427,7 @@ def main():
     (OUTPUT_DIR / "locations").mkdir(parents=True, exist_ok=True)
     (OUTPUT_DIR / "admissions-tests").mkdir(parents=True, exist_ok=True)
     (OUTPUT_DIR / "medical-schools").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "oxbridge-interviews").mkdir(parents=True, exist_ok=True)
 
     run_all = args.all
     new_only = args.new_only
@@ -2447,20 +3445,24 @@ def main():
         generate_location_pages(limit=args.limit, new_only=new_only)
 
     if args.blog or run_all:
-        generate_blog_pages(limit=args.limit)
+        generate_blog_pages(limit=args.limit, new_only=new_only)
 
     if args.levels or run_all:
         generate_level_pages(limit=args.limit)
 
     # New Phase 3 page types
-    admissions_tests_flag = getattr(args, "admissions_tests", False)
-    medical_schools_flag  = getattr(args, "medical_schools", False)
+    admissions_tests_flag  = getattr(args, "admissions_tests", False)
+    medical_schools_flag   = getattr(args, "medical_schools", False)
+    oxbridge_interviews_flag = getattr(args, "oxbridge_interviews", False)
 
     if admissions_tests_flag or run_all:
         generate_admissions_test_pages(limit=args.limit, new_only=new_only)
 
     if medical_schools_flag or run_all:
         generate_medical_school_pages(limit=args.limit, new_only=new_only)
+
+    if oxbridge_interviews_flag or run_all:
+        generate_oxbridge_interview_pages(limit=args.limit, new_only=new_only)
 
     # --navbar runs after all generators so manually-written pages get the same nav.
     # It can also be run standalone at any time (no API calls required).
@@ -2474,7 +3476,7 @@ def main():
 
     if not any([args.static, args.specialist, args.subjects,
                 args.locations, args.blog, args.levels,
-                admissions_tests_flag, medical_schools_flag,
+                admissions_tests_flag, medical_schools_flag, oxbridge_interviews_flag,
                 args.navbar, args.sitemap, run_all]):
         parser.print_help()
 

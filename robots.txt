@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /seo-generator/
+
+Sitemap: https://www.leadingtuition.co.uk/sitemap.xml

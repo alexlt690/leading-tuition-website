@@ -1,0 +1,19 @@
+slug,title,subjects,oxford_test,cambridge_test,keyword
+medicine-interview,Oxford and Cambridge Medicine Interviews,Medicine,No written test (UCAT + interview),No written test (UCAT + interview),oxford cambridge medicine interview preparation
+law-interview,Oxford and Cambridge Law Interviews,Law,LNAT,LNAT,oxford cambridge law interview preparation
+maths-interview,Oxford and Cambridge Mathematics Interviews,Mathematics,MAT,STEP / TMUA,oxford cambridge maths interview preparation
+physics-interview,Oxford and Cambridge Physics Interviews,Physics,PAT,ESAT,oxford cambridge physics interview preparation
+chemistry-interview,Oxford and Cambridge Chemistry Interviews,Chemistry,CAT (Chemistry Aptitude Test),ESAT,oxford cambridge chemistry interview preparation
+biology-interview,Oxford and Cambridge Biology Interviews,Biology,No written test,ESAT / Natural Sciences route,oxford cambridge biology interview preparation
+engineering-interview,Oxford and Cambridge Engineering Interviews,Engineering,PAT (for Oxford),ESAT,oxford cambridge engineering interview preparation
+economics-interview,Oxford and Cambridge Economics Interviews,Economics,TSA (Oxford) / TMUA (Cambridge),TMUA,oxford cambridge economics interview preparation
+history-interview,Oxford and Cambridge History Interviews,History,HAT,No written test,oxford cambridge history interview preparation
+english-interview,Oxford and Cambridge English Interviews,English,ELAT,No written test,oxford cambridge english interview preparation
+ppe-interview,Oxford PPE Interviews,Philosophy Politics and Economics,TSA,N/A (Cambridge HSPS differs),oxford ppe interview preparation
+computer-science-interview,Oxford and Cambridge Computer Science Interviews,Computer Science,MAT,TMUA / interview only,oxford cambridge computer science interview
+classics-interview,Oxford and Cambridge Classics Interviews,Classics,No written test,No written test,oxford cambridge classics interview preparation
+modern-languages-interview,Oxford and Cambridge Modern Languages Interviews,Modern Languages,MLAT,No written test,oxford cambridge modern languages interview
+geography-interview,Oxford and Cambridge Geography Interviews,Geography,No written test,No written test,oxford cambridge geography interview preparation
+psychology-interview,Oxford and Cambridge Psychology Interviews,Experimental Psychology / Psychological and Behavioural Sciences,No written test,No written test,oxford cambridge psychology interview preparation
+natural-sciences-interview,Cambridge Natural Sciences Interviews,Natural Sciences,N/A (Oxford has separate sciences),ESAT,cambridge natural sciences interview preparation
+philosophy-interview,Oxford and Cambridge Philosophy Interviews,Philosophy,PHIL,No written test,oxford cambridge philosophy interview preparation
