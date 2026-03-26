@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Purchase Confirmed | Leading Tuition</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <style>
+    .pc-wrap {
+      max-width: 640px;
+      margin: 3rem auto;
+      padding: 0 1.5rem 4rem;
+      font-family: inherit;
+    }
+    .pc-icon {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .pc-wrap h1 {
+      text-align: center;
+      color: #1d3557;
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+    .pc-wrap .pc-sub {
+      text-align: center;
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+    .pc-save-notice {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      border-radius: 6px;
+      padding: 0.875rem 1.25rem;
+      margin-bottom: 1.75rem;
+      font-size: 0.875rem;
+      color: #664d03;
+      line-height: 1.5;
+    }
+    .pc-save-notice strong { display: block; margin-bottom: 0.25rem; }
+    .pc-downloads {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .pc-dl-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: #f8f9fa;
+      border: 1px solid #e0e4e8;
+      border-radius: 6px;
+      padding: 0.875rem 1.25rem;
+    }
+    .pc-dl-label {
+      font-size: 0.9rem;
+      color: #1d3557;
+      font-weight: 500;
+      flex: 1;
+      line-height: 1.35;
+    }
+    .pc-dl-btn {
+      display: inline-block;
+      padding: 0.45rem 1.1rem;
+      background: #457b9d;
+      color: #fff;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+    .pc-dl-btn:hover { background: #3a6a8a; }
+    .pc-loading {
+      text-align: center;
+      padding: 3rem 0;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    .pc-error {
+      background: #fff0f0;
+      border: 1px solid #f5c2c7;
+      border-radius: 6px;
+      padding: 1.25rem;
+      color: #842029;
+      text-align: center;
+    }
+    .pc-back {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.875rem;
+    }
+    .pc-back a { color: #457b9d; }
+  </style>
+</head>
+<body>
+
+<!-- Minimal header -->
+<header style="background:#1d3557; padding:0.875rem 1.5rem; display:flex; align-items:center; gap:0.75rem;">
+  <a href="/" style="display:flex; align-items:center; gap:0.6rem; text-decoration:none;">
+    <img src="/images/logo.png" alt="Leading Tuition" style="height:32px;" />
+    <span style="color:#fff; font-weight:700; font-size:1rem;">Leading Tuition</span>
+  </a>
+</header>
+
+<div class="pc-wrap">
+
+  <div class="pc-icon">✅</div>
+  <h1>Payment confirmed!</h1>
+  <p class="pc-sub">Your answer sheets are ready to download below.</p>
+
+  <div class="pc-save-notice">
+    <strong>⚠️ Save this page</strong>
+    Your download links are valid for 48 hours. Bookmark this page or keep the URL safe — after 48 hours you will need to contact us to regain access.
+  </div>
+
+  <div id="pcContent">
+    <div class="pc-loading">Loading your downloads&hellip;</div>
+  </div>
+
+  <div class="pc-back">
+    <a href="/resources/11-plus">&larr; Back to 11+ Papers</a> &nbsp;·&nbsp;
+    <a href="/resources/13-plus">13+ Papers</a> &nbsp;·&nbsp;
+    <a href="/resources/pre-11-plus">Pre-11+ Papers</a>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var sessionId = new URLSearchParams(window.location.search).get('session_id');
+  var el = document.getElementById('pcContent');
+
+  if (!sessionId) {
+    el.innerHTML = '<div class="pc-error">No session found. If you completed a payment, please <a href="/contact">contact us</a> with your order details.</div>';
+    return;
+  }
+
+  fetch('/api/get-downloads?session_id=' + encodeURIComponent(sessionId))
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (data.error === 'not_found') {
+        el.innerHTML = '<div class="pc-error"><strong>Links not found or expired.</strong><br><br>If you just paid, please wait 10 seconds and refresh. If this persists, <a href="/contact">contact us</a> with your payment reference.</div>';
+        return;
+      }
+      if (!data.downloads || data.downloads.length === 0) {
+        el.innerHTML = '<div class="pc-error">No downloads found. Please <a href="/contact">contact us</a>.</div>';
+        return;
+      }
+
+      var html = '<div class="pc-downloads">';
+      data.downloads.forEach(function (d) {
+        html += '<div class="pc-dl-item">';
+        html += '<span class="pc-dl-label">' + escHtml(d.label) + ' — Answers</span>';
+        html += '<a href="' + escHtml(d.downloadUrl) + '" class="pc-dl-btn" download>Download PDF</a>';
+        html += '</div>';
+      });
+      html += '</div>';
+      el.innerHTML = html;
+    })
+    .catch(function () {
+      el.innerHTML = '<div class="pc-error">Something went wrong loading your downloads. Please refresh or <a href="/contact">contact us</a>.</div>';
+    });
+
+  function escHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+})();
+</script>
+
+</body>
+</html>

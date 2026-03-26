@@ -256,6 +256,62 @@
   .ptab { padding: 0.5rem 0.75rem; font-size: 0.82rem; }
   .papers-main { padding: 1.25rem 1rem 2.5rem; }
 }
+/* ── Cart button ─────────────────────────────────────────────────────── */
+.pa-add-btn {
+  display: inline-block;
+  padding: 0.28rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  background: #f0f6ff;
+  color: #1d3557;
+  border: 1px solid #c7daf5;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+  font-family: inherit;
+}
+.pa-add-btn:hover { background: #dceeff; }
+.pa-add-btn.cart-added { background: #1d3557; color: #fff; border-color: #1d3557; }
+/* ── Sticky cart bar ─────────────────────────────────────────────────── */
+#cartBar {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: #1d3557;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  z-index: 9999;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.2);
+  font-family: inherit;
+}
+#cartBar.visible { display: flex; }
+.cart-left { display: flex; flex-direction: column; gap: 0.1rem; }
+.cart-count { font-weight: 700; font-size: 0.95rem; }
+.cart-msg { font-size: 0.78rem; color: #a8c9e4; }
+.cart-right { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+.cart-price { font-size: 1.1rem; font-weight: 700; }
+.cart-buy-btn {
+  padding: 0.55rem 1.4rem;
+  background: #e63946;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.cart-buy-btn:hover { background: #c1121f; }
+@media (max-width: 720px) {
+  #cartBar { flex-direction: column; align-items: flex-start; padding: 0.75rem 1rem; }
+  .cart-right { width: 100%; justify-content: space-between; }
+}
 </style>
 </head>
 <body>
@@ -635,6 +691,18 @@
   </div>
 </section>
 
+<!-- CART BAR -->
+<div id="cartBar" role="region" aria-label="Answer cart">
+  <div class="cart-left">
+    <span class="cart-count" id="cartCount">0 answers in cart</span>
+    <span class="cart-msg" id="cartMsg"></span>
+  </div>
+  <div class="cart-right">
+    <span class="cart-price" id="cartPrice">£0.00</span>
+    <button class="cart-buy-btn" id="cartBuy">Buy answers &rarr;</button>
+  </div>
+</div>
+
 <footer>
   <h3>Get In Touch</h3>
   <hr />
@@ -712,7 +780,7 @@
 </script>
 
 <script>
-var PAPERS_DATA = [{"i":"Ashford School","s":"Maths","y":"2026","t":"Ashford School Year 9 Maths Entrance Exam Sample Paper 2026","q":"/public/papers/13-plus/ashford-school/ashford_school_year_9_maths_entrance_exam_sample_paper_2026.pdf","a":""},{"i":"Chigwell School","s":"Maths","y":"2026","t":"Chigwell School 13 Plus Maths Specimen Paper 2026","q":"/public/papers/13-plus/chigwell-school/chigwell_school_13_plus_maths_specimen_paper_2026.pdf","a":""},{"i":"Colfe's School","s":"Maths","y":"2026","t":"Colfe's School 13 Plus Examination Maths Sample Paper 2026","q":"/public/papers/13-plus/colfes-school/colfes_school_13_plus_examination_maths_sample_paper_2026.pdf","a":""},{"i":"Dulwich College","s":"Maths","y":"2023","t":"Dulwich College - 13 Plus Maths Specimen Paper 2023","q":"/public/papers/13-plus/dulwich-college/dulwich_college_13_plus_maths_specimen_paper_2023.pdf","a":""},{"i":"Emanuel School","s":"Maths","y":"2023","t":"Emanuel School - 13 Plus Maths Sample Paper 2023","q":"/public/papers/13-plus/emanuel-school/emanuel_school_13_plus_maths_sample_paper_2023.pdf","a":""},{"i":"Epsom College","s":"Maths","y":"2026","t":"EPSOM College Year 9 Maths Specimen Paper 2026","q":"/public/papers/13-plus/epsom-college/epsom_college_year_9_maths_specimen_paper_2026.pdf","a":""},{"i":"Forest School","s":"Maths","y":"2023","t":"Forest School - 13 Plus Maths Sample Paper 1 2023","q":"/public/papers/13-plus/forest-school/forest_school_13_plus_maths_sample_paper_1_2023.pdf","a":""},{"i":"Hereford Cathedral School","s":"Maths","y":"2026","t":"Hereford Cathedral School 13 Plus Maths Entrance Sample Paper 2026","q":"/public/papers/13-plus/hereford-cathedral-school/hereford_cathedral_school_13_plus_maths_entrance_sample_paper_2026.pdf","a":""},{"i":"Reigate Grammar School","s":"Maths","y":"2026","t":"Reigate Grammar School 13 Plus Maths Sample Paper 2 - Calculator 2026","q":"/public/papers/13-plus/reigate-grammar-school/reigate_grammar_school_13_plus_maths_sample_paper_2_calculator_2026.pdf","a":""},{"i":"St Francis College","s":"Maths","y":"2026","t":"St Francis College Year 9 Maths Practice Entrance Paper 2026","q":"/public/papers/13-plus/st-francis-college/st_francis_college_year_9_maths_practice_entrance_paper_2026.pdf","a":""},{"i":"The Grammar School at Leeds","s":"Maths","y":"2026","t":"The Grammar School at Leeds Year 9 Entrance Maths Sample Paper 2026","q":"/public/papers/13-plus/the-grammar-school-at-leeds/the_grammar_school_at_leeds_year_9_entrance_maths_sample_paper_2026.pdf","a":""},{"i":"Truro School","s":"Maths","y":"2026","t":"Truro School 13 Plus Maths Sample Paper 2026","q":"/public/papers/13-plus/truro-school/truro_school_13_plus_maths_sample_paper_2026.pdf","a":""},{"i":"Alleyn's School","s":"English","y":"","t":"Alleyn's School - 13 Plus English Sample Exam Paper 1","q":"/public/papers/13-plus/alleyns-school/alleyns_school_13_plus_english_sample_exam_paper_1.pdf","a":""},{"i":"Bancroft's School","s":"English","y":"2019","t":"Bancroft's School - 13 Plus Entrance Exam English Sample Paper 2019","q":"/public/papers/13-plus/bancrofts-school/bancrofts_school_13_plus_entrance_exam_english_sample_paper_2019.pdf","a":""},{"i":"Dulwich College","s":"English","y":"","t":"Dulwich College - Year 9 English Specimen Paper","q":"/public/papers/13-plus/dulwich-college/dulwich_college_year_9_english_specimen_paper.pdf","a":""},{"i":"Emanuel School","s":"English","y":"","t":"Emanuel School - 13 Plus English Sample Paper","q":"/public/papers/13-plus/emanuel-school/emanuel_school_13_plus_english_sample_paper.pdf","a":""},{"i":"Forest School","s":"English","y":"","t":"Forest School - 13 Plus English Sample Paper 1","q":"/public/papers/13-plus/forest-school/forest_school_13_plus_english_sample_paper_1.pdf","a":""},{"i":"Forest School","s":"English","y":"","t":"Forest School - 13 Plus English Sample Paper 2","q":"/public/papers/13-plus/forest-school/forest_school_13_plus_english_sample_paper_2.pdf","a":""},{"i":"Haberdashers' Boys' School","s":"English","y":"2016","t":"Haberdashers' Aske's Boys' School (HABS) - 13 Plus English Entrance Exam 2016","q":"/public/papers/13-plus/haberdashers-boys-school/haberdashers_askes_boys_school_habs_13_plus_english_entrance_exam_2016.pdf","a":""},{"i":"Merchant Taylors' School","s":"English","y":"2017","t":"Merchant Taylors' School - 13 Plus English Entrance Exam 2017","q":"/public/papers/13-plus/merchant-taylors-school/merchant_taylors_school_13_plus_english_entrance_exam_2017.pdf","a":""},{"i":"Reigate Grammar School","s":"English","y":"2018","t":"Reigate Grammar School - 13 Plus Pre-Test English Sample Paper 2018","q":"/public/papers/13-plus/reigate-grammar-school/reigate_grammar_school_13_plus_pre_test_english_sample_paper_2018.pdf","a":""},{"i":"Reigate Grammar School","s":"English","y":"2016","t":"Reigate Grammar School - 13 Plus English Sample Paper 2016","q":"/public/papers/13-plus/reigate-grammar-school/reigate_grammar_school_13_plus_english_sample_paper_2016.pdf","a":""},{"i":"Sevenoaks School","s":"English","y":"2018","t":"Sevenoaks School - Year 9 English Sample Paper 2018","q":"/public/papers/13-plus/sevenoaks-school/sevenoaks_school_year_9_english_sample_paper_2018.pdf","a":""},{"i":"St Albans School","s":"English","y":"2016","t":"St Albans School, Hertfordshire - 13 Plus Entrance Exam English Paper 2016","q":"/public/papers/13-plus/st-albans-school/st_albans_school_hertfordshire_13_plus_entrance_exam_english_paper_2016.pdf","a":""},{"i":"Aldenham School","s":"Biology","y":"2020","t":"Aldenham School - 13 Plus Biology Exam Paper 2020","q":"/public/papers/13-plus/aldenham-school/aldenham_school_13_plus_biology_exam_paper_2020.pdf","a":""},{"i":"Haberdashers' Boys' School","s":"Biology","y":"2015","t":"Haberdashers Askes School - 13 Plus Biology Exam Paper 2015","q":"/public/papers/13-plus/haberdashers-boys-school/haberdashers_askes_school_13_plus_biology_exam_paper_2015.pdf","a":""},{"i":"ISEB","s":"Biology","y":"2017","t":"ISEB Level 2 - 13 Plus Biology Exam Paper 2017","q":"/public/papers/13-plus/iseb/iseb_level_2_13_plus_biology_exam_paper_2017.pdf","a":""},{"i":"Radley School","s":"Biology","y":"2019","t":"Radley School - 13 Plus Biology Scholarship Sample Paper 2019","q":"/public/papers/13-plus/radley-school/radley_school_13_plus_biology_scholarship_sample_paper_2019.pdf","a":""},{"i":"Radley School","s":"Biology","y":"2018","t":"Radley School - 13 Plus Biology Scholarship Sample Paper 2018","q":"/public/papers/13-plus/radley-school/radley_school_13_plus_biology_scholarship_sample_paper_2018.pdf","a":""},{"i":"Radley School","s":"Biology","y":"2017","t":"Radley School - 13 Plus Biology Scholarship Sample Paper 2017","q":"/public/papers/13-plus/radley-school/radley_school_13_plus_biology_scholarship_sample_paper_2017.pdf","a":""},{"i":"Radley School","s":"Biology","y":"2016","t":"Radley School - 13 Plus Biology Scholarship Sample Paper 2016","q":"/public/papers/13-plus/radley-school/radley_school_13_plus_biology_scholarship_sample_paper_2016.pdf","a":""},{"i":"Radley School","s":"Biology","y":"2015","t":"Radley School - 13 Plus Biology Scholarship Sample Paper 2015","q":"/public/papers/13-plus/radley-school/radley_school_13_plus_biology_scholarship_sample_paper_2015.pdf","a":""},{"i":"St George's College Weybridge","s":"Biology","y":"","t":"St Georges College Weybridge - 13 Plus Biology Scholarship Exam Paper","q":"/public/papers/13-plus/st-georges-college-weybridge/st_georges_college_weybridge_13_plus_biology_scholarship_exam_paper.pdf","a":""},{"i":"Westminster School","s":"Biology","y":"2019","t":"Westminster School - 13 Plus Biology Sample Paper 2019","q":"/public/papers/13-plus/westminster-school/westminster_school_13_plus_biology_sample_paper_2019.pdf","a":""},{"i":"Westminster School","s":"Biology","y":"2016","t":"Westminster School - 13 Plus Biology Scholarship Exam Paper 2016","q":"/public/papers/13-plus/westminster-school/westminster_school_13_plus_biology_scholarship_exam_paper_2016.pdf","a":""},{"i":"Westminster School","s":"Biology","y":"2015","t":"Westminster School - 13 Plus Biology Scholarship Exam Paper 2015","q":"/public/papers/13-plus/westminster-school/westminster_school_13_plus_biology_scholarship_exam_paper_2015.pdf","a":""}];
+var PAPERS_DATA = [{"i":"Ashford School","s":"Maths","y":"2026","t":"Ashford School Year 9 Maths Entrance Exam Sample Paper 2026","q":"/public/papers/13-plus/ashford-school/ashford_school_year_9_maths_entrance_exam_sample_paper_2026.pdf","a":"","ak":""},{"i":"Chigwell School","s":"Maths","y":"2026","t":"Chigwell School 13 Plus Maths Specimen Paper 2026","q":"/public/papers/13-plus/chigwell-school/chigwell_school_13_plus_maths_specimen_paper_2026.pdf","a":"","ak":""},{"i":"Colfe's School","s":"Maths","y":"2026","t":"Colfe's School 13 Plus Examination Maths Sample Paper 2026","q":"/public/papers/13-plus/colfes-school/colfes_school_13_plus_examination_maths_sample_paper_2026.pdf","a":"","ak":""},{"i":"Dulwich College","s":"Maths","y":"2023","t":"Dulwich College - 13 Plus Maths Specimen Paper 2023","q":"/public/papers/13-plus/dulwich-college/dulwich_college_13_plus_maths_specimen_paper_2023.pdf","a":"","ak":""},{"i":"Emanuel School","s":"Maths","y":"2023","t":"Emanuel School - 13 Plus Maths Sample Paper 2023","q":"/public/papers/13-plus/emanuel-school/emanuel_school_13_plus_maths_sample_paper_2023.pdf","a":"","ak":""},{"i":"Epsom College","s":"Maths","y":"2026","t":"EPSOM College Year 9 Maths Specimen Paper 2026","q":"/public/papers/13-plus/epsom-college/epsom_college_year_9_maths_specimen_paper_2026.pdf","a":"","ak":""},{"i":"Forest School","s":"Maths","y":"2023","t":"Forest School - 13 Plus Maths Sample Paper 1 2023","q":"/public/papers/13-plus/forest-school/forest_school_13_plus_maths_sample_paper_1_2023.pdf","a":"","ak":""},{"i":"Hereford Cathedral School","s":"Maths","y":"2026","t":"Hereford Cathedral School 13 Plus Maths Entrance Sample Paper 2026","q":"/public/papers/13-plus/hereford-cathedral-school/hereford_cathedral_school_13_plus_maths_entrance_sample_paper_2026.pdf","a":"","ak":""},{"i":"Reigate Grammar School","s":"Maths","y":"2026","t":"Reigate Grammar School 13 Plus Maths Sample Paper 2 - Calculator 2026","q":"/public/papers/13-plus/reigate-grammar-school/reigate_grammar_school_13_plus_maths_sample_paper_2_calculator_2026.pdf","a":"","ak":""},{"i":"St Francis College","s":"Maths","y":"2026","t":"St Francis College Year 9 Maths Practice Entrance Paper 2026","q":"/public/papers/13-plus/st-francis-college/st_francis_college_year_9_maths_practice_entrance_paper_2026.pdf","a":"","ak":""},{"i":"The Grammar School at Leeds","s":"Maths","y":"2026","t":"The Grammar School at Leeds Year 9 Entrance Maths Sample Paper 2026","q":"/public/papers/13-plus/the-grammar-school-at-leeds/the_grammar_school_at_leeds_year_9_entrance_maths_sample_paper_2026.pdf","a":"","ak":""},{"i":"Truro School","s":"Maths","y":"2026","t":"Truro School 13 Plus Maths Sample Paper 2026","q":"/public/papers/13-plus/truro-school/truro_school_13_plus_maths_sample_paper_2026.pdf","a":"","ak":""},{"i":"Alleyn's School","s":"English","y":"","t":"Alleyn's School - 13 Plus English Sample Exam Paper 1","q":"/public/papers/13-plus/alleyns-school/alleyns_school_13_plus_english_sample_exam_paper_1.pdf","a":"","ak":""},{"i":"Bancroft's School","s":"English","y":"2019","t":"Bancroft's School - 13 Plus Entrance Exam English Sample Paper 2019","q":"/public/papers/13-plus/bancrofts-school/bancrofts_school_13_plus_entrance_exam_english_sample_paper_2019.pdf","a":"","ak":""},{"i":"Dulwich College","s":"English","y":"","t":"Dulwich College - Year 9 English Specimen Paper","q":"/public/papers/13-plus/dulwich-college/dulwich_college_year_9_english_specimen_paper.pdf","a":"","ak":""},{"i":"Emanuel School","s":"English","y":"","t":"Emanuel School - 13 Plus English Sample Paper","q":"/public/papers/13-plus/emanuel-school/emanuel_school_13_plus_english_sample_paper.pdf","a":"","ak":""},{"i":"Forest School","s":"English","y":"","t":"Forest School - 13 Plus English Sample Paper 1","q":"/public/papers/13-plus/forest-school/forest_school_13_plus_english_sample_paper_1.pdf","a":"","ak":""},{"i":"Forest School","s":"English","y":"","t":"Forest School - 13 Plus English Sample Paper 2","q":"/public/papers/13-plus/forest-school/forest_school_13_plus_english_sample_paper_2.pdf","a":"","ak":""},{"i":"Haberdashers' Boys' School","s":"English","y":"2016","t":"Haberdashers' Aske's Boys' School (HABS) - 13 Plus English Entrance Exam 2016","q":"/public/papers/13-plus/haberdashers-boys-school/haberdashers_askes_boys_school_habs_13_plus_english_entrance_exam_2016.pdf","a":"","ak":""},{"i":"Merchant Taylors' School","s":"English","y":"2017","t":"Merchant Taylors' School - 13 Plus English Entrance Exam 2017","q":"/public/papers/13-plus/merchant-taylors-school/merchant_taylors_school_13_plus_english_entrance_exam_2017.pdf","a":"","ak":""},{"i":"Reigate Grammar School","s":"English","y":"2018","t":"Reigate Grammar School - 13 Plus Pre-Test English Sample Paper 2018","q":"/public/papers/13-plus/reigate-grammar-school/reigate_grammar_school_13_plus_pre_test_english_sample_paper_2018.pdf","a":"","ak":""},{"i":"Reigate Grammar School","s":"English","y":"2016","t":"Reigate Grammar School - 13 Plus English Sample Paper 2016","q":"/public/papers/13-plus/reigate-grammar-school/reigate_grammar_school_13_plus_english_sample_paper_2016.pdf","a":"","ak":""},{"i":"Sevenoaks School","s":"English","y":"2018","t":"Sevenoaks School - Year 9 English Sample Paper 2018","q":"/public/papers/13-plus/sevenoaks-school/sevenoaks_school_year_9_english_sample_paper_2018.pdf","a":"","ak":""},{"i":"St Albans School","s":"English","y":"2016","t":"St Albans School, Hertfordshire - 13 Plus Entrance Exam English Paper 2016","q":"/public/papers/13-plus/st-albans-school/st_albans_school_hertfordshire_13_plus_entrance_exam_english_paper_2016.pdf","a":"","ak":""},{"i":"Aldenham School","s":"Biology","y":"2020","t":"Aldenham School - 13 Plus Biology Exam Paper 2020","q":"/public/papers/13-plus/aldenham-school/aldenham_school_13_plus_biology_exam_paper_2020.pdf","a":"","ak":""},{"i":"Haberdashers' Boys' School","s":"Biology","y":"2015","t":"Haberdashers Askes School - 13 Plus Biology Exam Paper 2015","q":"/public/papers/13-plus/haberdashers-boys-school/haberdashers_askes_school_13_plus_biology_exam_paper_2015.pdf","a":"","ak":""},{"i":"ISEB","s":"Biology","y":"2017","t":"ISEB Level 2 - 13 Plus Biology Exam Paper 2017","q":"/public/papers/13-plus/iseb/iseb_level_2_13_plus_biology_exam_paper_2017.pdf","a":"","ak":""},{"i":"Radley School","s":"Biology","y":"2019","t":"Radley School - 13 Plus Biology Scholarship Sample Paper 2019","q":"/public/papers/13-plus/radley-school/radley_school_13_plus_biology_scholarship_sample_paper_2019.pdf","a":"","ak":""},{"i":"Radley School","s":"Biology","y":"2018","t":"Radley School - 13 Plus Biology Scholarship Sample Paper 2018","q":"/public/papers/13-plus/radley-school/radley_school_13_plus_biology_scholarship_sample_paper_2018.pdf","a":"","ak":""},{"i":"Radley School","s":"Biology","y":"2017","t":"Radley School - 13 Plus Biology Scholarship Sample Paper 2017","q":"/public/papers/13-plus/radley-school/radley_school_13_plus_biology_scholarship_sample_paper_2017.pdf","a":"","ak":""},{"i":"Radley School","s":"Biology","y":"2016","t":"Radley School - 13 Plus Biology Scholarship Sample Paper 2016","q":"/public/papers/13-plus/radley-school/radley_school_13_plus_biology_scholarship_sample_paper_2016.pdf","a":"","ak":""},{"i":"Radley School","s":"Biology","y":"2015","t":"Radley School - 13 Plus Biology Scholarship Sample Paper 2015","q":"/public/papers/13-plus/radley-school/radley_school_13_plus_biology_scholarship_sample_paper_2015.pdf","a":"","ak":""},{"i":"St George's College Weybridge","s":"Biology","y":"","t":"St Georges College Weybridge - 13 Plus Biology Scholarship Exam Paper","q":"/public/papers/13-plus/st-georges-college-weybridge/st_georges_college_weybridge_13_plus_biology_scholarship_exam_paper.pdf","a":"","ak":""},{"i":"Westminster School","s":"Biology","y":"2019","t":"Westminster School - 13 Plus Biology Sample Paper 2019","q":"/public/papers/13-plus/westminster-school/westminster_school_13_plus_biology_sample_paper_2019.pdf","a":"","ak":""},{"i":"Westminster School","s":"Biology","y":"2016","t":"Westminster School - 13 Plus Biology Scholarship Exam Paper 2016","q":"/public/papers/13-plus/westminster-school/westminster_school_13_plus_biology_scholarship_exam_paper_2016.pdf","a":"","ak":""},{"i":"Westminster School","s":"Biology","y":"2015","t":"Westminster School - 13 Plus Biology Scholarship Exam Paper 2015","q":"/public/papers/13-plus/westminster-school/westminster_school_13_plus_biology_scholarship_exam_paper_2015.pdf","a":"","ak":""}];
 
 var activeSubject   = '';
 var activeInst      = '';
@@ -823,8 +891,8 @@ function render() {
         html += '<td class="pa-title">' + esc(p.t) + '</td>';
         html += '<td><span class="pa-subj-badge pa-subj-' + subjClass(p.s) + '">' + esc(p.s) + '</span></td>';
         html += '<td><a href="' + esc(p.q) + '" target="_blank" rel="noopener noreferrer" class="pa-btn">View Paper</a></td>';
-        if (p.a) {
-          html += '<td><a href="' + esc(p.a) + '" target="_blank" rel="noopener noreferrer" class="pa-btn pa-btn-ans">View Answers</a></td>';
+        if (p.ak) {
+          html += '<td><button class="pa-add-btn" data-ak="' + esc(p.ak) + '" data-label="' + esc(p.t) + '">+ Add answers £3</button></td>';
         } else {
           html += '<td><span class="pa-no-ans">Coming soon</span></td>';
         }
@@ -843,8 +911,10 @@ function render() {
         html += '</div>';
         html += '<div class="pa-card-actions">';
         html += '<a href="' + esc(p.q) + '" target="_blank" rel="noopener noreferrer" class="pa-btn">View Paper</a>';
-        if (p.a) {
-          html += ' <a href="' + esc(p.a) + '" target="_blank" rel="noopener noreferrer" class="pa-btn pa-btn-ans">View Answers</a>';
+        if (p.ak) {
+          html += ' <button class="pa-add-btn" data-ak="' + esc(p.ak) + '" data-label="' + esc(p.t) + '">+ Add answers £3</button>';
+        } else {
+          html += ' <span class="pa-no-ans">Coming soon</span>';
         }
         html += '</div></div>';
       });
@@ -859,10 +929,23 @@ function render() {
 
   accordion.innerHTML = html;
 
-  // Wire accordion button clicks via event delegation (avoids inline onclick quote issues)
+  // Wire accordion button clicks
   accordion.querySelectorAll('.pa-header').forEach(function(btn) {
     btn.addEventListener('click', function() {
       toggleAcc(this.dataset.accId);
+    });
+  });
+
+  // Wire "Add answers" cart buttons
+  accordion.querySelectorAll('.pa-add-btn').forEach(function(btn) {
+    // Restore cart state if already added
+    var ak = btn.dataset.ak;
+    if (cart.some(function(c) { return c.ak === ak; })) {
+      btn.textContent = '✓ Added';
+      btn.classList.add('cart-added');
+    }
+    btn.addEventListener('click', function() {
+      toggleCartItem(this.dataset.ak, this.dataset.label, this);
     });
   });
 
@@ -958,6 +1041,76 @@ document.getElementById('pfSearch').addEventListener('input', function() {
   _st = setTimeout(function() { activeSearch = v; render(); }, 180);
 });
 document.getElementById('pfReset').addEventListener('click', resetAll);
+
+// ── Cart ──────────────────────────────────────────────────────────────────────
+var cart = []; // [{ak, label}]
+
+function updateCartBar() {
+  var bar = document.getElementById('cartBar');
+  var n = cart.length;
+  if (n === 0) {
+    bar.classList.remove('visible');
+    return;
+  }
+  bar.classList.add('visible');
+
+  var price = n * 3.00;
+  var msg = '';
+  if (n >= 3) {
+    price = price * 0.80;
+    msg = '✓ 20% off applied!';
+  } else if (n === 2) {
+    price = price * 0.90;
+    msg = '✓ 10% off applied — add 1 more for 20% off';
+  } else {
+    msg = 'Add 1 more for 10% off';
+  }
+
+  document.getElementById('cartCount').textContent = n + ' answer' + (n !== 1 ? 's' : '') + ' in cart';
+  document.getElementById('cartMsg').textContent   = msg;
+  document.getElementById('cartPrice').textContent = '£' + price.toFixed(2);
+}
+
+function toggleCartItem(ak, label, btn) {
+  var idx = cart.findIndex(function(c) { return c.ak === ak; });
+  if (idx === -1) {
+    cart.push({ ak: ak, label: label });
+    btn.textContent = '✓ Added';
+    btn.classList.add('cart-added');
+  } else {
+    cart.splice(idx, 1);
+    btn.textContent = '+ Add answers £3';
+    btn.classList.remove('cart-added');
+  }
+  updateCartBar();
+}
+
+document.getElementById('cartBuy').addEventListener('click', function() {
+  if (cart.length === 0) return;
+  var btn = this;
+  btn.textContent = 'Processing…';
+  btn.disabled = true;
+  fetch('/api/create-checkout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ papers: cart })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert('Something went wrong. Please try again.');
+      btn.textContent = 'Buy answers →';
+      btn.disabled = false;
+    }
+  })
+  .catch(function() {
+    alert('Network error. Please try again.');
+    btn.textContent = 'Buy answers →';
+    btn.disabled = false;
+  });
+});
 
 // Init
 populateFilters();
