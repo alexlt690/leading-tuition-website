@@ -583,10 +583,6 @@
 <option value="2019">2019</option>
 <option value="2018">2018</option>
     </select>
-    <label class="pf-toggle">
-      <input type="checkbox" id="pfAnswers" />
-      Has answers
-    </label>
     <input type="search" id="pfSearch" placeholder="Search papers&hellip;" aria-label="Search papers" />
     <button id="pfReset" type="button">Reset</button>
   </div>
@@ -709,7 +705,6 @@ var activeSubject   = '';
 var activeInst      = '';
 var activeYear      = '';
 var activeSearch    = '';
-var activeAnswers   = false;
 
 function esc(s) {
   return String(s)
@@ -728,7 +723,6 @@ function getFiltered() {
     if (activeSubject && p.s !== activeSubject) return false;
     if (activeInst    && p.i !== activeInst)    return false;
     if (activeYear    && p.y !== activeYear)    return false;
-    if (activeAnswers && !p.a)                  return false;
     if (activeSearch) {
       var q = activeSearch.toLowerCase();
       if (p.t.toLowerCase().indexOf(q) === -1 &&
@@ -792,7 +786,7 @@ function render() {
     var instId = 'inst-' + instName.replace(/[^a-z0-9]/gi,'-').toLowerCase();
 
     html += '<div class="pa-item">';
-    html += '<button class="pa-header" onclick="toggleAcc('' + instId + '')" ' +
+    html += '<button class="pa-header" data-acc-id="' + instId + '" ' +
             'aria-expanded="false" id="btn-' + instId + '">';
     html += '<span class="pa-inst-name">' + esc(instName) + '</span>';
     html += '<span class="pa-count">' + papers.length + ' paper' + (papers.length !== 1 ? 's' : '') + '</span>';
@@ -819,7 +813,7 @@ function render() {
         if (p.a) {
           html += '<td><a href="' + esc(p.a) + '" target="_blank" rel="noopener noreferrer" class="pa-btn pa-btn-ans">View Answers</a></td>';
         } else {
-          html += '<td><span class="pa-no-ans">—</span></td>';
+          html += '<td><span class="pa-no-ans">Coming soon</span></td>';
         }
         html += '</tr>';
       });
@@ -851,6 +845,13 @@ function render() {
   });
 
   accordion.innerHTML = html;
+
+  // Wire accordion button clicks via event delegation (avoids inline onclick quote issues)
+  accordion.querySelectorAll('.pa-header').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      toggleAcc(this.dataset.accId);
+    });
+  });
 
   // Auto-open first institution when filtered to one
   if (institutions.length === 1) {
@@ -908,12 +909,11 @@ function populateFilters() {
 }
 
 function resetAll() {
-  activeSubject = ''; activeInst = ''; activeYear = ''; activeSearch = ''; activeAnswers = false;
+  activeSubject = ''; activeInst = ''; activeYear = ''; activeSearch = '';
   document.querySelectorAll('.ptab').forEach(function(t) { t.classList.remove('active'); });
   document.querySelector('.ptab[data-subject=""]').classList.add('active');
   document.getElementById('pfInstitution').value = '';
   document.getElementById('pfYear').value = '';
-  document.getElementById('pfAnswers').checked = false;
   document.getElementById('pfSearch').value = '';
   populateFilters();
   render();
@@ -936,10 +936,6 @@ document.getElementById('pfInstitution').addEventListener('change', function() {
 document.getElementById('pfYear').addEventListener('change', function() {
   activeYear = this.value; render();
 });
-document.getElementById('pfAnswers').addEventListener('change', function() {
-  activeAnswers = this.checked; render();
-});
-
 var _st;
 document.getElementById('pfSearch').addEventListener('input', function() {
   var v = this.value; clearTimeout(_st);
