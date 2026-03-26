@@ -24,6 +24,8 @@ BASE = Path(r"C:\Users\arunu\OneDrive\Documents\leading tuition\OxbridgeIntervie
 SAMPLES_SRC   = BASE / "Sample"
 PACKS_SRC     = BASE / "Uncovered packs"
 OUT_DIR       = Path(__file__).parent / "r2_upload_oxbridge"
+# Static folder inside the repo — samples go here so they're served directly by Cloudflare Pages
+STATIC_SAMPLES_DIR = Path(__file__).parent / "public" / "oxbridge-samples"
 
 
 def slugify(name):
@@ -55,27 +57,49 @@ def copy_folder(src_dir, dest_prefix, label):
     return ok, missing
 
 
+def copy_samples_to_static(src_dir, dest_dir):
+    """Copy sample PDFs into the repo's public/ folder for static serving."""
+    pdfs = list(src_dir.glob("*.pdf"))
+    if not pdfs:
+        print(f"WARNING: no PDFs found in {src_dir}")
+        return
+
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    for src in sorted(pdfs):
+        stem = src.stem
+        slug = slugify(stem)
+        dest = dest_dir / f"{slug}.pdf"
+        shutil.copy2(src, dest)
+        print(f"  ✓  public/oxbridge-samples/{slug}.pdf  ({stem})")
+
+
 def main():
     if not BASE.exists():
         print(f"ERROR: source folder not found:\n  {BASE}")
         print("Run this script on your Windows machine.")
         sys.exit(1)
 
-    # Wipe and recreate output
+    # Wipe and recreate R2 staging output
     if OUT_DIR.exists():
         shutil.rmtree(OUT_DIR)
     OUT_DIR.mkdir()
 
-    print("\n── Free samples ──────────────────────────────────")
+    print("\n── Free samples → R2 staging ─────────────────────")
     samples, _ = copy_folder(SAMPLES_SRC, "oxbridge-samples", "Sample")
+
+    print("\n── Free samples → repo static files ──────────────")
+    copy_samples_to_static(SAMPLES_SRC, STATIC_SAMPLES_DIR)
 
     print("\n── Paid packs ────────────────────────────────────")
     packs, _ = copy_folder(PACKS_SRC, "oxbridge-packs", "Pack")
 
     print(f"\n── Done ──")
     print(f"  Samples: {len(samples)}  →  r2_upload_oxbridge/oxbridge-samples/")
+    print(f"  Samples: {len(samples)}  →  public/oxbridge-samples/  (static, commit these!)")
     print(f"  Packs:   {len(packs)}   →  r2_upload_oxbridge/oxbridge-packs/")
-    print(f"\nNext: Cloudflare → R2 → lt-answers → Upload → Upload folder → select r2_upload_oxbridge/")
+    print(f"\nNext steps:")
+    print(f"  1. git add public/oxbridge-samples/ && git commit -m 'Add Oxbridge sample PDFs'")
+    print(f"  2. Cloudflare → R2 → lt-answers → Upload → Upload folder → select r2_upload_oxbridge/")
 
     # Print the slug mapping for reference (used in the HTML page)
     print("\n── Pack slug mapping (for reference) ─────────────")
