@@ -12,7 +12,7 @@ import re
 from pathlib import Path
 from collections import defaultdict
 
-CSV_PATH = Path("/sessions/brave-blissful-mendel/mnt/uploads/resources_page_mapping_with_local_paths_filtered.csv")
+CSV_PATH = Path("/sessions/brave-blissful-mendel/mnt/uploads/resources_page_mapping_with_local_paths_filtered-4558bcd2.csv")
 OUT_DIR = Path("/sessions/brave-blissful-mendel/mnt/leading-tuition-website/seo-generator/output/resources")
 
 
@@ -55,11 +55,16 @@ def humanize(title):
 # ── Load CSV ──────────────────────────────────────────────────────────────────
 EXCLUDED_INSTITUTIONS = {"PiAcademy Practice"}
 
+INSTITUTION_FIXES = {
+    "Alleyn's Schoo": "Alleyn's School",
+}
+
 rows = []
 with open(CSV_PATH, encoding="utf-8") as f:
     reader = csv.DictReader(f)
     for row in reader:
-        if row["institution"] not in EXCLUDED_INSTITUTIONS:
+        if row["institution"] and row["institution"] not in EXCLUDED_INSTITUTIONS:
+            row["institution"] = INSTITUTION_FIXES.get(row["institution"], row["institution"])
             rows.append(row)
 
 # Build per-page data
@@ -1211,7 +1216,7 @@ function updateCartBar() {{
     price = price * 0.90;
     msg = '\u2713 10% off applied \u2014 add 1 more for 20% off';
   }} else {{
-    msg = 'Add 1 more for 10% off';
+    msg = 'Add 1 more for 10% off \u00b7 add 2 more for 20% off';
   }}
 
   document.getElementById('cartCount').textContent = n + ' answer' + (n !== 1 ? 's' : '') + ' in cart';
