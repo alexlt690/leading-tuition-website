@@ -12,8 +12,8 @@ import re
 from pathlib import Path
 from collections import defaultdict
 
-CSV_PATH = Path("/sessions/brave-blissful-mendel/mnt/uploads/resources_page_mapping_with_local_paths_filtered-4558bcd2.csv")
-OUT_DIR = Path("/sessions/brave-blissful-mendel/mnt/leading-tuition-website/seo-generator/output/resources")
+CSV_PATH = Path(__file__).parent / "resources_page_mapping_with_local_paths_filtered.csv"
+OUT_DIR = Path(__file__).parent / "seo-generator" / "output" / "resources"
 
 
 def slugify(s):
@@ -89,8 +89,10 @@ for row in rows:
 
     repo_q = f"/public/papers/{slug}/{inst_slug}/{q_fname}"
     repo_a = f"/public/papers/{slug}/{inst_slug}/{a_fname}" if has_answer else ""
-    # R2 key for answer (no leading slash, no /public/ prefix) — used by paid download system
-    r2_key = f"{slug}/{inst_slug}/{a_fname}" if has_answer else ""
+    # R2 key for answer — use question filename as base so each paper gets a unique key
+    # e.g. 11-plus/alleyns-school/alleyns-11-plus-maths-2025-answers.pdf
+    q_base = q_fname.rsplit(".pdf", 1)[0]
+    r2_key = f"{slug}/{inst_slug}/{q_base}-answers.pdf" if has_answer else ""
 
     pages_data[slug].append({
         "i": institution,
