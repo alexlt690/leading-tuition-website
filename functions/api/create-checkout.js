@@ -29,18 +29,25 @@ export async function onRequestPost(context) {
   const { request, env } = context;
 
   try {
-    const { papers } = await request.json();
+    const { papers, unitAmount: clientUnitAmount, cancelUrl: clientCancelUrl, labelSuffix } = await request.json();
 
     if (!papers || papers.length === 0) {
       return json({ error: 'No papers selected' }, 400);
     }
 
-    // Line items — £3 per paper
+    // Whitelist of allowed unit amounts in pence (prevents client-side price manipulation)
+    const ALLOWED_AMOUNTS = [300, 15000]; // £3 (answer sheets), £150 (oxbridge packs)
+    const unitAmount = ALLOWED_AMOUNTS.includes(clientUnitAmount) ? clientUnitAmount : 300;
+
+    const suffix = labelSuffix || ' — Answers';
+    const cancelUrl = clientCancelUrl || 'https://www.leadingtuition.co.uk/resources/11-plus';
+
+    // Line items
     const lineItems = papers.map(p => ({
       price_data: {
         currency: 'gbp',
-        product_data: { name: p.label + ' — Answers' },
-        unit_amount: 300,
+        product_data: { name: p.label + suffix },
+        unit_amount: unitAmount,
       },
       quantity: 1,
     }));
@@ -60,7 +67,7 @@ export async function onRequestPost(context) {
     const sessionData = {
       mode: 'payment',
       success_url: 'https://www.leadingtuition.co.uk/purchase-confirmed?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'https://www.leadingtuition.co.uk/resources/11-plus',
+      cancel_url: cancelUrl,
       line_items: lineItems,
       metadata,
       payment_intent_data: { metadata },

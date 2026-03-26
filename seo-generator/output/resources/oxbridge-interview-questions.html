@@ -293,81 +293,174 @@
   </ul>
 </nav>
 
+<style>
+.oiq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:1.25rem;}
+.oiq-card{background:#fff;border:1px solid #dee2e6;border-radius:8px;padding:1.1rem 1rem 1rem;display:flex;flex-direction:column;gap:.55rem;}
+.oiq-badge{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:.03em;padding:.2rem .55rem;border-radius:20px;text-transform:uppercase;width:fit-content;}
+.oiq-title{font-size:.93rem;font-weight:600;color:#1d3557;line-height:1.35;flex:1;}
+.oiq-sample-btn{display:inline-block;padding:.45rem .85rem;background:#f1faee;border:1px solid #457b9d;color:#1d3557;border-radius:5px;font-size:.82rem;font-weight:600;text-decoration:none;text-align:center;}
+.oiq-sample-btn:hover{background:#d8f0e8;}
+.oiq-add-btn{padding:.5rem .85rem;background:#1d3557;color:#fff;border:none;border-radius:5px;font-size:.82rem;font-weight:600;cursor:pointer;text-align:center;}
+.oiq-add-btn:hover{background:#457b9d;}
+.oiq-add-btn.cart-added{background:#2a9d8f;}
+#cartBar{position:fixed;bottom:0;left:0;right:0;background:#1d3557;color:#fff;padding:.85rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;transform:translateY(100%);transition:transform .25s ease;z-index:1000;flex-wrap:wrap;}
+#cartBar.visible{transform:translateY(0);}
+.cart-left{display:flex;flex-direction:column;gap:.15rem;}
+.cart-count{font-size:.95rem;font-weight:600;}
+.cart-msg{font-size:.78rem;color:#a8c9e4;}
+.cart-right{display:flex;align-items:center;gap:1rem;}
+.cart-price{font-size:1.1rem;font-weight:700;}
+.cart-buy-btn{padding:.6rem 1.4rem;background:#e63946;color:#fff;border:none;border-radius:5px;font-size:.95rem;font-weight:700;cursor:pointer;white-space:nowrap;}
+.cart-buy-btn:hover{background:#c1121f;}
+.oiq-section{max-width:1100px;margin:0 auto;padding:2.5rem 1.5rem 0;}
+.oiq-section-title{font-size:1.5rem;color:#1d3557;margin-bottom:.4rem;padding-bottom:.6rem;border-bottom:2px solid #dee2e6;}
+.oiq-section-sub{font-size:.95rem;color:#666;margin-bottom:1.25rem;margin-top:.25rem;}
+.oiq-discount-box{background:#fff9db;border:1px solid #f4c430;border-radius:7px;padding:.9rem 1.2rem;font-size:.9rem;color:#5a4200;margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem;}
+</style>
+
 <!-- HERO -->
-<section class="hero" style="background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%); min-height: 260px;">
-  <div class="hero-content">
-    <h1>Oxbridge Interview Questions</h1>
-    <p style="font-size:1.15rem; margin-top:0.75rem; color:#f1faee;">Expert guidance on questions, technique, and how to impress your interviewers.</p>
+<section class="hero" style="background:linear-gradient(135deg,#1d3557 0%,#457b9d 100%);min-height:280px;display:flex;align-items:center;">
+  <div class="hero-content" style="max-width:820px;">
+    <h1 style="font-size:2.4rem;margin-bottom:.6rem;">Oxbridge Interview Question Packs</h1>
+    <p style="font-size:1.15rem;color:#a8d8ea;margin-top:0;">Real interview questions by subject &mdash; with model answers and expert technique, written by Oxford &amp; Cambridge graduates.</p>
+    <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.25rem;">
+      <span style="background:rgba(255,255,255,.15);padding:.35rem .9rem;border-radius:20px;font-size:.9rem;color:#fff;">&#10003; 30 subject packs</span>
+      <span style="background:rgba(255,255,255,.15);padding:.35rem .9rem;border-radius:20px;font-size:.9rem;color:#fff;">&#10003; 9 free samples</span>
+      <span style="background:rgba(255,255,255,.15);padding:.35rem .9rem;border-radius:20px;font-size:.9rem;color:#fff;">&#10003; Instant download</span>
+    </div>
   </div>
 </section>
 
 <!-- BREADCRUMB -->
-<nav aria-label="Breadcrumb" style="padding:0.75rem 1.5rem; background:#f8f9fa; font-size:0.875rem;">
-  <ol style="list-style:none; margin:0; padding:0; display:flex; gap:0.5rem; flex-wrap:wrap;">
+<nav aria-label="Breadcrumb" style="padding:.6rem 1.5rem;background:#f8f9fa;font-size:.875rem;border-bottom:1px solid #e9ecef;">
+  <ol style="list-style:none;margin:0 auto;padding:0;display:flex;gap:.5rem;flex-wrap:wrap;max-width:1100px;">
     <li><a href="/" style="color:#457b9d;">Home</a></li>
-    <li style="color:#999;">&rsaquo;</li>
+    <li style="color:#aaa;">&rsaquo;</li>
     <li><a href="/resources/" style="color:#457b9d;">Resources</a></li>
-    <li style="color:#999;">&rsaquo;</li>
-    <li style="color:#333;">Oxbridge Interview Questions</li>
+    <li style="color:#aaa;">&rsaquo;</li>
+    <li style="color:#555;">Oxbridge Interview Questions</li>
   </ol>
 </nav>
 
-<!-- MAIN CONTENT -->
-<main style="max-width:1100px; margin:0 auto; padding:2.5rem 1.5rem;">
+<main>
 
-  <!-- INTRO -->
-  <section style="margin-bottom:3rem;">
-    <p style="font-size:1.1rem; color:#555; max-width:720px; line-height:1.7;">
-      This resource hub is coming soon. We are currently preparing in-depth guides, practice materials, and expert advice for this section. Check back shortly or <a href="/contact" style="color:#e63946;">contact us</a> if you have a specific question.
-    </p>
-  </section>
+<!-- FREE SAMPLES -->
+<section class="oiq-section">
+  <h2 class="oiq-section-title">Free Samples</h2>
+  <p class="oiq-section-sub">Download a free sample to see the format and quality before purchasing.</p>
+  <div class="oiq-grid">
+    <div class="oiq-card"><span class="oiq-badge" style="background:#d8f3dc;color:#1b4332;">Biology</span><div class="oiq-title">Biology Sample</div><a class="oiq-sample-btn" href="/api/oxbridge-sample?k=oxbridge-samples/biology-sample.pdf" target="_blank">&#8659; Download free</a></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#e0f4f4;color:#0d3b44;">Chemistry</span><div class="oiq-title">Chemistry Sample</div><a class="oiq-sample-btn" href="/api/oxbridge-sample?k=oxbridge-samples/chemistry-sample.pdf" target="_blank">&#8659; Download free</a></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#fff0d9;color:#7c4a00;">Engineering</span><div class="oiq-title">Engineering Sample</div><a class="oiq-sample-btn" href="/api/oxbridge-sample?k=oxbridge-samples/engineering-sample.pdf" target="_blank">&#8659; Download free</a></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#e9f5db;color:#2d4a1e;">Geography</span><div class="oiq-title">Geography Sample</div><a class="oiq-sample-btn" href="/api/oxbridge-sample?k=oxbridge-samples/geography-sample.pdf" target="_blank">&#8659; Download free</a></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#f3e5f5;color:#4a148c;">Languages</span><div class="oiq-title">German Sample</div><a class="oiq-sample-btn" href="/api/oxbridge-sample?k=oxbridge-samples/german-sample.pdf" target="_blank">&#8659; Download free</a></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#fce4ec;color:#880e4f;">Humanities</span><div class="oiq-title">History Sample</div><a class="oiq-sample-btn" href="/api/oxbridge-sample?k=oxbridge-samples/history-sample.pdf" target="_blank">&#8659; Download free</a></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#e3f2fd;color:#0d47a1;">Maths</span><div class="oiq-title">Maths Sample</div><a class="oiq-sample-btn" href="/api/oxbridge-sample?k=oxbridge-samples/maths-sample.pdf" target="_blank">&#8659; Download free</a></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#fff0d9;color:#7c4a00;">Physics</span><div class="oiq-title">Physics Sample</div><a class="oiq-sample-btn" href="/api/oxbridge-sample?k=oxbridge-samples/physics-sample.pdf" target="_blank">&#8659; Download free</a></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#fde8e8;color:#7b1a1a;">Vet Med</span><div class="oiq-title">Vet Med Sample</div><a class="oiq-sample-btn" href="/api/oxbridge-sample?k=oxbridge-samples/vet-med-sample.pdf" target="_blank">&#8659; Download free</a></div>
+  </div>
+</section>
 
-  <!-- CARDS -->
-  <section>
-    <h2 style="margin-bottom:1.5rem;">Explore Our Resources</h2>
-    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:1.5rem;">
-      <a href="/oxbridge-interviews/" style="display:block; background:#fff; border:1px solid #dee2e6; border-radius:8px; padding:1.5rem; text-decoration:none; color:inherit; transition:box-shadow .2s;">
-        <h3 style="margin:0 0 0.5rem; color:#1d3557; font-size:1.05rem;">Oxbridge Interview Prep</h3>
-        <p style="margin:0; font-size:0.9rem; color:#666; line-height:1.6;">Subject-by-subject interview guides from our Oxford and Cambridge tutors.</p>
-        <span style="display:inline-block; margin-top:0.75rem; font-size:0.85rem; color:#e63946; font-weight:600;">Read more &rarr;</span>
-      </a>
-      <a href="/services/specialist-admissions/oxbridge-admissions-preparation" style="display:block; background:#fff; border:1px solid #dee2e6; border-radius:8px; padding:1.5rem; text-decoration:none; color:inherit; transition:box-shadow .2s;">
-        <h3 style="margin:0 0 0.5rem; color:#1d3557; font-size:1.05rem;">Oxbridge Admissions</h3>
-        <p style="margin:0; font-size:0.9rem; color:#666; line-height:1.6;">Full admissions support including personal statement and interview coaching.</p>
-        <span style="display:inline-block; margin-top:0.75rem; font-size:0.85rem; color:#e63946; font-weight:600;">Read more &rarr;</span>
-      </a>
-      <a href="/blog/oxbridge-interview-questions-100-real-examples-for-every-major-subject" style="display:block; background:#fff; border:1px solid #dee2e6; border-radius:8px; padding:1.5rem; text-decoration:none; color:inherit; transition:box-shadow .2s;">
-        <h3 style="margin:0 0 0.5rem; color:#1d3557; font-size:1.05rem;">100 Real Interview Questions</h3>
-        <p style="margin:0; font-size:0.9rem; color:#666; line-height:1.6;">100 real Oxbridge interview questions across every major subject.</p>
-        <span style="display:inline-block; margin-top:0.75rem; font-size:0.85rem; color:#e63946; font-weight:600;">Read more &rarr;</span>
-      </a>
-    </div>
-  </section>
+<!-- PAID PACKS -->
+<section class="oiq-section" style="padding-bottom:5rem;">
+  <h2 class="oiq-section-title">Full Question Packs &mdash; &pound;150 each</h2>
+  <p class="oiq-section-sub">Each pack contains real Oxbridge interview questions with full model answers and expert technique notes, written by Oxford &amp; Cambridge graduates.</p>
+  <div class="oiq-discount-box">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f4c430" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+    <span><strong>Bundle discount:</strong> 10% off 2 packs &middot; 20% off 3 or more. Applied automatically at checkout.</span>
+  </div>
+  <div class="oiq-grid">
+    <div class="oiq-card"><span class="oiq-badge" style="background:#e3f2fd;color:#0d47a1;">Maths</span><div class="oiq-title">Maths I</div><button class="oiq-add-btn" data-ak="oxbridge-packs/maths-i.pdf" data-label="Maths I" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#e3f2fd;color:#0d47a1;">Maths</span><div class="oiq-title">Maths II</div><button class="oiq-add-btn" data-ak="oxbridge-packs/maths-ii.pdf" data-label="Maths II" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#e3f2fd;color:#0d47a1;">Maths</span><div class="oiq-title">Graph Sketching</div><button class="oiq-add-btn" data-ak="oxbridge-packs/graph-sketching.pdf" data-label="Graph Sketching" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#e3f2fd;color:#0d47a1;">Maths</span><div class="oiq-title">Derivations</div><button class="oiq-add-btn" data-ak="oxbridge-packs/derivations.pdf" data-label="Derivations" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#e3f2fd;color:#0d47a1;">Maths</span><div class="oiq-title">Integration &amp; Curve Sketching</div><button class="oiq-add-btn" data-ak="oxbridge-packs/integration-curve-sketching.pdf" data-label="Integration &amp; Curve Sketching" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#fff0d9;color:#7c4a00;">Engineering</span><div class="oiq-title">Applied Engineering</div><button class="oiq-add-btn" data-ak="oxbridge-packs/applied-engineering.pdf" data-label="Applied Engineering" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#fff0d9;color:#7c4a00;">Engineering</span><div class="oiq-title">General Engineering</div><button class="oiq-add-btn" data-ak="oxbridge-packs/general-engineering.pdf" data-label="General Engineering" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#fff0d9;color:#7c4a00;">Engineering</span><div class="oiq-title">Mathematical Engineering</div><button class="oiq-add-btn" data-ak="oxbridge-packs/mathematical-engineering.pdf" data-label="Mathematical Engineering" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#fff0d9;color:#7c4a00;">Physics</span><div class="oiq-title">Dynamics and Fields</div><button class="oiq-add-btn" data-ak="oxbridge-packs/dynamics-and-fields.pdf" data-label="Dynamics and Fields" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#e8eaf6;color:#1a237e;">Computing</span><div class="oiq-title">Computer Science</div><button class="oiq-add-btn" data-ak="oxbridge-packs/computer-science.pdf" data-label="Computer Science" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#d8f3dc;color:#1b4332;">Biology</span><div class="oiq-title">Biological Sciences</div><button class="oiq-add-btn" data-ak="oxbridge-packs/biological-sciences.pdf" data-label="Biological Sciences" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#d8f3dc;color:#1b4332;">Biology</span><div class="oiq-title">Evolution &amp; Behaviour</div><button class="oiq-add-btn" data-ak="oxbridge-packs/evolution-behaviour.pdf" data-label="Evolution &amp; Behaviour" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#e0f4f4;color:#0d3b44;">Chemistry</span><div class="oiq-title">Biochemistry</div><button class="oiq-add-btn" data-ak="oxbridge-packs/biochemistry.pdf" data-label="Biochemistry" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#e0f4f4;color:#0d3b44;">Chemistry</span><div class="oiq-title">Biochemistry for Medics</div><button class="oiq-add-btn" data-ak="oxbridge-packs/biochemistry-for-medics.pdf" data-label="Biochemistry for Medics" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#e0f4f4;color:#0d3b44;">Chemistry</span><div class="oiq-title">Inorganic Chemistry</div><button class="oiq-add-btn" data-ak="oxbridge-packs/inorganic-chemistry.pdf" data-label="Inorganic Chemistry" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#e0f4f4;color:#0d3b44;">Chemistry</span><div class="oiq-title">Organic Chemistry</div><button class="oiq-add-btn" data-ak="oxbridge-packs/organic-chemistry.pdf" data-label="Organic Chemistry" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#d8f3dc;color:#1b4332;">Biology</span><div class="oiq-title">Physiology</div><button class="oiq-add-btn" data-ak="oxbridge-packs/physiology.pdf" data-label="Physiology" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#fde8e8;color:#7b1a1a;">Medicine</span><div class="oiq-title">Medicine</div><button class="oiq-add-btn" data-ak="oxbridge-packs/medicine.pdf" data-label="Medicine" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#fde8e8;color:#7b1a1a;">Vet Med</span><div class="oiq-title">Vet Med 1</div><button class="oiq-add-btn" data-ak="oxbridge-packs/vet-med-1.pdf" data-label="Vet Med 1" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#fde8e8;color:#7b1a1a;">Vet Med</span><div class="oiq-title">Vet Med 2</div><button class="oiq-add-btn" data-ak="oxbridge-packs/vet-med-2.pdf" data-label="Vet Med 2" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#fce4ec;color:#880e4f;">Humanities</span><div class="oiq-title">English</div><button class="oiq-add-btn" data-ak="oxbridge-packs/english.pdf" data-label="English" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#fce4ec;color:#880e4f;">Humanities</span><div class="oiq-title">History</div><button class="oiq-add-btn" data-ak="oxbridge-packs/history.pdf" data-label="History" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#e9f5db;color:#2d4a1e;">Geography</span><div class="oiq-title">Geography</div><button class="oiq-add-btn" data-ak="oxbridge-packs/geography.pdf" data-label="Geography" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#fce4ec;color:#880e4f;">Humanities</span><div class="oiq-title">HSPS</div><button class="oiq-add-btn" data-ak="oxbridge-packs/hsps.pdf" data-label="HSPS" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#fce4ec;color:#880e4f;">Humanities</span><div class="oiq-title">Philosophy</div><button class="oiq-add-btn" data-ak="oxbridge-packs/philosophy.pdf" data-label="Philosophy" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#fff9db;color:#5a4200;">Economics</span><div class="oiq-title">Economics I</div><button class="oiq-add-btn" data-ak="oxbridge-packs/economics-i.pdf" data-label="Economics I" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#fff9db;color:#5a4200;">Economics</span><div class="oiq-title">Economics II</div><button class="oiq-add-btn" data-ak="oxbridge-packs/economics-ii.pdf" data-label="Economics II" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#f3e5f5;color:#4a148c;">Languages</span><div class="oiq-title">French</div><button class="oiq-add-btn" data-ak="oxbridge-packs/french.pdf" data-label="French" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#f3e5f5;color:#4a148c;">Languages</span><div class="oiq-title">German</div><button class="oiq-add-btn" data-ak="oxbridge-packs/german.pdf" data-label="German" onclick="togglePack(this)">+ Add &pound;150</button></div>
+    <div class="oiq-card"><span class="oiq-badge" style="background:#f3e5f5;color:#4a148c;">Languages</span><div class="oiq-title">Spanish</div><button class="oiq-add-btn" data-ak="oxbridge-packs/spanish.pdf" data-label="Spanish" onclick="togglePack(this)">+ Add &pound;150</button></div>
+  </div>
+</section>
 
-  <!-- CTA -->
-  <section style="margin-top:3.5rem; background:#f1faee; border-left:4px solid #457b9d; padding:2rem 2rem; border-radius:6px;">
-    <h2 style="margin-top:0;">Need Personalised Support?</h2>
-    <p style="color:#555; line-height:1.7;">Our expert tutors are ready to help your child at every stage — from primary preparation right through to Oxbridge. Book a free consultation to find out how we can help.</p>
-    <a href="/consultation" style="display:inline-block; margin-top:0.75rem; padding:0.75rem 1.75rem; background:#e63946; color:#fff; border-radius:4px; text-decoration:none; font-weight:600;">Book a Free Consultation</a>
-  </section>
+<!-- CART BAR -->
+<div id="cartBar" role="region" aria-label="Pack cart">
+  <div class="cart-left">
+    <span class="cart-count" id="cartCount">0 packs in cart</span>
+    <span class="cart-msg" id="cartMsg"></span>
+  </div>
+  <div class="cart-right">
+    <span class="cart-price" id="cartPrice">&pound;0.00</span>
+    <button class="cart-buy-btn" id="cartBuy">Buy packs &rarr;</button>
+  </div>
+</div>
+
+<!-- CTA -->
+<section style="max-width:1100px;margin:2rem auto 0;padding:0 1.5rem 3rem;">
+  <div style="background:#f1faee;border-left:4px solid #457b9d;padding:1.75rem 2rem;border-radius:6px;">
+    <h2 style="margin-top:0;color:#1d3557;">Want personalised Oxbridge preparation?</h2>
+    <p style="color:#555;line-height:1.7;margin-bottom:1.25rem;">Our Oxford and Cambridge tutors offer one-to-one interview coaching, mock interviews, and full admissions support &mdash; tailored to your subject and college.</p>
+    <a href="/consultation" style="display:inline-block;padding:.75rem 1.75rem;background:#e63946;color:#fff;border-radius:4px;text-decoration:none;font-weight:600;">Book a free consultation</a>
+  </div>
+</section>
 
 </main>
 
-<!-- RELATED-CALLOUT -->
-<section style="max-width:1100px; margin:0 auto 0; padding:0 1.5rem 2.5rem;">
-  <div style="background:#f1faee; border-left:4px solid #457b9d; padding:1.5rem 2rem; border-radius:6px;">
-    <h2 style="margin-top:0; font-size:1.05rem; color:#1d3557;">Related: Expert Tuition & Preparation Services</h2>
-    <ul style="margin:0; padding-left:1.25rem; columns:2; column-gap:2rem; font-size:0.9rem; color:#444; line-height:2.1;">
-      <li><a href="/services/levels/11plus-tuition" style="color:#1d3557;">11+ Tuition</a></li>
-      <li><a href="/services/levels/13plus-tuition" style="color:#1d3557;">13+ Tuition</a></li>
-      <li><a href="/gcse/" style="color:#1d3557;">GCSE Tuition</a></li>
-      <li><a href="/a-level/" style="color:#1d3557;">A-Level Tuition</a></li>
-      <li><a href="/oxbridge-interviews/" style="color:#1d3557;">Oxbridge Interview Preparation</a></li>
-      <li><a href="/admissions-tests/" style="color:#1d3557;">Admissions Tests Preparation</a></li>
-      <li><a href="/consultation" style="color:#1d3557;">Book a Free Consultation</a></li>
-    </ul>
-  </div>
-</section>
+<script>
+var cart = [];
+function togglePack(btn) {
+  var ak = btn.dataset.ak, label = btn.dataset.label;
+  var idx = cart.findIndex(function(c){ return c.ak === ak; });
+  if (idx === -1) { cart.push({ak:ak,label:label}); btn.textContent='✓ Added'; btn.classList.add('cart-added'); }
+  else { cart.splice(idx,1); btn.textContent='+ Add £150'; btn.classList.remove('cart-added'); }
+  updateCartBar();
+}
+function updateCartBar() {
+  var bar=document.getElementById('cartBar'), n=cart.length;
+  if (!n) { bar.classList.remove('visible'); return; }
+  bar.classList.add('visible');
+  var price=n*150, msg='';
+  if (n>=3) { price*=0.8; msg='✓ 20% off applied!'; }
+  else if (n===2) { price*=0.9; msg='✓ 10% off applied — add 1 more for 20% off'; }
+  else { msg='Add 1 more for 10% off · add 2 more for 20% off'; }
+  document.getElementById('cartCount').textContent=n+' pack'+(n!==1?'s':'')+' in cart';
+  document.getElementById('cartMsg').textContent=msg;
+  document.getElementById('cartPrice').textContent='£'+price.toFixed(2);
+}
+document.getElementById('cartBuy').addEventListener('click',function(){
+  if (!cart.length) return;
+  this.textContent='Redirecting…'; this.disabled=true;
+  fetch('/api/create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({papers:cart,unitAmount:15000,
+      cancelUrl:'https://www.leadingtuition.co.uk/resources/oxbridge-interview-questions',
+      labelSuffix:' — Oxbridge Interview Pack'})
+  }).then(function(r){return r.json();}).then(function(d){
+    if (d.url){window.location.href=d.url;}
+    else{alert('Something went wrong. Please try again.');document.getElementById('cartBuy').textContent='Buy packs →';document.getElementById('cartBuy').disabled=false;}
+  }).catch(function(){alert('Something went wrong. Please try again.');document.getElementById('cartBuy').textContent='Buy packs →';document.getElementById('cartBuy').disabled=false;});
+});
+</script>
+
 <footer>
   <h3>Get In Touch</h3>
   <hr />
