@@ -20,18 +20,246 @@
     gtag('js', new Date());
     gtag('config', 'G-D49V0X7BHL');
   </script>
-  <title>Pre 11+ Resources for Parents | Leading Tuition</title>
-  <meta name="description" content="Early preparation resources for the 11+. Advice on starting in Year 3-4, what skills to build, and how to set your child up for success." />
+  <title>Pre-11+ Papers | 7+, 8+, 9+ & 10+ Practice Papers | Leading Tuition</title>
+  <meta name="description" content="Download free pre-11+ past papers for 7+, 8+, 9+ and 10+ entry. Practice Maths and English papers from leading independent schools — all free, direct PDF downloads." />
   <link rel="canonical" href="https://www.leadingtuition.co.uk/resources/pre-11-plus" />
-  <meta property="og:title" content="Pre 11+ Resources for Parents | Leading Tuition" />
-  <meta property="og:description" content="Early preparation resources for the 11+. Advice on starting in Year 3-4, what skills to build, and how to set your child up for success." />
+  <meta property="og:title" content="Pre-11+ Papers | 7+, 8+, 9+ & 10+ Practice Papers | Leading Tuition" />
+  <meta property="og:description" content="Download free pre-11+ past papers for 7+, 8+, 9+ and 10+ entry. Practice Maths and English papers from leading independent schools — all free, direct PDF downloads." />
   <meta property="og:url" content="https://www.leadingtuition.co.uk/resources/pre-11-plus" />
-  <meta name="twitter:title" content="Pre 11+ Resources for Parents | Leading Tuition" />
-  <meta name="twitter:description" content="Early preparation resources for the 11+. Advice on starting in Year 3-4, what skills to build, and how to set your child up for success." />
+  <meta name="twitter:title" content="Pre-11+ Papers | 7+, 8+, 9+ & 10+ Practice Papers | Leading Tuition" />
+  <meta name="twitter:description" content="Download free pre-11+ past papers for 7+, 8+, 9+ and 10+ entry. Practice Maths and English papers from leading independent schools — all free, direct PDF downloads." />
+  <style>
+/* ── Papers page styles ─────────────────────────────────── */
+.papers-hero-pills {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.papers-hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 20px;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.9);
+}
+.papers-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+/* Subject tabs */
+.papers-tabs {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+  border-bottom: 2px solid #dee2e6;
+  margin-bottom: 1.25rem;
+}
+.ptab {
+  padding: 0.6rem 1.1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: #666;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.ptab:hover { color: #1d3557; }
+.ptab.active { color: #1d3557; border-bottom-color: #e63946; font-weight: 600; }
+/* Filters */
+.papers-filters {
+  display: flex;
+  gap: 0.625rem;
+  flex-wrap: wrap;
+  align-items: center;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+.papers-filters select,
+.papers-filters input[type="search"] {
+  padding: 0.375rem 0.625rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  background: #fff;
+  font-family: inherit;
+  color: #333;
+}
+.papers-filters select { min-width: 165px; }
+.papers-filters input[type="search"] { flex: 1; min-width: 140px; }
+.pf-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: #444;
+  cursor: pointer;
+  white-space: nowrap;
+}
+#pfReset {
+  padding: 0.375rem 0.875rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #555;
+  font-family: inherit;
+}
+#pfReset:hover { background: #e9ecef; }
+/* Summary */
+.papers-summary {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 1rem;
+}
+/* Accordion */
+.papers-accordion { display: flex; flex-direction: column; gap: 0.4rem; }
+.pa-item {
+  border: 1px solid #e0e4e8;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.pa-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1.25rem;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  gap: 0.75rem;
+  transition: background 0.15s;
+  font-family: inherit;
+}
+.pa-header:hover { background: #f8f9fa; }
+.pa-header.open { background: #f0f6ff; border-bottom: 1px solid #e0e4e8; }
+.pa-inst-name { font-weight: 600; color: #1d3557; font-size: 0.925rem; flex: 1; }
+.pa-count { font-size: 0.78rem; color: #999; white-space: nowrap; }
+.pa-chevron { font-size: 1rem; color: #aaa; transition: transform 0.2s; line-height: 1; flex-shrink: 0; }
+.pa-header.open .pa-chevron { transform: rotate(90deg); }
+.pa-body { background: #fff; }
+.pa-year-group { border-top: 1px solid #f0f0f0; padding: 0.75rem 1.25rem 0.875rem; }
+.pa-year-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+}
+/* Table */
+.pa-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.pa-table th {
+  text-align: left;
+  color: #aaa;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0 0.625rem 0.4rem;
+  border-bottom: 1px solid #eee;
+}
+.pa-table td { padding: 0.45rem 0.625rem; border-bottom: 1px solid #f5f5f5; vertical-align: middle; }
+.pa-table tr:last-child td { border-bottom: none; }
+.pa-title { color: #333; max-width: 380px; line-height: 1.35; }
+/* Buttons */
+.pa-btn {
+  display: inline-block;
+  padding: 0.28rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #1d3557;
+  color: #fff;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.pa-btn:hover { background: #16294a; }
+.pa-btn-ans { background: #457b9d; }
+.pa-btn-ans:hover { background: #3a6a8a; }
+.pa-no-ans { font-size: 0.78rem; color: #ccc; }
+/* Subject badges */
+.pa-subj-badge {
+  display: inline-block;
+  padding: 0.12rem 0.45rem;
+  border-radius: 3px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.pa-subj-maths      { background: #e8f0fe; color: #1a56db; }
+.pa-subj-english    { background: #fef3c7; color: #92400e; }
+.pa-subj-vr         { background: #d1fae5; color: #065f46; }
+.pa-subj-nvr        { background: #ede9fe; color: #5b21b6; }
+.pa-subj-mixedother { background: #f3f4f6; color: #374151; }
+.pa-subj-biology    { background: #d1fae5; color: #065f46; }
+/* Mobile cards */
+.pa-cards { display: none; }
+.papers-empty {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: #aaa;
+  font-size: 0.95rem;
+}
+/* CTA strip */
+.papers-cta {
+  margin-top: 3rem;
+  background: #f1faee;
+  border-left: 4px solid #457b9d;
+  border-radius: 6px;
+  padding: 1.75rem 2rem;
+}
+.papers-cta h2 { margin-top: 0; font-size: 1.1rem; }
+.papers-cta p { color: #555; line-height: 1.7; margin-bottom: 1rem; }
+.papers-cta a.cta-btn {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  background: #e63946;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+/* Responsive */
+@media (max-width: 720px) {
+  .pa-table { display: none; }
+  .pa-cards { display: block; }
+  .pa-card {
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin-bottom: 0.4rem;
+    background: #fafafa;
+  }
+  .pa-card-title { font-size: 0.85rem; color: #333; font-weight: 500; margin-bottom: 0.35rem; line-height: 1.35; }
+  .pa-card-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+  .pa-card-year { font-size: 0.75rem; color: #999; }
+  .pa-card-actions { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .papers-filters { gap: 0.4rem; }
+  .papers-filters select { min-width: 130px; }
+  .papers-tabs { gap: 0; }
+  .ptab { padding: 0.5rem 0.75rem; font-size: 0.82rem; }
+  .papers-main { padding: 1.25rem 1rem 2.5rem; }
+}
+</style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar">
   <a href="/" class="navbar-brand">
     <img src="/images/logo.png" alt="Leading Tuition logo" />
@@ -84,7 +312,7 @@
             <a href="/services/levels/13plus-tuition">13+ Tuition</a>
             <div class="nav-flyout">
               <a href="/gcse/">GCSE Tuition</a>
-              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">&#9662;</button>
               <div class="nav-flyout-menu">
                 <a href="/subjects/gcse-maths/">Maths</a>
                 <a href="/subjects/gcse-chemistry/">Chemistry</a>
@@ -92,7 +320,7 @@
             </div>
             <div class="nav-flyout">
               <a href="/a-level/">A-Level Tuition</a>
-              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">&#9662;</button>
               <div class="nav-flyout-menu">
                 <a href="/subjects/a-level-maths/">Maths</a>
                 <a href="/subjects/a-level-biology/">Biology</a>
@@ -111,7 +339,7 @@
             <a href="/services/specialist-admissions/medicine-prep-hub">Medicine Prep Hub</a>
             <div class="nav-flyout">
               <a href="/medical-schools/">Medical School Guides</a>
-              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">&#9662;</button>
               <div class="nav-flyout-menu nav-flyout-menu--cols">
                 <a href="/medical-schools/aberdeen">Aberdeen</a>
                 <a href="/medical-schools/anglia-ruskin">Anglia Ruskin</a>
@@ -130,7 +358,7 @@
                 <a href="/medical-schools/hull-york">Hull York</a>
                 <a href="/medical-schools/imperial">Imperial</a>
                 <a href="/medical-schools/keele">Keele</a>
-                <a href="/medical-schools/kings">King's College London</a>
+                <a href="/medical-schools/kings">King&#39;s College London</a>
                 <a href="/medical-schools/lancaster">Lancaster</a>
                 <a href="/medical-schools/leeds">Leeds</a>
                 <a href="/medical-schools/leicester">Leicester</a>
@@ -141,11 +369,11 @@
                 <a href="/medical-schools/nottingham">Nottingham</a>
                 <a href="/medical-schools/oxford">Oxford</a>
                 <a href="/medical-schools/plymouth">Plymouth</a>
-                <a href="/medical-schools/queens-belfast">Queen's Belfast</a>
+                <a href="/medical-schools/queens-belfast">Queen&#39;s Belfast</a>
                 <a href="/medical-schools/sheffield">Sheffield</a>
                 <a href="/medical-schools/southampton">Southampton</a>
                 <a href="/medical-schools/st-andrews">St Andrews</a>
-                <a href="/medical-schools/st-georges">St George's</a>
+                <a href="/medical-schools/st-georges">St George&#39;s</a>
                 <a href="/medical-schools/sunderland">Sunderland</a>
                 <a href="/medical-schools/swansea">Swansea</a>
                 <a href="/medical-schools/ucl">UCL</a>
@@ -163,7 +391,7 @@
             <div class="nav-mega-col-title">Oxbridge</div>
             <div class="nav-flyout">
               <a href="/oxbridge-interviews/">Oxbridge Interview Preparation</a>
-              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">&#9662;</button>
               <div class="nav-flyout-menu nav-flyout-menu--two-cols">
                 <a href="/oxbridge-interviews/biology-interview">Biology</a>
                 <a href="/oxbridge-interviews/chemistry-interview">Chemistry</a>
@@ -190,7 +418,7 @@
             <a href="/services/specialist-admissions/university-personal-statement">University Personal Statement Help</a>
             <div class="nav-flyout">
               <a href="/admissions-tests/">Oxbridge Admissions Tests</a>
-              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">&#9662;</button>
               <div class="nav-flyout-menu nav-flyout-menu--two-cols">
                 <a href="/admissions-tests/lnat-preparation/">LNAT (Law)</a>
                 <a href="/admissions-tests/mat-preparation/">MAT (Maths)</a>
@@ -225,7 +453,7 @@
       </div>
     </li>
 
-    <!-- Blog dropdown (grouped by topic) -->
+    <!-- Blog dropdown -->
     <li class="nav-dropdown">
       <a href="/blog/" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
@@ -294,80 +522,110 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero" style="background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%); min-height: 260px;">
+<section class="hero" style="background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%); min-height: 240px;">
   <div class="hero-content">
-    <h1>Pre 11+ Resources</h1>
-    <p style="font-size:1.15rem; margin-top:0.75rem; color:#f1faee;">Start early, build strong foundations — advice for Years 3 and 4.</p>
+    <h1>Pre-11+ Past Papers</h1>
+    <p style="font-size:1.05rem; margin-top:0.5rem; color:#f1faee;">Free 7+, 8+, 9+ and 10+ entry papers from top independent schools. All available as direct PDF downloads.</p>
+    <div class="papers-hero-pills">
+      <span class="papers-hero-pill">&#10003; 22 papers</span>
+      <span class="papers-hero-pill">&#10003; 14 institutions</span>
+      <span class="papers-hero-pill">&#10003; All free &amp; direct download</span>
+    </div>
   </div>
 </section>
 
 <!-- BREADCRUMB -->
-<nav aria-label="Breadcrumb" style="padding:0.75rem 1.5rem; background:#f8f9fa; font-size:0.875rem;">
-  <ol style="list-style:none; margin:0; padding:0; display:flex; gap:0.5rem; flex-wrap:wrap;">
+<nav aria-label="Breadcrumb" style="padding:0.65rem 1.5rem; background:#f8f9fa; font-size:0.85rem;">
+  <ol style="list-style:none; margin:0; padding:0; display:flex; gap:0.4rem; flex-wrap:wrap;">
     <li><a href="/" style="color:#457b9d;">Home</a></li>
-    <li style="color:#999;">&rsaquo;</li>
+    <li style="color:#bbb;">&rsaquo;</li>
     <li><a href="/resources/" style="color:#457b9d;">Resources</a></li>
-    <li style="color:#999;">&rsaquo;</li>
-    <li style="color:#333;">Pre 11+ Resources</li>
+    <li style="color:#bbb;">&rsaquo;</li>
+    <li style="color:#555;">Pre-11+ Past Papers</li>
   </ol>
 </nav>
 
-<!-- MAIN CONTENT -->
-<main style="max-width:1100px; margin:0 auto; padding:2.5rem 1.5rem;">
+<!-- PAPERS UI -->
+<main class="papers-main">
 
-  <!-- INTRO -->
-  <section style="margin-bottom:3rem;">
-    <p style="font-size:1.1rem; color:#555; max-width:720px; line-height:1.7;">
-      This resource hub is coming soon. We are currently preparing in-depth guides, practice materials, and expert advice for this section. Check back shortly or <a href="/contact" style="color:#e63946;">contact us</a> if you have a specific question.
-    </p>
-  </section>
+  <!-- Subject tabs -->
+  <div class="papers-tabs" id="papersTabs">
+    <button class="ptab active" data-subject="">All (22)</button>
+    <button class="ptab" data-subject="Maths">Maths (19)</button>
+    <button class="ptab" data-subject="English">English (2)</button>
+    <button class="ptab" data-subject="Mixed/Other">Mixed/Other (1)</button>
 
-  <!-- CARDS -->
-  <section>
-    <h2 style="margin-bottom:1.5rem;">Explore Our Resources</h2>
-    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:1.5rem;">
-      <a href="/blog/what-is-the-11-plus-exam" style="display:block; background:#fff; border:1px solid #dee2e6; border-radius:8px; padding:1.5rem; text-decoration:none; color:inherit; transition:box-shadow .2s;">
-        <h3 style="margin:0 0 0.5rem; color:#1d3557; font-size:1.05rem;">What is the 11+?</h3>
-        <p style="margin:0; font-size:0.9rem; color:#666; line-height:1.6;">An overview of the exam, formats, and which schools use it.</p>
-        <span style="display:inline-block; margin-top:0.75rem; font-size:0.85rem; color:#e63946; font-weight:600;">Read more &rarr;</span>
-      </a>
-      <a href="/11-plus/" style="display:block; background:#fff; border:1px solid #dee2e6; border-radius:8px; padding:1.5rem; text-decoration:none; color:inherit; transition:box-shadow .2s;">
-        <h3 style="margin:0 0 0.5rem; color:#1d3557; font-size:1.05rem;">11+ School Guides</h3>
-        <p style="margin:0; font-size:0.9rem; color:#666; line-height:1.6;">Detailed guides for individual grammar schools across the UK.</p>
-        <span style="display:inline-block; margin-top:0.75rem; font-size:0.85rem; color:#e63946; font-weight:600;">Read more &rarr;</span>
-      </a>
-      <a href="/services/levels/11plus-tuition" style="display:block; background:#fff; border:1px solid #dee2e6; border-radius:8px; padding:1.5rem; text-decoration:none; color:inherit; transition:box-shadow .2s;">
-        <h3 style="margin:0 0 0.5rem; color:#1d3557; font-size:1.05rem;">11+ Tuition</h3>
-        <p style="margin:0; font-size:0.9rem; color:#666; line-height:1.6;">Find out how our tutors can support early 11+ preparation.</p>
-        <span style="display:inline-block; margin-top:0.75rem; font-size:0.85rem; color:#e63946; font-weight:600;">Read more &rarr;</span>
-      </a>
-    </div>
-  </section>
+  </div>
+
+  <!-- Filter bar -->
+  <div class="papers-filters" id="papersFilters">
+    <select id="pfInstitution" aria-label="Filter by institution">
+      <option value="">All institutions</option>
+      <option value="Chigwell School">Chigwell School</option>
+<option value="City of London School">City of London School</option>
+<option value="Dulwich College">Dulwich College</option>
+<option value="Haberdashers' Boys' School">Haberdashers' Boys' School</option>
+<option value="Hampton Court House">Hampton Court House</option>
+<option value="Highgate School">Highgate School</option>
+<option value="Kingston Grammar School">Kingston Grammar School</option>
+<option value="Latymer Upper School">Latymer Upper School</option>
+<option value="North London Collegiate">North London Collegiate</option>
+<option value="St Faith's Cambridge">St Faith's Cambridge</option>
+<option value="St Mary's School">St Mary's School</option>
+<option value="The Latymer School">The Latymer School</option>
+<option value="The Perse School">The Perse School</option>
+<option value="Westminster Cathedral Choir School">Westminster Cathedral Choir School</option>
+    </select>
+    <select id="pfYear" aria-label="Filter by year">
+      <option value="">All years</option>
+      <option value="2026">2026</option>
+<option value="2021">2021</option>
+<option value="2019">2019</option>
+<option value="2018">2018</option>
+    </select>
+    <label class="pf-toggle">
+      <input type="checkbox" id="pfAnswers" />
+      Has answers
+    </label>
+    <input type="search" id="pfSearch" placeholder="Search papers&hellip;" aria-label="Search papers" />
+    <button id="pfReset" type="button">Reset</button>
+  </div>
+
+  <!-- Summary line -->
+  <div id="papersSummary" class="papers-summary"></div>
+
+  <!-- Results accordion -->
+  <div id="papersAccordion" class="papers-accordion"></div>
+
+  <!-- No results -->
+  <div id="papersEmpty" class="papers-empty" style="display:none;">
+    No papers match your filters. <button onclick="resetAll()" style="background:none;border:none;color:#457b9d;cursor:pointer;font-size:inherit;text-decoration:underline;">Reset filters</button>
+  </div>
 
   <!-- CTA -->
-  <section style="margin-top:3.5rem; background:#f1faee; border-left:4px solid #457b9d; padding:2rem 2rem; border-radius:6px;">
-    <h2 style="margin-top:0;">Need Personalised Support?</h2>
-    <p style="color:#555; line-height:1.7;">Our expert tutors are ready to help your child at every stage — from primary preparation right through to Oxbridge. Book a free consultation to find out how we can help.</p>
-    <a href="/consultation" style="display:inline-block; margin-top:0.75rem; padding:0.75rem 1.75rem; background:#e63946; color:#fff; border-radius:4px; text-decoration:none; font-weight:600;">Book a Free Consultation</a>
-  </section>
+  <div class="papers-cta">
+    <h2>Need Expert Tuition Alongside These Papers?</h2>
+    <p>Our specialist tutors work through past papers with your child, identifying gaps and building exam technique. Book a free consultation to find out how we can help.</p>
+    <a href="/consultation" class="cta-btn">Book a Free Consultation</a>
+  </div>
 
 </main>
 
-<!-- RELATED-CALLOUT -->
+<!-- RELATED CALLOUT -->
 <section style="max-width:1100px; margin:0 auto 0; padding:0 1.5rem 2.5rem;">
   <div style="background:#f1faee; border-left:4px solid #457b9d; padding:1.5rem 2rem; border-radius:6px;">
-    <h2 style="margin-top:0; font-size:1.05rem; color:#1d3557;">Related: Expert Tuition & Preparation Services</h2>
-    <ul style="margin:0; padding-left:1.25rem; columns:2; column-gap:2rem; font-size:0.9rem; color:#444; line-height:2.1;">
+    <h2 style="margin-top:0; font-size:1rem; color:#1d3557;">Related: Tuition &amp; Preparation Services</h2>
+    <ul style="margin:0; padding-left:1.25rem; columns:2; column-gap:2rem; font-size:0.875rem; color:#444; line-height:2.1;">
       <li><a href="/services/levels/11plus-tuition" style="color:#1d3557;">11+ Tuition</a></li>
       <li><a href="/services/levels/13plus-tuition" style="color:#1d3557;">13+ Tuition</a></li>
+      <li><a href="/11-plus/" style="color:#1d3557;">11+ School Guides</a></li>
       <li><a href="/gcse/" style="color:#1d3557;">GCSE Tuition</a></li>
       <li><a href="/a-level/" style="color:#1d3557;">A-Level Tuition</a></li>
-      <li><a href="/oxbridge-interviews/" style="color:#1d3557;">Oxbridge Interview Preparation</a></li>
-      <li><a href="/admissions-tests/" style="color:#1d3557;">Admissions Tests Preparation</a></li>
       <li><a href="/consultation" style="color:#1d3557;">Book a Free Consultation</a></li>
     </ul>
   </div>
 </section>
+
 <footer>
   <h3>Get In Touch</h3>
   <hr />
@@ -398,7 +656,6 @@
   </div>
 
   <div class="copyright">COPYRIGHT &copy;2026, Leading Tuition. ALL RIGHTS RESERVED.</div>
-
 </footer>
 
 <script>
@@ -413,7 +670,6 @@
     hamburger.setAttribute('aria-expanded', open);
   });
 
-  // Mobile: top-level dropdown toggles
   var toggles = document.querySelectorAll('.nav-dropdown-toggle');
   toggles.forEach(function(toggle) {
     toggle.addEventListener('click', function(e) {
@@ -425,7 +681,6 @@
     });
   });
 
-  // Mobile: fly-out sub-menu toggles (button expands; link navigates normally)
   var flyoutToggles = document.querySelectorAll('.nav-flyout-toggle');
   flyoutToggles.forEach(function(btn) {
     btn.addEventListener('click', function(e) {
@@ -446,29 +701,265 @@
   });
 })();
 </script>
+
+<script>
+var PAPERS_DATA = [{"i":"Chigwell School","s":"Maths","y":"2026","t":"Chigwell School 7 Plus Maths Specimen Paper 2026","q":"/public/papers/pre-11-plus/chigwell-school/piacademy_4chigwell_school_7_plus_maths_specimen_paper_2026.pdf","a":""},{"i":"City of London School","s":"Maths","y":"","t":"City of London School - 10 Plus Maths Practice Paper","q":"/public/papers/pre-11-plus/city-of-london-school/piacademy_19city_of_london_school_10_plus_maths_practice_paper.pdf","a":""},{"i":"Dulwich College","s":"Maths","y":"2026","t":"Dulwich College - 8 Plus Maths Sample Paper - 2026","q":"/public/papers/pre-11-plus/dulwich-college/piacademy_2dulwich_college_8_plus_maths_sample_paper_2026.pdf","a":""},{"i":"Dulwich College","s":"Maths","y":"2026","t":"Dulwich College - 9 Plus Maths Sample Paper - 2026","q":"/public/papers/pre-11-plus/dulwich-college/piacademy_9dulwich_college_9_plus_maths_sample_paper_2026.pdf","a":""},{"i":"Dulwich College","s":"Maths","y":"2026","t":"Dulwich College 7 Plus Maths 2026 Sample Questions Paper 2","q":"/public/papers/pre-11-plus/dulwich-college/piacademy_3dulwich_college_7_plus_maths_2026_sample_questions_paper_2.pdf","a":""},{"i":"Hampton Court House","s":"Maths","y":"2026","t":"Hampton Court House - Year 5 Maths Entrance Exam Paper - 2026","q":"/public/papers/pre-11-plus/hampton-court-house/piacademy_7hampton_court_house_year_5_maths_entrance_exam_paper_2026.pdf","a":""},{"i":"Highgate School","s":"Maths","y":"2026","t":"Highgate School 7 Plus Maths 2026 Practice Paper 2","q":"/public/papers/pre-11-plus/highgate-school/piacademy_2highgate_school_7_plus_maths_2026_practice_paper_2.pdf","a":""},{"i":"Latymer Upper School","s":"Maths","y":"","t":"Latymer Upper School - 7 Plus Maths Paper 1","q":"/public/papers/pre-11-plus/latymer-upper-school/piacademy_11latymer_upper_school_7_plus_maths_paper_1.pdf","a":""},{"i":"Latymer Upper School","s":"Maths","y":"","t":"Latymer Upper School - 7 Plus Maths Paper 2","q":"/public/papers/pre-11-plus/latymer-upper-school/piacademy_12latymer_upper_school_7_plus_maths_paper_2.pdf","a":""},{"i":"North London Collegiate","s":"Maths","y":"2019","t":"North London Collegiate School - 7 Plus Maths Sample Paper 2019","q":"/public/papers/pre-11-plus/north-london-collegiate/piacademy_10north_london_collegiate_school_7_plus_maths_sample_paper_2019.pdf","a":""},{"i":"North London Collegiate","s":"Maths","y":"2018","t":"North London Collegiate Junior School - 7 Plus Maths Sample paper 2018","q":"/public/papers/pre-11-plus/north-london-collegiate/piacademy_8north_london_collegiate_junior_school_7_plus_maths_sample_paper_2018.pdf","a":""},{"i":"St Faith's Cambridge","s":"Maths","y":"2026","t":"St Faiths Cambridge - Year 4 Sample Maths Paper - 2026","q":"/public/papers/pre-11-plus/st-faiths-cambridge/piacademy_6st_faiths_cambridge_year_4_sample_maths_paper_2026.pdf","a":""},{"i":"St Faith's Cambridge","s":"Maths","y":"2026","t":"St Faiths Cambridge 7 Plus Maths Sample Paper 2026","q":"/public/papers/pre-11-plus/st-faiths-cambridge/piacademy_5st_faiths_cambridge_7_plus_maths_sample_paper_2026.pdf","a":""},{"i":"St Mary's School","s":"Maths","y":"2026","t":"St Mary's School - Year 4 Maths Sample Paper - 2026","q":"/public/papers/pre-11-plus/st-marys-school/piacademy_5st_marys_school_year_4_maths_sample_paper_2026.pdf","a":""},{"i":"The Latymer School","s":"Maths","y":"2021","t":"Latymer Prep 7 Plus Maths 2021 Sample Paper 1","q":"/public/papers/pre-11-plus/the-latymer-school/piacademy_7latymer_prep_7_plus_maths_2021_sample_paper_1.pdf","a":""},{"i":"The Perse School","s":"Maths","y":"2026","t":"Stephen Perse School - Year 5 Maths Entrance Paper - 2026","q":"/public/papers/pre-11-plus/the-perse-school/piacademy_8stephen_perse_school_year_5_maths_entrance_paper_2026.pdf","a":""},{"i":"The Perse School","s":"Maths","y":"2026","t":"Stephen Perse School 7 Plus Maths 2026 Entrance Paper 1","q":"/public/papers/pre-11-plus/the-perse-school/piacademy_6stephen_perse_school_7_plus_maths_2026_entrance_paper_1.pdf","a":""},{"i":"Westminster Cathedral Choir School","s":"Maths","y":"2026","t":"Westminster Cathedral Choir School - 8 Plus Maths Specimen Paper 1 - 2026","q":"/public/papers/pre-11-plus/westminster-cathedral-choir-school/piacademy_3westminster_cathedral_choir_school_8_plus_maths_specimen_paper_1_2026.pdf","a":""},{"i":"Westminster Cathedral Choir School","s":"Maths","y":"2026","t":"Westminster Cathedral Choir School - 8 Plus Maths Specimen Paper 2 - 2026","q":"/public/papers/pre-11-plus/westminster-cathedral-choir-school/piacademy_4westminster_cathedral_choir_school_8_plus_maths_specimen_paper_2_2026.pdf","a":""},{"i":"Haberdashers' Boys' School","s":"English","y":"","t":"Haberdashers' Aske's Boys' School (HABS) - 7 Plus English","q":"/public/papers/pre-11-plus/haberdashers-boys-school/piacademy_9haberdashers_askes_boys_school_habs_7_plus_english.pdf","a":""},{"i":"Kingston Grammar School","s":"English","y":"","t":"Kingston Grammar School - 10 Plus English Specimen Paper Deferred Entry","q":"/public/papers/pre-11-plus/kingston-grammar-school/piacademy_20kingston_grammar_school_10_plus_english_specimen_paper_deferred_entry.pdf","a":""},{"i":"Highgate School","s":"Mixed/Other","y":"2026","t":"Highgate School 7 Plus Sample Question Paper 2026","q":"/public/papers/pre-11-plus/highgate-school/piacademy_1highgate_school_7_plus_sample_question_paper_2026.pdf","a":""}];
+
+var activeSubject   = '';
+var activeInst      = '';
+var activeYear      = '';
+var activeSearch    = '';
+var activeAnswers   = false;
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+function subjClass(s) {
+  return s.toLowerCase().replace(/[^a-z0-9]/g,'-');
+}
+
+function getFiltered() {
+  return PAPERS_DATA.filter(function(p) {
+    if (activeSubject && p.s !== activeSubject) return false;
+    if (activeInst    && p.i !== activeInst)    return false;
+    if (activeYear    && p.y !== activeYear)    return false;
+    if (activeAnswers && !p.a)                  return false;
+    if (activeSearch) {
+      var q = activeSearch.toLowerCase();
+      if (p.t.toLowerCase().indexOf(q) === -1 &&
+          p.i.toLowerCase().indexOf(q) === -1 &&
+          p.y.indexOf(q)               === -1 &&
+          p.s.toLowerCase().indexOf(q) === -1) return false;
+    }
+    return true;
+  });
+}
+
+function render() {
+  var filtered = getFiltered();
+
+  // Group by institution
+  var byInst = {};
+  filtered.forEach(function(p) {
+    if (!byInst[p.i]) byInst[p.i] = [];
+    byInst[p.i].push(p);
+  });
+  var institutions = Object.keys(byInst).sort();
+
+  // Summary
+  var nPapers = filtered.length;
+  var nInsts  = institutions.length;
+  var sumEl   = document.getElementById('papersSummary');
+  if (nPapers === 0) {
+    sumEl.textContent = '';
+  } else {
+    sumEl.textContent = 'Showing ' + nPapers + ' paper' + (nPapers !== 1 ? 's' : '') +
+      ' across ' + nInsts + ' institution' + (nInsts !== 1 ? 's' : '');
+  }
+
+  var accordion = document.getElementById('papersAccordion');
+  var emptyEl   = document.getElementById('papersEmpty');
+
+  if (institutions.length === 0) {
+    accordion.innerHTML = '';
+    emptyEl.style.display = '';
+    return;
+  }
+  emptyEl.style.display = 'none';
+
+  var html = '';
+  institutions.forEach(function(instName) {
+    var papers = byInst[instName];
+
+    // Group by year
+    var byYear = {};
+    papers.forEach(function(p) {
+      var yr = p.y || '__unknown__';
+      if (!byYear[yr]) byYear[yr] = [];
+      byYear[yr].push(p);
+    });
+    var years = Object.keys(byYear).sort(function(a, b) {
+      if (a === '__unknown__') return 1;
+      if (b === '__unknown__') return -1;
+      return parseInt(b) - parseInt(a);
+    });
+
+    var instId = 'inst-' + instName.replace(/[^a-z0-9]/gi,'-').toLowerCase();
+
+    html += '<div class="pa-item">';
+    html += '<button class="pa-header" onclick="toggleAcc('' + instId + '')" ' +
+            'aria-expanded="false" id="btn-' + instId + '">';
+    html += '<span class="pa-inst-name">' + esc(instName) + '</span>';
+    html += '<span class="pa-count">' + papers.length + ' paper' + (papers.length !== 1 ? 's' : '') + '</span>';
+    html += '<span class="pa-chevron">&#8250;</span>';
+    html += '</button>';
+    html += '<div class="pa-body" id="' + instId + '" hidden>';
+
+    years.forEach(function(yr) {
+      var yearPapers = byYear[yr];
+      var yearLabel  = yr === '__unknown__' ? 'Unknown year' : yr;
+
+      html += '<div class="pa-year-group">';
+      html += '<div class="pa-year-label">' + esc(yearLabel) + '</div>';
+
+      // Desktop table
+      html += '<table class="pa-table"><thead><tr>';
+      html += '<th>Paper</th><th>Subject</th><th>Questions</th><th>Answers</th>';
+      html += '</tr></thead><tbody>';
+      yearPapers.forEach(function(p) {
+        html += '<tr>';
+        html += '<td class="pa-title">' + esc(p.t) + '</td>';
+        html += '<td><span class="pa-subj-badge pa-subj-' + subjClass(p.s) + '">' + esc(p.s) + '</span></td>';
+        html += '<td><a href="' + esc(p.q) + '" target="_blank" rel="noopener noreferrer" class="pa-btn">View Paper</a></td>';
+        if (p.a) {
+          html += '<td><a href="' + esc(p.a) + '" target="_blank" rel="noopener noreferrer" class="pa-btn pa-btn-ans">View Answers</a></td>';
+        } else {
+          html += '<td><span class="pa-no-ans">—</span></td>';
+        }
+        html += '</tr>';
+      });
+      html += '</tbody></table>';
+
+      // Mobile cards
+      html += '<div class="pa-cards">';
+      yearPapers.forEach(function(p) {
+        html += '<div class="pa-card">';
+        html += '<div class="pa-card-title">' + esc(p.t) + '</div>';
+        html += '<div class="pa-card-meta">';
+        html += '<span class="pa-subj-badge pa-subj-' + subjClass(p.s) + '">' + esc(p.s) + '</span>';
+        html += '<span class="pa-card-year">' + esc(yearLabel) + '</span>';
+        html += '</div>';
+        html += '<div class="pa-card-actions">';
+        html += '<a href="' + esc(p.q) + '" target="_blank" rel="noopener noreferrer" class="pa-btn">View Paper</a>';
+        if (p.a) {
+          html += ' <a href="' + esc(p.a) + '" target="_blank" rel="noopener noreferrer" class="pa-btn pa-btn-ans">View Answers</a>';
+        }
+        html += '</div></div>';
+      });
+      html += '</div>'; // pa-cards
+
+      html += '</div>'; // pa-year-group
+    });
+
+    html += '</div>'; // pa-body
+    html += '</div>'; // pa-item
+  });
+
+  accordion.innerHTML = html;
+
+  // Auto-open first institution when filtered to one
+  if (institutions.length === 1) {
+    var id = 'inst-' + institutions[0].replace(/[^a-z0-9]/gi,'-').toLowerCase();
+    toggleAcc(id);
+  }
+}
+
+function toggleAcc(id) {
+  var body = document.getElementById(id);
+  var btn  = document.getElementById('btn-' + id);
+  if (!body) return;
+  var opening = body.hasAttribute('hidden');
+  if (opening) { body.removeAttribute('hidden'); } else { body.setAttribute('hidden', ''); }
+  if (btn) {
+    btn.setAttribute('aria-expanded', opening ? 'true' : 'false');
+    btn.classList.toggle('open', opening);
+  }
+}
+
+function populateFilters() {
+  var relevant = activeSubject
+    ? PAPERS_DATA.filter(function(p) { return p.s === activeSubject; })
+    : PAPERS_DATA;
+
+  // Institutions
+  var insts = [];
+  relevant.forEach(function(p) { if (insts.indexOf(p.i) === -1) insts.push(p.i); });
+  insts.sort();
+  var instSel = document.getElementById('pfInstitution');
+  var savedInst = instSel.value;
+  instSel.innerHTML = '<option value="">All institutions</option>';
+  insts.forEach(function(inst) {
+    var opt = document.createElement('option');
+    opt.value = inst; opt.textContent = inst;
+    if (inst === savedInst) opt.selected = true;
+    instSel.appendChild(opt);
+  });
+  if (insts.indexOf(activeInst) === -1) { activeInst = ''; instSel.value = ''; }
+
+  // Years
+  var yrs = [];
+  relevant.forEach(function(p) { if (p.y && yrs.indexOf(p.y) === -1) yrs.push(p.y); });
+  yrs.sort(function(a,b) { return parseInt(b)-parseInt(a); });
+  var yrSel = document.getElementById('pfYear');
+  var savedYr = yrSel.value;
+  yrSel.innerHTML = '<option value="">All years</option>';
+  yrs.forEach(function(yr) {
+    var opt = document.createElement('option');
+    opt.value = yr; opt.textContent = yr;
+    if (yr === savedYr) opt.selected = true;
+    yrSel.appendChild(opt);
+  });
+  if (yrs.indexOf(activeYear) === -1) { activeYear = ''; yrSel.value = ''; }
+}
+
+function resetAll() {
+  activeSubject = ''; activeInst = ''; activeYear = ''; activeSearch = ''; activeAnswers = false;
+  document.querySelectorAll('.ptab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelector('.ptab[data-subject=""]').classList.add('active');
+  document.getElementById('pfInstitution').value = '';
+  document.getElementById('pfYear').value = '';
+  document.getElementById('pfAnswers').checked = false;
+  document.getElementById('pfSearch').value = '';
+  populateFilters();
+  render();
+}
+
+// Tab clicks
+document.getElementById('papersTabs').addEventListener('click', function(e) {
+  if (e.target.classList.contains('ptab')) {
+    document.querySelectorAll('.ptab').forEach(function(t) { t.classList.remove('active'); });
+    e.target.classList.add('active');
+    activeSubject = e.target.dataset.subject;
+    populateFilters();
+    render();
+  }
+});
+
+document.getElementById('pfInstitution').addEventListener('change', function() {
+  activeInst = this.value; render();
+});
+document.getElementById('pfYear').addEventListener('change', function() {
+  activeYear = this.value; render();
+});
+document.getElementById('pfAnswers').addEventListener('change', function() {
+  activeAnswers = this.checked; render();
+});
+
+var _st;
+document.getElementById('pfSearch').addEventListener('input', function() {
+  var v = this.value; clearTimeout(_st);
+  _st = setTimeout(function() { activeSearch = v; render(); }, 180);
+});
+document.getElementById('pfReset').addEventListener('click', resetAll);
+
+// Init
+populateFilters();
+render();
+</script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://www.leadingtuition.co.uk/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Resources",
-      "item": "https://www.leadingtuition.co.uk/resources/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Pre 11+ Resources",
-      "item": "https://www.leadingtuition.co.uk/resources/pre-11-plus"
-    }
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.leadingtuition.co.uk/"},
+    {"@type":"ListItem","position":2,"name":"Resources","item":"https://www.leadingtuition.co.uk/resources/"},
+    {"@type":"ListItem","position":3,"name":"Pre-11+ Past Papers","item":"https://www.leadingtuition.co.uk/resources/pre-11-plus"}
   ]
 }
 </script>
