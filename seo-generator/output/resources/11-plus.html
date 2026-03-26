@@ -948,9 +948,12 @@ function populateFilters() {
   });
   if (insts.indexOf(activeInst) === -1) { activeInst = ''; instSel.value = ''; }
 
-  // Years
+  // Years — scope to selected institution so only that school's years appear
+  var yearRelevant = activeInst
+    ? relevant.filter(function(p) { return p.i === activeInst; })
+    : relevant;
   var yrs = [];
-  relevant.forEach(function(p) { if (p.y && yrs.indexOf(p.y) === -1) yrs.push(p.y); });
+  yearRelevant.forEach(function(p) { if (p.y && yrs.indexOf(p.y) === -1) yrs.push(p.y); });
   yrs.sort(function(a,b) { return parseInt(b)-parseInt(a); });
   var yrSel = document.getElementById('pfYear');
   var savedYr = yrSel.value;
@@ -987,7 +990,7 @@ document.getElementById('papersTabs').addEventListener('click', function(e) {
 });
 
 document.getElementById('pfInstitution').addEventListener('change', function() {
-  activeInst = this.value; render();
+  activeInst = this.value; populateFilters(); render();
 });
 document.getElementById('pfYear').addEventListener('change', function() {
   activeYear = this.value; render();
