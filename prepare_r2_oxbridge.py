@@ -24,8 +24,9 @@ BASE = Path(r"C:\Users\arunu\OneDrive\Documents\leading tuition\OxbridgeIntervie
 SAMPLES_SRC   = BASE / "Sample"
 PACKS_SRC     = BASE / "Uncovered packs"
 OUT_DIR       = Path(__file__).parent / "r2_upload_oxbridge"
-# Static folder inside the repo — samples go here so they're served directly by Cloudflare Pages
-STATIC_SAMPLES_DIR = Path(__file__).parent / "public" / "oxbridge-samples"
+# Static folder inside the repo — must be under seo-generator/output/ (Cloudflare serves from there)
+# Served at URL: /public/oxbridge-samples/{slug}.pdf
+STATIC_SAMPLES_DIR = Path(__file__).parent / "seo-generator" / "output" / "public" / "oxbridge-samples"
 
 
 def slugify(name):
