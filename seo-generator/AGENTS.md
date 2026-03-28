@@ -481,3 +481,211 @@ Each page has a `var PAPERS_DATA = [...]` JS array. Each entry:
 
 ### Common mistake: inline onclick in Python f-strings
 Do NOT use `onclick="toggleAcc(\'...\' + instId + \'...\')"` inside Python f-strings. Python's `\'` collapses to `'` in the output, creating JS syntax errors. Always use `data-*` attributes and event delegation instead.
+
+---
+
+## 19. Bundle Access — 11+, 13+, Pre-11+ (Google Drive delivery)
+
+The 11+, 13+, and pre-11+ resource pages switched from per-paper £3 answer downloads to a **Full Access Pass** bundle model.
+
+### Pricing
+| Page | bundle_key | Price | Stripe unitAmount |
+|---|---|---|---|
+| 11+ | `bundle/11-plus` | £70 | `7000` |
+| 13+ | `bundle/13-plus` | £50 | `5000` |
+| Pre-11+ | `bundle/pre-11-plus` | £50 | `5000` |
+
+### Payment flow
+1. User clicks 🔒 **Answers** button on any paper row → modal opens
+2. Modal "Buy Full Access" button POSTs to `/api/create-checkout` with `{bundle_key, unitAmount}`
+3. Stripe Checkout → on success → `/purchase-confirmed?session_id=...`
+4. `purchase-confirmed.html` calls `/api/get-downloads?session_id=...`
+5. `get-downloads.js` detects bundle purchase → returns `{isBundle: true, downloadUrl: <Drive URL>}`
+6. Page shows teal "Access All Papers & Answers →" button that opens Drive folder in new tab
+
+### Google Drive folder links (stored as Cloudflare env vars — NOT in code)
+| Env var | Value |
+|---|---|
+| `DRIVE_11_PLUS` | `https://drive.google.com/drive/folders/1e7HyovSXzAQ_qJ0EMSxQGEISZiiVJvGx?usp=sharing` |
+| `DRIVE_13_PLUS` | `https://drive.google.com/drive/folders/1TytGdhaJ_NYg4r3pYE9IC7AbhbDs7tB2?usp=sharing` |
+| `DRIVE_PRE_11_PLUS` | `https://drive.google.com/drive/folders/1h8n9p-NBgKmcO0Vs1s418p8dy1Iuo2n9?usp=sharing` |
+
+These must be set in **Cloudflare Pages dashboard → Settings → Environment variables**. They are never hardcoded in any file.
+
+### Key files
+| File | Role |
+|---|---|
+| `functions/api/create-checkout.js` | `ALLOWED_AMOUNTS = [300, 5000, 7000, 15000]` — must include all bundle prices |
+| `functions/api/get-downloads.js` | `BUNDLE_ENV_KEYS` map: `bundle_key → env var name → Drive URL` |
+| `seo-generator/output/purchase-confirmed.html` | Renders isBundle → teal button (new tab, no download attr) vs PDF download |
+| `seo-generator/output/resources/11-plus.html` | Full access banner + 🔒 lock buttons + buy modal |
+| `seo-generator/output/resources/13-plus.html` | Same |
+| `seo-generator/output/resources/pre-11-plus.html` | Same |
+
+### Modal JS — critical: all three functions must be present
+Each resource page must have **all three functions** in its `<script>` block:
+```js
+function showBuyModal() { ... }
+function closeBuyModal() { ... }
+function buyAccess() { ... }
+```
+And the button wiring must use `btns.forEach`:
+```js
+var btns = [document.getElementById('buyAccessBtn'), document.getElementById('modalBuyBtn')];
+btns.forEach(function(btn) { if (btn) btn.addEventListener('click', buyAccess); });
+```
+
+**Common mistake:** If `showBuyModal` is missing, the 🔒 lock buttons silently do nothing. Verify with: `typeof showBuyModal` in browser console — must return `'function'`, not `'undefined'`.
+
+### Google Drive folder structure (prepared by prepare_drive_folders.py)
+The `prepare_drive_folders.py` script (repo root) creates `drive_export/` with:
+```
+drive_export/
+  11+ Papers & Answers/
+    {Institution}/
+      {Institution} - {Subject} {Year} [Paper X] - Questions.pdf
+      {Institution} - {Subject} {Year} [Paper X] - Answers.pdf
+  13+ Papers & Answers/
+    {Institution}/
+      ...
+  Pre 11+ Papers & Answers/
+    {Institution}/
+      ...
+```
+The `drive_export/` directory is in `.gitignore` (see Section 20). Copy-paste these folders directly into Google Drive.
+
+---
+
+## 20. .gitignore — UTF-16 Encoding
+
+**The `.gitignore` file in this repo is encoded as UTF-16 (with BOM), NOT UTF-8.** This is because it was created on Windows. Any script that reads or writes `.gitignore` must handle this encoding.
+
+### Correct Python pattern
+```python
+p = open('.gitignore', 'rb').read()
+text = p.decode('utf-16')          # handles BOM automatically
+text = text.rstrip() + '\nnew-entry/\n'
+open('.gitignore', 'wb').write(text.encode('utf-16'))
+```
+
+### Entries confirmed in .gitignore
+- `.env` — R2/Stripe credentials (never commit)
+- `drive_export/` — Google Drive staging folder (large PDFs, never commit)
+- Standard Python/IDE entries
+
+### Common mistake
+Writing `.gitignore` with `open('.gitignore', 'w')` (default UTF-8) silently corrupts the file — git may stop respecting it or throw encoding errors. Always use binary open + explicit `utf-16` codec.
+
+---
+
+## 21. Cloudflare Pages Functions — API Endpoints
+
+All API logic lives in `functions/api/`. These run as Cloudflare Workers at deploy time.
+
+| File | Endpoint | Purpose |
+|---|---|---|
+| `create-checkout.js` | `POST /api/create-checkout` | Creates Stripe Checkout session |
+| `stripe-webhook.js` | `POST /api/stripe-webhook` | Handles Stripe events, writes to KV |
+| `get-downloads.js` | `GET /api/get-downloads?session_id=` | Returns download links after purchase |
+| `download.js` | `GET /api/download?s=&k=` | Signed R2 download proxy |
+| `oxbridge-sample.js` | `GET /api/oxbridge-sample?file=` | Serves static Oxbridge sample PDFs |
+
+### Cloudflare environment variables required
+Set in Cloudflare Pages dashboard → Settings → Environment variables:
+```
+STRIPE_SECRET_KEY      — Stripe live secret key
+STRIPE_WEBHOOK_SECRET  — Stripe webhook signing secret
+R2_ACCESS_KEY_ID       — R2 API token (not root key)
+R2_SECRET_ACCESS_KEY   — R2 API token secret
+R2_BUCKET_NAME         — e.g. "leading-tuition-answers"
+R2_ENDPOINT            — e.g. "https://<account_id>.r2.cloudflarestorage.com"
+KV_STORE               — KV namespace binding (set in Pages bindings, not env vars)
+DRIVE_11_PLUS          — Google Drive folder URL for 11+ bundle
+DRIVE_13_PLUS          — Google Drive folder URL for 13+ bundle
+DRIVE_PRE_11_PLUS      — Google Drive folder URL for pre-11+ bundle
+```
+
+### KV store — purchase record TTL
+After a successful Stripe payment, `stripe-webhook.js` writes to KV with a **48-hour TTL**. `get-downloads.js` reads from KV using the Stripe `session_id` as key. After 48h the key expires and the download link stops working — this is intentional.
+
+### R2 bucket — answer PDF key structure
+```
+{category-slug}/{institution-slug}/{question-base}-answers.pdf
+```
+Example: `11-plus/dulwich-college/dulwich_maths_2023_paper_a-answers.pdf`
+
+Per-paper R2 keys (used for Oxbridge individual paper downloads) are distinct from bundle keys (`bundle/11-plus`, `bundle/13-plus`, `bundle/pre-11-plus`).
+
+### Uploading to R2 (bypassing 100-file dashboard limit)
+Use `upload_answers_r2.py` (or similar) with boto3:
+```python
+import boto3, os
+s3 = boto3.client(
+    's3',
+    endpoint_url=os.environ['R2_ENDPOINT'],
+    aws_access_key_id=os.environ['R2_ACCESS_KEY_ID'],
+    aws_secret_access_key=os.environ['R2_SECRET_ACCESS_KEY'],
+)
+s3.upload_file(local_path, bucket_name, r2_key)
+```
+R2 credentials must be in `.env` (never hardcoded). Load with `python-dotenv`.
+
+---
+
+## 22. Oxbridge Interview Questions — Per-Paper R2 Download
+
+The `/resources/oxbridge-interview-questions` page uses **individual R2 downloads** (not bundles). Each paper has its own signed download URL from `/api/download`.
+
+### Static sample files
+Free sample PDFs live at:
+```
+seo-generator/output/public/oxbridge-samples/
+  biology-sample.pdf
+  chemistry-sample.pdf
+  ... etc.
+```
+Served at `/public/oxbridge-samples/biology-sample.pdf`. Ensure the path is inside `seo-generator/output/` — the repo root `public/` directory is NOT served by Cloudflare.
+
+### R2 key structure for Oxbridge answers
+```
+{subject-slug}/{institution-slug}/{paper-base}-answers.pdf
+```
+All papers from one institution share one institution slug — but each paper has its own R2 key (not one key per institution).
+
+---
+
+## 23. Bing Webmaster Tools — IndexNow Setup
+
+### Key file
+`seo-generator/output/8953b81f83ca47ef82f7680b35e64d91.txt` — deployed to site root, contains just the key string. Bing verifies site ownership by fetching this file.
+
+### Submission script
+`submit_indexnow.py` (repo root) — collects all 208 public HTML pages and POSTs them to `api.indexnow.org` in a single batch. Run from the repo root after any significant content deployment:
+```bash
+python submit_indexnow.py
+```
+
+### Verification status
+The site was **imported from Google Search Console** — Bing's dashboard says "no verification code needed." However, Bing's IndexNow API backend may take up to 24h to sync with the GSC-imported verification. If you get HTTP 403 `SiteVerificationNotCompleted`, wait and retry — it resolves on its own.
+
+### When to run submit_indexnow.py
+- After deploying new blog posts or pages to `main`
+- After any significant content update
+- Do NOT run it against the `dev` preview URL — always submit production URLs (`www.leadingtuition.co.uk`)
+
+---
+
+## 24. Purchase-Confirmed Page — Dual-Mode Rendering
+
+`seo-generator/output/purchase-confirmed.html` handles two purchase types:
+
+| Purchase type | `isBundle` | UI shown |
+|---|---|---|
+| Individual PDF (Oxbridge paper) | `false` | "Download PDF" button with `download` attribute |
+| Full Access Pass (11+/13+/pre-11+) | `true` | Teal "Access All Papers & Answers →" button, opens in new tab, no `download` attr |
+
+The page subtitle also changes: bundle → "Your access link is ready" / individual → "Your download is ready".
+
+The "Save your access link" notice (not "Save your download link") appears for both, reminding users to bookmark the confirmation page URL.
+
+**Do not add "Google Drive" wording anywhere** — the bundle delivery mechanism (Drive) is an implementation detail that should not appear in any user-facing copy.
