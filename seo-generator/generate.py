@@ -769,7 +769,26 @@ def generate_subject_pages(limit=None):
         slug = subject.lower().replace(" ", "-")
         title = f"{subject} Tutor"
         page_slug = f"services/subjects/{slug}-tutor"
-        meta_desc = (
+        # Per-subject overrides — distinct descriptions for SEO differentiation
+        _subject_meta = {
+            "Biology":          "Expert Biology tutors for GCSE and A-Level. All specifications covered: AQA, OCR, Edexcel. Required practicals, essay skills, and A-Level scaling. 4.8/5.",
+            "Business Studies": "Expert Business Studies tutors for GCSE and A-Level. Case study technique, financial ratios, and business analysis. AQA, Edexcel, OCR. 4.8/5 Trustpilot.",
+            "Chemistry":        "Expert Chemistry tutors for GCSE and A-Level. Organic mechanisms, stoichiometry, required practicals. AQA, Edexcel and OCR. DBS-checked. 4.8/5 Trustpilot.",
+            "Computer Science": "Expert Computer Science tutors for GCSE and A-Level. Programming, algorithms, networks and theory. AQA and OCR specifications. DBS-checked. 4.8/5 Trustpilot.",
+            "Economics":        "Expert Economics tutors for GCSE and A-Level. Micro and macroeconomics, evaluation skills, and essay technique. AQA, Edexcel, OCR. 4.8/5 Trustpilot.",
+            "English Language": "Expert English Language tutors for GCSE and A-Level. Analytical frameworks, language analysis, and creative writing. AQA, Edexcel, OCR. 4.8/5 Trustpilot.",
+            "English Literature":"Expert English Literature tutors for GCSE and A-Level. Text analysis, essay technique, and unseen poetry. AQA, Edexcel, OCR. DBS-checked. 4.8/5 Trustpilot.",
+            "Further Maths":    "Expert Further Maths tutors for GCSE and A-Level. Decision maths, mechanics, statistics, and pure modules. AQA, Edexcel, OCR. DBS-checked. 4.8/5 Trustpilot.",
+            "Geography":        "Expert Geography tutors for GCSE and A-Level. Physical and human geography, fieldwork, and evaluation skills. AQA, Edexcel, OCR. 4.8/5 Trustpilot.",
+            "History":          "Expert History tutors for GCSE and A-Level. Source analysis, essay structure, and argument development. AQA, Edexcel, OCR. DBS-checked. 4.8/5 Trustpilot.",
+            "Maths":            "Expert Maths tutors for GCSE and A-Level. Pure, Statistics, and Mechanics modules covered. AQA, Edexcel, OCR. Higher and Foundation. 4.8/5 Trustpilot.",
+            "Physics":          "Expert Physics tutors for GCSE and A-Level. Mechanics, electricity, waves and nuclear physics. AQA, Edexcel, OCR. DBS-checked. 4.8/5 Trustpilot.",
+            "Politics":         "Expert Politics tutors for GCSE and A-Level. UK Government and Politics, political ideologies, and comparative politics. AQA, Edexcel. 4.8/5 Trustpilot.",
+            "Psychology":       "Expert Psychology tutors for GCSE and A-Level. Research methods, biological, cognitive, and social psychology. AQA, OCR. DBS-checked. 4.8/5 Trustpilot.",
+            "Statistics":       "Expert Statistics tutors for GCSE and A-Level. Probability, hypothesis testing, distributions, and data analysis. AQA, Edexcel, OCR. 4.8/5 Trustpilot.",
+        }
+        meta_desc = _subject_meta.get(
+            subject,
             f"Expert {subject} tutors for GCSE and A-Level. AQA, Edexcel and OCR support. "
             f"DBS-checked tutors. 4.8/5 Trustpilot. Book a free consultation."
         )
@@ -2781,7 +2800,46 @@ def generate_location_pages(limit=None, new_only=False, city_filter=None):
             continue
 
         title = f"Private Tuition in {city}"
-        meta_desc = (
+        # Per-city overrides — distinct descriptions for each location for SEO uniqueness
+        _location_meta = {
+            "Barnet":              "Private tutors in Barnet for GCSE, A-Level and 11+ prep. Specialist coaching for QE Barnet and Henrietta Barnett. DBS-checked. 4.8/5 Trustpilot.",
+            "Bath":                "Private tutors in Bath covering GCSE, A-Level, 11+ and university preparation. Oxford and Cambridge-educated tutors. DBS-checked. 4.8/5 Trustpilot.",
+            "Birmingham":          "Private tutors in Birmingham for GCSE, A-Level, 11+ and medicine prep. Specialist King Edward's and grammar school coaching. DBS-checked. 4.8/5 Trustpilot.",
+            "Brighton":            "Private tutors in Brighton for GCSE, A-Level, medicine prep and university applications. Oxford and Cambridge-educated tutors. DBS-checked. 4.8/5 Trustpilot.",
+            "Bristol":             "Private tutors in Bristol for GCSE, A-Level, 11+ prep, and Bristol University medicine applications. Oxford-educated tutors. DBS-checked. 4.8/5 Trustpilot.",
+            "Bromley":             "Private tutors in Bromley for GCSE, A-Level and 11+ Kent Test preparation. Grammar school coaching alongside medicine and Oxbridge prep. 4.8/5 Trustpilot.",
+            "Cambridge":           "Private tutors in Cambridge for GCSE, A-Level, and Oxbridge preparation. Specialist coaching from Cambridge-educated tutors. DBS-checked. 4.8/5 Trustpilot.",
+            "Cheltenham":          "Private tutors in Cheltenham for GCSE, A-Level and 11+ prep including Pate's Grammar coaching. Oxford-educated tutors. DBS-checked. 4.8/5 Trustpilot.",
+            "Coventry":            "Private tutors in Coventry for GCSE, A-Level and medicine prep. Specialist support for Warwick University applications. DBS-checked. 4.8/5 Trustpilot.",
+            "Croydon":             "Private tutors in Croydon for GCSE, A-Level and 11+ Sutton grammar preparation. Specialist Sutton SET coaching alongside medicine prep. 4.8/5 Trustpilot.",
+            "Derby":               "Private tutors in Derby for GCSE, A-Level, 11+ and medicine preparation. Oxford and Cambridge-educated tutors, all DBS-checked. 4.8/5 Trustpilot.",
+            "Ealing":              "Private tutors in Ealing for GCSE, A-Level and 11+ preparation. Specialist coaching for West London selective schools. DBS-checked. 4.8/5 Trustpilot.",
+            "Exeter":              "Private tutors in Exeter for GCSE, A-Level and medicine prep. Specialist support for Exeter University admissions. DBS-checked. 4.8/5 Trustpilot.",
+            "Guildford":           "Private tutors in Guildford for GCSE, A-Level and 11+ preparation. Specialist coaching for Royal Grammar School Guildford. DBS-checked. 4.8/5 Trustpilot.",
+            "Harrow":              "Private tutors in Harrow for GCSE, A-Level and 11+ preparation. Specialist coaching for North London selective schools. DBS-checked. 4.8/5 Trustpilot.",
+            "Kingston upon Thames":"Private tutors in Kingston upon Thames for GCSE, A-Level, and specialist 11+ coaching for Tiffin School and Tiffin Girls'. DBS-checked. 4.8/5 Trustpilot.",
+            "Leeds":               "Private tutors in Leeds for GCSE, A-Level and medicine prep. Specialist support for Leeds University medicine and Oxbridge applications. 4.8/5 Trustpilot.",
+            "Leicester":           "Private tutors in Leicester for GCSE, A-Level and medicine prep. Support for Leicester medical school applications. DBS-checked. 4.8/5 Trustpilot.",
+            "Liverpool":           "Private tutors in Liverpool for GCSE, A-Level and medicine prep. Specialist coaching for Liverpool medical school applicants. DBS-checked. 4.8/5 Trustpilot.",
+            "London":              "Private tutors across London for GCSE, A-Level, 11+, medicine prep and Oxbridge admissions. Oxbridge-educated, DBS-checked. 4.8/5 Trustpilot.",
+            "Luton":               "Private tutors in Luton for GCSE, A-Level and 11+ prep. Specialist grammar school coaching for Hertfordshire and Bedfordshire. DBS-checked. 4.8/5.",
+            "Manchester":          "Private tutors in Manchester for GCSE, A-Level and 11+ Trafford consortium prep. Specialist Altrincham and Sale Grammar coaching. DBS-checked. 4.8/5.",
+            "Milton Keynes":       "Private tutors in Milton Keynes for GCSE, A-Level, 11+ and medicine preparation. Oxford and Cambridge-educated tutors. DBS-checked. 4.8/5 Trustpilot.",
+            "Northampton":         "Private tutors in Northampton for GCSE, A-Level, 11+ and medicine preparation. Oxford and Cambridge-educated tutors. DBS-checked. 4.8/5 Trustpilot.",
+            "Norwich":             "Private tutors in Norwich for GCSE, A-Level and university prep. Specialist coaching for UEA admissions and selective schools. DBS-checked. 4.8/5 Trustpilot.",
+            "Nottingham":          "Private tutors in Nottingham for GCSE, A-Level and medicine prep. Specialist Nottingham medical school application coaching. DBS-checked. 4.8/5 Trustpilot.",
+            "Oxford":              "Private tutors in Oxford for GCSE, A-Level and Oxbridge preparation. Expert coaching in one of the UK's most academic cities. DBS-checked. 4.8/5 Trustpilot.",
+            "Portsmouth":          "Private tutors in Portsmouth for GCSE, A-Level, 11+ and medicine preparation. Oxford and Cambridge-educated tutors, DBS-checked. 4.8/5 Trustpilot.",
+            "Reading":             "Private tutors in Reading for GCSE, A-Level and 11+ prep. Specialist grammar school coaching including Reading School and Kendrick. 4.8/5 Trustpilot.",
+            "Sheffield":           "Private tutors in Sheffield for GCSE, A-Level and medicine prep. Specialist Sheffield University medical school coaching. DBS-checked. 4.8/5 Trustpilot.",
+            "Slough":              "Private tutors in Slough for GCSE, A-Level and 11+ prep. Specialist coaching for Slough grammar schools including Upton Court. DBS-checked. 4.8/5.",
+            "Twickenham":          "Private tutors in Twickenham for GCSE, A-Level and 11+ preparation. Close to Tiffin School and Richmond Park area. DBS-checked. 4.8/5 Trustpilot.",
+            "Watford":             "Private tutors in Watford for GCSE, A-Level and 11+ preparation. Specialist grammar school coaching across Hertfordshire. DBS-checked. 4.8/5 Trustpilot.",
+            "Wimbledon":           "Private tutors in Wimbledon for GCSE, A-Level and 11+ preparation. Expert coaching for Raynes Park and South London selective schools. 4.8/5 Trustpilot.",
+            "York":                "Private tutors in York for GCSE, A-Level and 11+ prep. Specialist university admissions coaching for University of York. DBS-checked. 4.8/5 Trustpilot.",
+        }
+        meta_desc = _location_meta.get(
+            city,
             f"Expert private tutors in {city}. DBS checked. GCSE, A-Level, 11+ and medicine prep. "
             f"4.8/5 Trustpilot. Book a free consultation today."
         )
@@ -2797,65 +2855,30 @@ def generate_location_pages(limit=None, new_only=False, city_filter=None):
 # ── Admissions Test page prompts ─────────────────────────────────────────────
 
 ADMISSIONS_TEST_META = {
-    "lnat-preparation": (
-        "Expert LNAT preparation from Oxford and Cambridge-educated tutors. "
-        "Strategies for all sections of the Law National Aptitude Test. "
-        "4.8/5 Trustpilot. Book a free consultation."
-    ),
-    "mat-preparation": (
-        "Expert MAT preparation from Oxford and Cambridge graduates. "
-        "Strategies and practice for the Mathematics Admissions Test for Oxford and Imperial. "
-        "4.8/5 Trustpilot. Book a free consultation."
-    ),
-    "pat-preparation": (
-        "Expert PAT preparation for Oxford Physics applicants. "
-        "Physics Aptitude Test coaching from Oxford-educated tutors. "
-        "4.8/5 Trustpilot. Book a free consultation."
-    ),
-    "tsa-preparation": (
-        "Expert TSA preparation for Oxford and Cambridge applicants. "
-        "Thinking Skills Assessment coaching covering critical thinking and problem solving. "
-        "4.8/5 Trustpilot. Book a free consultation."
-    ),
-    "hat-preparation": (
-        "Expert HAT preparation for Oxford History applicants. "
-        "History Aptitude Test coaching and practice from Oxford-educated tutors. "
-        "4.8/5 Trustpilot. Book a free consultation."
-    ),
-    "elat-preparation": (
-        "Expert ELAT preparation for Oxford English Literature applicants. "
-        "English Literature Admissions Test coaching and essay practice. "
-        "4.8/5 Trustpilot. Book a free consultation."
-    ),
-    "mlat-preparation": (
-        "Expert MLAT preparation for Oxford Modern Languages applicants. "
-        "Modern Languages Admissions Test coaching and practice. "
-        "4.8/5 Trustpilot. Book a free consultation."
-    ),
-    "step-preparation": (
-        "Expert STEP Maths preparation for Cambridge and other university applicants. "
-        "Sixth Term Examination Paper coaching from Cambridge-educated mathematicians. "
-        "4.8/5 Trustpilot. Book a free consultation."
-    ),
-    "tmua-preparation": (
-        "Expert TMUA preparation for Cambridge, Bath, and other university applicants. "
-        "Test of Mathematics for University Admission coaching from specialist tutors. "
-        "4.8/5 Trustpilot. Book a free consultation."
-    ),
-    "esat-preparation": (
-        "Expert ESAT preparation for Cambridge Engineering and Science applicants. "
-        "Engineering and Science Admissions Test coaching from Cambridge-educated tutors. "
-        "4.8/5 Trustpilot. Book a free consultation."
-    ),
-    "phil-preparation": (
-        "Expert Oxford Philosophy Admissions Test (PHIL) preparation. "
-        "Coaching on argument analysis, philosophical reasoning, and written response skills. "
-        "4.8/5 Trustpilot. Book a free consultation."
-    ),
-    "bmat-history": (
-        "BMAT was abolished in 2023. Find out what replaced it, which universities now use UCAT, "
-        "and how Leading Tuition can support your medicine preparation."
-    ),
+    "lnat-preparation":
+        "Expert LNAT preparation from Oxbridge-educated tutors. Critical reasoning strategies for Section A and essay technique for Section B. 4.8/5 Trustpilot.",
+    "mat-preparation":
+        "Expert MAT preparation for Oxford and Imperial Mathematics. Problem-solving technique, past paper coaching, and mock tests from Oxford-educated tutors. 4.8/5.",
+    "pat-preparation":
+        "Expert PAT preparation for Oxford Physics applicants. Mechanics, electricity, and optics coaching from Oxford-educated physicists. 4.8/5 Trustpilot.",
+    "tsa-preparation":
+        "Expert TSA preparation for Oxford Economics, PPE, and Psychology applicants. Critical thinking and problem solving coaching from Oxford-educated tutors. 4.8/5.",
+    "hat-preparation":
+        "Expert HAT preparation for Oxford History applicants. Source analysis, time management, and timed practice from Oxford-educated tutors. 4.8/5 Trustpilot.",
+    "elat-preparation":
+        "Expert ELAT preparation for Oxford English applicants. Close reading technique, comparative essay writing, and timed practice from Oxford-educated tutors. 4.8/5.",
+    "mlat-preparation":
+        "Expert MLAT preparation for Oxford Modern Languages applicants. Language reasoning, vocabulary analysis, and timed practice from Oxford-educated tutors. 4.8/5.",
+    "step-preparation":
+        "Expert STEP Maths preparation for Cambridge and Warwick applicants. Pure and applied problem-solving coaching from Cambridge-educated mathematicians. 4.8/5.",
+    "tmua-preparation":
+        "Expert TMUA preparation for Cambridge, Bath, and Durham applicants. Mathematical reasoning strategies and timed practice from Cambridge-educated tutors. 4.8/5.",
+    "esat-preparation":
+        "Expert ESAT preparation for Cambridge Engineering and Natural Science applicants. Section-by-section strategy from Cambridge-educated tutors. 4.8/5 Trustpilot.",
+    "phil-preparation":
+        "Expert Oxford PHIL test preparation. Argument analysis, philosophical reasoning, and written response coaching from Oxford-educated Philosophy tutors. 4.8/5.",
+    "bmat-history":
+        "BMAT was scrapped in 2023. See which UK medical schools now use UCAT instead, what changed, and what this means for your 2025–26 medicine application.",
 }
 
 
@@ -3235,78 +3258,42 @@ def generate_medical_school_pages(limit=None, new_only=False):
 # ── Oxbridge Interview page metadata ─────────────────────────────────────────
 
 OXBRIDGE_INTERVIEW_META = {
-    "medicine-interview": (
-        "Expert Oxbridge Medicine interview preparation with Leading Tuition. "
-        "MMI and panel interview coaching from Oxford and Cambridge-educated tutors. 4.8/5 Trustpilot. Book a free consultation."
-    ),
-    "law-interview": (
-        "Expert Oxford and Cambridge Law interview preparation with Leading Tuition. "
-        "LNAT coaching and interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot. Book a free consultation."
-    ),
-    "maths-interview": (
-        "Expert Oxford and Cambridge Mathematics interview preparation with Leading Tuition. "
-        "MAT and STEP coaching alongside interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot."
-    ),
-    "physics-interview": (
-        "Expert Oxford and Cambridge Physics interview preparation with Leading Tuition. "
-        "PAT and ESAT coaching alongside interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot."
-    ),
-    "chemistry-interview": (
-        "Expert Oxford and Cambridge Chemistry interview preparation with Leading Tuition. "
-        "CAT and ESAT coaching alongside interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot."
-    ),
-    "biology-interview": (
-        "Expert Oxford and Cambridge Biology interview preparation with Leading Tuition. "
-        "Interview coaching and ESAT preparation from Oxbridge-educated tutors. 4.8/5 Trustpilot."
-    ),
-    "engineering-interview": (
-        "Expert Oxford and Cambridge Engineering interview preparation with Leading Tuition. "
-        "PAT and ESAT coaching alongside interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot."
-    ),
-    "economics-interview": (
-        "Expert Oxford and Cambridge Economics interview preparation with Leading Tuition. "
-        "TSA and TMUA coaching alongside interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot."
-    ),
-    "history-interview": (
-        "Expert Oxford and Cambridge History interview preparation with Leading Tuition. "
-        "HAT coaching and interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot. Book a free consultation."
-    ),
-    "english-interview": (
-        "Expert Oxford and Cambridge English interview preparation with Leading Tuition. "
-        "ELAT coaching and interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot. Book a free consultation."
-    ),
-    "ppe-interview": (
-        "Expert Oxford PPE interview preparation with Leading Tuition. "
-        "TSA coaching and interview practice from Oxford-educated tutors. 4.8/5 Trustpilot. Book a free consultation."
-    ),
-    "computer-science-interview": (
-        "Expert Oxford and Cambridge Computer Science interview preparation with Leading Tuition. "
-        "MAT and TMUA coaching alongside interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot."
-    ),
-    "classics-interview": (
-        "Expert Oxford and Cambridge Classics interview preparation with Leading Tuition. "
-        "Interview coaching and written work preparation from Oxbridge-educated tutors. 4.8/5 Trustpilot."
-    ),
-    "modern-languages-interview": (
-        "Expert Oxford and Cambridge Modern Languages interview preparation with Leading Tuition. "
-        "MLAT coaching and interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot."
-    ),
-    "geography-interview": (
-        "Expert Oxford and Cambridge Geography interview preparation with Leading Tuition. "
-        "Interview coaching and written work preparation from Oxbridge-educated tutors. 4.8/5 Trustpilot."
-    ),
-    "psychology-interview": (
-        "Expert Oxford and Cambridge Psychology interview preparation with Leading Tuition. "
-        "Interview coaching from Oxbridge-educated tutors. 4.8/5 Trustpilot. Book a free consultation."
-    ),
-    "natural-sciences-interview": (
-        "Expert Cambridge Natural Sciences interview preparation with Leading Tuition. "
-        "ESAT coaching and interview practice from Cambridge-educated tutors. 4.8/5 Trustpilot. Book a free consultation."
-    ),
-    "philosophy-interview": (
-        "Expert Oxford and Cambridge Philosophy interview preparation with Leading Tuition. "
-        "PHIL test coaching and interview practice from Oxbridge-educated tutors. 4.8/5 Trustpilot."
-    ),
+    "medicine-interview":
+        "Oxbridge Medicine interview preparation: MMI and panel coaching, ethical scenarios, and scientific reasoning. Expert support from Oxford and Cambridge medics.",
+    "law-interview":
+        "Oxford and Cambridge Law interview preparation: LNAT coaching, legal reasoning, and mock interviews. Expert support from Oxbridge-educated law tutors.",
+    "maths-interview":
+        "Oxford and Cambridge Mathematics interview prep: MAT and STEP coaching, problem-solving technique from Cambridge-educated mathematicians. 4.8/5 Trustpilot.",
+    "physics-interview":
+        "Oxford and Cambridge Physics interview preparation: PAT and ESAT coaching, applied problem-solving, and mock interviews from Oxbridge-educated physicists.",
+    "chemistry-interview":
+        "Oxford and Cambridge Chemistry interview prep: ESAT coaching, problem-solving technique, and mock interviews. Expert support from Oxbridge-educated tutors.",
+    "biology-interview":
+        "Oxford and Cambridge Biology interview preparation: ESAT coaching, problem-solving technique, and mock interviews. Expert support from Oxbridge-educated tutors.",
+    "engineering-interview":
+        "Oxford and Cambridge Engineering interview preparation: applied problem-solving, PAT and ESAT coaching. Expert support from Oxbridge-educated engineers.",
+    "economics-interview":
+        "Oxford and Cambridge Economics interview prep: graph analysis, TSA coaching, and mock interviews to build economic reasoning. Oxbridge-educated tutors.",
+    "history-interview":
+        "Oxford and Cambridge History interview prep: HAT coaching, source analysis, and historical argument technique. Expert support from Oxbridge-educated tutors.",
+    "english-interview":
+        "Oxford and Cambridge English interview preparation: close reading, ELAT coaching, and literary argument technique. Expert support from Oxbridge-educated tutors.",
+    "ppe-interview":
+        "Oxford PPE interview preparation: TSA coaching, cross-disciplinary reasoning across Politics, Philosophy and Economics. Expert Oxford-educated tutors.",
+    "computer-science-interview":
+        "Oxford and Cambridge Computer Science interview prep: algorithmic thinking, MAT and TMUA coaching, and mock interviews from Oxbridge-educated tutors.",
+    "classics-interview":
+        "Oxford and Cambridge Classics interview preparation: unseen texts, written work coaching, and mock interviews from Oxbridge-educated Classics tutors.",
+    "modern-languages-interview":
+        "Oxford and Cambridge Modern Languages interview prep: language discussion, MLAT coaching, and literature analysis from Oxbridge-educated tutors.",
+    "geography-interview":
+        "Oxford and Cambridge Geography interview preparation: essay and map questions, fieldwork discussion, and mock interviews from Oxbridge-educated tutors.",
+    "psychology-interview":
+        "Oxford and Cambridge Psychology interview preparation: research critique, scientific reasoning, and mock interviews from Oxbridge-educated Psychology tutors.",
+    "natural-sciences-interview":
+        "Cambridge Natural Sciences interview preparation: ESAT coaching, problem-solving technique, and mock interviews from Cambridge-educated Natural Sciences tutors.",
+    "philosophy-interview":
+        "Oxford and Cambridge Philosophy interview preparation: argument analysis, PHIL test coaching, and philosophical reasoning with Oxbridge-educated tutors.",
 }
 
 
@@ -3473,15 +3460,15 @@ ELEVEN_PLUS_META = {
     "tiffin-girls-school":     "Expert Tiffin Girls' School 11+ preparation with Leading Tuition. Specialist coaching for the Kingston Grammar Test. 4.8/5 Trustpilot. Book a free consultation.",
     "queens-elizabeth-barnet": "Expert QE Barnet 11+ preparation with Leading Tuition. Specialist coaching for one of England's most selective grammar schools. 4.8/5 Trustpilot.",
     "henrietta-barnett-school":"Expert Henrietta Barnett School 11+ preparation with Leading Tuition. Specialist coaching for the UK's most selective state school. 4.8/5 Trustpilot.",
-    "sutton-grammar-schools":  "Expert Sutton grammar school 11+ preparation with Leading Tuition. Specialist SET coaching for Wilson's, Sutton Grammar, Wallington, Nonsuch and Greenshaw. 4.8/5 Trustpilot.",
-    "st-olaves-grammar-school":"Expert St Olave's Grammar School 11+ preparation with Leading Tuition. Specialist coaching from experienced tutors. 4.8/5 Trustpilot. Book a free consultation.",
-    "slough-grammar-schools":  "Expert Slough grammar school 11+ preparation with Leading Tuition. Specialist SET coaching for all 5 Slough grammar schools. 4.8/5 Trustpilot.",
+    "sutton-grammar-schools":  "Expert Sutton grammar school 11+ preparation. Specialist Sutton SET coaching for Wilson's, Sutton Grammar, Wallington, Nonsuch and Greenshaw. 4.8/5 Trustpilot.",
+    "st-olaves-grammar-school":"Expert St Olave's Grammar School 11+ preparation. One of the UK's most selective schools — specialist coaching for the TBGS Orpington selective entry.",
+    "slough-grammar-schools":  "Expert Slough grammar school 11+ preparation. Specialist SET coaching for all 5 Slough schools: Upton Court, Herschel, Langley, Slough Grammar and Khalsa.",
     "bucks-grammar-schools":   "Expert Buckinghamshire grammar school 11+ preparation with Leading Tuition. Specialist SET coaching for Bucks grammar schools. 4.8/5 Trustpilot.",
     "dr-challoners-grammar":   "Expert Dr Challoner's 11+ preparation with Leading Tuition. Specialist Bucks SET coaching for Dr Challoner's Grammar and High School. 4.8/5 Trustpilot.",
     "kegs-chelmsford":         "Expert KEGS Chelmsford 11+ preparation with Leading Tuition. Specialist CSSE coaching for King Edward VI Grammar School. 4.8/5 Trustpilot.",
     "chelmsford-county-high":  "Expert Chelmsford County High School 11+ preparation with Leading Tuition. Specialist CSSE coaching. 4.8/5 Trustpilot. Book a free consultation.",
-    "altrincham-grammar-schools":"Expert Altrincham Grammar School 11+ preparation with Leading Tuition. Specialist Trafford consortium test coaching. 4.8/5 Trustpilot.",
-    "sale-grammar-school":     "Expert Sale Grammar School 11+ preparation with Leading Tuition. Specialist Trafford consortium test coaching. 4.8/5 Trustpilot. Book a free consultation.",
+    "altrincham-grammar-schools":"Expert 11+ prep for Altrincham Grammar School and Sale Grammar. Specialist Trafford consortium coaching: GL-style reasoning and maths. 4.8/5 Trustpilot.",
+    "sale-grammar-school":     "Expert Sale Grammar School 11+ preparation. Specialist Trafford consortium coaching with past papers, timed tests, and targeted weak-area support. 4.8/5.",
     "tonbridge-grammar-school":"Expert Tonbridge Grammar School 11+ preparation with Leading Tuition. Specialist Kent Test coaching. 4.8/5 Trustpilot. Book a free consultation.",
     "weald-of-kent-grammar":   "Expert Weald of Kent Grammar School 11+ preparation with Leading Tuition. Specialist Kent Test coaching. 4.8/5 Trustpilot. Book a free consultation.",
 }
