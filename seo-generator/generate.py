@@ -2160,6 +2160,241 @@ Requirements:
 - FAQ questions must address: how to find a good tutor, how many sessions are typically needed, whether online tuition is as effective as in-person, and whether tuition is tax-deductible for businesses
 """
 
+    # ── 11+ resource cluster posts ────────────────────────────────────────────
+
+    if slug == "iseb-common-pre-test-a-parents-guide-for-2026":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What is the ISEB Common Pre-Test and why do parents confuse it with the 11+?
+2. Which prestigious independent schools use ISEB, and what does that mean for preparation?
+3. What makes the adaptive, online ISEB format fundamentally different to practise for?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,100 to 1,400 words
+- Opening paragraph: establish immediately that the ISEB pre-test and the 11+ are different assessments with different purposes — many families encounter both, some only one
+- Include these exact <h2> sections in this order:
+  1. What Is the ISEB Common Pre-Test?
+  2. Which Schools Use the ISEB Pre-Test?
+  3. How the ISEB Pre-Test Differs from the 11+
+  4. What the ISEB Pre-Test Actually Tests
+  5. How to Prepare Without Official Past Papers
+  6. Frequently Asked Questions
+- Must include:
+  - ISEB tests four areas: English, Maths, Verbal Reasoning, Non-Verbal Reasoning — online, adaptive, multiple-choice
+  - Used by schools including Eton, Harrow, Winchester, Marlborough, Sevenoaks, Tonbridge, and many London independents
+  - ISEB does not release past papers — only official familiarisation materials exist
+  - Adaptive format means harder questions follow correct answers; standard timed paper practice does not replicate this
+  - Families often sit both ISEB and school-specific 11+ papers — preparation overlaps significantly for Maths and VR/NVR
+  - At a natural point where familiarisation materials or practice papers are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/11-plus">ISEB familiarisation papers and other independent school 11+ past papers</a>
+- FAQ questions must address: when the ISEB is typically sat (Year 6, autumn term), whether a child can resit, how long preparation should take, and whether a high ISEB score guarantees a school place
+"""
+
+    if slug == "the-north-london-girls-schools-11-what-parents-need-to-know":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What is the North London independent school landscape — which schools share a consortium paper and which set their own?
+2. What do parents in North London genuinely struggle to understand about these admissions processes?
+3. How does selectivity vary across South Hampstead, NLCS, Channing, Highgate Girls, and The Latymer School?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,100 to 1,400 words
+- Opening paragraph: acknowledge that North London has one of the most competitive independent school 11+ landscapes in the country, with several schools sharing consortium papers while others set their own
+- Include these exact <h2> sections in this order:
+  1. Which Schools Are in the North London Girls' Consortium?
+  2. What the Consortium 11+ Paper Tests
+  3. How Selective Are These Schools — Really?
+  4. Schools Outside the Consortium: South Hampstead, NLCS and The Latymer School
+  5. How to Pace Preparation Across Multiple Schools
+  6. Frequently Asked Questions
+- Must include:
+  - The main consortium schools include Channing, Highgate Girls, Channing, City of London Girls and others — the consortium uses a shared paper
+  - South Hampstead High School and North London Collegiate set their own papers and are among the most academically selective girls' schools in the country
+  - The Latymer School is a state selective school with its own process — mention briefly as context
+  - The consortium format typically includes English comprehension, creative writing, and Maths
+  - Selective ratios: some consortium schools receive 8–10 applicants per place; NLCS and SHHS are even more competitive
+  - At a natural point where practice papers or past exam materials are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/11-plus">past papers from consortium schools and other North London independents</a>
+- FAQ questions must address: whether consortium schools interview all applicants, whether creative writing is marked on style or content, what Year 6 looks like for a child preparing for multiple schools, and whether it is worth applying to both consortium and non-consortium schools
+"""
+
+    if slug == "manchester-grammar-school-11-format-past-papers-and-how-to-prepare":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What makes Manchester Grammar School academically distinctive — it's non-selective on wealth, highly competitive on ability
+2. How does the MGS 11+ exam format differ from GL Assessment, CEM, and other local options?
+3. What do parents in Manchester underestimate when preparing a child for MGS?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,100 to 1,400 words
+- Opening paragraph: establish that MGS is one of the most academically selective independent schools in the north of England — and that its 11+ exam is set in-house, not by GL or CEM, which changes how to prepare
+- Include these exact <h2> sections in this order:
+  1. About Manchester Grammar School
+  2. The MGS 11+ Examination: Format and Structure
+  3. What the MGS Exam Tests — and What It Doesn't
+  4. How Competitive Is Entry to Manchester Grammar?
+  5. Building an Effective Preparation Plan
+  6. Frequently Asked Questions
+- Must include:
+  - MGS is academically non-selective on wealth but highly selective on ability — means-tested bursaries available
+  - The exam is set by MGS itself, not by GL Assessment or CEM — this means generic 11+ practice is useful but not sufficient
+  - The exam tests Maths, English, and reasoning — but the style of questions is more demanding and less formulaic than GL-style papers
+  - Entry is typically from Year 6 with the exam sat in January of Year 6
+  - Boys only — one of the best-performing independent schools in the north of England by A-Level outcomes and Oxbridge send rate
+  - At a natural point where past papers are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/11-plus">Manchester Grammar past papers from recent sittings</a>
+- FAQ questions must address: whether tutoring is necessary for MGS entry, what score is needed to pass, how the MGS exam compares to the Trafford consortium grammar school exams, and whether there is a waiting list or appeal process
+"""
+
+    if slug == "fsce-11-exam-2026-what-it-is-and-how-to-prepare":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What is FSCE (Future Stories Community Enterprise) and why are some areas replacing GL Assessment with it?
+2. What makes the FSCE format genuinely harder to prepare for than GL or CEM?
+3. What does the "Discovery Paper" creative writing element mean for preparation?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,100 to 1,400 words
+- Opening paragraph: establish that FSCE is a new exam board replacing GL Assessment at several English grammar schools from 2025 onwards — and that parents searching for FSCE past papers will find almost nothing, which is by design
+- Include these exact <h2> sections in this order:
+  1. What Is the FSCE 11+?
+  2. Which Schools Have Switched to FSCE?
+  3. How FSCE Differs from GL Assessment and CEM
+  4. What the FSCE Tests: KS2 Maths, English, and the Discovery Paper
+  5. How to Prepare for the FSCE Without Past Papers
+  6. Frequently Asked Questions
+- Must include:
+  - FSCE stands for Future Stories Community Enterprise — a newer provider designed to reduce the "drillability" of 11+ preparation
+  - Schools that have adopted or are moving to FSCE include Reading School, Kendrick, Chelmsford County High, KEGS, and others
+  - FSCE deliberately does not publish past papers — the format is designed to change year-on-year
+  - No standalone Verbal Reasoning or Non-Verbal Reasoning section — replaced by integrated KS2-level Maths and English tasks
+  - The Discovery Paper is an extended creative or reflective writing task — assessed for ideas and communication, not grammar drilling
+  - Preparation should focus on: strong KS2 Maths and English, reading widely, practising timed writing to prompts
+  - At a natural point where practice materials are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/11-plus">KS2-style Maths and English practice papers that provide a useful starting point</a>
+- FAQ questions must address: whether FSCE is harder than GL Assessment, what year to start preparation, whether a child who has been doing GL practice needs to change their approach, and what the FSCE pass mark is
+"""
+
+    if slug == "11-english-comprehension-question-types-mark-schemes-and-practice-advice":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What are the distinct question types in 11+ English comprehension, and how are they marked differently?
+2. What are the specific techniques for inference questions that children consistently get wrong?
+3. How does comprehension style vary between independent schools — and why does this matter for practice?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,100 to 1,400 words
+- Opening paragraph: establish that comprehension is the section where marks are most commonly dropped — not because children misunderstand the passage, but because they don't understand how different question types are marked
+- Include these exact <h2> sections in this order:
+  1. The Main Types of 11+ Comprehension Questions
+  2. Retrieval Questions: Finding and Quoting Accurately
+  3. Inference Questions: Reading Between the Lines
+  4. Vocabulary Questions: Beyond Simple Definitions
+  5. How Marks Are Awarded — and Where They Are Lost
+  6. How to Practise Comprehension Effectively
+  7. Frequently Asked Questions
+- Must include:
+  - The four core question types: retrieval (find it in the text), inference (implied meaning), vocabulary (in context), author's craft/language analysis
+  - Retrieval: children must quote or paraphrase directly — generic statements about the passage lose marks
+  - Inference: the most commonly dropped marks — children must explain why the author has implied something, not just state it
+  - Vocabulary in context: definitions alone are rarely enough — the mark scheme wants the word's meaning in this specific context
+  - Mark allocation: 1-mark vs 2-mark questions require very different answer lengths
+  - Comprehension styles vary between schools — some independents favour inference-heavy passages; others weight vocabulary more heavily
+  - At a natural point where practice is discussed, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/11-plus">English past papers from schools including Dulwich, Bancroft's and The Perse, which show how comprehension style varies between institutions</a>
+- FAQ questions must address: how long a comprehension answer should be, whether underlining helps, how to improve inference skills specifically, and whether the same comprehension skills apply to all 11+ providers (GL, CEM, independent schools)
+"""
+
+    if slug == "is-my-child-on-track-for-the-11-a-year-by-year-readiness-guide":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What does "on track" genuinely mean at each year group — and why do parents misjudge it?
+2. What are the reliable indicators vs the misleading ones (e.g. school performance is not always a good proxy)?
+3. How should a parent use past papers as a calibration tool, not just as drilling?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,100 to 1,400 words
+- Opening paragraph: acknowledge that this is one of the most common and least well-answered questions in 11+ preparation — most resources tell you what to do, not how to know if it's working
+- Include these exact <h2> sections in this order:
+  1. Why "On Track" Is Harder to Define Than It Sounds
+  2. Year 3 and Year 4: What Strong Early Foundations Look Like
+  3. Year 5: The Critical Calibration Year
+  4. Using Past Papers to Benchmark Honestly
+  5. Red Flags: When to Reassess the Plan
+  6. Frequently Asked Questions
+- Must include:
+  - "On track" depends entirely on which school the child is targeting — a score that comfortably passes for one school may fall short at another
+  - School performance (e.g. reading age, SATS projections) is a useful but imperfect proxy — 11+ tests skills that are not always covered in the classroom
+  - Year 5 is when most reliable benchmarking begins — Year 4 is too early for timed paper data to be meaningful
+  - A useful rule: if a child scores consistently above 75% on timed past papers from target-level schools in Year 5, preparation is on track; below 60% consistently suggests a structural gap, not a motivation problem
+  - Red flags: consistent time pressure (finishing fewer than 80% of questions), strong on one section and very weak on another, visible anxiety during timed practice
+  - At a natural point where past papers as benchmarking tools are discussed, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/11-plus">past papers spanning a range of selectivity levels, from competitive independents to highly selective London consortium schools</a>
+- FAQ questions must address: what to do if a child plateaus in Year 5, whether mock exams are more reliable than past papers, whether Year 4 preparation is too early, and what "strong" vs "borderline" looks like in practice
+"""
+
+    if slug == "11-answer-sheet-practice-how-to-fill-in-bubble-sheets-and-avoid-costly-mistakes":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Why do children who know the correct answers still lose marks on answer sheets — what are the specific failure modes?
+2. How do different 11+ providers and independent schools structure their answer sheets differently?
+3. What does realistic answer-sheet practice look like, and how early should it start?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,000 to 1,300 words
+- Opening paragraph: make clear this is a genuinely underrated preparation step — answer sheet errors can cost 3–8 marks on a paper a child otherwise answered correctly, which at competitive schools is the difference between a pass and a fail
+- Include these exact <h2> sections in this order:
+  1. Why Answer Sheets Cause Problems — Even for Well-Prepared Children
+  2. Types of 11+ Answer Sheets: Bubble Grids, Multiple Choice, and Separate Booklets
+  3. The Most Common Answer Sheet Mistakes
+  4. How to Practise Answer Sheets Effectively
+  5. Timing: Managing Pace Across Paper and Answer Sheet Together
+  6. Frequently Asked Questions
+- Must include:
+  - The core failure modes: skipping a question but continuing on the answer sheet (misalignment), rushing at the end and circling without checking, using the wrong answer format (e.g. circling instead of shading)
+  - Different formats: GL Assessment uses separate multiple-choice answer sheets with bubble grids; independent schools often use separate lined booklets; CEM varies
+  - Children should practise under timed conditions with the actual answer sheet format for their target school — not just on paper with a pen next to each question
+  - Good practice habit: mark every question before moving on — do not leave blanks to return to without also leaving a matching blank on the answer sheet
+  - At a natural point where paper formats are discussed, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/11-plus">past papers from a range of independent and selective schools, many of which include separate answer booklets</a>
+- FAQ questions must address: whether multiple-choice answers can be changed once marked, at what age to introduce answer-sheet practice, whether GL and CEM answer sheets differ significantly, and how much time to allow for transferring answers
+"""
+
     # Generic blog prompt for remaining posts
     return f"""
 {master_context}
@@ -2349,6 +2584,43 @@ BLOG_RELATED_RESOURCES = {
         "link to the GCSE tuition page at /services/levels/gcse-tuition using anchor text 'GCSE tuition with Leading Tuition', "
         "link to the A-Level tuition page at /services/levels/a-level-tuition using anchor text 'A-Level tuition', "
         "and link to the consultation page at /consultation using anchor text 'book a free consultation'."
+    ),
+    # ── New 11+ resource-driving blog posts ──────────────────────────────────
+    "iseb-common-pre-test-a-parents-guide-for-2026": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the 11+ tuition page at /services/levels/11plus-tuition using anchor text '11+ tuition with Leading Tuition', "
+        "and link to the 11+ School Guides hub at /11-plus/ using anchor text '11+ school preparation guides'."
+    ),
+    "the-north-london-girls-schools-11-what-parents-need-to-know": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the 11+ tuition page at /services/levels/11plus-tuition using anchor text '11+ tuition with Leading Tuition', "
+        "and link to the 11+ resources page at /resources/11-plus using anchor text 'past papers from North London consortium schools and other independents'."
+    ),
+    "manchester-grammar-school-11-format-past-papers-and-how-to-prepare": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the 11+ tuition page at /services/levels/11plus-tuition using anchor text '11+ tuition with Leading Tuition', "
+        "and link to the 11+ resources page at /resources/11-plus using anchor text 'Manchester Grammar past papers and other selective school practice materials'."
+    ),
+    "fsce-11-exam-2026-what-it-is-and-how-to-prepare": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the 11+ tuition page at /services/levels/11plus-tuition using anchor text '11+ tuition with Leading Tuition', "
+        "and link to the 11+ School Guides hub at /11-plus/ using anchor text '11+ school preparation guides'."
+    ),
+    "11-english-comprehension-question-types-mark-schemes-and-practice-advice": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the 11+ tuition page at /services/levels/11plus-tuition using anchor text '11+ tuition with Leading Tuition', "
+        "link to the English tutor page at /services/subjects/english-tutor using anchor text 'specialist English tutoring', "
+        "and link to the 11+ resources page at /resources/11-plus using anchor text 'English past papers from Dulwich, Bancroft\\'s, The Perse and other independent schools'."
+    ),
+    "is-my-child-on-track-for-the-11-a-year-by-year-readiness-guide": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the 11+ tuition page at /services/levels/11plus-tuition using anchor text '11+ tuition with Leading Tuition', "
+        "and link to the consultation page at /consultation using anchor text 'book a free 11+ consultation'."
+    ),
+    "11-answer-sheet-practice-how-to-fill-in-bubble-sheets-and-avoid-costly-mistakes": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the 11+ tuition page at /services/levels/11plus-tuition using anchor text '11+ tuition with Leading Tuition', "
+        "and link to the 11+ resources page at /resources/11-plus using anchor text 'past papers from independent and selective schools, many including separate answer booklets'."
     ),
 }
 
