@@ -1,237 +1,243 @@
-# AGENTS.md — Leading Tuition Website: Architecture & Rules for AI Agents
+# AGENTS.md — Leading Tuition Website
 
-Read this entire file before making any changes. It exists because previous agents (and humans) made costly mistakes by misunderstanding the architecture. Every section is a hard-won learning.
+> **Read this file in full before making any changes.**
+> Every rule here exists because a previous agent (or human) broke something by not knowing it.
 
 ---
 
-## 1. CRITICAL: How Cloudflare Serves This Site
+## QUICK REFERENCE
 
-**Cloudflare Pages build output directory: `/seo-generator/output`**
+| What you need | Answer |
+|---|---|
+| Cloudflare build output dir | `seo-generator/output/` |
+| Cloudflare project name | `leading-tuition-seo` |
+| Production branch | `main` → `www.leadingtuition.co.uk` |
+| Staging branch | `dev` → new preview URL on every push |
+| Run generate.py from | `cd seo-generator/` first, then `python generate.py ...` |
+| Claude model used | `claude-sonnet-4-6`, temperature 0.35 |
+| generate.py line count | ~3500 lines — verify with `wc -l seo-generator/generate.py` before committing |
+| .gitignore encoding | UTF-16 (Windows BOM) — always open in binary mode |
+| Canonical www version | `https://www.leadingtuition.co.uk` (www, HTTPS) |
+| Who commits | **The human commits. Agents do not commit or push.** |
 
-This is the single most important fact. Cloudflare does NOT serve from the repo root. It serves exclusively from `seo-generator/output/`. Every public URL maps directly into that directory:
+---
+
+## HARD RULES — NEVER VIOLATE
+
+These are the most common agent errors. Check this list before touching anything.
+
+1. **Do NOT serve from repo root.** Cloudflare serves exclusively from `seo-generator/output/`. Files at the repo root are NOT public.
+2. **Do NOT change `OUTPUT_DIR` in `generate.py`.** It must stay `SCRIPT_DIR / "output"` (i.e. `seo-generator/output/`). Verify: `grep "OUTPUT_DIR" seo-generator/generate.py` must show `SCRIPT_DIR / "output"`.
+3. **Do NOT delete flat HTML files from `seo-generator/output/`** (`index.html`, `about.html`, `contact.html`, etc.). Deleting them takes down those live URLs immediately.
+4. **Do NOT put `robots.txt` at the repo root.** It must live at `seo-generator/output/robots.txt`.
+5. **Do NOT add `Disallow: /seo-generator/` to robots.txt.** That path does not exist in the public URL namespace.
+6. **Do NOT copy generated pages to the repo root.** They will never be served from there.
+7. **Do NOT use `git checkout main -- file.html` to restore standard pages.** `main` has an older navbar; this reintroduces inconsistency.
+8. **Do NOT add `aggregateRating` to `@type: "Service"` JSON-LD schemas.** Only `EducationalOrganization`/`Organization` schemas at homepage level may have `aggregateRating`.
+9. **Do NOT use inline `onclick` inside Python f-strings** (e.g. in resource pages). Python `\'` collapses to `'` in the HTML, breaking JS. Use `data-*` attributes and event delegation.
+10. **Do NOT use Python's built-in `hash()` for variant assignment.** It is randomised per process (PYTHONHASHSEED). Use `hashlib.md5` instead.
+11. **Do NOT write `.gitignore` with default UTF-8.** It is UTF-16; use binary open + explicit `utf-16` codec or git will silently stop respecting it.
+12. **Do NOT close `<meta>` tags without `/>`.** A missing `/>` on a meta tag causes the HTML parser to swallow the next tag, breaking stylesheet loading. Every `<meta ... />` must end with ` />`.
+13. **Do NOT use relative `href` in `blog.html` post links.** The page is at `/blog` (no trailing slash), so `href="slug"` resolves to `/slug`. Use absolute paths: `href="/blog/slug"`.
+14. **Do NOT commit `generate.py` without verifying its size** (`wc -l seo-generator/generate.py` should be ~3500 lines).
+15. **Do NOT regenerate pages when files already exist in the wrong location.** Copy them instead — saves API credits. `cp -r locations/*.html seo-generator/output/locations/`.
+16. **Do NOT run `submit_indexnow.py` against the dev preview URL.** Only submit production URLs (`www.leadingtuition.co.uk`).
+17. **Do NOT hardcode Google Drive folder URLs or Stripe keys in code.** All sensitive values live in Cloudflare environment variables.
+18. **Do NOT add "Google Drive" wording to any user-facing copy** in `purchase-confirmed.html` or resource pages. Drive is an implementation detail.
+
+---
+
+## 1. Cloudflare Serving & File Paths
+
+**Build output directory:** `seo-generator/output/` — Cloudflare serves nothing else.
+
+### Public URL → file mapping
 
 | Public URL | File on disk |
 |---|---|
 | `leadingtuition.co.uk/` | `seo-generator/output/index.html` |
 | `leadingtuition.co.uk/blog/post-slug` | `seo-generator/output/blog/post-slug.html` |
-| `leadingtuition.co.uk/admissions-tests/bmat/` | `seo-generator/output/admissions-tests/bmat/index.html` |
+| `leadingtuition.co.uk/admissions-tests/slug/` | `seo-generator/output/admissions-tests/slug/index.html` |
+| `leadingtuition.co.uk/medical-schools/slug/` | `seo-generator/output/medical-schools/slug/index.html` |
+| `leadingtuition.co.uk/oxbridge-interviews/slug/` | `seo-generator/output/oxbridge-interviews/slug/index.html` |
 | `leadingtuition.co.uk/robots.txt` | `seo-generator/output/robots.txt` |
 | `leadingtuition.co.uk/sitemap.xml` | `seo-generator/output/sitemap.xml` |
 
-**The repo root (files like `/blog/`, `/locations/`, `/index.html`) is NOT served publicly.** Those files exist in the repo but Cloudflare ignores them. Do not add pages there expecting them to go live.
-
-**Consequence:** If you delete any file from `seo-generator/output/`, that page goes down on the live site.
-
----
-
-## 2. generate.py — How It Works
-
-- **Location:** `seo-generator/generate.py`
-- **OUTPUT_DIR:** `Path("output")` — relative path, always outputs to `seo-generator/output/`
-- **Run from:** Always `cd seo-generator/` first, then `python generate.py ...`
-- **CSV files** (blog_topics.csv, locations.csv, etc.) are read from `seo-generator/` directory
-- **API:** Uses `claude-sonnet-4-6` via Anthropic API, temperature 0.35
-- **`--new-only` flag:** Skips files that already exist in output. Use this to avoid regenerating pages.
-
-### Key CLI flags
-```
-python generate.py --blog --new-only          # generate new blog posts only
-python generate.py --oxbridge-interviews --new-only  # generate Oxbridge interview pages
-python generate.py --navbar                   # propagate navbar to all output HTML files
-python generate.py --sitemap                  # regenerate sitemap.xml from output/ directory
-python generate.py --all                      # generate everything
-```
-
-### What generate.py generates (in seo-generator/output/)
-- `blog/slug.html` — blog posts (from blog_topics.csv)
-- `locations/city.html` — location pages (from locations.csv)
-- `admissions-tests/slug/index.html` — admissions test pages (from admissions_tests.csv)
-- `medical-schools/slug/index.html` — medical school pages (from medical_schools.csv)
-- `oxbridge-interviews/subject-interview/index.html` — Oxbridge pages (from oxbridge_interviews.csv)
-- `services/specialist-admissions/slug.html` or `slug/index.html` — service pages
-- `index.html`, `blog.html`, `locations.html` etc. — static hub pages
-
----
-
-## 3. File Structure That Must Always Exist in seo-generator/output/
-
-These flat HTML files at the root of `seo-generator/output/` are real pages. **Never delete them.** Their absence takes down those URLs:
+### Protected flat files — never delete
 
 ```
 seo-generator/output/
-  index.html          → leadingtuition.co.uk/
-  about.html          → leadingtuition.co.uk/about
-  contact.html        → leadingtuition.co.uk/contact
-  consultation.html   → leadingtuition.co.uk/consultation
-  faqs.html           → leadingtuition.co.uk/faqs
-  services.html       → leadingtuition.co.uk/services
-  tutors.html         → leadingtuition.co.uk/tutors
-  blog.html           → leadingtuition.co.uk/blog
-  locations.html      → leadingtuition.co.uk/locations
-  subjects.html       → leadingtuition.co.uk/subjects
-  sitemap.xml         → leadingtuition.co.uk/sitemap.xml
-  robots.txt          → leadingtuition.co.uk/robots.txt
-  style.css           → leadingtuition.co.uk/style.css
-  resources/index.html              → leadingtuition.co.uk/resources/
-  resources/pre-11-plus.html        → leadingtuition.co.uk/resources/pre-11-plus
-  resources/11-plus.html            → leadingtuition.co.uk/resources/11-plus
-  resources/13-plus.html            → leadingtuition.co.uk/resources/13-plus
-  resources/oxbridge-interview-questions.html → leadingtuition.co.uk/resources/oxbridge-interview-questions
-  resources/gcse-resources-for-parents.html   → leadingtuition.co.uk/resources/gcse-resources-for-parents
+  index.html          about.html          contact.html
+  consultation.html   faqs.html           services.html
+  tutors.html         blog.html           locations.html
+  subjects.html       sitemap.xml         robots.txt
+  style.css
+  resources/index.html
+  resources/pre-11-plus.html
+  resources/11-plus.html
+  resources/13-plus.html
+  resources/oxbridge-interview-questions.html
+  resources/gcse-resources-for-parents.html
 ```
 
-**Resources pages are placeholder/stub pages.** They are NOT generated by `generate.py` — they are manually maintained HTML files. Do not attempt to generate them with `--all` or any CLI flag. To update them, edit the files directly in `seo-generator/output/resources/`. Their navbars must be kept in sync manually (same pattern as other flat pages — see Section 12).
+### GSC ghost URLs — do nothing
+
+GSC may show errors for `/seo-generator/output/locations/london` (with the full internal path). These are stale from when Cloudflare briefly served the repo root. They 404 naturally and expire on their own. Do not create redirects or files for them.
 
 ---
 
-## 4. Git Branch Structure
+## 2. generate.py — Usage
 
-- **`main`** — production branch, deploys to `www.leadingtuition.co.uk`
-- **`dev`** — staging branch, deploys to a preview URL like `{hash}.leading-tuition-website.pages.dev`
-- **Cloudflare project name:** `leading-tuition-seo`
-- Each push to `dev` creates a NEW preview URL. The old URL is invalidated. Always get the latest URL from the Cloudflare dashboard.
+**Always run from:** `cd seo-generator/` then `python generate.py ...`
 
----
+### CLI flags
 
-## 5. SEO / Google Search Console Issues & Root Causes
+```bash
+python generate.py --blog --new-only            # new blog posts only (skips existing)
+python generate.py --oxbridge-interviews --new-only
+python generate.py --medical-schools --new-only
+python generate.py --admissions-tests --new-only
+python generate.py --locations --new-only
+python generate.py --navbar                     # sync navbar to all output HTML files
+python generate.py --sitemap                    # regenerate sitemap.xml
+python generate.py --all                        # generate everything
+```
 
-### What was found in GSC
-- "Duplicate without user-selected canonical" — caused by stale pages with identical canonical tags
-- "Not found 404" — caused by stale pages with canonicals pointing to URLs that don't exist
-- "Crawled - currently not indexed" — caused by thin/stale pages with wrong canonical targets
-- "Discovered - currently not indexed" — new pages not yet crawled; normal, resolves over time
+`--new-only` skips files already present in `seo-generator/output/`. Omit it only when regenerating existing pages intentionally.
 
-### What caused the duplicate/404 issues
-- Old `gcse-maths-tutor.html`, `gcse-maths-help.html` etc. in `seo-generator/output/` had canonical tags pointing to `/gcse-maths-tutor` (a URL that doesn't exist). These have been deleted from `dev`.
-- Old `medicine-prep/` directory had wrong URL structure. Deleted from `dev`.
+### What it generates
 
-### robots.txt
-- Must live at `seo-generator/output/robots.txt` (NOT repo root) to be served at `/robots.txt`
-- Currently: `Allow: /` with sitemap pointer — all pages are crawlable
-- Do NOT add `Disallow: /seo-generator/` — that path does not exist publicly (Cloudflare serves from `seo-generator/output/`, so there is no `/seo-generator/` in the public URL namespace)
+| Output path | Source CSV |
+|---|---|
+| `output/blog/slug.html` | `blog_topics.csv` |
+| `output/locations/city.html` | `locations.csv` |
+| `output/admissions-tests/slug/index.html` | `admissions_tests.csv` |
+| `output/medical-schools/slug/index.html` | `medical_schools.csv` |
+| `output/oxbridge-interviews/subject-interview/index.html` | `oxbridge_interviews.csv` |
 
----
+### API retry behaviour
 
-## 6. templates.py — Key Facts
-
-- **Location:** `seo-generator/templates.py`
-- Four template functions: `service_page_template`, `blog_page_template`, `location_page_template`, `page_template`
-- All four share the same navbar HTML — use `--navbar` flag or `generate_navbar()` to sync changes
-- **Navbar blog dropdown:** Shows 8 featured posts + "View all posts →" link (not all posts)
-- **`page_url_path()`** has mapping `"oxbridge-interview": "oxbridge-interviews"` — needed for correct canonical URLs
-- **`breadcrumb_schema()`** handles oxbridge-interview case explicitly
+`ask_claude()` retries up to 5 times on 529 (overload) with delays of 30/60/90/120/150s. If it still fails, wait a few minutes and re-run with `--new-only`.
 
 ---
 
-## 7. URL / Canonical Tag Patterns
+## 3. URL & Canonical Tag Patterns
 
-Canonical tags must always match the actual public URL exactly:
+Canonical tags must exactly match the live public URL.
 
-| Page type | Canonical format | File location |
+| Page type | Canonical format | Trailing slash? |
 |---|---|---|
-| Homepage | `https://www.leadingtuition.co.uk/` | `output/index.html` |
-| Blog post | `https://www.leadingtuition.co.uk/blog/slug` | `output/blog/slug.html` |
-| Location | `https://www.leadingtuition.co.uk/locations/city` | `output/locations/city.html` |
-| Admissions test | `https://www.leadingtuition.co.uk/admissions-tests/slug/` | `output/admissions-tests/slug/index.html` |
-| Medical school | `https://www.leadingtuition.co.uk/medical-schools/slug/` | `output/medical-schools/slug/index.html` |
-| Oxbridge interview | `https://www.leadingtuition.co.uk/oxbridge-interviews/subject-interview/` | `output/oxbridge-interviews/subject-interview/index.html` |
+| Homepage | `https://www.leadingtuition.co.uk/` | Yes |
+| Blog post | `https://www.leadingtuition.co.uk/blog/slug` | No |
+| Location | `https://www.leadingtuition.co.uk/locations/city` | No |
+| Admissions test | `https://www.leadingtuition.co.uk/admissions-tests/slug/` | Yes |
+| Medical school | `https://www.leadingtuition.co.uk/medical-schools/slug/` | Yes |
+| Oxbridge interview | `https://www.leadingtuition.co.uk/oxbridge-interviews/subject-interview/` | Yes |
 
-**Note:** Directory-style pages (`index.html` inside a folder) use a trailing slash in the canonical. Flat `.html` files do not.
-
----
-
-## 8. Common Mistakes Made By Previous Agents (Do Not Repeat)
-
-1. **Assumed Cloudflare serves from repo root** — it serves from `seo-generator/output/`. Verify with Cloudflare Pages settings before assuming anything.
-
-2. **Changed OUTPUT_DIR in generate.py to point to repo root** — this breaks the entire workflow. OUTPUT_DIR must stay as `Path("output")`.
-
-3. **Deleted flat HTML files from seo-generator/output/** (index.html, about.html etc.) thinking they were duplicates — they are the actual live pages. Deleting them takes down the site.
-
-4. **Put robots.txt at repo root** — it must be in `seo-generator/output/` to be publicly accessible.
-
-5. **Added Disallow: /seo-generator/ to robots.txt** — that path doesn't exist publicly. Harmless but misleading.
-
-6. **Copied generated pages to repo root** — those copies are never served. Only `seo-generator/output/` content is served.
-
-7. **Confused preview URLs** — each `git push origin dev` creates a new preview URL. Previous preview URLs stop working. Always check Cloudflare dashboard for the current URL. The project is named `leading-tuition-seo`.
-
-8. **API overload errors (529) crash the generator mid-run** — `ask_claude()` now has built-in retry logic: up to 5 attempts with 30s/60s/90s/120s/150s waits. If you still hit this after retries, the API is genuinely busy — wait a few minutes and re-run with `--new-only` to skip already-generated pages.
-
-9. **Staged and committed generate.py while it had unsaved/empty state** — always verify file size before committing: `wc -l seo-generator/generate.py` should be ~3500 lines.
-
-9. **Changed OUTPUT_DIR to SCRIPT_DIR.parent (repo root)** — this is wrong. OUTPUT_DIR must always be `SCRIPT_DIR / "output"` (i.e. `seo-generator/output/`). If OUTPUT_DIR is wrong, generated files land at the repo root or other wrong paths, and Cloudflare never serves them. Always verify: `grep "OUTPUT_DIR" seo-generator/generate.py` should show `SCRIPT_DIR / "output"`.
-
-10. **Regenerated pages unnecessarily when files already exist in the wrong location** — if pages were generated but landed in the wrong directory due to an OUTPUT_DIR bug, just copy them across rather than re-calling the API. Example: `Copy-Item .\locations\*.html seo-generator\output\locations\` (PowerShell). This saves API credits and time.
-
-11. **Synced navbar to standard pages from templates.py without verifying stylesheet loaded first** — when standard pages (services, consultation, faqs, tutors) had broken meta tags causing no CSS to load, the unstyled result was mistakenly attributed to the navbar change. Always verify CSS is loading before diagnosing layout issues (see Section 11).
-
-10. **Blog post links in blog.html used relative hrefs** — the page is served at `/blog` (not `/blog/`), so `href="slug"` resolves to `/slug` not `/blog/slug`. All post links in `blog.html` must use absolute paths: `href="/blog/slug"`.
-
-11. **Navbar inconsistency between standard pages and generated pages** — the standard flat pages (`seo-generator/output/*.html`) and generated pages (`blog/`, `oxbridge-interviews/`) are templated separately. After any navbar update in `templates.py`, both sets must be synced. See Section 12 for the correct sync procedure.
+**Rule:** `index.html` pages (directory-style) → trailing slash. Flat `.html` files → no trailing slash.
 
 ---
 
-## 11. Critical: Meta Description Tag Syntax — Must Close with `/>`
+## 4. Meta Descriptions
 
-Any `<meta>` tag that is not properly closed causes the HTML5 parser to treat the next tag as an attribute rather than a new element. This means a missing `/>` on a `<meta name="description">` tag will cause the following `<link rel="stylesheet">` to be silently swallowed, resulting in **zero stylesheets loading**.
+### Quality standard
 
-**Symptom:** Page renders with a giant logo image and unstyled content. The navbar logo (`<img src="/images/logo.png">`) renders at its full natural size because no CSS is applied.
+Every meta description must:
+- Be **145–158 characters** (including spaces)
+- Include the **target keyword naturally** (once)
+- **Answer what the page covers** specifically
+- **Give a reason to click** — a specific fact, angle, or promise
+- **Never use generic filler**: "Expert advice from Leading Tuition", "Book a free consultation", "Find out more"
 
-**Diagnosis:** In browser DevTools console run:
+### Three-tier priority in `generate_blog_pages()`
+
+| Priority | Source | How |
+|---|---|---|
+| 1 (highest) | `meta_desc` column in `blog_topics.csv` | Add column; value used verbatim (truncated to 160 chars) |
+| 2 | `META_DESC:` line in Claude's response | Extracted by `parse_meta_desc(raw)` |
+| 3 (fallback) | Formula | `f"{title} — practical guidance for UK students and parents. Expert tutors from Oxford and Cambridge. 4.8/5 Trustpilot."` |
+
+### META_DESC: protocol
+
+`blog_prompt()` instructs Claude to output exactly:
+```
+META_DESC:Your compelling meta description here, 145-158 chars, keyword-rich, specific.
+```
+`parse_meta_desc(raw)` in `generate.py` extracts this line. `parse_faq_schema()` strips it before it can leak into page content.
+
+### Specialist and location pages
+
+Set via `OXBRIDGE_INTERVIEW_META`, `MEDICAL_SCHOOL_META`, `ELEVEN_PLUS_META` dicts in `generate.py`, or passed as the `meta_desc` argument to `page_template()`. Edit those dicts directly — no CSV needed.
+
+### Where descriptions are written in HTML
+
+`base_html()` in `templates.py` writes the same string to all three tags. When editing manually, update all three:
+```html
+<meta name="description" content="..." />
+<meta property="og:description" content="..." />
+<meta name="twitter:description" content="..." />
+```
+
+### Meta tag syntax — must use self-closing `/>`
+
+```html
+<!-- BROKEN — causes stylesheet to not load -->
+<meta name="description" content="Some text">
+
+<!-- CORRECT -->
+<meta name="description" content="Some text" />
+```
+
+A missing `/>` causes the HTML5 parser to swallow the next tag as an attribute. Symptom: page renders unstyled with giant logo image. Diagnosis:
 ```js
 document.querySelectorAll('link[rel="stylesheet"]').length  // returns 0 if broken
-document.head.innerHTML.substring(0, 500)  // reveals the malformed tag
 ```
 
-**Broken (causes no CSS to load):**
-```html
-<meta name="description" content="Some description text">
-<link rel="stylesheet" href="/style.css" />
-```
+Bulk check: `grep -rn '<meta name="description" content="[^"]*">' seo-generator/output/` — any match (without `/>`) is broken.
 
-**Correct:**
-```html
-<meta name="description" content="Some description text" />
-<link rel="stylesheet" href="/style.css" />
-```
+### Bulk audit for generic descriptions
 
-**Fix:** Always close meta tags with ` />`. To check all files at once:
 ```bash
-grep -rn '<meta name="description" content="[^"]*">' seo-generator/output/
+grep -r 'name="description"' seo-generator/output/ | grep 'Expert advice from Leading Tuition'
 ```
-Any match (without `/>`) is broken. Fix with:
-```bash
-sed -i 's|<meta name="description" content="\(.*\)"$|<meta name="description" content="\1" />|' path/to/file.html
-```
-
-**Affected files historically:** `services.html`, `consultation.html`, `faqs.html`, `tutors.html` — these were restored from `main` branch without the closing `/>` and had to be manually corrected.
+Any match should be updated manually or via CSV override.
 
 ---
 
-## 12. Navbar Sync — Canonical Source and Procedure
+## 5. Navbar Sync
 
-There are **two navbar variants** in the repo:
+### Two separate navbar variants
 
-| Navbar version | Where it lives | Used by |
+| Variant | Lives in | Covers |
 |---|---|---|
-| **Canonical (newer)** | `templates.py` → propagated via `generate.py --navbar` | `blog/*.html`, `oxbridge-interviews/**/*.html`, `locations/**/*.html`, all generated pages |
-| **Flat page copies** | Manually maintained in each `seo-generator/output/*.html` | `index.html`, `about.html`, `contact.html`, `consultation.html`, `faqs.html`, `services.html`, `tutors.html`, `locations.html`, `subjects.html`, `blog.html` |
+| Canonical | `templates.py` | All generated pages (`blog/`, `oxbridge-interviews/`, `locations/`, etc.) |
+| Flat page copies | Each `seo-generator/output/*.html` manually | `index.html`, `about.html`, `contact.html`, `consultation.html`, `faqs.html`, `tutors.html`, `locations.html`, `subjects.html`, `services.html`, `blog.html` |
 
-**The canonical navbar** (as of March 2026) has:
-- 4 columns in the Services mega-menu: Subjects, Levels, Specialist & Admissions, **Admissions Tests**
+### Current canonical navbar (March 2026)
+
+- 4-column Services mega-menu: Subjects, Levels, Specialist & Admissions, Admissions Tests
 - Blog dropdown: 8 featured posts + "View all posts →" link
-- Includes `/oxbridge-interviews/` link under Specialist & Admissions
+- Includes `/oxbridge-interviews/` under Specialist & Admissions
 
-**When to sync:** After any navbar change in `templates.py`, run:
+### Sync procedure
+
+After any navbar change in `templates.py`:
+
+**Step 1** — propagate to generated pages:
 ```bash
 cd seo-generator && python generate.py --navbar
 ```
-This updates all generated pages. Then manually sync the flat standard pages using this Python snippet:
+Or use `sync_navbar.py` which also syncs the mobile toggle `<script>` block:
+```bash
+python seo-generator/sync_navbar.py
+```
+Use `sync_navbar.py` whenever the mobile JS block changes — `--navbar` only syncs the `<nav>` element.
+
+**Step 2** — sync flat standard pages (run this Python snippet from repo root):
 ```python
 import re, os
 
-with open('blog/oxbridge-interview-questions-100-real-examples-for-every-major-subject.html') as f:
+with open('seo-generator/output/blog/oxbridge-interview-questions-100-real-examples-for-every-major-subject.html') as f:
     canonical_navbar = re.search(r'(<nav class="navbar">.*?</nav>)', f.read(), re.DOTALL).group(1)
 
 flat_pages = [
@@ -257,92 +263,19 @@ for path in flat_pages:
         print(f"Updated: {path}")
 ```
 
-**Verify sync with Python** (not `sed -n` / `md5sum` — those stop at first `</nav>` and give false mismatches):
+**Step 3** — verify (must use Python regex, not `md5sum` or `sed -n` — those stop at the first `</nav>`):
 ```python
 import re
-with open('blog/oxbridge-interview-questions-100-real-examples-for-every-major-subject.html') as f:
+with open('seo-generator/output/blog/oxbridge-interview-questions-100-real-examples-for-every-major-subject.html') as f:
     ref = re.search(r'<nav class="navbar">.*?</nav>', f.read(), re.DOTALL).group(0)
 with open('seo-generator/output/index.html') as f:
     idx = re.search(r'<nav class="navbar">.*?</nav>', f.read(), re.DOTALL).group(0)
 print("Match:", ref == idx)  # Must be True
 ```
 
-**Do NOT use `git checkout main -- file.html`** to restore standard pages — the `main` branch has an older navbar. This reintroduces inconsistency and requires another sync pass.
+### Mobile flyout toggle (March 2026 pattern)
 
----
-
-## 9. Workflow for Adding New Pages
-
-1. Add the new page's slug/title/metadata to the relevant CSV in `seo-generator/`
-2. Add a custom prompt branch in `blog_prompt()` or equivalent function in `generate.py`
-3. Add the slug to `BLOG_RELATED_RESOURCES` dict for interlinking
-4. Run: `python generate.py --[flag] --new-only` from `seo-generator/` directory
-5. Run: `python generate.py --navbar` to propagate navbar to new files
-6. Run: `python generate.py --sitemap` to update sitemap
-7. Verify the file exists in `seo-generator/output/` at the expected path
-8. Commit `seo-generator/output/` changes and push to `dev`
-9. Verify preview URL works before merging to `main`
-
----
-
-## 13. SEO Structural Duplication — Root Cause and Fix
-
-### The Problem
-All four generated page families (locations, medical schools, admissions tests, Oxbridge interviews) use a single fixed H2 structure for every page. Google treats pages with identical section order, same intent flow, and near-identical wording as near-duplicates — causing "Duplicate without user-selected canonical", "Crawled - currently not indexed", and "Discovered - currently not indexed" in GSC.
-
-The root cause is that every prompt in `generate.py` contains a hard-coded numbered H2 list, e.g.:
-```
-Use exactly these <h2> sections in this order:
-  1. Tutoring in {city} — What We Offer
-  2. GCSE and A-Level Support
-  ...
-```
-This overrides the model's ability to vary structure even when the city/school/test data differs.
-
-### Priority order for fixing
-1. **Location pages** — 34 pages, identical H2 skeleton, highest risk. Fixed first.
-2. **Medical school pages** — 38 pages, identical H2 skeleton. Fix second.
-3. **Admissions test pages** — 13 pages, identical H2 skeleton. Fix third.
-4. **Oxbridge interview pages** — 18 pages, moderate risk (subject questions vary). Fix last.
-
-### The Fix Pattern
-For each prompt function, replace the single fixed H2 list with a `VARIANTS` list of 3–5 genuinely different structures. Assign variants deterministically using `hashlib.md5` — **never use Python's built-in `hash()`**, which is randomised per process (PYTHONHASHSEED) and will assign different variants on every run. Use this pattern:
-```python
-import hashlib
-variant = int(hashlib.md5(slug.encode()).hexdigest(), 16) % num_variants
-```
-
-Each variant must differ in: H2 order, section emphasis, opening angle, and FAQ topics — not just H2 wording.
-
-After modifying a prompt function, delete all existing pages in that family from `seo-generator/output/` and regenerate fresh (do NOT use `--new-only`, as existing files must be replaced).
-
-### After regenerating any page family
-Always run:
-```bash
-cd seo-generator
-python generate.py --navbar   # re-sync navbar to new files
-python generate.py --sitemap  # update sitemap
-```
-Then commit and push to `dev`, verify on preview URL, then merge to `main`.
-
----
-
-## 10. Sitemap
-
-- **Served at:** `leadingtuition.co.uk/sitemap.xml` → `seo-generator/output/sitemap.xml`
-- **Generated by:** `python generate.py --sitemap` (scans all HTML files in `seo-generator/output/`)
-- **Priority rules:** 1.0 homepage, 0.9 hub pages (/a-level/, /gcse/, /admissions-tests/ etc.), 0.8 individual sub-pages, 0.7 locations/services/levels, 0.6 blog/static pages
-- **Submitted to GSC:** Only submit the main sitemap URL, not the dev preview URL
-- **Hub pages must be manually added if missing:** `generate.py --sitemap` only includes pages it can find as HTML files. Hub pages like `/admissions-tests/` (served via `admissions-tests/index.html`) must exist as real files, or be added manually to `sitemap.xml`. Check that all hub pages listed in the nav actually have sitemap entries.
-
----
-
-## 14. Mobile Navigation — Flyout Toggle UX (March 2026)
-
-The mobile flyout nav was reworked to separate the toggle (expand sub-items) from the link (navigate to hub page). This avoids the UX problem where tapping a flyout parent on mobile both navigated AND tried to expand the sub-menu.
-
-### Pattern
-Inside every `.nav-flyout` div in `templates.py`, a `<button class="nav-flyout-toggle">` is placed immediately after the `<a>` tag:
+Each `.nav-flyout` div uses a separate `<button>` for expand/collapse, distinct from the `<a>` link:
 ```html
 <div class="nav-flyout">
   <a href="/gcse/">GCSE</a>
@@ -350,35 +283,47 @@ Inside every `.nav-flyout` div in `templates.py`, a `<button class="nav-flyout-t
   <div class="nav-flyout-menu">...</div>
 </div>
 ```
-
-The JS toggles `.open` on the parent `.nav-flyout` div when the button is clicked — the link navigates normally. The button is `display:none` on desktop and visible only in the mobile `@media (max-width: 900px)` block.
-
-### Sync requirement
-After any change to `templates.py` navbar or JS block, run `sync_navbar.py` — it syncs BOTH the `<nav class="navbar">` block AND the `<script>(function()...)()</script>` block to all 208 HTML files. Without syncing the script block, the toggle JS will not work on generated pages.
-
-```bash
-python seo-generator/sync_navbar.py
-```
+Button is `display:none` on desktop; visible in `@media (max-width: 900px)`. JS toggles `.open` on the parent `.nav-flyout` div.
 
 ---
 
-## 15. JSON-LD Schema — Review Snippets / aggregateRating Rules
+## 6. Breadcrumb Schema (BreadcrumbList JSON-LD)
 
-### The error
-Google Search Console flags **"Invalid object type for field '\<parent_node\>'"** under Enhancements → Review snippets when `aggregateRating` is placed on an `@type: "Service"` schema. Google's supported parent types for Review rich results do NOT include `Service`.
+### The double-prefix bug (fixed March 2026)
 
-### Affected pages (as of March 2026)
-45 pages had this error: all `11-plus/` school guide pages, all `admissions-tests/` pages, and all `oxbridge-interviews/` pages. They all had an `aggregateRating` block inside their `@type: "Service"` JSON-LD schema.
+**Root cause:** `page_template()` was called with `slug` already set to the full prefixed path (e.g. `"oxbridge-interviews/biology-interview/"`). Internally it also called `breadcrumb_schema(page_type, slug, ...)`, which ran `page_url_path()` and prepended the prefix again — producing doubled paths like `/oxbridge-interviews/oxbridge-interviews/biology-interview/`.
 
-### Fix
-Remove `aggregateRating` from any JSON-LD schema where `@type` is `"Service"`. Do NOT remove it from `EducationalOrganization`, `Organization`, `Article`, `FAQPage`, `BreadcrumbList`, or other types — those are unaffected and valid.
+Additionally, `generate_oxbridge_interview_pages()` and `generate_medical_school_pages()` each passed a correct breadcrumb in `schema_extra`, so every page ended up with TWO `BreadcrumbList` schemas.
 
-Use this Python pattern to fix in bulk:
+**Fix applied in `page_template()`:** Skip generating an internal breadcrumb when `schema_extra` already contains `"BreadcrumbList"`. If generating internally, strip the page-type prefix from `slug` before passing to `breadcrumb_schema()`.
+
+### Rule going forward
+
+- If calling `page_template()` with a `schema_extra` that already contains a `BreadcrumbList`, do not pass a prefixed slug to `breadcrumb_schema()` separately — the template skips it automatically.
+- If `schema_extra` has no `BreadcrumbList`, pass the bare slug (without page-type prefix) to `breadcrumb_schema()`. The function applies the prefix itself via `page_url_path()`.
+
+### Verify no doubled paths exist
+
+```bash
+grep -r 'oxbridge-interviews/oxbridge-interviews' seo-generator/output/
+grep -r 'medical-schools/medical-schools' seo-generator/output/
+```
+Both must return zero matches.
+
+---
+
+## 7. JSON-LD Schema — aggregateRating Rules
+
+**Rule:** `aggregateRating` may only appear on `EducationalOrganization` or `Organization` schemas (homepage-level only). Never on `@type: "Service"` schemas.
+
+GSC flags this as "Invalid object type for field '<parent_node>'" under Enhancements → Review snippets.
+
+**Bulk fix pattern:**
 ```python
 import re, json
 from pathlib import Path
 
-def fix(html):
+def fix_service_schema(html):
     modified = False
     def replace_jsonld(m):
         nonlocal modified
@@ -395,229 +340,269 @@ def fix(html):
     return pattern.sub(replace_jsonld, html), modified
 ```
 
-### After fixing
-Commit to dev → push → go to GSC → Enhancements → Review snippets → click **"Validate Fix"**. Google re-crawls affected pages within a few days.
-
-### Do not add aggregateRating to Service schemas in future
-When writing or updating JSON-LD in `generate.py` or `templates.py`, only place `aggregateRating` on `EducationalOrganization` or `Organization` type schemas (homepage level). Never add it to page-level `Service` schemas.
+After fixing: push to dev → GSC → Enhancements → Review snippets → "Validate Fix".
 
 ---
 
-## 16. Location Pages — Related Callouts
+## 8. Git & Deployment
 
-All location pages must have a `<!-- RELATED-CALLOUT -->` section placed before the `<footer>`. This marker is used for idempotent callout injection — check for its presence before adding a callout to avoid duplicating it.
+| Branch | Deploys to | Use for |
+|---|---|---|
+| `main` | `www.leadingtuition.co.uk` | Production only — merge from dev after verification |
+| `dev` | New preview URL per push | All development and testing |
 
-Callouts should be geographically tailored:
-- **London-adjacent** (Ealing, Twickenham, Watford): link to Tiffin, QE Barnet, St Olave's etc.
-- **Bucks-adjacent** (Milton Keynes, Northampton, Oxford): link to Bucks grammar schools
-- **Kent-adjacent** (Brighton, Guildford, Portsmouth): link to Tonbridge Grammar, Weald of Kent
-- **Cambridge**: focus on Oxbridge/medicine
-- **Oxford**: Bucks grammars + Oxbridge
-- **Generic** (Birmingham, Bristol, Leeds, etc.): link to nearby admissions test or interview prep pages
+**Preview URL:** Each push to `dev` creates a NEW preview URL. Old URLs stop working. Always get the current URL from the Cloudflare dashboard (project: `leading-tuition-seo`).
 
-When adding new location pages, always include a tailored callout before `<footer>`. Use the existing location pages in `seo-generator/output/locations/` as reference examples.
+**The human commits and pushes. Agents prepare files only.**
 
 ---
 
-## 17. GSC Ghost URLs — Do Not Fix in Files
+## 9. Adding New Pages — Workflow
 
-GSC may show coverage errors for URLs like `/seo-generator/output/locations/london` (note the `/seo-generator/output/` prefix). These are ghost URLs from a period when Cloudflare may have served from the repo root, making that path temporarily accessible. Google crawled and cached those paths.
-
-**Do nothing** — they now 404 naturally and will expire from GSC on their own. There is no corresponding file to fix or redirect to create. Do not add redirect rules or create files at those paths.
+1. Add slug/title/metadata to the relevant CSV in `seo-generator/`
+2. Add a custom prompt branch in `blog_prompt()` or equivalent in `generate.py`
+3. Add the slug to `BLOG_RELATED_RESOURCES` dict for interlinking
+4. `cd seo-generator && python generate.py --[flag] --new-only`
+5. `python generate.py --navbar` (or `python sync_navbar.py` if JS changed)
+6. `python generate.py --sitemap`
+7. Verify file exists in `seo-generator/output/` at the expected path
+8. Verify canonical tag, meta description, and breadcrumb JSON-LD in the generated file
+9. Human commits and pushes to `dev`; verify on preview URL; human merges to `main`
 
 ---
 
-## 18. Resource Pages — Papers UI (Pre-11+, 11+, 13+)
+## 10. Sitemap
 
-### Pages and file locations
+- **File:** `seo-generator/output/sitemap.xml` → served at `/sitemap.xml`
+- **Generate:** `python generate.py --sitemap` (scans all HTML in `seo-generator/output/`)
+- **Submit to GSC:** Production URL only (`www.leadingtuition.co.uk/sitemap.xml`), never the dev preview URL
+
+**Priority scheme:**
+
+| Priority | Pages |
+|---|---|
+| 1.0 | Homepage |
+| 0.9 | Hub pages (`/a-level/`, `/gcse/`, `/admissions-tests/`, etc.) |
+| 0.8 | Individual sub-pages |
+| 0.7 | Locations, services, levels |
+| 0.6 | Blog posts, static pages |
+
+Hub pages must exist as real HTML files for `--sitemap` to include them. If a hub page appears in the nav but is missing from the sitemap, add it manually or create the file.
+
+---
+
+## 11. SEO Issues & Root Causes
+
+### Resolved issues (March 2026)
+
+| GSC issue | Root cause | Fix |
+|---|---|---|
+| Duplicate without user-selected canonical | Stale pages with identical or wrong canonical tags | Deleted stale files (`gcse-maths-tutor.html`, `medicine-prep/` etc.) from `dev` |
+| Not found 404 | Canonicals pointing to non-existent URLs | Same — deleted source files |
+| Breadcrumb errors | Doubled path prefix in JSON-LD (`/oxbridge-interviews/oxbridge-interviews/`) | Fixed `page_template()` + bulk-replaced in 56 HTML files |
+| Generic meta descriptions | `generate_blog_pages()` used hardcoded filler formula | Added `META_DESC:` protocol + `parse_meta_desc()` |
+| aggregateRating on Service schemas | JSON-LD included `aggregateRating` on `@type: "Service"` | Removed from affected pages |
+
+### SEO structural duplication
+
+All four generated page families (locations, medical schools, admissions tests, Oxbridge interviews) use a fixed H2 structure per family, which Google treats as near-duplicates.
+
+**Fix pattern:** Replace fixed H2 list in each prompt function with a `VARIANTS` list of 3–5 genuinely different structures. Assign variants deterministically:
+```python
+import hashlib
+variant = int(hashlib.md5(slug.encode()).hexdigest(), 16) % num_variants
+```
+Each variant must differ in H2 order, section emphasis, opening angle, and FAQ topics — not just wording.
+
+After modifying a prompt: delete all existing pages in that family and regenerate without `--new-only`.
+
+**Fix priority order:**
+1. Location pages (34 pages, highest risk)
+2. Medical school pages (38 pages)
+3. Admissions test pages (13 pages)
+4. Oxbridge interview pages (18 pages, lowest risk — subject questions vary)
+
+### GSC "Crawled - currently not indexed" / "Discovered - currently not indexed"
+
+"Discovered" is normal for new pages — resolves over time. "Crawled but not indexed" on existing pages usually signals thin or near-duplicate content. Improve content or add internal links.
+
+### robots.txt
+
+Currently `Allow: /` with sitemap pointer. Do not add `Disallow: /seo-generator/` — that path doesn't exist publicly.
+
+---
+
+## 12. Location Pages — Related Callouts
+
+All location pages must have a `<!-- RELATED-CALLOUT -->` section immediately before `</footer>`. Check for this comment before adding a callout to avoid duplicates.
+
+**Geographic targeting:**
+
+| Location type | Link targets |
+|---|---|
+| London-adjacent (Ealing, Twickenham, Watford) | Tiffin, QE Barnet, St Olave's |
+| Bucks-adjacent (Milton Keynes, Northampton, Oxford) | Bucks grammar schools |
+| Kent-adjacent (Brighton, Guildford, Portsmouth) | Tonbridge Grammar, Weald of Kent |
+| Cambridge | Oxbridge/medicine pages |
+| Oxford | Bucks grammars + Oxbridge |
+| Generic (Birmingham, Bristol, Leeds, etc.) | Nearby admissions test or interview prep pages |
+
+Use existing location pages in `seo-generator/output/locations/` as reference.
+
+---
+
+## 13. Resource Pages — Papers UI (11+, 13+, Pre-11+)
+
+### Pages and files
+
 | Public URL | File |
 |---|---|
-| `leadingtuition.co.uk/resources/pre-11-plus` | `seo-generator/output/resources/pre-11-plus.html` |
-| `leadingtuition.co.uk/resources/11-plus` | `seo-generator/output/resources/11-plus.html` |
-| `leadingtuition.co.uk/resources/13-plus` | `seo-generator/output/resources/13-plus.html` |
+| `/resources/pre-11-plus` | `seo-generator/output/resources/pre-11-plus.html` |
+| `/resources/11-plus` | `seo-generator/output/resources/11-plus.html` |
+| `/resources/13-plus` | `seo-generator/output/resources/13-plus.html` |
 
-These are **manually maintained** flat HTML files — do NOT regenerate them with `generate.py`. Edit them directly or re-run `build_resource_pages.py` (in repo root) with an updated CSV.
+These are **manually maintained**. Do NOT regenerate with `generate.py`. Edit directly or re-run `build_resource_pages.py` (repo root) with an updated CSV.
 
-### PDF file structure in repo
-PDFs are stored under `seo-generator/output/public/papers/` and served at `/public/papers/`:
+### PDF file structure
+
 ```
 seo-generator/output/public/papers/
-  11-plus/
-    {institution-slug}/
-      {clean-filename}.pdf
-  pre-11-plus/
-    {institution-slug}/
-  13-plus/
-    {institution-slug}/
+  11-plus/{institution-slug}/{clean-filename}.pdf
+  pre-11-plus/{institution-slug}/...
+  13-plus/{institution-slug}/...
 ```
 
-**Institution slug** = lowercase, hyphens, no special chars (e.g. `dulwich-college`, `james-allens-girls-school`).
+- Institution slug: lowercase, hyphens, no special chars (e.g. `dulwich-college`)
+- Filename: strip leading numeric prefix from original (e.g. `0082__name.pdf` → `name.pdf`)
+- Mark-scheme files get `-mark-scheme` appended if not already in the name
 
-**Filename convention** = derived from original source filename with leading numeric prefix stripped:
-- Original: `0082__11plusguide_dulwich_college_11_plus_maths_exam_paper_a.pdf`
-- Stored as: `11plusguide_dulwich_college_11_plus_maths_exam_paper_a.pdf`
+### Adding new papers
 
-Answer/mark-scheme files get `-mark-scheme` appended if not already in the name.
+1. Add rows to `resources_page_mapping_with_local_paths_filtered.csv`
+2. Run `copy_pdfs.py` (repo root, Windows) to copy PDFs into `seo-generator/output/public/papers/`
+3. Re-run `build_resource_pages.py`
+4. Commit `seo-generator/output/resources/*.html` + `seo-generator/output/public/papers/`
 
-### Adding new papers in future
-1. Add rows to the CSV (same columns as `resources_page_mapping_with_local_paths_filtered.csv`)
-2. Run `copy_pdfs.py` (in repo root) on Windows to copy new PDFs into `seo-generator/output/public/papers/`
-3. Re-run `build_resource_pages.py` to regenerate the HTML pages
-4. Commit: `seo-generator/output/resources/*.html` + `seo-generator/output/public/papers/`
+### JS data structure per paper
 
-### Data baked into pages
-Each page has a `var PAPERS_DATA = [...]` JS array. Each entry:
 ```js
 { i: "Institution Name", s: "Subject", y: "2024", t: "Display Title", q: "/public/papers/...", a: "/public/papers/..." }
 ```
-`a` is an empty string `""` if no answer file exists.
+`a` = `""` if no answer file exists.
 
-### UI rules (important for future edits)
-- **No "has answers" filter** — all papers show regardless of whether answers exist
-- **No answers available** → show "Coming soon" (not "—" or blank)
-- **Accordion** uses `data-acc-id` attributes + event delegation (NOT inline `onclick`) — avoids JS single-quote escaping issues from Python f-strings
-- **Year dropdown** scopes to the selected institution's years only (not all years globally). This is done by filtering `relevant` by `activeInst` before populating the year `<select>`. The institution dropdown change event must call both `populateFilters()` and `render()`.
-- **Tabs** filter by subject; institution + year dropdowns then update to show only options available within that subject/institution selection
+### UI rules
 
-### Common mistake: inline onclick in Python f-strings
-Do NOT use `onclick="toggleAcc(\'...\' + instId + \'...\')"` inside Python f-strings. Python's `\'` collapses to `'` in the output, creating JS syntax errors. Always use `data-*` attributes and event delegation instead.
+- No "has answers" filter — all papers show regardless
+- No answers → show "Coming soon" (not "—" or blank)
+- Accordion uses `data-acc-id` + event delegation (NOT inline `onclick` — Python f-strings collapse `\'` to `'`, breaking JS)
+- Year dropdown scopes to selected institution only; institution change event must call both `populateFilters()` and `render()`
+- Tabs filter by subject; institution + year dropdowns update accordingly
 
 ---
 
-## 19. Bundle Access — 11+, 13+, Pre-11+ (Google Drive delivery)
-
-The 11+, 13+, and pre-11+ resource pages switched from per-paper £3 answer downloads to a **Full Access Pass** bundle model.
+## 14. Bundle Payments — 11+/13+/Pre-11+ (Google Drive Delivery)
 
 ### Pricing
-| Page | bundle_key | Price | Stripe unitAmount |
+
+| Page | `bundle_key` | Price | Stripe `unitAmount` |
 |---|---|---|---|
 | 11+ | `bundle/11-plus` | £70 | `7000` |
 | 13+ | `bundle/13-plus` | £50 | `5000` |
 | Pre-11+ | `bundle/pre-11-plus` | £50 | `5000` |
 
 ### Payment flow
-1. User clicks 🔒 **Answers** button on any paper row → modal opens
-2. Modal "Buy Full Access" button POSTs to `/api/create-checkout` with `{bundle_key, unitAmount}`
-3. Stripe Checkout → on success → `/purchase-confirmed?session_id=...`
-4. `purchase-confirmed.html` calls `/api/get-downloads?session_id=...`
-5. `get-downloads.js` detects bundle purchase → returns `{isBundle: true, downloadUrl: <Drive URL>}`
-6. Page shows teal "Access All Papers & Answers →" button that opens Drive folder in new tab
 
-### Google Drive folder links (stored as Cloudflare env vars — NOT in code)
+1. 🔒 Answers button → modal opens
+2. "Buy Full Access" POSTs to `/api/create-checkout` with `{bundle_key, unitAmount}`
+3. Stripe Checkout → `/purchase-confirmed?session_id=...`
+4. Page calls `/api/get-downloads?session_id=...`
+5. `get-downloads.js` → `{isBundle: true, downloadUrl: <Drive URL>}`
+6. Teal "Access All Papers & Answers →" button opens Drive folder in new tab
+
+### Environment variables (Cloudflare Pages dashboard — never hardcoded)
+
 | Env var | Value |
 |---|---|
 | `DRIVE_11_PLUS` | `https://drive.google.com/drive/folders/1e7HyovSXzAQ_qJ0EMSxQGEISZiiVJvGx?usp=sharing` |
 | `DRIVE_13_PLUS` | `https://drive.google.com/drive/folders/1TytGdhaJ_NYg4r3pYE9IC7AbhbDs7tB2?usp=sharing` |
 | `DRIVE_PRE_11_PLUS` | `https://drive.google.com/drive/folders/1h8n9p-NBgKmcO0Vs1s418p8dy1Iuo2n9?usp=sharing` |
 
-These must be set in **Cloudflare Pages dashboard → Settings → Environment variables**. They are never hardcoded in any file.
-
 ### Key files
+
 | File | Role |
 |---|---|
 | `functions/api/create-checkout.js` | `ALLOWED_AMOUNTS = [300, 5000, 7000, 15000]` — must include all bundle prices |
 | `functions/api/get-downloads.js` | `BUNDLE_ENV_KEYS` map: `bundle_key → env var name → Drive URL` |
-| `seo-generator/output/purchase-confirmed.html` | Renders isBundle → teal button (new tab, no download attr) vs PDF download |
-| `seo-generator/output/resources/11-plus.html` | Full access banner + 🔒 lock buttons + buy modal |
-| `seo-generator/output/resources/13-plus.html` | Same |
-| `seo-generator/output/resources/pre-11-plus.html` | Same |
+| `seo-generator/output/purchase-confirmed.html` | Dual-mode: bundle → teal button (new tab, no `download` attr); individual → PDF download |
+| `seo-generator/output/resources/11-plus.html` | Full access banner + 🔒 buttons + buy modal |
 
-### Modal JS — critical: all three functions must be present
-Each resource page must have **all three functions** in its `<script>` block:
+### purchase-confirmed.html — dual-mode rendering
+
+| `isBundle` | UI shown | Button |
+|---|---|---|
+| `false` | "Your download is ready" | "Download PDF" with `download` attr |
+| `true` | "Your access link is ready" | Teal "Access All Papers & Answers →", opens new tab, no `download` attr |
+
+Both modes show "Save your access link" notice.
+
+### Modal JS — all three functions required
+
 ```js
 function showBuyModal() { ... }
 function closeBuyModal() { ... }
 function buyAccess() { ... }
 ```
-And the button wiring must use `btns.forEach`:
+Button wiring must use `btns.forEach`:
 ```js
 var btns = [document.getElementById('buyAccessBtn'), document.getElementById('modalBuyBtn')];
 btns.forEach(function(btn) { if (btn) btn.addEventListener('click', buyAccess); });
 ```
-
-**Common mistake:** If `showBuyModal` is missing, the 🔒 lock buttons silently do nothing. Verify with: `typeof showBuyModal` in browser console — must return `'function'`, not `'undefined'`.
-
-### Google Drive folder structure (prepared by prepare_drive_folders.py)
-The `prepare_drive_folders.py` script (repo root) creates `drive_export/` with:
-```
-drive_export/
-  11+ Papers & Answers/
-    {Institution}/
-      {Institution} - {Subject} {Year} [Paper X] - Questions.pdf
-      {Institution} - {Subject} {Year} [Paper X] - Answers.pdf
-  13+ Papers & Answers/
-    {Institution}/
-      ...
-  Pre 11+ Papers & Answers/
-    {Institution}/
-      ...
-```
-The `drive_export/` directory is in `.gitignore` (see Section 20). Copy-paste these folders directly into Google Drive.
+If `showBuyModal` is missing, 🔒 buttons silently do nothing. Verify: `typeof showBuyModal` in browser console must return `'function'`.
 
 ---
 
-## 20. .gitignore — UTF-16 Encoding
+## 15. Cloudflare Functions — API Endpoints
 
-**The `.gitignore` file in this repo is encoded as UTF-16 (with BOM), NOT UTF-8.** This is because it was created on Windows. Any script that reads or writes `.gitignore` must handle this encoding.
-
-### Correct Python pattern
-```python
-p = open('.gitignore', 'rb').read()
-text = p.decode('utf-16')          # handles BOM automatically
-text = text.rstrip() + '\nnew-entry/\n'
-open('.gitignore', 'wb').write(text.encode('utf-16'))
-```
-
-### Entries confirmed in .gitignore
-- `.env` — R2/Stripe credentials (never commit)
-- `drive_export/` — Google Drive staging folder (large PDFs, never commit)
-- Standard Python/IDE entries
-
-### Common mistake
-Writing `.gitignore` with `open('.gitignore', 'w')` (default UTF-8) silently corrupts the file — git may stop respecting it or throw encoding errors. Always use binary open + explicit `utf-16` codec.
-
----
-
-## 21. Cloudflare Pages Functions — API Endpoints
-
-All API logic lives in `functions/api/`. These run as Cloudflare Workers at deploy time.
+All API logic lives in `functions/api/`. These run as Cloudflare Workers.
 
 | File | Endpoint | Purpose |
 |---|---|---|
 | `create-checkout.js` | `POST /api/create-checkout` | Creates Stripe Checkout session |
 | `stripe-webhook.js` | `POST /api/stripe-webhook` | Handles Stripe events, writes to KV |
-| `get-downloads.js` | `GET /api/get-downloads?session_id=` | Returns download links after purchase |
+| `get-downloads.js` | `GET /api/get-downloads?session_id=` | Returns download links post-purchase |
 | `download.js` | `GET /api/download?s=&k=` | Signed R2 download proxy |
 | `oxbridge-sample.js` | `GET /api/oxbridge-sample?file=` | Serves static Oxbridge sample PDFs |
 
-### Cloudflare environment variables required
-Set in Cloudflare Pages dashboard → Settings → Environment variables:
+### All required Cloudflare environment variables
+
 ```
-STRIPE_SECRET_KEY      — Stripe live secret key
-STRIPE_WEBHOOK_SECRET  — Stripe webhook signing secret
-R2_ACCESS_KEY_ID       — R2 API token (not root key)
-R2_SECRET_ACCESS_KEY   — R2 API token secret
-R2_BUCKET_NAME         — e.g. "leading-tuition-answers"
-R2_ENDPOINT            — e.g. "https://<account_id>.r2.cloudflarestorage.com"
-KV_STORE               — KV namespace binding (set in Pages bindings, not env vars)
-DRIVE_11_PLUS          — Google Drive folder URL for 11+ bundle
-DRIVE_13_PLUS          — Google Drive folder URL for 13+ bundle
-DRIVE_PRE_11_PLUS      — Google Drive folder URL for pre-11+ bundle
+STRIPE_SECRET_KEY          Stripe live secret key
+STRIPE_WEBHOOK_SECRET      Stripe webhook signing secret
+R2_ACCESS_KEY_ID           R2 API token (not root key)
+R2_SECRET_ACCESS_KEY       R2 API token secret
+R2_BUCKET_NAME             e.g. "leading-tuition-answers"
+R2_ENDPOINT                e.g. "https://<account_id>.r2.cloudflarestorage.com"
+KV_STORE                   KV namespace binding (set in Pages bindings)
+DRIVE_11_PLUS              Google Drive folder URL for 11+ bundle
+DRIVE_13_PLUS              Google Drive folder URL for 13+ bundle
+DRIVE_PRE_11_PLUS          Google Drive folder URL for pre-11+ bundle
 ```
 
-### KV store — purchase record TTL
-After a successful Stripe payment, `stripe-webhook.js` writes to KV with a **48-hour TTL**. `get-downloads.js` reads from KV using the Stripe `session_id` as key. After 48h the key expires and the download link stops working — this is intentional.
+### KV store — purchase TTL
 
-### R2 bucket — answer PDF key structure
+`stripe-webhook.js` writes purchase record to KV with **48-hour TTL** using `session_id` as key. After 48h the key expires and the download link stops working. This is intentional.
+
+### R2 bucket — key structure
+
 ```
 {category-slug}/{institution-slug}/{question-base}-answers.pdf
 ```
 Example: `11-plus/dulwich-college/dulwich_maths_2023_paper_a-answers.pdf`
 
-Per-paper R2 keys (used for Oxbridge individual paper downloads) are distinct from bundle keys (`bundle/11-plus`, `bundle/13-plus`, `bundle/pre-11-plus`).
+Bundle keys: `bundle/11-plus`, `bundle/13-plus`, `bundle/pre-11-plus` (distinct from per-paper keys).
 
 ### Uploading to R2 (bypassing 100-file dashboard limit)
-Use `upload_answers_r2.py` (or similar) with boto3:
+
 ```python
 import boto3, os
 s3 = boto3.client(
@@ -628,64 +613,102 @@ s3 = boto3.client(
 )
 s3.upload_file(local_path, bucket_name, r2_key)
 ```
-R2 credentials must be in `.env` (never hardcoded). Load with `python-dotenv`.
+Credentials from `.env` via `python-dotenv`. Never hardcode.
 
 ---
 
-## 22. Oxbridge Interview Questions — Per-Paper R2 Download
+## 16. Oxbridge Interview Questions — Per-Paper R2 Download
 
-The `/resources/oxbridge-interview-questions` page uses **individual R2 downloads** (not bundles). Each paper has its own signed download URL from `/api/download`.
+`/resources/oxbridge-interview-questions` uses individual R2 downloads (not bundles). Each paper has its own signed URL from `/api/download`.
 
-### Static sample files
-Free sample PDFs live at:
-```
-seo-generator/output/public/oxbridge-samples/
-  biology-sample.pdf
-  chemistry-sample.pdf
-  ... etc.
-```
-Served at `/public/oxbridge-samples/biology-sample.pdf`. Ensure the path is inside `seo-generator/output/` — the repo root `public/` directory is NOT served by Cloudflare.
+**Static sample PDFs:** `seo-generator/output/public/oxbridge-samples/{subject}-sample.pdf` → served at `/public/oxbridge-samples/...`. Must be inside `seo-generator/output/` — repo root `public/` is not served.
 
-### R2 key structure for Oxbridge answers
+**R2 key structure:**
 ```
 {subject-slug}/{institution-slug}/{paper-base}-answers.pdf
 ```
-All papers from one institution share one institution slug — but each paper has its own R2 key (not one key per institution).
+Each paper has its own key; institution slug groups papers from one institution.
 
 ---
 
-## 23. Bing Webmaster Tools — IndexNow Setup
+## 17. Bing IndexNow
 
-### Key file
-`seo-generator/output/8953b81f83ca47ef82f7680b35e64d91.txt` — deployed to site root, contains just the key string. Bing verifies site ownership by fetching this file.
+**Verification file:** `seo-generator/output/8953b81f83ca47ef82f7680b35e64d91.txt`
 
-### Submission script
-`submit_indexnow.py` (repo root) — collects all 208 public HTML pages and POSTs them to `api.indexnow.org` in a single batch. Run from the repo root after any significant content deployment:
+**Submission script:** `submit_indexnow.py` (repo root) — batches all 208+ public HTML pages and POSTs to `api.indexnow.org`.
+
 ```bash
 python submit_indexnow.py
 ```
 
-### Verification status
-The site was **imported from Google Search Console** — Bing's dashboard says "no verification code needed." However, Bing's IndexNow API backend may take up to 24h to sync with the GSC-imported verification. If you get HTTP 403 `SiteVerificationNotCompleted`, wait and retry — it resolves on its own.
+Run after any significant content deployment to `main`. Never run against the dev preview URL.
 
-### When to run submit_indexnow.py
-- After deploying new blog posts or pages to `main`
-- After any significant content update
-- Do NOT run it against the `dev` preview URL — always submit production URLs (`www.leadingtuition.co.uk`)
+If you get HTTP 403 `SiteVerificationNotCompleted`: the site was imported from GSC and Bing's backend may take up to 24h to sync. Wait and retry.
 
 ---
 
-## 24. Purchase-Confirmed Page — Dual-Mode Rendering
+## 18. www Redirect — GoDaddy Domain Forwarding
 
-`seo-generator/output/purchase-confirmed.html` handles two purchase types:
+### Problem
 
-| Purchase type | `isBundle` | UI shown |
-|---|---|---|
-| Individual PDF (Oxbridge paper) | `false` | "Download PDF" button with `download` attribute |
-| Full Access Pass (11+/13+/pre-11+) | `true` | Teal "Access All Papers & Answers →" button, opens in new tab, no `download` attr |
+Both `leadingtuition.co.uk` (non-www) and `www.leadingtuition.co.uk` appear in Google's index, splitting link equity. Canonical version is `www.leadingtuition.co.uk`.
 
-The page subtitle also changes: bundle → "Your access link is ready" / individual → "Your download is ready".
+### Why Cloudflare redirect rules cannot be used
 
-The "Save your access link" notice (not "Save your download link") appears for both, reminding users to bookmark the confirmation page URL.
+The domain is managed by **GoDaddy DNS** — nameservers are NOT pointed to Cloudflare. Cloudflare only handles hosting via a CNAME on `www`. Cloudflare redirect rules cannot intercept bare-domain traffic.
 
-**Do not add "Google Drive" wording anywhere** — the bundle delivery mechanism (Drive) is an implementation detail that should not appear in any user-facing copy.
+### Solution: GoDaddy domain forwarding (301)
+
+1. Log in to GoDaddy → **My Products** → **Domains**
+2. Click **DNS** next to `leadingtuition.co.uk`
+3. Scroll to **Forwarding** → click **Add** next to "Domain"
+4. Set:
+   - **Forward to:** `https://www.leadingtuition.co.uk`
+   - **Redirect type:** Permanent (301)
+   - **Settings:** Forward only *(not "Forward with masking" — masking breaks the URL)*
+5. Save. Propagates within minutes to a few hours.
+
+### Coverage and limitations
+
+| Scenario | Outcome |
+|---|---|
+| `http://leadingtuition.co.uk` | ✅ 301 → `https://www.leadingtuition.co.uk` |
+| `https://leadingtuition.co.uk` | ✅ 301 → `https://www.leadingtuition.co.uk` |
+| `leadingtuition.co.uk/blog/some-post` | ⚠️ Redirects to root only (`/blog/some-post` not preserved — GoDaddy limitation) |
+| Subdomains | ❌ Not affected |
+
+Path-preserving redirects would require moving nameservers to Cloudflare.
+
+### After setup
+
+- Wait ~24h for Google to process 301s
+- GSC "Change of address" tool is not needed here (both versions already in GSC — 301s are sufficient)
+- Monitor GSC → Coverage over following weeks; non-www URLs should shift from "Indexed" to "Redirected"
+
+---
+
+## 19. .gitignore — UTF-16 Encoding
+
+The `.gitignore` is encoded as **UTF-16 with BOM** (created on Windows). Always use binary open:
+
+```python
+p = open('.gitignore', 'rb').read()
+text = p.decode('utf-16')          # handles BOM automatically
+text = text.rstrip() + '\nnew-entry/\n'
+open('.gitignore', 'wb').write(text.encode('utf-16'))
+```
+
+Default `open('.gitignore', 'w')` (UTF-8) silently corrupts the file.
+
+**Confirmed entries:** `.env`, `drive_export/`, standard Python/IDE entries.
+
+---
+
+## 20. templates.py — Key Facts
+
+- **Location:** `seo-generator/templates.py`
+- **Four template functions:** `service_page_template`, `blog_page_template`, `location_page_template`, `page_template`
+- All four share the same navbar HTML — sync changes via `--navbar` flag or `sync_navbar.py`
+- `page_url_path()` maps `"oxbridge-interview"` → `"oxbridge-interviews"` — required for correct canonical URLs
+- `breadcrumb_schema()` handles the oxbridge-interview case explicitly
+- `base_html()` writes meta description to all three tags: `<meta name="description">`, `og:description`, `twitter:description`

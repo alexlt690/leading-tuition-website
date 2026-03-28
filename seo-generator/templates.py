@@ -1346,7 +1346,19 @@ COPYRIGHT ©2026, Leading Tuition. ALL RIGHTS RESERVED.
 def page_template(title, content, meta_desc="", slug="", og_type="website", page_type="specialist", section="Services", schema_extra="", base_tag=""):
     full_slug = page_url_path(page_type, slug) if page_type == "specialist" else slug
     head_extras = base_html(title, meta_desc, full_slug, og_type)
-    breadcrumb = breadcrumb_schema(page_type, slug, title, section)
+    # If schema_extra already contains a BreadcrumbList (e.g. from generate.py passing it in),
+    # skip generating a second one here — that would double-prefix the slug and create
+    # ghost URLs like /oxbridge-interviews/oxbridge-interviews/... in JSON-LD.
+    if "BreadcrumbList" in schema_extra:
+        breadcrumb = ""
+    else:
+        # For non-specialist types the slug is already the full path (e.g. "oxbridge-interviews/bio/"),
+        # so strip the page-type prefix before passing to breadcrumb_schema.
+        bc_slug = slug
+        prefix = page_url_path(page_type, "").strip("/")
+        if prefix and bc_slug.startswith(prefix + "/"):
+            bc_slug = bc_slug[len(prefix) + 1:].rstrip("/")
+        breadcrumb = breadcrumb_schema(page_type, bc_slug, title, section)
     return f"""
 <!DOCTYPE html>
 <html lang="en">

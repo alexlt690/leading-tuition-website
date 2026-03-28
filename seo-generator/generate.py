@@ -10,8 +10,18 @@ from templates import (page_template, location_page_template, blog_page_template
                        service_page_template, breadcrumb_schema)
 
 
+def parse_meta_desc(response_text):
+    """Extract META_DESC: line from Claude response. Returns the description string or None."""
+    match = re.search(r'^META_DESC:(.+)$', response_text, re.MULTILINE)
+    if match:
+        return match.group(1).strip()[:160]
+    return None
+
+
 def parse_faq_schema(response_text):
     """Extract FAQ_JSON block from Claude response. Returns (clean_content, faq_schema_html)."""
+    # Strip META_DESC line first so it doesn't leak into page content
+    response_text = re.sub(r'^META_DESC:.+$\n?', '', response_text, flags=re.MULTILINE)
     match = re.search(r'FAQ_JSON:(\[.*?\])', response_text, re.DOTALL)
     if not match:
         return response_text, ""
@@ -1276,7 +1286,9 @@ Global rules:
 - Under the FAQ section, write each question as <p><strong>Question?</strong></p> followed by a <p> answer.
 - Never use generic filler phrases like "navigate the journey", "look no further", or "in today's world".
 - Never mention BMAT as a current admissions test — it was abolished in 2023. Oxford, Cambridge, and Imperial now use UCAT.
-- After all HTML content, on a new line, output exactly 4 FAQ pairs in this format (no spaces, no line breaks inside):
+- After all HTML content, on a new line, output a META_DESC line in this exact format (one line, 145–158 characters including spaces, must include the target keyword naturally, must answer what the page covers and give a reason to click — no generic filler like "Expert advice from Leading Tuition"):
+META_DESC:Your compelling meta description here, 145-158 chars, keyword-rich, specific.
+- Then on the next line, output exactly 4 FAQ pairs in this format (no spaces, no line breaks inside):
 FAQ_JSON:[{"q":"Question one","a":"Answer one"},{"q":"Question two","a":"Answer two"},{"q":"Question three","a":"Answer three"},{"q":"Question four","a":"Answer four"}]
 """
 
@@ -2344,17 +2356,26 @@ def generate_blog_pages(limit=None, new_only=False):
             print(f"  SKIP (exists): blog/{slug}.html")
             continue
 
-        _ucat_mmi_oxbridge = any(kw in slug for kw in ("ucat", "mmi", "oxbridge"))
-        meta_desc = (
-            f"{title}. Expert advice from Leading Tuition."
-            + (" Book a free consultation." if _ucat_mmi_oxbridge else "")
-        )
+        # meta_desc priority: 1) manual override in CSV, 2) Claude-generated META_DESC: line,
+        # 3) fallback formula. Never use generic title-only filler — it kills CTR.
+        csv_meta_desc = row.get("meta_desc", "").strip()
 
         related_instruction = BLOG_RELATED_RESOURCES.get(slug, "")
         base_prompt = blog_prompt(title=title, keyword=keyword, slug=slug)
         prompt = base_prompt + (f"\n{related_instruction}" if related_instruction else "")
         raw = ask_claude(prompt, max_tokens=4000)
         content, faq_schema = parse_faq_schema(raw)
+
+        # Resolve meta description
+        if csv_meta_desc:
+            meta_desc = csv_meta_desc
+        else:
+            ai_meta = parse_meta_desc(raw)
+            meta_desc = ai_meta or (
+                f"{title} — practical guidance for UK students and parents. "
+                "Expert tutors from Oxford and Cambridge. 4.8/5 Trustpilot."
+            )
+
         blogposting_schema = build_blogposting_schema(title, meta_desc, slug)
         schema_extra = faq_schema + "\n" + blogposting_schema
         html = blog_page_template(title=title, content=content, meta_desc=meta_desc, slug=slug, og_type="article", schema_extra=schema_extra)
