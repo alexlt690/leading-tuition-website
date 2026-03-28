@@ -116,9 +116,9 @@
   <h1>Payment confirmed!</h1>
   <p class="pc-sub" id="pcSub">Your purchase is ready below.</p>
 
-  <div class="pc-save-notice">
-    <strong>⚠️ Save this page</strong>
-    Your download links are valid for 48 hours. Bookmark this page or keep the URL safe — after 48 hours you will need to contact us to regain access.
+  <div class="pc-save-notice" id="pcNotice">
+    <strong>⚠️ Save your access link</strong>
+    This page is valid for 48 hours. Bookmark the access link below now — after 48 hours you will need to contact us to resend it.
   </div>
 
   <div id="pcContent">
@@ -163,7 +163,7 @@
 
       var isBundle = data.downloads.some(function(d) { return d.isBundle; });
       if (isBundle) {
-        document.getElementById('pcSub').textContent = 'Your full access is ready — click below to open Google Drive.';
+        document.getElementById('pcSub').textContent = 'Your full access is ready — click below to access all your papers and answers.';
       } else {
         document.getElementById('pcSub').textContent = 'Your answer sheets are ready to download below.';
       }
@@ -174,7 +174,7 @@
         if (d.isBundle) {
           html += '<span class="pc-dl-label">' + escHtml(d.label) + '</span>';
           if (d.downloadUrl) {
-            html += '<a href="' + escHtml(d.downloadUrl) + '" class="pc-dl-btn" target="_blank" rel="noopener noreferrer" style="background:#2a9d8f;">Open Google Drive &rarr;</a>';
+            html += '<a href="' + escHtml(d.downloadUrl) + '" class="pc-dl-btn" target="_blank" rel="noopener noreferrer" style="background:#2a9d8f;">Access All Papers &amp; Answers &rarr;</a>';
           } else {
             html += '<span style="color:#842029;font-size:0.85rem;">Link unavailable — please email hello@leadingtuition.co.uk</span>';
           }

@@ -256,6 +256,24 @@
   .ptab { padding: 0.5rem 0.75rem; font-size: 0.82rem; }
   .papers-main { padding: 1.25rem 1rem 2.5rem; }
 }
+/* ── Lock / answers button ─────────────────────────────────────── */
+.pa-lock-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.28rem 0.65rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid #ffc8cc;
+  cursor: pointer;
+  background: #fff5f5;
+  color: #c1121f;
+  white-space: nowrap;
+  transition: background 0.15s;
+  font-family: inherit;
+}
+.pa-lock-btn:hover { background: #ffe0e3; }
 </style>
 </head>
 <body>
@@ -547,14 +565,23 @@
 
 
 <!-- FULL ACCESS BANNER -->
-<div style="background:#1d3557; padding:1.5rem 1.5rem;">
-  <div style="max-width:900px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap;">
-    <div>
-      <div style="color:#a8dadc; font-size:0.8rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:0.3rem;">Full Access Pass</div>
-      <div style="color:#fff; font-size:1.05rem; font-weight:700; margin-bottom:0.3rem;">11+ Full Access — All Papers & Answers</div>
-      <div style="color:#a8c9e4; font-size:0.875rem; line-height:1.45;">Every question paper + worked answers for all schools in one Google Drive folder. Download anything, any time.</div>
+<div style="background:linear-gradient(135deg,#1a2a3a 0%,#1d3557 100%); padding:2rem 1.5rem; border-bottom:3px solid #e63946;">
+  <div style="max-width:900px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap;">
+    <div style="flex:1; min-width:240px;">
+      <div style="display:inline-block; background:#e63946; color:#fff; font-size:0.7rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; padding:0.18rem 0.55rem; border-radius:3px; margin-bottom:0.6rem;">Instant Access</div>
+      <h2 style="margin:0 0 0.45rem; font-size:1.3rem; color:#fff; line-height:1.25;">Unlock All 11+ Answers &mdash; £70</h2>
+      <p style="margin:0 0 0.9rem; color:#a8c9e4; font-size:0.88rem; line-height:1.5;">Stop searching online. Get worked answers for every paper from all 54 schools &mdash; all in one place, available immediately after purchase.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:0.35rem 1.1rem;">
+        <span style="color:#a8dadc; font-size:0.82rem;">&#10003;&nbsp;291 papers covered</span>
+        <span style="color:#a8dadc; font-size:0.82rem;">&#10003;&nbsp;All 54 schools</span>
+        <span style="color:#a8dadc; font-size:0.82rem;">&#10003;&nbsp;Immediate access</span>
+        <span style="color:#a8dadc; font-size:0.82rem;">&#10003;&nbsp;Download anytime</span>
+      </div>
     </div>
-    <button id="buyAccessBtn" onclick="buyAccess()" style="flex-shrink:0; padding:0.8rem 2rem; background:#e63946; color:#fff; border:none; border-radius:6px; font-size:1rem; font-weight:700; cursor:pointer; font-family:inherit; white-space:nowrap; transition:background 0.15s;" onmouseover="this.style.background='#c1121f'" onmouseout="this.style.background='#e63946'">Get Full Access &mdash; £70</button>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:0.4rem; flex-shrink:0;">
+      <button id="buyAccessBtn" onclick="showBuyModal()" style="padding:0.85rem 2.1rem; background:#e63946; color:#fff; border:none; border-radius:6px; font-size:1rem; font-weight:700; cursor:pointer; font-family:inherit; white-space:nowrap; box-shadow:0 4px 15px rgba(230,57,70,0.45); transition:background 0.15s;" onmouseover="this.style.background='#c1121f'" onmouseout="this.style.background='#e63946'">Get Full Access &mdash; £70</button>
+      <span style="color:#7ba7c4; font-size:0.76rem;">One-time payment &nbsp;&middot;&nbsp; No subscription</span>
+    </div>
   </div>
 </div>
 
@@ -877,6 +904,7 @@ function render() {
         html += '<td class="pa-title">' + esc(p.t) + '</td>';
         html += '<td><span class="pa-subj-badge pa-subj-' + subjClass(p.s) + '">' + esc(p.s) + '</span></td>';
         html += '<td><a href="' + esc(p.q) + '" target="_blank" rel="noopener noreferrer" class="pa-btn">View Paper</a></td>';
+        html += '<td><button class="pa-lock-btn" onclick="showBuyModal()">&#128274; Answers</button></td>';
         html += '</tr>';
       });
       html += '</tbody></table>';
@@ -892,6 +920,7 @@ function render() {
         html += '</div>';
         html += '<div class="pa-card-actions">';
         html += '<a href="' + esc(p.q) + '" target="_blank" rel="noopener noreferrer" class="pa-btn">View Paper</a>';
+        html += ' <button class="pa-lock-btn" onclick="showBuyModal()">&#128274; Answers</button>';
         html += '</div></div>';
       });
       html += '</div>'; // pa-cards
@@ -1055,5 +1084,23 @@ render();
   ]
 }
 </script>
+
+<!-- BUY MODAL -->
+<div id="buyModal" onclick="if(event.target===this)closeBuyModal()" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:10000; align-items:center; justify-content:center; padding:1rem;">
+  <div style="background:#fff; border-radius:10px; padding:2rem; max-width:400px; width:100%; position:relative; box-shadow:0 25px 80px rgba(0,0,0,0.35);">
+    <button onclick="closeBuyModal()" style="position:absolute; top:0.6rem; right:0.9rem; background:none; border:none; font-size:1.7rem; cursor:pointer; color:#bbb; line-height:1;" aria-label="Close">&times;</button>
+    <div style="text-align:center; font-size:2.2rem; margin-bottom:0.4rem;">&#128274;</div>
+    <h2 style="margin:0 0 0.4rem; font-size:1.2rem; color:#1d3557; text-align:center;">Unlock All 11+ Answers</h2>
+    <p style="color:#666; font-size:0.875rem; line-height:1.55; text-align:center; margin:0 0 1.25rem;">One payment. Immediate access to worked answers for every paper from all 54 schools.</p>
+    <ul style="list-style:none; margin:0 0 1.5rem; padding:0; display:flex; flex-direction:column; gap:0.45rem;">
+      <li style="font-size:0.875rem; color:#333;">&#9989;&nbsp; 291 papers &mdash; all schools covered</li>
+      <li style="font-size:0.875rem; color:#333;">&#9989;&nbsp; Full worked answers for every paper</li>
+      <li style="font-size:0.875rem; color:#333;">&#9989;&nbsp; Organised by school for easy navigation</li>
+      <li style="font-size:0.875rem; color:#333;">&#9989;&nbsp; Download anything, any time</li>
+    </ul>
+    <button id="modalBuyBtn" onclick="buyAccess()" style="width:100%; padding:0.9rem; background:#e63946; color:#fff; border:none; border-radius:6px; font-size:1rem; font-weight:700; cursor:pointer; font-family:inherit; transition:background 0.15s;" onmouseover="this.style.background='#c1121f'" onmouseout="this.style.background='#e63946'">Get Full Access &mdash; £70</button>
+    <p style="text-align:center; color:#999; font-size:0.76rem; margin:0.65rem 0 0;">One-time payment &nbsp;&middot;&nbsp; No subscription</p>
+  </div>
+</div>
 </body>
 </html>
