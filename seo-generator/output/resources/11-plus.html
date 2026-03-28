@@ -1036,11 +1036,22 @@ document.getElementById('pfSearch').addEventListener('input', function() {
 document.getElementById('pfReset').addEventListener('click', resetAll);
 
 
-// ── Full Access Purchase ──────────────────────────────────────────────────────
+// ── Full Access Purchase ──────────────────────────────────────────────
+function showBuyModal() {
+  document.getElementById('buyModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeBuyModal() {
+  document.getElementById('buyModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeBuyModal();
+});
+
 function buyAccess() {
-  var btn = document.getElementById('buyAccessBtn');
-  btn.textContent = 'Loading\u2026';
-  btn.disabled = true;
+  var btns = [document.getElementById('buyAccessBtn'), document.getElementById('modalBuyBtn')];
+  btns.forEach(function(b) { if (b) { b.textContent = 'Loading…'; b.disabled = true; } });
   fetch('/api/create-checkout', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -1057,14 +1068,12 @@ function buyAccess() {
       window.location.href = data.url;
     } else {
       alert('Something went wrong. Please try again.');
-      btn.textContent = 'Get Full Access \u2014 £70';
-      btn.disabled = false;
+      btns.forEach(function(b) { if (b) { b.textContent = 'Get Full Access — £70'; b.disabled = false; } });
     }
   })
   .catch(function() {
     alert('Network error. Please try again.');
-    btn.textContent = 'Get Full Access \u2014 £70';
-    btn.disabled = false;
+    btns.forEach(function(b) { if (b) { b.textContent = 'Get Full Access — £70'; b.disabled = false; } });
   });
 }
 
