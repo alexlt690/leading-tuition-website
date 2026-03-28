@@ -2399,6 +2399,276 @@ Requirements:
 - FAQ questions must address: whether multiple-choice answers can be changed once marked, at what age to introduce answer-sheet practice, whether GL and CEM answer sheets differ significantly, and how much time to allow for transferring answers
 """
 
+    # ── Oxbridge Interview Questions blog posts ───────────────────────────────
+    if slug == "oxford-maths-interview-questions-2026-with-step-by-step-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What question types genuinely appear in Oxford Maths interviews — pure problems, graph sketching, proof, applied/mechanics — and how does the difficulty gradient work?
+2. What does "thinking aloud" look like for a Maths problem, and why do tutors reward process over correct answers?
+3. How does Oxford Maths style differ from Cambridge Maths interview style?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,100 to 1,400 words
+- Opening paragraph (40–60 words): direct answer — what Oxford Maths interviews test, who does them, and how this post helps. Include "Updated March 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. What Are the Most Common Oxford Maths Interview Question Types in 2026?
+  2. Pure Maths Problems: 4 Real-Style Questions with Step-by-Step Model Answers
+  3. Graph Sketching and Curve Analysis: What Tutors Are Looking For
+  4. Applied and Mechanics Questions: 3 Worked Examples
+  5. Oxford vs Cambridge Maths Interviews: Key Style Differences
+  6. How to Think Aloud When You Get Stuck
+  7. Frequently Asked Questions
+- Must include:
+  - A table: Question Type | Example question | What tutors reward | Common mistake
+  - 6–8 embedded practice questions with model answer frameworks (not just the answer — the reasoning steps)
+  - Concrete advice on graph sketching: check intercepts, behaviour as x→∞, stationary points
+  - The thinking-aloud principle: saying "I don't know this yet, but I know that..." is better than silence
+  - Oxford style emphasises novel problems from first principles; Cambridge slightly more structured scaffolding
+  - At a natural point where preparation materials are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">past Oxford Maths interview questions with worked solutions</a>
+- FAQ must address: whether calculators are allowed, how long Oxford Maths interviews last, whether STEP preparation helps, and what to do when completely stuck
+"""
+
+    if slug == "cambridge-medicine-interview-questions-2026-science-questions-and-how-to-answer-them":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Cambridge Medicine interviews are more science-heavy than MMI-style ethical interviews — what specific science problem types appear (mechanisms, data interpretation, "why doesn't X happen?" questions)?
+2. How does the Cambridge Medicine interview differ from Oxford Medicine and from standard MMI interviews at other schools?
+3. What does a strong science answer look like — how do tutors want students to think through unfamiliar biological or chemical mechanisms?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,100 to 1,400 words
+- Opening paragraph (40–60 words): direct answer — Cambridge Medicine interviews are science-first, not ethics-first. What to expect and how this post prepares you. Include "Updated March 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. What Makes Cambridge Medicine Interviews Different from Other Medical Interviews?
+  2. The Most Common Cambridge Medicine Question Types in 2026
+  3. Classic Science Questions: 5 Real-Style Examples with Model Answers
+  4. Data and Graph Interpretation: How to Structure Your Response
+  5. Ethics and Personal Statement Questions at Cambridge
+  6. How Cambridge Medicine Interviews Differ by College
+  7. Frequently Asked Questions
+- Must include:
+  - A table: Question type | Example | Model answer key points | What Cambridge tutors reward
+  - Classic Cambridge Medicine question patterns: "Why don't fish freeze?", mechanism questions, "How many X are in Y?" estimation questions
+  - Contrast with Oxford Medicine (more philosophy/ethics mix) and MMI-format schools
+  - Science answer framework: state what you know → identify the gap → reason from first principles → check your logic aloud
+  - College variation: some Cambridge colleges use one interviewer, others two; science weighting varies
+  - At a natural point where preparation materials are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Cambridge Medicine interview questions from recent cycles</a>
+- FAQ must address: whether Cambridge Medicine interviews include ethical scenarios, how many interviews candidates typically have, what the interviewers are looking for in science answers, and whether A-level content is sufficient
+"""
+
+    if slug == "oxford-ppe-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Oxford PPE interviews test three disciplines — what question types appear for each (Philosophy: logic and thought experiments; Politics: current affairs + political theory; Economics: micro/macro concepts and data)?
+2. How does Oxford PPE differ from similar multi-discipline interviews — what is the Oxford tutorial style and how does it show up in interview?
+3. What does a strong PPE answer look like — how should candidates link 2026 current affairs to philosophical and economic frameworks?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,100 to 1,400 words
+- Opening paragraph (40–60 words): direct answer — what Oxford PPE interviews test across all three disciplines, the tutorial format, and why model answers help. Include "Updated March 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. What Do Oxford PPE Interviews Actually Test in 2026?
+  2. Philosophy Questions: Logic Problems and Thought Experiments with Model Answers
+  3. Politics Questions: Current Affairs and Political Theory — 4 Real-Style Examples
+  4. Economics Questions: Microeconomics, Data and Opportunity Cost Problems
+  5. Linking Current Affairs to PPE Frameworks: A 2026 Cheat Sheet
+  6. How Oxford PPE Interviews Are Structured and What to Expect
+  7. Frequently Asked Questions
+- Must include:
+  - A table: Discipline | Example question | Framework to use | What tutors reward
+  - Philosophy examples: thought experiments (trolley problem variations, personal identity), syllogisms, logic puzzles
+  - Politics examples: 2026-relevant topics (AI regulation, fiscal policy) linked to social contract, legitimacy, democratic theory
+  - Economics examples: supply/demand shifts, opportunity cost problems, interpreting a simple graph or statistic
+  - The cheat sheet: 3–4 current 2026 news items mapped to core PPE concepts
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Oxford PPE and philosophy interview questions with model answers</a>
+- FAQ must address: whether candidates need prior economics A-level, how many Oxford PPE interviews candidates have, whether interviewers share questions across colleges, and how much current affairs knowledge is required
+"""
+
+    if slug == "oxford-vs-cambridge-interview-key-differences-by-subject-2026":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What are the genuine structural differences between Oxford and Cambridge interviews (format, number, length, use of material, college variation)?
+2. For each major subject — Maths, Medicine, PPE/HSS, Law, Natural Sciences/Physics — how does the question style and emphasis differ between the two universities?
+3. What should a candidate do differently in preparation depending on whether they applied to Oxford or Cambridge?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,200 to 1,500 words
+- Opening paragraph (40–60 words): direct answer — Oxford and Cambridge both use subject-based interviews, but the style, format, and emphasis differ in ways that matter for preparation. Include "Updated March 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. Oxford vs Cambridge Interview Format: Structure, Length, and Number of Interviews
+  2. Maths: Oxford First Principles vs Cambridge Scaffolded Problems
+  3. Medicine: Oxford's Ethics Mix vs Cambridge's Science Focus
+  4. Law: Oxford Unseen Passages vs Cambridge Legal Logic
+  5. Sciences and Engineering: How Practical and Theoretical Questions Differ
+  6. PPE, History, and Humanities: Tutorial-Style vs Supervision-Style Questions
+  7. Frequently Asked Questions
+- Must include:
+  - A master comparison table: Subject | Oxford style | Cambridge style | Key preparation difference
+  - Concrete examples of a question type for each university per subject
+  - The college variation point: both universities show significant college-to-college variation — candidates should research their specific college
+  - Practical takeaways: "If you applied to Oxford Maths, prioritise X; if Cambridge Maths, prioritise Y"
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">subject-specific Oxford and Cambridge interview questions and model answers</a>
+- FAQ must address: whether candidates can apply to both Oxford and Cambridge (they cannot), how to find college-specific interview styles, whether subject choice affects the number of interviews, and whether interview performance outweighs predicted grades
+"""
+
+    if slug == "cambridge-law-interview-questions-2026-real-examples-and-how-to-structure-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Cambridge Law interviews emphasise legal reasoning from first principles — what question types appear (unseen statutes, logic puzzles, hypothetical scenarios, reading comprehension under time pressure)?
+2. How does Cambridge Law differ from Oxford Law interviews — and from law interviews at other universities like UCL or LSE?
+3. What does a strong Cambridge Law answer look like — how should candidates apply legal logic to a scenario they have never seen before?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,100 to 1,400 words
+- Opening paragraph (40–60 words): direct answer — Cambridge Law interviews test legal reasoning, not legal knowledge. What to expect and how to prepare. Include "Updated March 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. What Cambridge Law Interviews Actually Test in 2026
+  2. Unseen Statute Questions: A Step-by-Step Model Answer Walkthrough
+  3. Legal Logic and Hypothetical Scenarios: 4 Real-Style Questions with Answers
+  4. Reading Comprehension Under Time Pressure: How to Handle Pre-Interview Material
+  5. Cambridge Law vs Oxford Law: Interview Style Differences
+  6. How to Structure Any Cambridge Law Answer in 4 Steps
+  7. Frequently Asked Questions
+- Must include:
+  - A worked example of an unseen statute question: present a short fictional law, then walk through how to apply it to 2–3 scenarios step by step
+  - A table: Question type | Example | Answer structure | Common mistake
+  - The 4-step framework: Identify the legal issue → Find the relevant rule → Apply the rule to the facts → Identify any ambiguity or edge case
+  - Cambridge Law interviews often use pre-read material (a short passage given 10–20 minutes before) — explain how to use this time
+  - Cambridge slightly more focused on textual analysis; Oxford slightly more on philosophical foundations of law
+  - At a natural point where preparation materials are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Cambridge Law interview questions with structured model answers</a>
+- FAQ must address: whether a Law A-level is required or useful, how many Cambridge Law interviews candidates typically have, whether interviewers share reading materials in advance universally, and how legal ethics questions are handled
+"""
+
+    if slug == "oxford-physics-interview-questions-2026-estimation-problems-and-worked-solutions":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Oxford Physics interviews test both conceptual understanding and problem-solving — what question types appear (Fermi estimation, mechanics, electromagnetism, dimensional analysis, data interpretation)?
+2. What does a strong Fermi estimation look like — what values should physics candidates have memorised, and how do you sanity-check an order-of-magnitude answer?
+3. How does Oxford Physics interview style relate to PAT preparation, and what goes beyond PAT-level difficulty?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,100 to 1,400 words
+- Opening paragraph (40–60 words): direct answer — Oxford Physics interviews combine conceptual questions with novel problem-solving. No calculators, no formula sheets — just reasoning aloud. Include "Updated March 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. What Oxford Physics Interviews Test in 2026
+  2. Fermi Estimation Questions: 4 Real-Style Examples with Worked Solutions
+  3. Mechanics and Classical Physics: Step-by-Step Model Answers
+  4. Conceptual Questions: How Tutors Test Deep Understanding
+  5. The Sanity Check List: Values Every Oxford Physics Applicant Should Know
+  6. How Oxford Physics Interviews Differ from PAT Preparation
+  7. Frequently Asked Questions
+- Must include:
+  - The sanity check list: radius of Earth (~6,400 km), mass of a proton (~1.67×10⁻²⁷ kg), Avogadro's number, speed of light, atmospheric pressure — presented as a concise reference table
+  - 3–4 Fermi estimation examples with full reasoning: "How many piano tuners in London?", "What is the mass of air in this room?", "How many heartbeats in a lifetime?"
+  - Conceptual example: a counterintuitive result the candidate must reason through (e.g. a ball on a rotating turntable, tension in a rope over a pulley)
+  - Oxford Physics interviews often go beyond PAT — expect unfamiliar scenarios where process matters more than the answer
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Oxford Physics interview questions including estimation and mechanics problems</a>
+- FAQ must address: whether the PAT is used during Oxford Physics interviews, how long Oxford Physics interviews last, whether candidates are expected to know university-level content, and how to handle being given a question outside A-level syllabus
+"""
+
+    if slug == "the-hardest-oxford-and-cambridge-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What makes a question genuinely "hard" in an Oxbridge interview — is it mathematical difficulty, philosophical ambiguity, the need to synthesise across fields, or the expectation of no right answer?
+2. What does a high-scoring response to an impossible or open-ended question look like — how do tutors reward structured uncertainty?
+3. Which subjects produce the most notorious interview questions, and what patterns appear across the hardest ones?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,200 to 1,500 words
+- Opening paragraph (40–60 words): direct answer — the hardest Oxford and Cambridge questions are hard not because the answers are obscure, but because they require structured thinking under pressure. Include "Updated March 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. Why Oxford and Cambridge Ask Questions You Can't Fully Answer
+  2. The Hardest Maths and Science Questions — with Model Answer Frameworks
+  3. The Hardest Humanities and Social Science Questions — with Reasoning Guides
+  4. Medicine and Interdisciplinary Curveballs — Classic Stumpers Explained
+  5. How to Stay Composed When You Don't Know the Answer
+  6. What Separates a Top Answer from an Average One
+  7. Frequently Asked Questions
+- Must include:
+  - At least 8 genuinely hard questions spread across subjects, each with a model answer framework (not just the answer — the approach)
+  - A table: Question | Subject | Why it's hard | What a top answer includes
+  - The "structured uncertainty" framework: say what you know → identify the gap → reason from adjacent knowledge → state your conclusion with appropriate confidence
+  - Subject-specific examples: Maths (non-standard proof), Philosophy (free will paradox), Medicine (ethical dilemma with scientific uncertainty), PPE (policy tradeoff with no clear winner)
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">the full bank of Oxford and Cambridge interview questions with model answers</a>
+- FAQ must address: whether interviewers deliberately ask unanswerable questions, how to tell when to move on from a question you're stuck on, whether getting a question wrong disqualifies a candidate, and whether the hardest questions are the most important ones
+"""
+
+    if slug == "how-to-answer-oxford-interview-questions-when-you-dont-know-the-answer":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What does thinking-aloud look like in an Oxford interview — what is the actual verbal process that tutors reward, and how does it differ from just attempting to produce the right answer?
+2. What are the common failure modes when a candidate doesn't know an answer (silence, giving up, guessing randomly) versus the productive responses?
+3. How does this skill vary by subject — what does thinking aloud look like for a Maths problem vs a Philosophy question vs a Medicine ethics scenario?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,000 to 1,300 words
+- Opening paragraph (40–60 words): direct answer — getting a question wrong does not disqualify you. Oxford interviewers deliberately give questions candidates can't fully answer to see how they think. Include "Updated March 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. Why Oxford Interviewers Ask Questions You Can't Answer (On Purpose)
+  2. The Thinking-Aloud Framework: What to Say When You Don't Know
+  3. Maths and Sciences: How to Reason Through an Unfamiliar Problem
+  4. Humanities and PPE: How to Structure an Argument You're Building in Real Time
+  5. What Not to Do: The Most Common Mistakes Under Pressure
+  6. Practising Thinking Aloud: A 5-Step Method
+  7. Frequently Asked Questions
+- Must include:
+  - The explicit thinking-aloud script: "I haven't seen this before, but I know that [adjacent fact] — so if I apply [principle], then..."
+  - A worked example of a candidate reasoning through a Maths problem they don't immediately know how to solve
+  - A worked example of a candidate building a Philosophy argument in real time
+  - The "wrong answer, right thinking" principle — a real-style scenario where a candidate gets the answer wrong but demonstrates strong reasoning
+  - Common mistakes: giving up and saying "I don't know", confidently guessing, asking the interviewer for the answer, staying silent for more than a few seconds
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Oxford and Cambridge interview questions that test how you think under pressure</a>
+- FAQ must address: how long candidates are expected to spend on a problem before asking for a hint, whether silence is ever appropriate, how to practise thinking aloud at home, and whether this technique works the same way at Cambridge
+"""
+
     # Generic blog prompt for remaining posts
     return f"""
 {master_context}
@@ -2625,6 +2895,47 @@ BLOG_RELATED_RESOURCES = {
         "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
         "link to the 11+ tuition page at /services/levels/11plus-tuition using anchor text '11+ tuition with Leading Tuition', "
         "and link to the 11+ resources page at /resources/11-plus using anchor text 'past papers from independent and selective schools, many including separate answer booklets'."
+    ),
+    # ── Oxbridge Interview Questions blog posts ───────────────────────────────
+    "oxford-maths-interview-questions-2026-with-step-by-step-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Oxford Maths interview questions and worked solutions', "
+        "and link to the Oxford Maths interview preparation page at /oxbridge-interviews/maths-interview/ using anchor text 'Oxford Maths interview preparation with Leading Tuition'."
+    ),
+    "cambridge-medicine-interview-questions-2026-science-questions-and-how-to-answer-them": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Cambridge Medicine interview questions from recent cycles', "
+        "and link to the Medicine interview preparation page at /oxbridge-interviews/medicine-interview/ using anchor text 'Oxbridge Medicine interview preparation with Leading Tuition'."
+    ),
+    "oxford-ppe-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Oxford PPE and philosophy interview questions with model answers', "
+        "and link to the PPE interview preparation page at /oxbridge-interviews/ppe-interview/ using anchor text 'Oxford PPE interview preparation with Leading Tuition'."
+    ),
+    "oxford-vs-cambridge-interview-key-differences-by-subject-2026": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'subject-specific Oxford and Cambridge interview questions', "
+        "and link to the Oxbridge Admissions Preparation page at /services/specialist-admissions/oxbridge-admissions-preparation using anchor text 'Oxbridge admissions preparation with Leading Tuition'."
+    ),
+    "cambridge-law-interview-questions-2026-real-examples-and-how-to-structure-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Cambridge Law interview questions with model answers', "
+        "and link to the Law interview preparation page at /oxbridge-interviews/law-interview/ using anchor text 'Oxbridge Law interview preparation with Leading Tuition'."
+    ),
+    "oxford-physics-interview-questions-2026-estimation-problems-and-worked-solutions": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Oxford Physics interview questions including estimation and mechanics problems', "
+        "and link to the Physics interview preparation page at /oxbridge-interviews/physics-interview/ using anchor text 'Oxford Physics interview preparation with Leading Tuition'."
+    ),
+    "the-hardest-oxford-and-cambridge-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'the full bank of Oxford and Cambridge interview questions with model answers', "
+        "and link to the Oxbridge Admissions Preparation page at /services/specialist-admissions/oxbridge-admissions-preparation using anchor text 'Oxbridge admissions preparation with Leading Tuition'."
+    ),
+    "how-to-answer-oxford-interview-questions-when-you-dont-know-the-answer": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Oxford and Cambridge interview questions that test how you think under pressure', "
+        "and link to the Oxbridge Admissions Preparation page at /services/specialist-admissions/oxbridge-admissions-preparation using anchor text 'Oxbridge admissions preparation with Leading Tuition'."
     ),
 }
 
