@@ -6,6 +6,10 @@ import argparse
 import anthropic
 from datetime import date
 from pathlib import Path
+from dotenv import load_dotenv
+
+# Load .env from the repo root (one level up from seo-generator/)
+load_dotenv(Path(__file__).parent.parent / ".env")
 from templates import (page_template, location_page_template, blog_page_template,
                        service_page_template, breadcrumb_schema)
 

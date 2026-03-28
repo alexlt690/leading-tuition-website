@@ -36,7 +36,7 @@ These are the most common agent errors. Check this list before touching anything
 8. **Do NOT add `aggregateRating` to `@type: "Service"` JSON-LD schemas.** Only `EducationalOrganization`/`Organization` schemas at homepage level may have `aggregateRating`.
 9. **Do NOT use inline `onclick` inside Python f-strings** (e.g. in resource pages). Python `\'` collapses to `'` in the HTML, breaking JS. Use `data-*` attributes and event delegation.
 10. **Do NOT use Python's built-in `hash()` for variant assignment.** It is randomised per process (PYTHONHASHSEED). Use `hashlib.md5` instead.
-11. **Do NOT write `.gitignore` with default UTF-8.** It is UTF-16; use binary open + explicit `utf-16` codec or git will silently stop respecting it.
+11. **`.gitignore` is UTF-8 (converted March 2026).** Edit it normally. Do NOT re-encode as UTF-16 — git cannot reliably parse UTF-16 gitignore files, causing entries like `.env` to be silently ignored by git (i.e. not gitignored). Verify with `git check-ignore -v .env`.
 12. **Do NOT close `<meta>` tags without `/>`.** A missing `/>` on a meta tag causes the HTML parser to swallow the next tag, breaking stylesheet loading. Every `<meta ... />` must end with ` />`.
 13. **Do NOT use relative `href` in `blog.html` post links.** The page is at `/blog` (no trailing slash), so `href="slug"` resolves to `/slug`. Use absolute paths: `href="/blog/slug"`.
 14. **Do NOT commit `generate.py` without verifying its size** (`wc -l seo-generator/generate.py` should be ~3500 lines).
@@ -687,28 +687,82 @@ Path-preserving redirects would require moving nameservers to Cloudflare.
 
 ---
 
-## 19. .gitignore — UTF-16 Encoding
+## 19. .gitignore — UTF-8 (converted March 2026)
 
-The `.gitignore` is encoded as **UTF-16 with BOM** (created on Windows). Always use binary open:
+The `.gitignore` was originally UTF-16 with BOM (created on Windows) but has been **converted to UTF-8** because git cannot reliably read UTF-16 encoded gitignore files — null bytes between characters meant entries like `.env` were never matched, leaving sensitive files exposed.
 
-```python
-p = open('.gitignore', 'rb').read()
-text = p.decode('utf-16')          # handles BOM automatically
-text = text.rstrip() + '\nnew-entry/\n'
-open('.gitignore', 'wb').write(text.encode('utf-16'))
+**Current state:** `.gitignore` is plain UTF-8. Edit it normally:
+
+```bash
+echo 'new-entry/' >> .gitignore
 ```
 
-Default `open('.gitignore', 'w')` (UTF-8) silently corrupts the file.
+Do NOT re-encode it as UTF-16. If a future collaborator opens it on Windows and saves as UTF-16, convert it back:
 
-**Confirmed entries:** `.env`, `drive_export/`, standard Python/IDE entries.
+```python
+raw = open('.gitignore', 'rb').read()
+text = raw.decode('utf-16').replace('\r\n', '\n')
+open('.gitignore', 'w', encoding='utf-8').write(text)
+```
+
+**Verify an entry is actually gitignored:**
+```bash
+git check-ignore -v .env   # must print a match line; exit 0
+```
+If it exits 1, the entry is not being matched — check encoding.
 
 ---
 
-## 20. templates.py — Key Facts
+## 20. Anthropic API Key — .env Setup
 
-- **Location:** `seo-generator/templates.py`
-- **Four template functions:** `service_page_template`, `blog_page_template`, `location_page_template`, `page_template`
-- All four share the same navbar HTML — sync changes via `--navbar` flag or `sync_navbar.py`
-- `page_url_path()` maps `"oxbridge-interview"` → `"oxbridge-interviews"` — required for correct canonical URLs
-- `breadcrumb_schema()` handles the oxbridge-interview case explicitly
-- `base_html()` writes meta description to all three tags: `<meta name="description">`, `og:description`, `twitter:description`
+`generate.py` loads the API key from a `.env` file at the **repo root** (one level above `seo-generator/`). The file is gitignored (`.gitignore` line 3).
+
+**File location:** `{repo_root}/.env`
+
+**Format:**
+```
+ANTHROPIC_API_KEY=sk-ant-...
+```
+
+**How it's loaded** (top of `generate.py`):
+```python
+from dotenv import load_dotenv
+load_dotenv(Path(__file__).parent.parent / ".env")
+```
+
+**Rules:**
+- Never hardcode the API key in any Python file
+- Never commit `.env` — verify with `git check-ignore -v .env` (must match)
+- If `generate.py` raises `AuthenticationError`, the key is missing or invalid — paste it into `.env`
+- `python-dotenv` must be installed: `pip install python-dotenv --break-system-packages`
+
+---
+
+## 21. blog_topics.csv — Quoting Rules
+
+`blog_topics.csv` has three columns: `title`, `keyword`, `meta_desc`. **All three can contain commas.** Always write it using Python's `csv.writer` with `QUOTE_MINIMAL` (or `QUOTE_ALL`) so that fields with commas are properly quoted. Never write it as a raw string with manual comma-separation.
+
+**Correct pattern:**
+```python
+import csv
+rows = [("Title with, comma", "keyword", "Description with, commas here.")]
+with open('seo-generator/blog_topics.csv', 'w', newline='', encoding='utf-8') as f:
+    writer = csv.writer(f, quoting=csv.QUOTE_MINIMAL)
+    writer.writerow(['title', 'keyword', 'meta_desc'])
+    for title, kw, desc in rows:
+        writer.writerow([title, kw, desc])
+```
+
+**Verify after editing:**
+```python
+import csv
+with open('seo-generator/blog_topics.csv', newline='', encoding='utf-8') as f:
+    rows = list(csv.DictReader(f))
+# Check that meta_desc values are full-length (>100 chars for typical descriptions)
+for r in rows[-5:]:
+    print(len(r['meta_desc']), r['title'][:50])
+```
+
+If any `meta_desc` is suspiciously short (under 80 chars), the row has unquoted commas and will produce truncated descriptions at generation time.
+
+**Meta description length standard:** 145–158 chars. Values over 158 are truncated to 160 at generation time, cutting off mid-sentence. Always check lengths before committing. 
