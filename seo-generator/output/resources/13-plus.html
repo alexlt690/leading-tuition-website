@@ -256,62 +256,6 @@
   .ptab { padding: 0.5rem 0.75rem; font-size: 0.82rem; }
   .papers-main { padding: 1.25rem 1rem 2.5rem; }
 }
-/* ── Cart button ─────────────────────────────────────────────────────── */
-.pa-add-btn {
-  display: inline-block;
-  padding: 0.28rem 0.7rem;
-  border-radius: 4px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  background: #f0f6ff;
-  color: #1d3557;
-  border: 1px solid #c7daf5;
-  white-space: nowrap;
-  transition: background 0.15s, color 0.15s;
-  font-family: inherit;
-}
-.pa-add-btn:hover { background: #dceeff; }
-.pa-add-btn.cart-added { background: #1d3557; color: #fff; border-color: #1d3557; }
-/* ── Sticky cart bar ─────────────────────────────────────────────────── */
-#cartBar {
-  display: none;
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  background: #1d3557;
-  color: #fff;
-  padding: 0.75rem 1.5rem;
-  z-index: 9999;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  box-shadow: 0 -2px 12px rgba(0,0,0,0.2);
-  font-family: inherit;
-}
-#cartBar.visible { display: flex; }
-.cart-left { display: flex; flex-direction: column; gap: 0.1rem; }
-.cart-count { font-weight: 700; font-size: 0.95rem; }
-.cart-msg { font-size: 0.78rem; color: #a8c9e4; }
-.cart-right { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
-.cart-price { font-size: 1.1rem; font-weight: 700; }
-.cart-buy-btn {
-  padding: 0.55rem 1.4rem;
-  background: #e63946;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  font-weight: 700;
-  cursor: pointer;
-  font-family: inherit;
-  transition: background 0.15s;
-}
-.cart-buy-btn:hover { background: #c1121f; }
-@media (max-width: 720px) {
-  #cartBar { flex-direction: column; align-items: flex-start; padding: 0.75rem 1rem; }
-  .cart-right { width: 100%; justify-content: space-between; }
-}
 </style>
 </head>
 <body>
@@ -601,6 +545,19 @@
   </ol>
 </nav>
 
+
+<!-- FULL ACCESS BANNER -->
+<div style="background:#1d3557; padding:1.5rem 1.5rem;">
+  <div style="max-width:900px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap;">
+    <div>
+      <div style="color:#a8dadc; font-size:0.8rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:0.3rem;">Full Access Pass</div>
+      <div style="color:#fff; font-size:1.05rem; font-weight:700; margin-bottom:0.3rem;">13+ Full Access — All Papers & Answers</div>
+      <div style="color:#a8c9e4; font-size:0.875rem; line-height:1.45;">Every question paper + worked answers for all schools in one Google Drive folder. Download anything, any time.</div>
+    </div>
+    <button id="buyAccessBtn" onclick="buyAccess()" style="flex-shrink:0; padding:0.8rem 2rem; background:#e63946; color:#fff; border:none; border-radius:6px; font-size:1rem; font-weight:700; cursor:pointer; font-family:inherit; white-space:nowrap; transition:background 0.15s;" onmouseover="this.style.background='#c1121f'" onmouseout="this.style.background='#e63946'">Get Full Access &mdash; £50</button>
+  </div>
+</div>
+
 <!-- PAPERS UI -->
 <main class="papers-main">
 
@@ -691,17 +648,6 @@
   </div>
 </section>
 
-<!-- CART BAR -->
-<div id="cartBar" role="region" aria-label="Answer cart">
-  <div class="cart-left">
-    <span class="cart-count" id="cartCount">0 answers in cart</span>
-    <span class="cart-msg" id="cartMsg"></span>
-  </div>
-  <div class="cart-right">
-    <span class="cart-price" id="cartPrice">£0.00</span>
-    <button class="cart-buy-btn" id="cartBuy">Buy answers &rarr;</button>
-  </div>
-</div>
 
 <footer>
   <h3>Get In Touch</h3>
@@ -891,11 +837,6 @@ function render() {
         html += '<td class="pa-title">' + esc(p.t) + '</td>';
         html += '<td><span class="pa-subj-badge pa-subj-' + subjClass(p.s) + '">' + esc(p.s) + '</span></td>';
         html += '<td><a href="' + esc(p.q) + '" target="_blank" rel="noopener noreferrer" class="pa-btn">View Paper</a></td>';
-        if (p.ak) {
-          html += '<td><button class="pa-add-btn" data-ak="' + esc(p.ak) + '" data-label="' + esc(p.t) + '">+ Add answers £3</button></td>';
-        } else {
-          html += '<td><span class="pa-no-ans">Coming soon</span></td>';
-        }
         html += '</tr>';
       });
       html += '</tbody></table>';
@@ -911,11 +852,6 @@ function render() {
         html += '</div>';
         html += '<div class="pa-card-actions">';
         html += '<a href="' + esc(p.q) + '" target="_blank" rel="noopener noreferrer" class="pa-btn">View Paper</a>';
-        if (p.ak) {
-          html += ' <button class="pa-add-btn" data-ak="' + esc(p.ak) + '" data-label="' + esc(p.t) + '">+ Add answers £3</button>';
-        } else {
-          html += ' <span class="pa-no-ans">Coming soon</span>';
-        }
         html += '</div></div>';
       });
       html += '</div>'; // pa-cards
@@ -936,18 +872,6 @@ function render() {
     });
   });
 
-  // Wire "Add answers" cart buttons
-  accordion.querySelectorAll('.pa-add-btn').forEach(function(btn) {
-    // Restore cart state if already added
-    var ak = btn.dataset.ak;
-    if (cart.some(function(c) { return c.ak === ak; })) {
-      btn.textContent = '✓ Added';
-      btn.classList.add('cart-added');
-    }
-    btn.addEventListener('click', function() {
-      toggleCartItem(this.dataset.ak, this.dataset.label, this);
-    });
-  });
 
   // Auto-open first institution when filtered to one
   if (institutions.length === 1) {
@@ -1042,58 +966,21 @@ document.getElementById('pfSearch').addEventListener('input', function() {
 });
 document.getElementById('pfReset').addEventListener('click', resetAll);
 
-// ── Cart ──────────────────────────────────────────────────────────────────────
-var cart = []; // [{ak, label}]
 
-function updateCartBar() {
-  var bar = document.getElementById('cartBar');
-  var n = cart.length;
-  if (n === 0) {
-    bar.classList.remove('visible');
-    return;
-  }
-  bar.classList.add('visible');
-
-  var price = n * 3.00;
-  var msg = '';
-  if (n >= 3) {
-    price = price * 0.80;
-    msg = '✓ 20% off applied!';
-  } else if (n === 2) {
-    price = price * 0.90;
-    msg = '✓ 10% off applied — add 1 more for 20% off';
-  } else {
-    msg = 'Add 1 more for 10% off · add 2 more for 20% off';
-  }
-
-  document.getElementById('cartCount').textContent = n + ' answer' + (n !== 1 ? 's' : '') + ' in cart';
-  document.getElementById('cartMsg').textContent   = msg;
-  document.getElementById('cartPrice').textContent = '£' + price.toFixed(2);
-}
-
-function toggleCartItem(ak, label, btn) {
-  var idx = cart.findIndex(function(c) { return c.ak === ak; });
-  if (idx === -1) {
-    cart.push({ ak: ak, label: label });
-    btn.textContent = '✓ Added';
-    btn.classList.add('cart-added');
-  } else {
-    cart.splice(idx, 1);
-    btn.textContent = '+ Add answers £3';
-    btn.classList.remove('cart-added');
-  }
-  updateCartBar();
-}
-
-document.getElementById('cartBuy').addEventListener('click', function() {
-  if (cart.length === 0) return;
-  var btn = this;
-  btn.textContent = 'Processing…';
+// ── Full Access Purchase ──────────────────────────────────────────────────────
+function buyAccess() {
+  var btn = document.getElementById('buyAccessBtn');
+  btn.textContent = 'Loading\u2026';
   btn.disabled = true;
   fetch('/api/create-checkout', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ papers: cart })
+    body: JSON.stringify({
+      papers: [{ ak: 'bundle/13-plus', label: '13+ Full Access — All Papers & Answers' }],
+      unitAmount: 5000,
+      cancelUrl: 'https://www.leadingtuition.co.uk/resources/13-plus',
+      labelSuffix: ''
+    })
   })
   .then(function(r) { return r.json(); })
   .then(function(data) {
@@ -1101,16 +988,16 @@ document.getElementById('cartBuy').addEventListener('click', function() {
       window.location.href = data.url;
     } else {
       alert('Something went wrong. Please try again.');
-      btn.textContent = 'Buy answers →';
+      btn.textContent = 'Get Full Access \u2014 £50';
       btn.disabled = false;
     }
   })
   .catch(function() {
     alert('Network error. Please try again.');
-    btn.textContent = 'Buy answers →';
+    btn.textContent = 'Get Full Access \u2014 £50';
     btn.disabled = false;
   });
-});
+}
 
 // Init
 populateFilters();

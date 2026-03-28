@@ -36,7 +36,7 @@ export async function onRequestPost(context) {
     }
 
     // Whitelist of allowed unit amounts in pence (prevents client-side price manipulation)
-    const ALLOWED_AMOUNTS = [300, 15000]; // £3 (answer sheets), £150 (oxbridge packs)
+    const ALLOWED_AMOUNTS = [300, 5000, 7000, 15000]; // £3 answers, £50 pre/13+ bundle, £70 11+ bundle, £150 oxbridge
     const unitAmount = ALLOWED_AMOUNTS.includes(clientUnitAmount) ? clientUnitAmount : 300;
 
     const suffix = labelSuffix || ' — Answers';
