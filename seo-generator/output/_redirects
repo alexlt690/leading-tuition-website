@@ -1,0 +1,28 @@
+# ── 404 fixes (old WordPress URLs) ───────────────────────────────────────────
+/igcse-gcse-english                             /services/subjects/english-language-tutor  301
+/igcse-gcse-english/                            /services/subjects/english-language-tutor  301
+/igcse-gcse-biology                             /services/subjects/biology-tutor           301
+/igcse-gcse-biology/                            /services/subjects/biology-tutor           301
+/author/arun                                    /tutors                                    301
+/author/arun/                                   /tutors                                    301
+/home-2                                         /                                          301
+/home-2/                                        /                                          301
+/get-started                                    /consultation                              301
+/get-started/                                   /consultation                              301
+/contact/                                       /contact                                   301
+
+# ── Ghost URLs (seo-generator/output prefix — crawled when repo root was served)
+/seo-generator/output/index.html                /                                          301
+/seo-generator/output/services.html             /services                                  301
+/seo-generator/output/primary-tuition.html      /services/levels/primary-tuition           301
+/seo-generator/output/psychology-tutor.html     /services/subjects/psychology-tutor        301
+/seo-generator/output/english-language-tutor.html /services/subjects/english-language-tutor 301
+/seo-generator/output/medicine-prep-hub.html    /services/specialist-admissions/medicine-prep-hub 301
+/seo-generator/output/mmi-interview-coaching.html /services/specialist-admissions/mmi-interview-coaching 301
+/seo-generator/output/leeds.html                /locations/leeds                           301
+/seo-generator/output/brighton.html             /locations/brighton                        301
+/seo-generator/output/manchester.html           /locations/manchester                      301
+/seo-generator/output/triple-vs-double-science-gcse.html /blog/triple-vs-double-science-gcse 301
+/seo-generator/output/how-to-find-a-good-private-tutor.html /blog/how-to-find-a-good-private-tutor 301
+/seo-generator/output/what-grade-do-you-need-for-oxbridge-chemistry.html /blog/what-grade-do-you-need-for-oxbridge-chemistry 301
+/seo-generator/output/what-is-the-11-plus-exam.html /blog/what-is-the-11-plus-exam        301
