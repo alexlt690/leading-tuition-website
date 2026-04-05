@@ -98,8 +98,6 @@ python generate.py --oxbridge-interviews --new-only
 python generate.py --medical-schools --new-only
 python generate.py --admissions-tests --new-only
 python generate.py --locations --new-only
-python generate.py --eleven-plus --new-only
-python generate.py --borough-guides --new-only  # 11+ borough guide pages (8 boroughs + hub) — no CSV needed
 python generate.py --navbar                     # sync navbar to all output HTML files
 python generate.py --sitemap                    # regenerate sitemap.xml
 python generate.py --all                        # generate everything
@@ -116,9 +114,6 @@ python generate.py --all                        # generate everything
 | `output/admissions-tests/slug/index.html` | `admissions_tests.csv` |
 | `output/medical-schools/slug/index.html` | `medical_schools.csv` |
 | `output/oxbridge-interviews/subject-interview/index.html` | `oxbridge_interviews.csv` |
-| `output/11-plus/slug/index.html` | `eleven_plus_schools.csv` |
-| `output/11-plus/boroughs/index.html` | hardcoded in `BOROUGH_GUIDES` list in `generate.py` |
-| `output/11-plus/{borough}/index.html` | hardcoded in `BOROUGH_GUIDES` list in `generate.py` |
 
 ### API retry behaviour
 
@@ -138,9 +133,6 @@ Canonical tags must exactly match the live public URL.
 | Admissions test | `https://www.leadingtuition.co.uk/admissions-tests/slug/` | Yes |
 | Medical school | `https://www.leadingtuition.co.uk/medical-schools/slug/` | Yes |
 | Oxbridge interview | `https://www.leadingtuition.co.uk/oxbridge-interviews/subject-interview/` | Yes |
-| 11+ school guide | `https://www.leadingtuition.co.uk/11-plus/school-slug/` | Yes |
-| 11+ borough guide | `https://www.leadingtuition.co.uk/11-plus/borough-slug/` | Yes |
-| 11+ borough hub | `https://www.leadingtuition.co.uk/11-plus/boroughs/` | Yes |
 
 **Rule:** `index.html` pages (directory-style) → trailing slash. Flat `.html` files → no trailing slash.
 
@@ -322,52 +314,7 @@ Both must return zero matches.
 
 ## 7. JSON-LD Schema — aggregateRating Rules
 
-**Rule:** `aggregateRating` may only appear on `EducationalOrganization` or `Organization` schemas (homepage-level only). Never on `@type: "Service"` or `@type: "LocalBusiness"` schemas.
-
-### Current schema coverage (April 2026)
-
-| Page / page family | Schema type(s) | Where set |
-|---|---|---|
-| Homepage (`index.html`) | `EducationalOrganization` + `BreadcrumbList` | Hardcoded in `index.html` |
-| Location pages (35) | `LocalBusiness + EducationalOrganization` + `BreadcrumbList` | Auto-built in `location_page_template()` in `templates.py` |
-| Subject pages (15) | `Service` + `BreadcrumbList` | Auto-built in `service_page_template()` in `templates.py` |
-| Level pages (7) | `Service` + `BreadcrumbList` | Auto-built in `service_page_template()` in `templates.py` |
-| Blog posts | `BlogPosting` + `FAQPage` + `BreadcrumbList` | Built in `generate.py` → `build_blogposting_schema()` |
-| Admissions test pages | `Service` + `FAQPage` + `BreadcrumbList` | Built in `generate.py` → `generate_admissions_test_pages()` |
-| Medical school pages | `Article` + `FAQPage` + `BreadcrumbList` | Built in `generate.py` → `generate_medical_school_pages()` |
-| Oxbridge interview pages | `FAQPage` + `BreadcrumbList` | Built in `generate.py` |
-| 11+ school guide pages | `Service` + `FAQPage` + `BreadcrumbList` | Built in `generate.py` → `generate_eleven_plus_pages()` |
-| 11+ borough guide pages (8) | `Service` + `FAQPage` + `BreadcrumbList` | Built in `generate.py` → `generate_borough_guide_pages()` |
-| 11+ borough hub (`/11-plus/boroughs/`) | `BreadcrumbList` | Built in `generate.py` → `generate_borough_guide_pages()` |
-
-### Homepage EducationalOrganization — full field list
-
-The homepage schema includes: `name`, `url`, `logo`, `image`, `telephone`, `email`, `address`, `areaServed`, `description`, `sameAs`, `aggregateRating`.
-
-**Trustpilot rating — update manually when review count changes:**
-- Current values (April 2026): `ratingValue: "4.8"`, `ratingCount: "54"`, `reviewCount: "54"`
-- Edit directly in `seo-generator/output/index.html` — search for `"AggregateRating"`
-- Do NOT add `aggregateRating` to any other schema type
-
-### LocalBusiness schema on location pages
-
-Built automatically inside `location_page_template()` — no action needed when generating new location pages. Fields: `name` (`"Leading Tuition — {city} Tutors"`), `url`, `telephone`, `email`, `logo`, `image`, `areaServed` (City), `priceRange` (`££`), `address`. No `aggregateRating`.
-
-### Service schema on subject/level pages
-
-Built automatically inside `service_page_template()` — no action needed when generating new service pages. Fields: `name`, `url`, `description`, `provider` (EducationalOrganization), `areaServed`. No `aggregateRating`.
-
-### Service schema on 11+ borough guide pages
-
-Built inside `generate_borough_guide_pages()` in `generate.py` — hardcoded in the `BOROUGH_GUIDES` list (no CSV). Fields: `name`, `url`, `description`, `provider` (EducationalOrganization), `areaServed` (City). No `aggregateRating`. To add a new borough: add a dict to `BOROUGH_GUIDES`, run `python generate.py --borough-guides --new-only`, then add the URL to `sitemap.xml` and the nav flyout in `templates.py`.
-
-### Navbar — 11+ Borough Guides flyout (April 2026)
-
-The Levels column in the services mega-menu now has two flyouts:
-- **11+ School Guides** — links to all school-specific pages under `/11-plus/`
-- **11+ Borough Guides** — links to `/11-plus/boroughs/` hub and 8 individual borough pages
-
-These are defined in `templates.py` (all 4 navbar instances). After any nav change run `python generate.py --navbar` and then re-sync flat pages using the Python snippet in Section 5.
+**Rule:** `aggregateRating` may only appear on `EducationalOrganization` or `Organization` schemas (homepage-level only). Never on `@type: "Service"` schemas.
 
 GSC flags this as "Invalid object type for field '<parent_node>'" under Enhancements → Review snippets.
 
@@ -455,21 +402,6 @@ Hub pages must exist as real HTML files for `--sitemap` to include them. If a hu
 | Breadcrumb errors | Doubled path prefix in JSON-LD (`/oxbridge-interviews/oxbridge-interviews/`) | Fixed `page_template()` + bulk-replaced in 56 HTML files |
 | Generic meta descriptions | `generate_blog_pages()` used hardcoded filler formula | Added `META_DESC:` protocol + `parse_meta_desc()` |
 | aggregateRating on Service schemas | JSON-LD included `aggregateRating` on `@type: "Service"` | Removed from affected pages |
-
-### Resolved issues (April 2026)
-
-| Issue | Root cause | Fix |
-|---|---|---|
-| GSC: "Excluded by noindex tag" — page in sitemap | `purchase-confirmed` had `noindex` meta tag but was listed in `sitemap.xml` | Removed `purchase-confirmed` entry from `sitemap.xml`. Noindex tag stays — page is intentionally non-indexed |
-| GSC: Redirect error on 3 blog posts | Googlebot crawled trailing-slash URLs (`/blog/slug/`) which Cloudflare couldn't cleanly resolve | Added explicit 301 rules in `seo-generator/output/_redirects` for all three trailing-slash variants |
-| Bing: Missing meta description | `purchase-confirmed.html` had no `<meta name="description">` tag | Added a minimal description. Page stays noindexed |
-
-### `purchase-confirmed.html` — permanent rules
-
-- Has `<meta name="robots" content="noindex" />` — intentional, keep it
-- Has `<meta name="description">` — required to avoid Bing warnings
-- Must **NOT** appear in `sitemap.xml`
-- If `sitemap.xml` is regenerated with `python generate.py --sitemap`, verify `purchase-confirmed` is not re-added
 
 ### SEO structural duplication
 

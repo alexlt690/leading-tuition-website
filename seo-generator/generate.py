@@ -61,7 +61,9 @@ def build_blogposting_schema(title, meta_desc, slug):
     }
     return f'<script type="application/ld+json">\n{json.dumps(schema, indent=2)}\n</script>'
 
-client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+client = anthropic.Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY")
+)
 
 # Script directory (seo-generator/) and output directory
 SCRIPT_DIR = Path(__file__).parent
@@ -4173,254 +4175,6 @@ FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answ
 """
 
 
-BOROUGH_GUIDES = [
-    {
-        "slug": "barnet",
-        "name": "Barnet",
-        "meta_desc": "Specialist 11+ entrance exam tuition in Barnet. Expert coaching for QE Boys and Henrietta Barnett School. Oxford and Cambridge tutors. 4.8/5 Trustpilot.",
-        "schools": "Queen Elizabeth's School Barnet (QE Boys) and Henrietta Barnett School",
-        "exam_types": "own-paper (English + Maths with analytical depth) at HBS; GL Assessment VR, NVR, Maths and English at QE Boys",
-        "competitiveness": "nationally top-ranked — both schools consistently placed in the top 3 state schools in England; thousands of applicants for under 200 places combined",
-        "related_school_pages": [("/11-plus/queens-elizabeth-barnet/", "QE Boys Barnet 11+ Guide"), ("/11-plus/henrietta-barnett-school/", "Henrietta Barnett School 11+ Guide")],
-        "location_page": "/locations/barnet",
-        "area_notes": "Families from Finchley, East Barnet, Whetstone, Totteridge, Chipping Barnet and into Hertfordshire all compete for these places.",
-    },
-    {
-        "slug": "harrow",
-        "name": "Harrow",
-        "meta_desc": "11+ entrance exam tuition in Harrow. Independent and selective school coaching from Oxford and Cambridge tutors. 4.8/5 Trustpilot. Book free consultation.",
-        "schools": "John Lyon School, Harrow School (13+/senior), and selective independent prep schools across the borough",
-        "exam_types": "ISEB Common Pre-Test for most independent schools; school-specific papers at John Lyon; Harrow School is primarily 13+ entry via Common Entrance",
-        "competitiveness": "highly competitive independent school landscape; John Lyon is selective and oversubscribed; Harrow School is one of the most prestigious boarding schools in England",
-        "related_school_pages": [],
-        "location_page": "/locations/harrow",
-        "area_notes": "Families from Harrow-on-the-Hill, Pinner, Stanmore, Edgware and Northwood regularly prepare for both local independent schools and grammar schools in neighbouring boroughs.",
-    },
-    {
-        "slug": "bromley",
-        "name": "Bromley",
-        "meta_desc": "11+ grammar school tuition in Bromley. Specialist coaching for St Olave's, Newstead Wood and Beths Grammar. Oxford and Cambridge tutors. 4.8/5 Trustpilot.",
-        "schools": "St Olave's Grammar School (boys, Orpington), Newstead Wood School (girls, Orpington), and Beths Grammar School (boys)",
-        "exam_types": "Bromley schools use the GL Assessment for VR, NVR, Maths and English; St Olave's is extremely selective and sets its own second-stage paper for shortlisted candidates",
-        "competitiveness": "St Olave's consistently places in the top 5 grammar schools nationally; Newstead Wood is equally selective for girls; all three schools are heavily oversubscribed",
-        "related_school_pages": [("/11-plus/st-olaves-grammar-school/", "St Olave's Grammar School 11+ Guide")],
-        "location_page": "/locations/bromley",
-        "area_notes": "Families from Bromley, Orpington, Petts Wood, Chislehurst, Beckenham and into Sevenoaks compete for Bromley grammar school places.",
-    },
-    {
-        "slug": "croydon",
-        "name": "Croydon",
-        "meta_desc": "11+ entrance exam tuition in Croydon. Coaching for Whitgift, Trinity, Old Palace and Edenham. Oxford and Cambridge tutors. 4.8/5 Trustpilot. Book free consultation.",
-        "schools": "Whitgift School (boys, independent), Trinity School (boys, independent), Old Palace of John Whitgift School (girls, independent), and Edenham High School (girls, independent)",
-        "exam_types": "Whitgift uses ISEB pre-test screening plus its own paper; Trinity uses ISEB pre-test plus a school interview day; Old Palace has its own entrance assessment; all independent schools with highly selective entry",
-        "competitiveness": "Croydon's independent school cluster is one of the most concentrated in South London; Whitgift and Trinity are both academically elite with significant scholarship programmes; competition is intense at 11+",
-        "related_school_pages": [],
-        "location_page": "/locations/croydon",
-        "area_notes": "Families from Croydon, South Croydon, Purley, Coulsdon, Selsdon and across Surrey regularly prepare for Croydon independent school entry.",
-    },
-    {
-        "slug": "ealing",
-        "name": "Ealing",
-        "meta_desc": "11+ entrance exam tuition in Ealing. Expert coaching for NHEHS, The Godolphin and other selective schools. Oxford and Cambridge tutors. 4.8/5 Trustpilot.",
-        "schools": "Notting Hill and Ealing High School (NHEHS, girls, independent), The Godolphin and Latymer School (girls, Hammersmith/Chiswick fringe), and selective faith schools across the borough",
-        "exam_types": "NHEHS uses its own reasoning and academic assessment papers; The Godolphin and Latymer uses its own selective entry test; selective faith schools may use GL Assessment or their own criteria",
-        "competitiveness": "NHEHS and The Godolphin are highly selective independent schools with strong Oxbridge track records; competition for places at 11+ is significant, particularly for girls' schools in West London",
-        "related_school_pages": [],
-        "location_page": "/locations/ealing",
-        "area_notes": "Families from Ealing, Acton, Hanwell, Southall, Greenford and Perivale prepare for selective school entry; many also target grammar schools in neighbouring Buckinghamshire via the Bucks SET.",
-    },
-    {
-        "slug": "slough",
-        "name": "Slough",
-        "meta_desc": "11+ tuition in Slough for the grammar school SET. Expert coaching for Slough, Herschel, Langley, Burnham and Upton Court grammars. 4.8/5 Trustpilot.",
-        "schools": "Slough Grammar School, Herschel Grammar School, Burnham Grammar School, Langley Grammar School, and Upton Court Grammar School — all sharing the Slough Selective Eligibility Test (SET)",
-        "exam_types": "Slough SET: a shared entrance test covering VR, NVR, Maths and English — all five consortium schools use the same SET score for initial eligibility, with individual schools then making their own offer decisions",
-        "competitiveness": "the Slough consortium is one of the most concentrated grammar school clusters in England; all five schools are oversubscribed, and a strong SET score is necessary but not sufficient for a place at the most popular schools",
-        "related_school_pages": [("/11-plus/slough-grammar-schools/", "Slough Grammar Schools 11+ Guide")],
-        "location_page": "/locations/slough",
-        "area_notes": "Families from Slough, Langley, Windsor, Maidenhead, Burnham and Iver all compete via the same Slough SET, making the applicant pool unusually large and diverse.",
-    },
-    {
-        "slug": "kingston",
-        "name": "Kingston",
-        "meta_desc": "11+ tuition in Kingston for Tiffin Boys and Tiffin Girls. Specialist coaching from Oxford and Cambridge tutors for the Kingston grammar tests. 4.8/5 Trustpilot.",
-        "schools": "Tiffin School (boys) and Tiffin Girls' School — both Kingston-based and nationally ranked among the most selective state grammar schools in England",
-        "exam_types": "Tiffin Boys uses the Kingston Grammar Test (KGT) — an own-paper assessment covering verbal and non-verbal reasoning and mathematical reasoning; Tiffin Girls uses its own separate paper with similar components; neither uses GL or CEM",
-        "competitiveness": "both Tiffin schools attract applicants from across London and Surrey; entry is among the most competitive of any state school in England, with several thousand applicants for around 150 places at each school",
-        "related_school_pages": [("/11-plus/tiffin-school/", "Tiffin Boys 11+ Guide"), ("/11-plus/tiffin-girls-school/", "Tiffin Girls 11+ Guide")],
-        "location_page": "/locations/kingston-upon-thames",
-        "area_notes": "Families from Kingston, Surbiton, New Malden, Wimbledon, Twickenham and across Surrey target Tiffin; the non-catchment nature means competition comes from a very wide area.",
-    },
-    {
-        "slug": "sutton",
-        "name": "Sutton",
-        "meta_desc": "11+ grammar school tuition in Sutton. Specialist coaching for the Sutton SET — Wilson's, Sutton Grammar, Nonsuch, Wallington and Greenshaw. 4.8/5 Trustpilot.",
-        "schools": "Wilson's School (boys), Sutton Grammar School (boys), Greenshaw High School (mixed), Nonsuch High School for Girls, Wallington High School for Girls, and Wallington County Grammar School (boys) — all using the Sutton Selective Eligibility Test (SET)",
-        "exam_types": "Sutton SET: a shared eligibility test covering VR, NVR, Maths and English; schools then shortlist and make individual offers based on SET scores and distance criteria; Wilson's and Nonsuch are the most selective and most oversubscribed",
-        "competitiveness": "the Sutton grammar cluster is one of the most competitive in South London; Wilson's and Nonsuch regularly appear in national top 10 lists; families from across Surrey and South London enter the SET",
-        "related_school_pages": [("/11-plus/sutton-grammar-schools/", "Sutton Grammar Schools 11+ Guide")],
-        "location_page": "/locations/london",
-        "area_notes": "Families from Sutton, Cheam, Carshalton, Epsom, Croydon and across Surrey target Sutton SET schools; non-catchment at some schools means the applicant pool is very broad.",
-    },
-]
-
-
-def _borough_prompt(b):
-    name = b["name"]
-    related = b["related_school_pages"]
-    related_str = ""
-    if related:
-        related_str = ("Where relevant, link naturally to these related school-specific guides (use exact anchor text shown): "
-                       + "; ".join(f'<a href="{url}">{text}</a>' for url, text in related)
-                       + ". Weave links into the prose — do NOT present as a separate list or CTA.")
-    return f"""You are writing content for Leading Tuition's 11+ Borough Guide page for {name}.
-
-TOPIC: 11+ entrance exam tuition in {name} borough — a comprehensive guide for parents navigating selective school entry in this area.
-
-KEY FACTS TO USE:
-- Target schools: {b["schools"]}
-- Exam type(s): {b["exam_types"]}
-- Competitiveness: {b["competitiveness"]}
-- Area geography: {b["area_notes"]}
-- Leading Tuition: specialist 11+ tutoring company, tutors from Oxford and Cambridge, 4.8/5 Trustpilot, 54 reviews, 1-to-1 online and in-person
-
-CONTENT REQUIREMENTS:
-Write 600-800 words of high-quality prose HTML using <h2>, <p>, and <ul>/<li> tags (no <h1> — that is handled by the template).
-
-Include these sections:
-1. Opening paragraph: establish {name} as a specific and demanding entrance exam environment — name the schools, be precise about why local families face this challenge. Do NOT use generic language.
-2. H2: "The Schools and Entrance Exams in {name}" — explain each school, the exam format, what it tests, and how competitive entry is. Be specific about exam types (GL, CEM, own paper, consortium). Name applicant numbers where known.
-3. H2: "How to Prepare for {name} Grammar School Entry" — practical, specific advice on timeline (Year 4/5/6 breakdown), what subjects/components to focus on, and what distinguishes prepared candidates for these specific exams.
-4. H2: "How Leading Tuition Supports {name} Families" — explain 1-to-1 specialist tuition, diagnostic assessment, tailored approach, DBS-checked tutors, online and in-person options. Mention Trustpilot rating naturally.
-5. H2: "Frequently Asked Questions about 11+ Entry in {name}" — write 3-4 specific FAQs relevant to THIS borough. Format as <p><strong>Question?</strong></p><p>Answer.</p>
-
-STYLE: British English, professional and specific — name streets, areas, schools, exam boards. No corporate filler phrases.
-{related_str}
-
-After the main content, output a FAQ schema block in this exact format:
-FAQ_SCHEMA_START
-[JSON array of objects with "question" and "answer" keys]
-FAQ_SCHEMA_END
-
-Produce ONLY the HTML content sections and the FAQ schema block. Nothing else."""
-
-
-def _borough_related_callout(b):
-    name = b["name"]
-    links = [
-        ("/services/levels/11plus-tuition", "11+ Tuition Service"),
-        ("/11-plus/", "11+ School Guides Hub"),
-        ("/11-plus/boroughs/", "All 11+ Borough Guides"),
-        ("/resources/pre-11-plus", "Pre 11+ Resources (Free)"),
-        ("/resources/11-plus", "11+ Resources (Free)"),
-        ("/blog/what-is-the-11-plus-exam", "What is the 11+ Exam?"),
-        ("/blog/the-6-month-11-plus-countdown-a-monthly-study-milestone-plan", "6-Month 11+ Countdown Plan"),
-        (b["location_page"], f"Tuition in {name}"),
-    ] + [(url, text) for url, text in b["related_school_pages"]]
-    items = "\n".join(f'      <li><a href="{u}" style="color:#1d3557;">{t}</a></li>' for u, t in links)
-    return f"""<!-- RELATED-CALLOUT -->
-<section style="max-width:1100px; margin:0 auto 0; padding:0 1.5rem 2.5rem;">
-  <div style="background:#f1faee; border-left:4px solid #e63946; padding:1.5rem 2rem; border-radius:6px;">
-    <h2 style="margin-top:0; font-size:1.05rem; color:#1d3557;">Related: 11+ Support for {name} Families</h2>
-    <ul style="margin:0; padding-left:1.25rem; columns:2; column-gap:2rem; font-size:0.9rem; color:#444; line-height:2.1;">
-{items}
-    </ul>
-  </div>
-</section>"""
-
-
-def generate_borough_guide_pages(new_only=False):
-    import json as _json
-
-    # --- Hub page (no API call needed) ---
-    hub_dir = OUTPUT_DIR / "11-plus" / "boroughs"
-    hub_dir.mkdir(parents=True, exist_ok=True)
-    hub_file = hub_dir / "index.html"
-    if not (new_only and hub_file.exists()):
-        borough_links = "\n".join(
-            f'  <a href="/11-plus/{b["slug"]}/" class="index-card"><strong>{b["name"]}</strong>'
-            f'<span>{b["schools"].split(",")[0].strip()}</span></a>'
-            for b in BOROUGH_GUIDES
-        )
-        hub_content = (
-            "<p>Leading Tuition provides specialist 11+ tuition across London and the Home Counties, "
-            "with targeted preparation for the specific entrance exams in each borough. "
-            "Each borough has its own selective schools, its own exam format, and its own level of competition. "
-            "Select your borough below for a full guide to the local 11+ landscape.</p>\n"
-            "<p>Our tutors are Oxford and Cambridge graduates who know these specific exams in depth. "
-            "We offer 1-to-1 tuition online and in person, with a diagnostic-led approach tailored to each child. "
-            "4.8/5 on Trustpilot from 54 verified reviews.</p>\n"
-            f'<div class="subject-grid">\n{borough_links}\n</div>\n'
-            '<p style="margin-top:2rem;">Looking for a specific school guide? See our '
-            '<a href="/11-plus/">11+ School Guides</a> for Tiffin, QE Boys, Henrietta Barnett, Sutton grammars, and more.</p>'
-        )
-        hub_meta = ("11+ borough guides for London and the Home Counties. Barnet, Harrow, Bromley, Croydon, "
-                    "Ealing, Slough, Kingston, Sutton — find the selective schools and entrance exam guide for your area.")
-        hub_crumb = breadcrumb_schema("eleven-plus-hub", "11-plus/boroughs", "11+ Borough Guides")
-        hub_html = page_template(
-            "11+ Borough Guides — London & Home Counties | Leading Tuition",
-            hub_content,
-            meta_desc=hub_meta,
-            slug="11-plus/boroughs/",
-            page_type="eleven-plus-hub",
-            section="",
-            schema_extra=hub_crumb,
-        )
-        hub_file.write_text(hub_html, encoding="utf-8")
-        print("Generated: 11-plus/boroughs/index.html")
-
-    # --- Individual borough pages (API calls) ---
-    for b in BOROUGH_GUIDES:
-        slug = b["slug"]
-        name = b["name"]
-        out_dir = OUTPUT_DIR / "11-plus" / slug
-        out_dir.mkdir(parents=True, exist_ok=True)
-        file_path = out_dir / "index.html"
-
-        if new_only and file_path.exists():
-            print(f"  SKIP (exists): 11-plus/{slug}/")
-            continue
-
-        print(f"Generating 11+ borough page: {slug}...")
-        raw = ask_claude(_borough_prompt(b), max_tokens=3600)
-        content, faq_schema = parse_faq_schema(raw)
-        content = content + "\n\n" + _borough_related_callout(b)
-
-        # Service schema — NO aggregateRating (AGENTS.md rule #8)
-        service_schema_obj = {
-            "@context": "https://schema.org",
-            "@type": "Service",
-            "name": f"11+ Entrance Exam Tuition in {name}",
-            "url": f"https://www.leadingtuition.co.uk/11-plus/{slug}/",
-            "description": b["meta_desc"],
-            "provider": {
-                "@type": "EducationalOrganization",
-                "name": "Leading Tuition",
-                "url": "https://www.leadingtuition.co.uk",
-                "telephone": "+44 207 167 8440",
-                "email": "hello@leadingtuition.co.uk",
-            },
-            "areaServed": {"@type": "City", "name": name},
-        }
-        service_schema = f'<script type="application/ld+json">\n{_json.dumps(service_schema_obj, indent=2, ensure_ascii=False)}\n</script>'
-        breadcrumb = breadcrumb_schema("eleven-plus", slug, f"11+ Tuition in {name}")
-        schema_extra = faq_schema + "\n" + service_schema + "\n" + breadcrumb
-
-        html = page_template(
-            f"11+ Entrance Exam Tuition in {name} | Leading Tuition",
-            content,
-            meta_desc=b["meta_desc"],
-            slug=f"11-plus/{slug}/",
-            page_type="eleven-plus",
-            section=f"11+ Borough Guide — {name}",
-            schema_extra=schema_extra,
-        )
-        file_path.write_text(html, encoding="utf-8")
-        print(f"  DONE: 11-plus/{slug}/index.html")
-
-    print("Borough guide generation complete.")
-
-
 def generate_eleven_plus_pages(limit=None, new_only=False):
     schools = load_csv("eleven_plus_schools.csv")
     if limit is not None:
@@ -4526,6 +4280,253 @@ our tutors know these specific exams in depth — not just the 11+ in general.</
     hub_path = OUTPUT_DIR / "11-plus" / "index.html"
     hub_path.write_text(hub_html, encoding="utf-8")
     print("Generated hub page: 11-plus/index.html")
+
+
+
+# ── 11+ Borough Guide pages ───────────────────────────────────────────────────
+
+BOROUGH_GUIDES = [
+    {
+        "slug": "barnet",
+        "name": "Barnet",
+        "schools": "Queen Elizabeth's Boys' School (QE Barnet) and Henrietta Barnett School",
+        "exam": "Queen Elizabeth's uses its own highly competitive entrance exam; Henrietta Barnett uses the GSHSA consortium test",
+        "selectivity": "QE Boys is ranked #1 grammar school in England by A-level results; Henrietta Barnett is the UK's most selective state school for girls",
+        "keyword": "11+ tuition Barnet",
+        "meta_desc": "Specialist 11+ tuition in Barnet for QE Boys and Henrietta Barnett School. Expert entrance exam coaching from Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "harrow",
+        "name": "Harrow",
+        "schools": "John Lyon School and other selective independents using ISEB pre-tests",
+        "exam": "ISEB Common Pre-Test and school-specific papers",
+        "selectivity": "John Lyon and local selective independents draw from a strong applicant pool across north-west London",
+        "keyword": "11+ tuition Harrow",
+        "meta_desc": "Specialist 11+ and entrance exam tuition in Harrow. Expert coaching for John Lyon, ISEB pre-tests and selective school entry. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "bromley",
+        "name": "Bromley",
+        "schools": "St Olave's Grammar School, Newstead Wood School, and Beths Grammar School",
+        "exam": "GL Assessment reasoning (Bromley consortium) plus St Olave's own second-stage paper",
+        "selectivity": "St Olave's is one of the most oversubscribed grammars in England; Newstead Wood and Beths are also highly competitive",
+        "keyword": "11+ tuition Bromley",
+        "meta_desc": "Specialist 11+ grammar school tuition in Bromley. Expert entrance exam coaching for St Olave's, Newstead Wood and Beths Grammar. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "croydon",
+        "name": "Croydon",
+        "schools": "Whitgift School, Trinity School, Old Palace of John Whitgift School, and the Sutton SET grammar schools",
+        "exam": "ISEB pre-test and school-specific papers for Whitgift/Trinity/Old Palace; GL Assessment Sutton SET for consortium grammars",
+        "selectivity": "Whitgift, Trinity and Old Palace are among the top independent schools in London; Sutton SET grammars are highly oversubscribed",
+        "keyword": "11+ tuition Croydon",
+        "meta_desc": "Specialist 11+ and entrance exam tuition in Croydon. Expert coaching for Whitgift, Trinity, Old Palace and Sutton SET grammar schools. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "ealing",
+        "name": "Ealing",
+        "schools": "Notting Hill and Ealing High School, St Benedict's School, and selective schools using ISEB pre-tests",
+        "exam": "ISEB Common Pre-Test and school-specific entrance exams",
+        "selectivity": "Selective independents in Ealing are competitive; many families also target grammar schools in neighbouring boroughs",
+        "keyword": "11+ tuition Ealing",
+        "meta_desc": "Specialist 11+ and entrance exam tuition in Ealing. Expert coaching for selective schools and ISEB pre-tests. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "slough",
+        "name": "Slough",
+        "schools": "Upton Court Grammar, Herschel Grammar, Langley Grammar, Slough Grammar, and Khalsa Grammar — the 5-school Slough SET consortium",
+        "exam": "Slough SET (Selective Eligibility Test) — a GL Assessment-style exam sat by all 5 consortium schools",
+        "selectivity": "All 5 Slough consortium schools are oversubscribed; the SET is sat by thousands of candidates each year",
+        "keyword": "11+ tuition Slough",
+        "meta_desc": "Specialist 11+ grammar school tuition in Slough for the Slough SET. Expert entrance exam coaching for all 5 consortium schools. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "kingston",
+        "name": "Kingston",
+        "schools": "Tiffin School (boys) and Tiffin Girls' School",
+        "exam": "Kingston Grammar Test (KGT) — a bespoke exam sitting thousands of candidates for fewer than 200 places across both schools",
+        "selectivity": "Tiffin School and Tiffin Girls' are among the most competitive state grammar schools in England — typically 2,000+ applicants for ~180 places each",
+        "keyword": "11+ tuition Kingston",
+        "meta_desc": "Specialist 11+ entrance exam tuition in Kingston for Tiffin School and Tiffin Girls'. Expert Kingston Grammar Test coaching from Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "sutton",
+        "name": "Sutton",
+        "schools": "Wilson's School, Sutton Grammar School, Wallington County Grammar, Nonsuch High School, and Greenshaw High School — the Sutton SET consortium",
+        "exam": "Sutton Selective Eligibility Test (SET) — a GL Assessment exam used by all consortium schools",
+        "selectivity": "Wilson's, Nonsuch, and Wallington are among the most oversubscribed grammar schools in England; all 5 schools see very high applicant numbers",
+        "keyword": "11+ tuition Sutton",
+        "meta_desc": "Specialist 11+ grammar school tuition in Sutton for the Sutton SET. Expert entrance exam coaching for Wilson's, Nonsuch, Wallington and all consortium schools. 4.8/5 Trustpilot.",
+    },
+]
+
+
+def borough_guide_prompt(slug: str, name: str, schools: str, exam: str,
+                          selectivity: str, keyword: str) -> str:
+    import hashlib
+    variant = int(hashlib.md5(slug.encode()).hexdigest(), 16) % 2
+
+    if variant == 0:
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. Grammar Schools and Selective Entry in {name}
+  2. The Entrance Exams — What Your Child Will Face
+  3. How Competitive Is Entry? Places, Applicants, and Pass Marks
+  4. How to Prepare — Timeline and Strategy for {name} Families
+  5. How Leading Tuition Supports {name} 11+ Preparation
+  6. Frequently Asked Questions about 11+ in {name}
+
+Opening paragraph angle: Start from the parent's perspective — what it actually means to pursue selective school entry in {name}, which schools are worth targeting, and why specialist preparation matters here specifically."""
+    else:
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. Preparing for the 11+ in {name} — Where to Start
+  2. Which Schools and Which Exams?
+  3. What the Exams Test — and Where Children Come Unstuck
+  4. A Realistic Preparation Timeline for {name} Families
+  5. Working With Leading Tuition in {name}
+  6. Frequently Asked Questions
+
+Opening paragraph angle: Open by explaining why {name} is a distinct 11+ market — the schools available, the exam format(s) used, and what sets preparation for these schools apart from generic 11+ coaching."""
+
+    return f"""
+You are writing an 11+ borough guide page for Leading Tuition, a UK tutoring company.
+
+Borough: {name}
+Grammar and selective schools: {schools}
+Entrance exam(s): {exam}
+Selectivity context: {selectivity}
+
+Audience:
+- A UK parent in or near {name} who is beginning to research grammar school entry
+- They want borough-specific, accurate information — not a generic 11+ article
+- They are anxious, researching early, and want to know exactly which schools are worth targeting, what exams are used, and how to prepare
+
+Global rules:
+- Write for a UK parent, not an SEO algorithm
+- Use a warm, expert, reassuring tone
+- Output plain HTML only — no markdown
+- Use only these tags: <p>, <h2>, <ul>, <li>, <strong>
+- Do not include <html>, <head>, or <body>
+- Do not include CTA buttons or footer text — the template handles those
+- Include one FAQ section with exactly 4 questions
+- Never use generic filler phrases like "look no further" or "we've got you covered"
+- Never refer to the 11+ as "easy" or imply any child can pass without serious preparation
+- Be specific to {name} — name the schools, name the exams, give real numbers where available
+
+Before writing, think through:
+1. What makes the 11+ landscape in {name} distinctive — which schools, which exams, and why families should care?
+2. What does the exam (or exams) actually test, and what do most children get wrong in preparation?
+3. What does a realistic preparation timeline look like for families in this borough?
+
+Now write a detailed 11+ borough guide in HTML for: 11+ Tuition in {name}
+
+Content requirements:
+- Length: 1,000 to 1,200 words
+- Name {name} and the specific schools in the opening paragraph
+- Explain the exam format(s): subjects tested, timing, question style
+- Include selectivity context: {selectivity}
+- Include at least one concrete preparation tip specific to the exam(s) used here
+- Include one short <ul> bullet list (not in the FAQ section)
+- Mention that Leading Tuition provides 1-to-1 specialist tutoring for these exams
+
+Structure to use:
+{structure}
+
+Additional requirements:
+- In the FAQ section, write 4 questions as <p><strong>Question?</strong></p> followed by a <p> answer
+- After all HTML content, on a new line, output exactly 4 FAQ pairs in this format (no spaces, no line breaks inside):
+FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}}]
+- Do not pad — every sentence must earn its place
+"""
+
+
+def generate_borough_guide_pages(new_only=False):
+    import json as _json
+
+    # ── Hub page (no API) ─────────────────────────────────────────────────────
+    borough_links = "\n".join(
+        f'  <a href="/11-plus/{b["slug"]}/" class="index-card">'
+        f'<strong>11+ in {b["name"]}</strong>'
+        f'<span>{b["schools"].split(",")[0].strip()}'
+        f'{" and more" if "," in b["schools"] else ""}</span></a>'
+        for b in BOROUGH_GUIDES
+    )
+    hub_content = f"""<p>Leading Tuition provides specialist 11+ preparation across London and the South East.
+Each borough has its own grammar schools, its own entrance exam formats, and its own level of competition.
+Select your borough below for a detailed guide to the schools, the exams, and how to prepare.</p>
+<p>Our tutors are specialists in specific exams — whether that is the Kingston Grammar Test for Tiffin, the Sutton SET,
+the Slough consortium, or the GL Assessment reasoning papers used in Bromley and beyond.</p>
+<div class="subject-grid">
+{borough_links}
+</div>"""
+
+    hub_crumb = breadcrumb_schema("eleven-plus-boroughs-hub", "11-plus/boroughs", "11+ Borough Guides")
+    hub_html = page_template(
+        "11+ Borough Guides — Grammar School Tuition by Area | Leading Tuition",
+        hub_content,
+        meta_desc="Specialist 11+ tuition across London and the South East. Borough-by-borough guides to grammar schools, entrance exams and preparation. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+        slug="11-plus/boroughs/",
+        page_type="eleven-plus-boroughs-hub",
+        section="11+ Borough Guides",
+        schema_extra=hub_crumb,
+    )
+    hub_dir = OUTPUT_DIR / "11-plus" / "boroughs"
+    hub_dir.mkdir(parents=True, exist_ok=True)
+    (hub_dir / "index.html").write_text(hub_html, encoding="utf-8")
+    print("Generated hub page: 11-plus/boroughs/index.html")
+
+    # ── Individual borough pages (API) ────────────────────────────────────────
+    for b in BOROUGH_GUIDES:
+        slug = b["slug"]
+        name = b["name"]
+        out_dir = OUTPUT_DIR / "11-plus" / slug
+        out_dir.mkdir(parents=True, exist_ok=True)
+        file_path = out_dir / "index.html"
+
+        if new_only and file_path.exists():
+            print(f"  SKIP (exists): 11-plus/{slug}/")
+            continue
+
+        prompt = borough_guide_prompt(
+            slug=slug, name=name,
+            schools=b["schools"], exam=b["exam"],
+            selectivity=b["selectivity"], keyword=b["keyword"]
+        )
+        raw = ask_claude(prompt)
+        content, faq_schema = parse_faq_schema(raw)
+
+        schema = {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": f"11+ Tuition in {name}",
+            "url": f"https://www.leadingtuition.co.uk/11-plus/{slug}/",
+            "description": b["meta_desc"],
+            "provider": {
+                "@type": "EducationalOrganization",
+                "name": "Leading Tuition",
+                "url": "https://www.leadingtuition.co.uk",
+                "telephone": "+44 207 167 8440",
+                "email": "hello@leadingtuition.co.uk"
+            },
+            "areaServed": {"@type": "City", "name": name},
+        }
+        service_schema = f'<script type="application/ld+json">\n{_json.dumps(schema, indent=2, ensure_ascii=False)}\n</script>'
+        breadcrumb = breadcrumb_schema("eleven-plus-borough", slug, f"11+ Tuition in {name}")
+        schema_extra = faq_schema + "\n" + service_schema + "\n" + breadcrumb
+
+        html = page_template(
+            f"11+ Tuition in {name} | Leading Tuition",
+            content,
+            meta_desc=b["meta_desc"],
+            slug=f"11-plus/{slug}/",
+            page_type="eleven-plus-borough",
+            section="11+ Borough Guides",
+            schema_extra=schema_extra
+        )
+
+        file_path.write_text(html, encoding="utf-8")
+        print(f"Generated borough guide: 11-plus/{slug}/")
 
 
 def generate_navbar():
