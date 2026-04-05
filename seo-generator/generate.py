@@ -4781,4 +4781,9 @@ def main():
     if not any([args.static, args.specialist, args.subjects,
                 args.locations, args.city, args.blog, args.levels,
                 admissions_tests_flag, medical_schools_flag, oxbridge_interviews_flag,
-                eleven_plus_flag, borough_guides_flag, args.navbar, args.site
+                eleven_plus_flag, borough_guides_flag, args.navbar, args.sitemap, run_all]):
+        parser.print_help()
+
+
+if __name__ == "__main__":
+    main()

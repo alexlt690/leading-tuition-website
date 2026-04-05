@@ -197,7 +197,41 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Levels</div>
             <a href="/services/levels/11plus-tuition">11+ Tuition</a>
-            <a href="/11-plus/">11+ School Guides</a>
+            <div class="nav-flyout">
+              <a href="/11-plus/">11+ School Guides</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <div class="nav-flyout-menu">
+                <a href="/11-plus/henrietta-barnett-school/">Henrietta Barnett</a>
+                <a href="/11-plus/queens-elizabeth-barnet/">QE Boys Barnet</a>
+                <a href="/11-plus/tiffin-school/">Tiffin School</a>
+                <a href="/11-plus/tiffin-girls-school/">Tiffin Girls'</a>
+                <a href="/11-plus/sutton-grammar-schools/">Sutton Grammars</a>
+                <a href="/11-plus/st-olaves-grammar-school/">St Olave's</a>
+                <a href="/11-plus/slough-grammar-schools/">Slough Grammars</a>
+                <a href="/11-plus/bucks-grammar-schools/">Bucks Grammars</a>
+                <a href="/11-plus/dr-challoners-grammar/">Dr Challoner's</a>
+                <a href="/11-plus/kegs-chelmsford/">KEGS Chelmsford</a>
+                <a href="/11-plus/chelmsford-county-high/">Chelmsford County High</a>
+                <a href="/11-plus/altrincham-grammar-schools/">Altrincham Grammars</a>
+                <a href="/11-plus/sale-grammar-school/">Sale Grammar</a>
+                <a href="/11-plus/tonbridge-grammar-school/">Tonbridge Grammar</a>
+                <a href="/11-plus/weald-of-kent-grammar/">Weald of Kent</a>
+              </div>
+            </div>
+            <div class="nav-flyout">
+              <a href="/11-plus/boroughs/">11+ Borough Guides</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <div class="nav-flyout-menu">
+                <a href="/11-plus/barnet/">Barnet</a>
+                <a href="/11-plus/harrow/">Harrow</a>
+                <a href="/11-plus/bromley/">Bromley</a>
+                <a href="/11-plus/croydon/">Croydon</a>
+                <a href="/11-plus/ealing/">Ealing</a>
+                <a href="/11-plus/slough/">Slough</a>
+                <a href="/11-plus/kingston/">Kingston</a>
+                <a href="/11-plus/sutton/">Sutton</a>
+              </div>
+            </div>
             <a href="/services/levels/13plus-tuition">13+ Tuition</a>
             <div class="nav-flyout">
               <a href="/gcse/">GCSE Tuition</a>
@@ -603,7 +637,41 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Levels</div>
             <a href="/services/levels/11plus-tuition">11+ Tuition</a>
-            <a href="/11-plus/">11+ School Guides</a>
+            <div class="nav-flyout">
+              <a href="/11-plus/">11+ School Guides</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <div class="nav-flyout-menu">
+                <a href="/11-plus/henrietta-barnett-school/">Henrietta Barnett</a>
+                <a href="/11-plus/queens-elizabeth-barnet/">QE Boys Barnet</a>
+                <a href="/11-plus/tiffin-school/">Tiffin School</a>
+                <a href="/11-plus/tiffin-girls-school/">Tiffin Girls'</a>
+                <a href="/11-plus/sutton-grammar-schools/">Sutton Grammars</a>
+                <a href="/11-plus/st-olaves-grammar-school/">St Olave's</a>
+                <a href="/11-plus/slough-grammar-schools/">Slough Grammars</a>
+                <a href="/11-plus/bucks-grammar-schools/">Bucks Grammars</a>
+                <a href="/11-plus/dr-challoners-grammar/">Dr Challoner's</a>
+                <a href="/11-plus/kegs-chelmsford/">KEGS Chelmsford</a>
+                <a href="/11-plus/chelmsford-county-high/">Chelmsford County High</a>
+                <a href="/11-plus/altrincham-grammar-schools/">Altrincham Grammars</a>
+                <a href="/11-plus/sale-grammar-school/">Sale Grammar</a>
+                <a href="/11-plus/tonbridge-grammar-school/">Tonbridge Grammar</a>
+                <a href="/11-plus/weald-of-kent-grammar/">Weald of Kent</a>
+              </div>
+            </div>
+            <div class="nav-flyout">
+              <a href="/11-plus/boroughs/">11+ Borough Guides</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <div class="nav-flyout-menu">
+                <a href="/11-plus/barnet/">Barnet</a>
+                <a href="/11-plus/harrow/">Harrow</a>
+                <a href="/11-plus/bromley/">Bromley</a>
+                <a href="/11-plus/croydon/">Croydon</a>
+                <a href="/11-plus/ealing/">Ealing</a>
+                <a href="/11-plus/slough/">Slough</a>
+                <a href="/11-plus/kingston/">Kingston</a>
+                <a href="/11-plus/sutton/">Sutton</a>
+              </div>
+            </div>
             <a href="/services/levels/13plus-tuition">13+ Tuition</a>
             <div class="nav-flyout">
               <a href="/gcse/">GCSE Tuition</a>
@@ -1041,7 +1109,41 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Levels</div>
             <a href="/services/levels/11plus-tuition">11+ Tuition</a>
-            <a href="/11-plus/">11+ School Guides</a>
+            <div class="nav-flyout">
+              <a href="/11-plus/">11+ School Guides</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <div class="nav-flyout-menu">
+                <a href="/11-plus/henrietta-barnett-school/">Henrietta Barnett</a>
+                <a href="/11-plus/queens-elizabeth-barnet/">QE Boys Barnet</a>
+                <a href="/11-plus/tiffin-school/">Tiffin School</a>
+                <a href="/11-plus/tiffin-girls-school/">Tiffin Girls'</a>
+                <a href="/11-plus/sutton-grammar-schools/">Sutton Grammars</a>
+                <a href="/11-plus/st-olaves-grammar-school/">St Olave's</a>
+                <a href="/11-plus/slough-grammar-schools/">Slough Grammars</a>
+                <a href="/11-plus/bucks-grammar-schools/">Bucks Grammars</a>
+                <a href="/11-plus/dr-challoners-grammar/">Dr Challoner's</a>
+                <a href="/11-plus/kegs-chelmsford/">KEGS Chelmsford</a>
+                <a href="/11-plus/chelmsford-county-high/">Chelmsford County High</a>
+                <a href="/11-plus/altrincham-grammar-schools/">Altrincham Grammars</a>
+                <a href="/11-plus/sale-grammar-school/">Sale Grammar</a>
+                <a href="/11-plus/tonbridge-grammar-school/">Tonbridge Grammar</a>
+                <a href="/11-plus/weald-of-kent-grammar/">Weald of Kent</a>
+              </div>
+            </div>
+            <div class="nav-flyout">
+              <a href="/11-plus/boroughs/">11+ Borough Guides</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <div class="nav-flyout-menu">
+                <a href="/11-plus/barnet/">Barnet</a>
+                <a href="/11-plus/harrow/">Harrow</a>
+                <a href="/11-plus/bromley/">Bromley</a>
+                <a href="/11-plus/croydon/">Croydon</a>
+                <a href="/11-plus/ealing/">Ealing</a>
+                <a href="/11-plus/slough/">Slough</a>
+                <a href="/11-plus/kingston/">Kingston</a>
+                <a href="/11-plus/sutton/">Sutton</a>
+              </div>
+            </div>
             <a href="/services/levels/13plus-tuition">13+ Tuition</a>
             <div class="nav-flyout">
               <a href="/gcse/">GCSE Tuition</a>
@@ -1459,7 +1561,41 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Levels</div>
             <a href="/services/levels/11plus-tuition">11+ Tuition</a>
-            <a href="/11-plus/">11+ School Guides</a>
+            <div class="nav-flyout">
+              <a href="/11-plus/">11+ School Guides</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <div class="nav-flyout-menu">
+                <a href="/11-plus/henrietta-barnett-school/">Henrietta Barnett</a>
+                <a href="/11-plus/queens-elizabeth-barnet/">QE Boys Barnet</a>
+                <a href="/11-plus/tiffin-school/">Tiffin School</a>
+                <a href="/11-plus/tiffin-girls-school/">Tiffin Girls'</a>
+                <a href="/11-plus/sutton-grammar-schools/">Sutton Grammars</a>
+                <a href="/11-plus/st-olaves-grammar-school/">St Olave's</a>
+                <a href="/11-plus/slough-grammar-schools/">Slough Grammars</a>
+                <a href="/11-plus/bucks-grammar-schools/">Bucks Grammars</a>
+                <a href="/11-plus/dr-challoners-grammar/">Dr Challoner's</a>
+                <a href="/11-plus/kegs-chelmsford/">KEGS Chelmsford</a>
+                <a href="/11-plus/chelmsford-county-high/">Chelmsford County High</a>
+                <a href="/11-plus/altrincham-grammar-schools/">Altrincham Grammars</a>
+                <a href="/11-plus/sale-grammar-school/">Sale Grammar</a>
+                <a href="/11-plus/tonbridge-grammar-school/">Tonbridge Grammar</a>
+                <a href="/11-plus/weald-of-kent-grammar/">Weald of Kent</a>
+              </div>
+            </div>
+            <div class="nav-flyout">
+              <a href="/11-plus/boroughs/">11+ Borough Guides</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <div class="nav-flyout-menu">
+                <a href="/11-plus/barnet/">Barnet</a>
+                <a href="/11-plus/harrow/">Harrow</a>
+                <a href="/11-plus/bromley/">Bromley</a>
+                <a href="/11-plus/croydon/">Croydon</a>
+                <a href="/11-plus/ealing/">Ealing</a>
+                <a href="/11-plus/slough/">Slough</a>
+                <a href="/11-plus/kingston/">Kingston</a>
+                <a href="/11-plus/sutton/">Sutton</a>
+              </div>
+            </div>
             <a href="/services/levels/13plus-tuition">13+ Tuition</a>
             <div class="nav-flyout">
               <a href="/gcse/">GCSE Tuition</a>
