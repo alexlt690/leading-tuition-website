@@ -98,6 +98,22 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
     full_slug = page_url_path(page_type, slug)
     head_extras = base_html(title, meta_desc, full_slug, og_type)
     breadcrumb = breadcrumb_schema(page_type, slug, title, section)
+    _service = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": title,
+        "url": f"https://www.leadingtuition.co.uk/{full_slug}",
+        "description": meta_desc,
+        "provider": {
+            "@type": "EducationalOrganization",
+            "name": "Leading Tuition",
+            "url": "https://www.leadingtuition.co.uk",
+            "telephone": "+44 207 167 8440",
+            "email": "hello@leadingtuition.co.uk"
+        },
+        "areaServed": {"@type": "Country", "name": "United Kingdom"}
+    }
+    service_schema_block = f'<script type="application/ld+json">\n{json.dumps(_service, indent=2)}\n</script>'
     return f"""
 <!DOCTYPE html>
 <html lang="en">
@@ -492,6 +508,7 @@ COPYRIGHT ©2026, Leading Tuition. ALL RIGHTS RESERVED.
 }})();
 </script>
 
+{service_schema_block}
 {breadcrumb}
 {schema_extra}
 </body>
@@ -942,6 +959,20 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
     full_slug = page_url_path("location", slug)
     head_extras = base_html(title, meta_desc, full_slug, og_type)
     breadcrumb = breadcrumb_schema("location", slug, city)
+    _local_biz = {
+        "@context": "https://schema.org",
+        "@type": ["LocalBusiness", "EducationalOrganization"],
+        "name": f"Leading Tuition — {city} Tutors",
+        "url": f"https://www.leadingtuition.co.uk/locations/{slug}",
+        "telephone": "+44 207 167 8440",
+        "email": "hello@leadingtuition.co.uk",
+        "logo": {"@type": "ImageObject", "url": "https://www.leadingtuition.co.uk/images/logo.png"},
+        "image": "https://www.leadingtuition.co.uk/images/logo.png",
+        "areaServed": {"@type": "City", "name": city},
+        "priceRange": "\u00a3\u00a3",
+        "address": {"@type": "PostalAddress", "addressCountry": "GB", "addressRegion": "England"}
+    }
+    local_biz_block = f'<script type="application/ld+json">\n{json.dumps(_local_biz, indent=2)}\n</script>'
     return f"""
 <!DOCTYPE html>
 <html lang="en">
@@ -1336,6 +1367,7 @@ COPYRIGHT ©2026, Leading Tuition. ALL RIGHTS RESERVED.
 }})();
 </script>
 
+{local_biz_block}
 {breadcrumb}
 {schema_extra}
 </body>
