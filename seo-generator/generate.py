@@ -61,7 +61,9 @@ def build_blogposting_schema(title, meta_desc, slug):
     }
     return f'<script type="application/ld+json">\n{json.dumps(schema, indent=2)}\n</script>'
 
-client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+client = anthropic.Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY")
+)
 
 # Script directory (seo-generator/) and output directory
 SCRIPT_DIR = Path(__file__).parent
@@ -4280,6 +4282,253 @@ our tutors know these specific exams in depth — not just the 11+ in general.</
     print("Generated hub page: 11-plus/index.html")
 
 
+
+# ── 11+ Borough Guide pages ───────────────────────────────────────────────────
+
+BOROUGH_GUIDES = [
+    {
+        "slug": "barnet",
+        "name": "Barnet",
+        "schools": "Queen Elizabeth's Boys' School (QE Barnet) and Henrietta Barnett School",
+        "exam": "Queen Elizabeth's uses its own highly competitive entrance exam; Henrietta Barnett uses the GSHSA consortium test",
+        "selectivity": "QE Boys is ranked #1 grammar school in England by A-level results; Henrietta Barnett is the UK's most selective state school for girls",
+        "keyword": "11+ tuition Barnet",
+        "meta_desc": "Specialist 11+ tuition in Barnet for QE Boys and Henrietta Barnett School. Expert entrance exam coaching from Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "harrow",
+        "name": "Harrow",
+        "schools": "John Lyon School and other selective independents using ISEB pre-tests",
+        "exam": "ISEB Common Pre-Test and school-specific papers",
+        "selectivity": "John Lyon and local selective independents draw from a strong applicant pool across north-west London",
+        "keyword": "11+ tuition Harrow",
+        "meta_desc": "Specialist 11+ and entrance exam tuition in Harrow. Expert coaching for John Lyon, ISEB pre-tests and selective school entry. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "bromley",
+        "name": "Bromley",
+        "schools": "St Olave's Grammar School, Newstead Wood School, and Beths Grammar School",
+        "exam": "GL Assessment reasoning (Bromley consortium) plus St Olave's own second-stage paper",
+        "selectivity": "St Olave's is one of the most oversubscribed grammars in England; Newstead Wood and Beths are also highly competitive",
+        "keyword": "11+ tuition Bromley",
+        "meta_desc": "Specialist 11+ grammar school tuition in Bromley. Expert entrance exam coaching for St Olave's, Newstead Wood and Beths Grammar. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "croydon",
+        "name": "Croydon",
+        "schools": "Whitgift School, Trinity School, Old Palace of John Whitgift School, and the Sutton SET grammar schools",
+        "exam": "ISEB pre-test and school-specific papers for Whitgift/Trinity/Old Palace; GL Assessment Sutton SET for consortium grammars",
+        "selectivity": "Whitgift, Trinity and Old Palace are among the top independent schools in London; Sutton SET grammars are highly oversubscribed",
+        "keyword": "11+ tuition Croydon",
+        "meta_desc": "Specialist 11+ and entrance exam tuition in Croydon. Expert coaching for Whitgift, Trinity, Old Palace and Sutton SET grammar schools. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "ealing",
+        "name": "Ealing",
+        "schools": "Notting Hill and Ealing High School, St Benedict's School, and selective schools using ISEB pre-tests",
+        "exam": "ISEB Common Pre-Test and school-specific entrance exams",
+        "selectivity": "Selective independents in Ealing are competitive; many families also target grammar schools in neighbouring boroughs",
+        "keyword": "11+ tuition Ealing",
+        "meta_desc": "Specialist 11+ and entrance exam tuition in Ealing. Expert coaching for selective schools and ISEB pre-tests. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "slough",
+        "name": "Slough",
+        "schools": "Upton Court Grammar, Herschel Grammar, Langley Grammar, Slough Grammar, and Khalsa Grammar — the 5-school Slough SET consortium",
+        "exam": "Slough SET (Selective Eligibility Test) — a GL Assessment-style exam sat by all 5 consortium schools",
+        "selectivity": "All 5 Slough consortium schools are oversubscribed; the SET is sat by thousands of candidates each year",
+        "keyword": "11+ tuition Slough",
+        "meta_desc": "Specialist 11+ grammar school tuition in Slough for the Slough SET. Expert entrance exam coaching for all 5 consortium schools. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "kingston",
+        "name": "Kingston",
+        "schools": "Tiffin School (boys) and Tiffin Girls' School",
+        "exam": "Kingston Grammar Test (KGT) — a bespoke exam sitting thousands of candidates for fewer than 200 places across both schools",
+        "selectivity": "Tiffin School and Tiffin Girls' are among the most competitive state grammar schools in England — typically 2,000+ applicants for ~180 places each",
+        "keyword": "11+ tuition Kingston",
+        "meta_desc": "Specialist 11+ entrance exam tuition in Kingston for Tiffin School and Tiffin Girls'. Expert Kingston Grammar Test coaching from Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "sutton",
+        "name": "Sutton",
+        "schools": "Wilson's School, Sutton Grammar School, Wallington County Grammar, Nonsuch High School, and Greenshaw High School — the Sutton SET consortium",
+        "exam": "Sutton Selective Eligibility Test (SET) — a GL Assessment exam used by all consortium schools",
+        "selectivity": "Wilson's, Nonsuch, and Wallington are among the most oversubscribed grammar schools in England; all 5 schools see very high applicant numbers",
+        "keyword": "11+ tuition Sutton",
+        "meta_desc": "Specialist 11+ grammar school tuition in Sutton for the Sutton SET. Expert entrance exam coaching for Wilson's, Nonsuch, Wallington and all consortium schools. 4.8/5 Trustpilot.",
+    },
+]
+
+
+def borough_guide_prompt(slug: str, name: str, schools: str, exam: str,
+                          selectivity: str, keyword: str) -> str:
+    import hashlib
+    variant = int(hashlib.md5(slug.encode()).hexdigest(), 16) % 2
+
+    if variant == 0:
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. Grammar Schools and Selective Entry in {name}
+  2. The Entrance Exams — What Your Child Will Face
+  3. How Competitive Is Entry? Places, Applicants, and Pass Marks
+  4. How to Prepare — Timeline and Strategy for {name} Families
+  5. How Leading Tuition Supports {name} 11+ Preparation
+  6. Frequently Asked Questions about 11+ in {name}
+
+Opening paragraph angle: Start from the parent's perspective — what it actually means to pursue selective school entry in {name}, which schools are worth targeting, and why specialist preparation matters here specifically."""
+    else:
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. Preparing for the 11+ in {name} — Where to Start
+  2. Which Schools and Which Exams?
+  3. What the Exams Test — and Where Children Come Unstuck
+  4. A Realistic Preparation Timeline for {name} Families
+  5. Working With Leading Tuition in {name}
+  6. Frequently Asked Questions
+
+Opening paragraph angle: Open by explaining why {name} is a distinct 11+ market — the schools available, the exam format(s) used, and what sets preparation for these schools apart from generic 11+ coaching."""
+
+    return f"""
+You are writing an 11+ borough guide page for Leading Tuition, a UK tutoring company.
+
+Borough: {name}
+Grammar and selective schools: {schools}
+Entrance exam(s): {exam}
+Selectivity context: {selectivity}
+
+Audience:
+- A UK parent in or near {name} who is beginning to research grammar school entry
+- They want borough-specific, accurate information — not a generic 11+ article
+- They are anxious, researching early, and want to know exactly which schools are worth targeting, what exams are used, and how to prepare
+
+Global rules:
+- Write for a UK parent, not an SEO algorithm
+- Use a warm, expert, reassuring tone
+- Output plain HTML only — no markdown
+- Use only these tags: <p>, <h2>, <ul>, <li>, <strong>
+- Do not include <html>, <head>, or <body>
+- Do not include CTA buttons or footer text — the template handles those
+- Include one FAQ section with exactly 4 questions
+- Never use generic filler phrases like "look no further" or "we've got you covered"
+- Never refer to the 11+ as "easy" or imply any child can pass without serious preparation
+- Be specific to {name} — name the schools, name the exams, give real numbers where available
+
+Before writing, think through:
+1. What makes the 11+ landscape in {name} distinctive — which schools, which exams, and why families should care?
+2. What does the exam (or exams) actually test, and what do most children get wrong in preparation?
+3. What does a realistic preparation timeline look like for families in this borough?
+
+Now write a detailed 11+ borough guide in HTML for: 11+ Tuition in {name}
+
+Content requirements:
+- Length: 1,000 to 1,200 words
+- Name {name} and the specific schools in the opening paragraph
+- Explain the exam format(s): subjects tested, timing, question style
+- Include selectivity context: {selectivity}
+- Include at least one concrete preparation tip specific to the exam(s) used here
+- Include one short <ul> bullet list (not in the FAQ section)
+- Mention that Leading Tuition provides 1-to-1 specialist tutoring for these exams
+
+Structure to use:
+{structure}
+
+Additional requirements:
+- In the FAQ section, write 4 questions as <p><strong>Question?</strong></p> followed by a <p> answer
+- After all HTML content, on a new line, output exactly 4 FAQ pairs in this format (no spaces, no line breaks inside):
+FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}}]
+- Do not pad — every sentence must earn its place
+"""
+
+
+def generate_borough_guide_pages(new_only=False):
+    import json as _json
+
+    # ── Hub page (no API) ─────────────────────────────────────────────────────
+    borough_links = "\n".join(
+        f'  <a href="/11-plus/{b["slug"]}/" class="index-card">'
+        f'<strong>11+ in {b["name"]}</strong>'
+        f'<span>{b["schools"].split(",")[0].strip()}'
+        f'{" and more" if "," in b["schools"] else ""}</span></a>'
+        for b in BOROUGH_GUIDES
+    )
+    hub_content = f"""<p>Leading Tuition provides specialist 11+ preparation across London and the South East.
+Each borough has its own grammar schools, its own entrance exam formats, and its own level of competition.
+Select your borough below for a detailed guide to the schools, the exams, and how to prepare.</p>
+<p>Our tutors are specialists in specific exams — whether that is the Kingston Grammar Test for Tiffin, the Sutton SET,
+the Slough consortium, or the GL Assessment reasoning papers used in Bromley and beyond.</p>
+<div class="subject-grid">
+{borough_links}
+</div>"""
+
+    hub_crumb = breadcrumb_schema("eleven-plus-boroughs-hub", "11-plus/boroughs", "11+ Borough Guides")
+    hub_html = page_template(
+        "11+ Borough Guides — Grammar School Tuition by Area | Leading Tuition",
+        hub_content,
+        meta_desc="Specialist 11+ tuition across London and the South East. Borough-by-borough guides to grammar schools, entrance exams and preparation. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+        slug="11-plus/boroughs/",
+        page_type="eleven-plus-boroughs-hub",
+        section="11+ Borough Guides",
+        schema_extra=hub_crumb,
+    )
+    hub_dir = OUTPUT_DIR / "11-plus" / "boroughs"
+    hub_dir.mkdir(parents=True, exist_ok=True)
+    (hub_dir / "index.html").write_text(hub_html, encoding="utf-8")
+    print("Generated hub page: 11-plus/boroughs/index.html")
+
+    # ── Individual borough pages (API) ────────────────────────────────────────
+    for b in BOROUGH_GUIDES:
+        slug = b["slug"]
+        name = b["name"]
+        out_dir = OUTPUT_DIR / "11-plus" / slug
+        out_dir.mkdir(parents=True, exist_ok=True)
+        file_path = out_dir / "index.html"
+
+        if new_only and file_path.exists():
+            print(f"  SKIP (exists): 11-plus/{slug}/")
+            continue
+
+        prompt = borough_guide_prompt(
+            slug=slug, name=name,
+            schools=b["schools"], exam=b["exam"],
+            selectivity=b["selectivity"], keyword=b["keyword"]
+        )
+        raw = ask_claude(prompt)
+        content, faq_schema = parse_faq_schema(raw)
+
+        schema = {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": f"11+ Tuition in {name}",
+            "url": f"https://www.leadingtuition.co.uk/11-plus/{slug}/",
+            "description": b["meta_desc"],
+            "provider": {
+                "@type": "EducationalOrganization",
+                "name": "Leading Tuition",
+                "url": "https://www.leadingtuition.co.uk",
+                "telephone": "+44 207 167 8440",
+                "email": "hello@leadingtuition.co.uk"
+            },
+            "areaServed": {"@type": "City", "name": name},
+        }
+        service_schema = f'<script type="application/ld+json">\n{_json.dumps(schema, indent=2, ensure_ascii=False)}\n</script>'
+        breadcrumb = breadcrumb_schema("eleven-plus-borough", slug, f"11+ Tuition in {name}")
+        schema_extra = faq_schema + "\n" + service_schema + "\n" + breadcrumb
+
+        html = page_template(
+            f"11+ Tuition in {name} | Leading Tuition",
+            content,
+            meta_desc=b["meta_desc"],
+            slug=f"11-plus/{slug}/",
+            page_type="eleven-plus-borough",
+            section="11+ Borough Guides",
+            schema_extra=schema_extra
+        )
+
+        file_path.write_text(html, encoding="utf-8")
+        print(f"Generated borough guide: 11-plus/{slug}/")
+
+
 def generate_navbar():
     """
     Propagate the canonical <nav> block from templates.py to every HTML file
@@ -4456,6 +4705,7 @@ def main():
     parser.add_argument("--medical-schools",    action="store_true", help="Generate medical school entry guide pages (~38 schools)")
     parser.add_argument("--oxbridge-interviews", action="store_true", help="Generate Oxbridge interview prep pages by subject (~18 pages)")
     parser.add_argument("--eleven-plus",         action="store_true", help="Generate 11+ grammar school preparation pages (~15 pages)")
+    parser.add_argument("--borough-guides",      action="store_true", help="Generate 11+ borough guide pages (8 boroughs + hub, no CSV needed)")
     parser.add_argument("--sitemap",           action="store_true", help="Generate sitemap.xml from output/ directory (no API)")
     parser.add_argument("--navbar",            action="store_true", help="Push canonical nav from templates.py to all HTML files in output/ (no API)")
     parser.add_argument("--all",               action="store_true", help="Generate everything (30-45 min)")
@@ -4501,6 +4751,7 @@ def main():
     medical_schools_flag     = getattr(args, "medical_schools", False)
     oxbridge_interviews_flag = getattr(args, "oxbridge_interviews", False)
     eleven_plus_flag         = getattr(args, "eleven_plus", False)
+    borough_guides_flag      = getattr(args, "borough_guides", False)
 
     if admissions_tests_flag or run_all:
         generate_admissions_test_pages(limit=args.limit, new_only=new_only)
@@ -4513,6 +4764,9 @@ def main():
 
     if eleven_plus_flag or run_all:
         generate_eleven_plus_pages(limit=args.limit, new_only=new_only)
+
+    if borough_guides_flag or run_all:
+        generate_borough_guide_pages(new_only=new_only)
 
     # --navbar runs after all generators so manually-written pages get the same nav.
     # It can also be run standalone at any time (no API calls required).
@@ -4527,9 +4781,4 @@ def main():
     if not any([args.static, args.specialist, args.subjects,
                 args.locations, args.city, args.blog, args.levels,
                 admissions_tests_flag, medical_schools_flag, oxbridge_interviews_flag,
-                eleven_plus_flag, args.navbar, args.sitemap, run_all]):
-        parser.print_help()
-
-
-if __name__ == "__main__":
-    main()
+                eleven_plus_flag, borough_guides_flag, args.navbar, args.site
