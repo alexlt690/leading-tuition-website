@@ -5689,6 +5689,7 @@ You can find school-specific guides on our <a href="/11-plus/">11+ school prepar
         html = blog_page_template(
             title=title, content=content, meta_desc=meta_desc,
             slug=slug, og_type="article", schema_extra=schema_extra,
+            date_published=date_pub,
         )
         file_path.write_text(html, encoding="utf-8")
         print(f"Generated success story: blog/{slug}.html")

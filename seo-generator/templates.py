@@ -588,8 +588,19 @@ COPYRIGHT ©2026, Leading Tuition. ALL RIGHTS RESERVED.
 """
 
 
-def blog_page_template(title, content, meta_desc="", slug="", og_type="article", page_type="blog", section="", schema_extra=""):
+def blog_page_template(title, content, meta_desc="", slug="", og_type="article", page_type="blog", section="", schema_extra="", date_published=None):
     """Template for blog post pages — adds meta description and article-appropriate hero subtext."""
+    from datetime import date as _date
+    if date_published:
+        # Accept "YYYY-MM-DD" string or date object; format as "February 2021"
+        if isinstance(date_published, str):
+            import datetime as _dt
+            _d = _dt.datetime.strptime(date_published, "%Y-%m-%d").date()
+        else:
+            _d = date_published
+        date_published = _d.strftime("Published %B %Y")
+    else:
+        date_published = _date.today().strftime("Published %B %Y")
     full_slug = page_url_path(page_type, slug)
     head_extras = base_html(title, meta_desc, full_slug, og_type)
     breadcrumb = breadcrumb_schema(page_type, slug, title, section)
@@ -1004,7 +1015,7 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
 
 <section class="section section--cream" style="padding:70px 60px;">
 <div class="container" style="max-width:900px;">
-<div class="post-meta">By <strong>Leading Tuition Team</strong> &nbsp;|&nbsp; <time>Published March 2026</time></div>
+<div class="post-meta">By <strong>Leading Tuition Team</strong> &nbsp;|&nbsp; <time>{date_published}</time></div>
 {content}
 </div>
 </section>
