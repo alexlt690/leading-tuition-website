@@ -251,6 +251,23 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
                 <a href="/subjects/a-level-english/">English</a>
               </div>
             </div>
+            <div class="nav-flyout">
+              <a href="/ib-tuition/">IB Tuition</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <div class="nav-flyout-menu">
+                <a href="/ib-tuition/maths/">IB Maths</a>
+                <a href="/ib-tuition/chemistry/">IB Chemistry</a>
+                <a href="/ib-tuition/physics/">IB Physics</a>
+                <a href="/ib-tuition/biology/">IB Biology</a>
+                <a href="/ib-tuition/english/">IB English</a>
+                <a href="/ib-tuition/economics/">IB Economics</a>
+                <a href="/ib-tuition/history/">IB History</a>
+                <a href="/ib-tuition/psychology/">IB Psychology</a>
+                <a href="/ib-tuition/extended-essay/">Extended Essay</a>
+                <a href="/ib-tuition/tok/">Theory of Knowledge</a>
+                <a href="/ib-tuition/internal-assessment/">Internal Assessment</a>
+              </div>
+            </div>
             <a href="/services/levels/primary-tuition">Primary Tuition</a>
             <a href="/services/levels/sats-tuition">SATs Tuition</a>
             <a href="/services/levels/university-tuition">University Tuition</a>
@@ -689,6 +706,23 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
                 <a href="/subjects/a-level-biology/">Biology</a>
                 <a href="/subjects/a-level-chemistry/">Chemistry</a>
                 <a href="/subjects/a-level-english/">English</a>
+              </div>
+            </div>
+            <div class="nav-flyout">
+              <a href="/ib-tuition/">IB Tuition</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <div class="nav-flyout-menu">
+                <a href="/ib-tuition/maths/">IB Maths</a>
+                <a href="/ib-tuition/chemistry/">IB Chemistry</a>
+                <a href="/ib-tuition/physics/">IB Physics</a>
+                <a href="/ib-tuition/biology/">IB Biology</a>
+                <a href="/ib-tuition/english/">IB English</a>
+                <a href="/ib-tuition/economics/">IB Economics</a>
+                <a href="/ib-tuition/history/">IB History</a>
+                <a href="/ib-tuition/psychology/">IB Psychology</a>
+                <a href="/ib-tuition/extended-essay/">Extended Essay</a>
+                <a href="/ib-tuition/tok/">Theory of Knowledge</a>
+                <a href="/ib-tuition/internal-assessment/">Internal Assessment</a>
               </div>
             </div>
             <a href="/services/levels/primary-tuition">Primary Tuition</a>
@@ -1163,6 +1197,23 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
                 <a href="/subjects/a-level-english/">English</a>
               </div>
             </div>
+            <div class="nav-flyout">
+              <a href="/ib-tuition/">IB Tuition</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <div class="nav-flyout-menu">
+                <a href="/ib-tuition/maths/">IB Maths</a>
+                <a href="/ib-tuition/chemistry/">IB Chemistry</a>
+                <a href="/ib-tuition/physics/">IB Physics</a>
+                <a href="/ib-tuition/biology/">IB Biology</a>
+                <a href="/ib-tuition/english/">IB English</a>
+                <a href="/ib-tuition/economics/">IB Economics</a>
+                <a href="/ib-tuition/history/">IB History</a>
+                <a href="/ib-tuition/psychology/">IB Psychology</a>
+                <a href="/ib-tuition/extended-essay/">Extended Essay</a>
+                <a href="/ib-tuition/tok/">Theory of Knowledge</a>
+                <a href="/ib-tuition/internal-assessment/">Internal Assessment</a>
+              </div>
+            </div>
             <a href="/services/levels/primary-tuition">Primary Tuition</a>
             <a href="/services/levels/sats-tuition">SATs Tuition</a>
             <a href="/services/levels/university-tuition">University Tuition</a>
@@ -1613,6 +1664,23 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
                 <a href="/subjects/a-level-biology/">Biology</a>
                 <a href="/subjects/a-level-chemistry/">Chemistry</a>
                 <a href="/subjects/a-level-english/">English</a>
+              </div>
+            </div>
+            <div class="nav-flyout">
+              <a href="/ib-tuition/">IB Tuition</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <div class="nav-flyout-menu">
+                <a href="/ib-tuition/maths/">IB Maths</a>
+                <a href="/ib-tuition/chemistry/">IB Chemistry</a>
+                <a href="/ib-tuition/physics/">IB Physics</a>
+                <a href="/ib-tuition/biology/">IB Biology</a>
+                <a href="/ib-tuition/english/">IB English</a>
+                <a href="/ib-tuition/economics/">IB Economics</a>
+                <a href="/ib-tuition/history/">IB History</a>
+                <a href="/ib-tuition/psychology/">IB Psychology</a>
+                <a href="/ib-tuition/extended-essay/">Extended Essay</a>
+                <a href="/ib-tuition/tok/">Theory of Knowledge</a>
+                <a href="/ib-tuition/internal-assessment/">Internal Assessment</a>
               </div>
             </div>
             <a href="/services/levels/primary-tuition">Primary Tuition</a>

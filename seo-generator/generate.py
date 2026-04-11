@@ -4529,6 +4529,371 @@ the Slough consortium, or the GL Assessment reasoning papers used in Bromley and
         print(f"Generated borough guide: 11-plus/{slug}/")
 
 
+IB_SUBJECT_PAGES = [
+    {
+        "slug": "maths",
+        "name": "IB Maths",
+        "courses": "Analysis & Approaches (AA) and Applications & Interpretation (AI) at both Higher Level and Standard Level",
+        "hl_sl": "The gap between SL and HL in IB Maths is substantial — HL includes complex numbers, further calculus, vectors, and proof by induction that SL does not cover. AA HL is widely regarded as the most demanding pre-university maths qualification available in the UK, harder in many respects than A-Level Further Maths.",
+        "struggles": "Paper 3 in AA HL (extended problem-solving under time pressure), the internal assessment (a 12-page mathematical exploration marked externally), managing time across three exam papers, and adapting to the IB's emphasis on conceptual understanding over procedural recall.",
+        "meta_desc": "Specialist IB Maths tuition for Analysis & Approaches and Applications & Interpretation at HL and SL. Expert IB mathematics tutors from Oxford & Cambridge. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "chemistry",
+        "name": "IB Chemistry",
+        "courses": "IB Chemistry at Higher Level and Standard Level under the 2023 curriculum with restructured themes and Nature of Science emphasis",
+        "hl_sl": "HL Chemistry adds significant depth in organic chemistry, energetics, and the HL-only extension material. The internal assessment — a scientific investigation accounting for 20% of the final grade — requires students to design, execute, and analyse an original experiment to a standard that rewards genuine scientific thinking.",
+        "struggles": "The breadth of the HL syllabus alongside the quantitative demands of Papers 1 and 2, producing an IA that demonstrates real investigative rigour, and adapting to the 2023 curriculum's reorganisation away from traditional topic headings.",
+        "meta_desc": "Specialist IB Chemistry tuition at Higher Level and Standard Level. Expert IB chemistry tutors from Oxford & Cambridge. Full 2023 curriculum and internal assessment support. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "physics",
+        "name": "IB Physics",
+        "courses": "IB Physics at Higher Level and Standard Level, including the experimental investigation component and the 2023 curriculum restructure",
+        "hl_sl": "HL Physics extends into wave phenomena, fields, and electromagnetic induction at a level demanding strong mathematical fluency alongside physical intuition. Paper 3 at HL requires confident application to unfamiliar experimental contexts — a skill that requires sustained practice to develop.",
+        "struggles": "Applying physical principles to novel experimental scenarios, the mathematical rigour of HL particularly in fields and circular motion, and designing an IA investigation with a testable, well-controlled methodology.",
+        "meta_desc": "Specialist IB Physics tuition at Higher Level and Standard Level. Expert IB physics tutors from Oxford & Cambridge. Full syllabus and internal assessment support. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "biology",
+        "name": "IB Biology",
+        "courses": "IB Biology at Higher Level and Standard Level under the 2023 curriculum, which reorganises content around interconnected themes rather than traditional topic divisions",
+        "hl_sl": "HL Biology requires deeper treatment of cell biology, genetics, ecology, and human physiology. The 2023 restructure places greater emphasis on conceptual understanding and application to novel contexts — it rewards students who understand mechanisms rather than memorise facts, and penalises rote learning under unfamiliar question framing.",
+        "struggles": "The volume of HL content, navigating the new 2023 theme-based structure, and producing an IA that meets scientific rigour criteria (clear research question, controlled variables, sufficient data, honest evaluation) within the word count.",
+        "meta_desc": "Specialist IB Biology tuition at Higher Level and Standard Level. Expert IB biology tutors from Oxford & Cambridge. 2023 curriculum and internal assessment support. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "english",
+        "name": "IB English",
+        "courses": "IB English A: Language & Literature and English A: Literature at Higher Level and Standard Level",
+        "hl_sl": "HL English A requires study of additional works and includes the HL essay — an independently written 1,200-1,500 word analytical essay on a literary text of the student's choosing, assessed externally. This demands a high degree of analytical independence and is one of the most challenging components in the IB for students who have not been trained in close literary analysis.",
+        "struggles": "The Individual Oral (IO) which requires students to compare a literary text with a non-literary body of work under timed conditions without notes, the Paper 1 unseen text analysis, and for HL students the additional preparation required for the HL essay.",
+        "meta_desc": "Specialist IB English tuition for Language & Literature and Literature A at HL and SL. Expert IB English tutors from Oxford & Cambridge. IO, essay, and Paper 1 support. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "economics",
+        "name": "IB Economics",
+        "courses": "IB Economics at Higher Level and Standard Level covering microeconomics, macroeconomics, international economics, and development economics",
+        "hl_sl": "HL Economics adds quantitative analysis requirements and a more rigorous treatment of macroeconomic models. Paper 3 at HL is a data-based paper requiring students to apply economic theory and quantitative skills to unfamiliar scenarios — including calculations involving multipliers, price elasticity, and balance of payments — a skill that rewards methodical practice over time.",
+        "struggles": "Drawing and applying diagrams accurately and precisely under exam conditions, the commentary internal assessment (three commentaries on real economic events with strict word limits), and the HL Paper 3 quantitative demands.",
+        "meta_desc": "Specialist IB Economics tuition at Higher Level and Standard Level. Expert IB economics tutors from Oxford & Cambridge. Paper 3, commentaries, and full syllabus support. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "history",
+        "name": "IB History",
+        "courses": "IB History at Higher Level and Standard Level, covering prescribed subjects, world history topics, and the HL regional option",
+        "hl_sl": "HL History requires study of an additional historical period through the HL extension — a depth study covering a 50-year period in substantial detail. Paper 3 at HL tests this through extended essays under timed conditions, demanding both breadth of knowledge and the ability to construct a sustained analytical argument.",
+        "struggles": "Writing essays that argue rather than describe — the most common reason students underperform in IB History — balancing coverage across multiple topics, and producing an internal assessment (historical investigation using primary sources) that demonstrates genuine source evaluation rather than paraphrase.",
+        "meta_desc": "Specialist IB History tuition at Higher Level and Standard Level. Expert IB history tutors from Oxford & Cambridge. Essay technique, Paper 3, and historical investigation support. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "psychology",
+        "name": "IB Psychology",
+        "courses": "IB Psychology at Higher Level and Standard Level covering biological, cognitive, and sociocultural approaches plus two option topics",
+        "hl_sl": "HL Psychology adds Paper 3, which focuses on qualitative research methodology — an area few students have encountered formally and one that requires a different mode of critical thinking from the quantitative approach tested in Papers 1 and 2.",
+        "struggles": "Applying research studies accurately and selectively in exam answers (relevant detail, not exhaustive recall), the precise use of command terms (describe, explain, evaluate, discuss), and producing an internal assessment experimental study that meets research ethics and methodology standards.",
+        "meta_desc": "Specialist IB Psychology tuition at Higher Level and Standard Level. Expert IB psychology tutors from Oxford & Cambridge. Full syllabus, Paper 3, and IA support. 4.8/5 Trustpilot.",
+    },
+]
+
+IB_COMPONENT_PAGES = [
+    {
+        "slug": "extended-essay",
+        "name": "Extended Essay",
+        "display": "IB Extended Essay Tutor",
+        "description": "The Extended Essay is a 4,000-word independent research essay on a topic of the student's choosing within a chosen IB subject. It is assessed externally by IB examiners and contributes to the Diploma alongside Theory of Knowledge through the combined bonus points matrix. Students are allocated a supervisor from their school but the research and writing are independent.",
+        "challenges": "Developing a focused, genuinely researchable question (the most common failure point — questions that are too broad produce descriptive essays that score poorly); structuring an argument that goes beyond narration; engaging critically with sources; meeting formal requirements (abstract, bibliography, citations); and managing the extended research and writing process over several months while maintaining progress in other IB subjects.",
+        "tutor_role": "A tutor helps a student develop and refine their research question, plan the argument structure, identify and evaluate relevant sources, and improve the analytical quality and expression of their writing throughout drafts. The work produced must be entirely the student's own — tutors support understanding, process, and skills development.",
+        "meta_desc": "Specialist IB Extended Essay tutoring. Expert support for research questions, argument structure, and essay quality from Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "tok",
+        "name": "Theory of Knowledge",
+        "display": "IB TOK Tutor",
+        "description": "Theory of Knowledge is a compulsory component of the IB Diploma that asks students to reflect on the nature, scope, and limits of knowledge across different disciplines. Assessment is through a 1,600-word essay responding to one of six prescribed titles released annually by the IB, and a TOK exhibition in which the student connects three objects or artefacts to a core theme.",
+        "challenges": "Understanding what TOK actually requires — it is not a general opinion essay or a summary of knowledge claims, but a disciplined philosophical inquiry with specific criteria; choosing a line of argument that genuinely engages with the prescribed title rather than restating it; using real-life situations appropriately (not superficially); and structuring a coherent essay that earns marks on all five assessment criteria.",
+        "tutor_role": "A tutor helps a student understand the TOK framework and assessment criteria, interpret the prescribed title accurately, develop a coherent thesis, plan an essay structure that addresses the criteria, and refine the writing through drafts. Many students find TOK conceptually unfamiliar — an experienced tutor makes the abstract requirements concrete and actionable.",
+        "meta_desc": "Specialist IB Theory of Knowledge (TOK) tutoring. Expert support for TOK essays and exhibitions from Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "internal-assessment",
+        "name": "Internal Assessment",
+        "display": "IB Internal Assessment Tutor",
+        "description": "The Internal Assessment is a school-assessed component that accounts for 20-30% of a student's final IB grade depending on the subject. Each subject has a different IA format: scientific investigation (sciences), mathematical exploration (maths), historical investigation (history), written commentary (economics), Individual Oral (English), or experimental study (psychology). All IAs are moderated externally by IB examiners.",
+        "challenges": "Understanding the subject-specific assessment criteria — which differ substantially between subjects — and producing work that targets those criteria rather than general essay or report standards; choosing a topic that is genuinely investigable within the constraints of the format; meeting the word or page count limits; and maintaining academic integrity while producing work that reflects genuine individual understanding.",
+        "tutor_role": "A tutor helps a student understand the assessment criteria for their specific subject, plan an appropriate topic and methodology, structure the work correctly, and improve the quality of their analysis and presentation through the drafting process. The IA must be the student's own work — tuition develops understanding and process, not content on the student's behalf.",
+        "meta_desc": "Specialist IB Internal Assessment tutoring across all subjects. Expert IA planning, criteria support, and analysis coaching from Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+]
+
+
+def ib_subject_prompt(page: dict) -> str:
+    import hashlib
+    variant = int(hashlib.md5(page["slug"].encode()).hexdigest(), 16) % 3
+
+    if variant == 0:
+        structure = f"""Use exactly these <h2> sections in this order:
+  1. What Makes IB {page["name"]} Different
+  2. Higher Level vs Standard Level — What the Gap Actually Means
+  3. The Internal Assessment
+  4. Where Students Most Often Lose Marks
+  5. What to Expect From Tuition
+  6. Frequently Asked Questions
+
+Opening angle: Start by explaining what specifically distinguishes IB {page["name"]} from the equivalent A-Level or GCSE — in terms of content, assessment style, and the demands placed on students."""
+
+    elif variant == 1:
+        structure = f"""Use exactly these <h2> sections in this order:
+  1. The IB {page["name"]} Exam — Structure and What It Tests
+  2. HL and SL: A Meaningful Difference, Not Just More Content
+  3. Where Marks Are Lost — and Why Good Students Still Underperform
+  4. The Internal Assessment in {page["name"]}
+  5. How a Specialist Tutor Supports {page["name"]} Preparation
+  6. Frequently Asked Questions
+
+Opening angle: Start from the exam structure — what papers exist, what each tests, and why the IB approach to {page["name"]} catches students off guard even when they have strong prior knowledge."""
+
+    else:
+        structure = f"""Use exactly these <h2> sections in this order:
+  1. Why IB {page["name"]} Is Harder Than Students Expect
+  2. The Internal Assessment — What Examiners Are Looking For
+  3. HL vs SL — Choosing the Right Level and Preparing for It
+  4. Exam Technique: Where the Marks Actually Come From
+  5. Working With a Specialist IB {page["name"]} Tutor
+  6. Frequently Asked Questions
+
+Opening angle: Start from a student perspective — what IB {page["name"]} looks like in Year 12 when students first encounter it, what surprises them, and why preparation that worked at GCSE often does not transfer."""
+
+    return f"""You are writing an IB tuition landing page for Leading Tuition, a UK tutoring company staffed by Oxford and Cambridge graduates.
+
+Subject: {page["name"]}
+Courses covered: {page["courses"]}
+HL vs SL distinction: {page["hl_sl"]}
+Where students most commonly struggle: {page["struggles"]}
+
+Audience:
+- A UK parent or IB student researching tuition for this specific IB subject
+- They are looking for evidence of genuine subject expertise — not generic tutoring marketing
+- They want to understand what makes IB {page["name"]} specifically demanding, and how tuition addresses those specific demands
+
+{structure}
+
+Global rules:
+- Write for a UK parent or IB student, not an SEO algorithm
+- Use a precise, expert tone — demonstrate subject knowledge, not marketing fluency
+- Output plain HTML only — no markdown
+- Use only these tags: <p>, <h2>, <ul>, <li>, <strong>
+- Do not include <html>, <head>, or <body>
+- Do not include CTA buttons or footer — the template handles those
+- Never use generic filler phrases like "look no further", "we've got you covered", or "unlock your potential"
+- Be specific — name real IB exam components, real assessment criteria, real syllabus content
+- Do not pad — every sentence must earn its place
+
+Content requirements:
+- Length: 900 to 1,100 words
+- Include one concrete, subject-specific piece of preparation advice that demonstrates genuine expertise
+- Include at least one <ul> bullet list (not in the FAQ)
+- The FAQ section should have exactly 4 questions written as <p><strong>Question?</strong></p> followed by <p>answer</p>
+
+After all HTML content, on a new line, output exactly 4 FAQ pairs in this format:
+FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}}]
+"""
+
+
+def ib_component_prompt(page: dict) -> str:
+    import hashlib
+    variant = int(hashlib.md5(page["slug"].encode()).hexdigest(), 16) % 2
+
+    if variant == 0:
+        structure = f"""Use exactly these <h2> sections in this order:
+  1. What the {page["name"]} Requires
+  2. Where Students Most Often Go Wrong
+  3. How the Assessment Is Marked
+  4. How Tuition Helps — and What It Cannot Do
+  5. Frequently Asked Questions
+
+Opening angle: Start by explaining precisely what the {page["name"]} is — its word count or length, how it is assessed, and what weight it carries in the final IB grade — before addressing what makes it difficult."""
+
+    else:
+        structure = f"""Use exactly these <h2> sections in this order:
+  1. Understanding the {page["name"]} — What the IB Actually Expects
+  2. The Assessment Criteria Explained
+  3. The Most Common Mistakes — and Why They Happen
+  4. The Role of a Tutor: Support Without Crossing Lines
+  5. Frequently Asked Questions
+
+Opening angle: Start from the student's experience — what the {page["name"]} looks like when first encountered, why its requirements are frequently misunderstood, and what distinguishes work that scores well from work that does not."""
+
+    return f"""You are writing an IB tuition landing page for Leading Tuition, a UK tutoring company staffed by Oxford and Cambridge graduates.
+
+Component: {page["display"]}
+What it is: {page["description"]}
+Key challenges for students: {page["challenges"]}
+What a tutor does: {page["tutor_role"]}
+
+Audience:
+- A UK parent or IB student looking for specialist support with this specific IB component
+- They are anxious and under time pressure — the component deadline is real
+- They want to understand what excellent work looks like, and how tuition helps them get there
+
+{structure}
+
+Global rules:
+- Write for a UK parent or IB student, not an SEO algorithm
+- Use a precise, expert tone — demonstrate knowledge of the IB assessment system
+- Output plain HTML only — no markdown
+- Use only these tags: <p>, <h2>, <ul>, <li>, <strong>
+- Do not include <html>, <head>, or <body>
+- Do not include CTA buttons or footer — the template handles those
+- Never use generic filler phrases like "look no further" or "unlock your potential"
+- Be specific about IB assessment criteria, word counts, mark allocations, and process
+- Be honest about academic integrity — tutors support process and understanding, not write work for students
+- Do not pad — every sentence must earn its place
+
+Content requirements:
+- Length: 800 to 1,000 words
+- Include at least one <ul> bullet list
+- The FAQ section should have exactly 4 questions written as <p><strong>Question?</strong></p> followed by <p>answer</p>
+
+After all HTML content, on a new line, output exactly 4 FAQ pairs in this format:
+FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}}]
+"""
+
+
+def generate_ib_tuition_pages(new_only=False):
+    import json as _json
+
+    out_root = OUTPUT_DIR / "ib-tuition"
+    out_root.mkdir(parents=True, exist_ok=True)
+
+    # ── Hub page (no API) ─────────────────────────────────────────────────────
+    subject_links = "\n".join(
+        f'  <a href="/ib-tuition/{p["slug"]}/" class="index-card">'
+        f'<strong>{p["name"]} Tutor</strong>'
+        f'<span>HL and SL — specialist IB tuition</span></a>'
+        for p in IB_SUBJECT_PAGES
+    )
+    component_links = "\n".join(
+        f'  <a href="/ib-tuition/{p["slug"]}/" class="index-card">'
+        f'<strong>{p["display"]}</strong>'
+        f'<span>Specialist support for this IB component</span></a>'
+        for p in IB_COMPONENT_PAGES
+    )
+    hub_content = f"""<p>The International Baccalaureate Diploma is one of the most rigorous pre-university qualifications available,
+and its demands are genuinely different from A-Levels. The combination of six subjects at Higher or Standard Level,
+a 4,000-word Extended Essay, Theory of Knowledge, and subject-specific Internal Assessments creates a workload
+and an assessment structure that most students have not encountered before. Leading Tuition provides specialist
+1-to-1 IB tuition across all subjects and components, with tutors drawn from Oxford, Cambridge, and other leading universities.</p>
+<p>Select a subject or component below for a detailed guide to what it requires and how tuition supports preparation.</p>
+<h2>IB Subjects</h2>
+<div class="subject-grid">
+{subject_links}
+</div>
+<h2>IB Components</h2>
+<div class="subject-grid">
+{component_links}
+</div>"""
+
+    hub_html = page_template(
+        "IB Tuition | International Baccalaureate Tutors | Leading Tuition",
+        hub_content,
+        meta_desc="Specialist IB tuition across all subjects and components — Maths, Sciences, English, Economics, Extended Essay, TOK, and Internal Assessment. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+        slug="ib-tuition/",
+        page_type="ib-tuition-hub",
+        section="IB Tuition",
+    )
+    (out_root / "index.html").write_text(hub_html, encoding="utf-8")
+    print("Generated hub: ib-tuition/index.html")
+
+    # ── Subject pages (API) ───────────────────────────────────────────────────
+    for p in IB_SUBJECT_PAGES:
+        slug = p["slug"]
+        out_dir = out_root / slug
+        out_dir.mkdir(parents=True, exist_ok=True)
+        file_path = out_dir / "index.html"
+
+        if new_only and file_path.exists():
+            print(f"  SKIP (exists): ib-tuition/{slug}/")
+            continue
+
+        prompt = ib_subject_prompt(p)
+        raw = ask_claude(prompt)
+        content, faq_schema = parse_faq_schema(raw)
+
+        schema = {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": f"{p['name']} Tuition",
+            "url": f"https://www.leadingtuition.co.uk/ib-tuition/{slug}/",
+            "description": p["meta_desc"],
+            "provider": {
+                "@type": "EducationalOrganization",
+                "name": "Leading Tuition",
+                "url": "https://www.leadingtuition.co.uk",
+                "telephone": "+44 207 167 8440",
+                "email": "hello@leadingtuition.co.uk"
+            },
+        }
+        service_schema = f'<script type="application/ld+json">\n{_json.dumps(schema, indent=2, ensure_ascii=False)}\n</script>'
+        schema_extra = faq_schema + "\n" + service_schema
+
+        html = page_template(
+            f"{p['name']} Tutor | IB Tuition | Leading Tuition",
+            content,
+            meta_desc=p["meta_desc"],
+            slug=f"ib-tuition/{slug}/",
+            page_type="ib-tuition-subject",
+            section="IB Tuition",
+            schema_extra=schema_extra,
+        )
+        file_path.write_text(html, encoding="utf-8")
+        print(f"Generated IB subject page: ib-tuition/{slug}/")
+
+    # ── Component pages (API) ─────────────────────────────────────────────────
+    for p in IB_COMPONENT_PAGES:
+        slug = p["slug"]
+        out_dir = out_root / slug
+        out_dir.mkdir(parents=True, exist_ok=True)
+        file_path = out_dir / "index.html"
+
+        if new_only and file_path.exists():
+            print(f"  SKIP (exists): ib-tuition/{slug}/")
+            continue
+
+        prompt = ib_component_prompt(p)
+        raw = ask_claude(prompt)
+        content, faq_schema = parse_faq_schema(raw)
+
+        schema = {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": p["display"],
+            "url": f"https://www.leadingtuition.co.uk/ib-tuition/{slug}/",
+            "description": p["meta_desc"],
+            "provider": {
+                "@type": "EducationalOrganization",
+                "name": "Leading Tuition",
+                "url": "https://www.leadingtuition.co.uk",
+                "telephone": "+44 207 167 8440",
+                "email": "hello@leadingtuition.co.uk"
+            },
+        }
+        service_schema = f'<script type="application/ld+json">\n{_json.dumps(schema, indent=2, ensure_ascii=False)}\n</script>'
+        schema_extra = faq_schema + "\n" + service_schema
+
+        html = page_template(
+            f"{p['display']} | IB Tuition | Leading Tuition",
+            content,
+            meta_desc=p["meta_desc"],
+            slug=f"ib-tuition/{slug}/",
+            page_type="ib-tuition-component",
+            section="IB Tuition",
+            schema_extra=schema_extra,
+        )
+        file_path.write_text(html, encoding="utf-8")
+        print(f"Generated IB component page: ib-tuition/{slug}/")
+
+
 def generate_navbar():
     """
     Propagate the canonical <nav> block from templates.py to every HTML file
@@ -4706,6 +5071,7 @@ def main():
     parser.add_argument("--oxbridge-interviews", action="store_true", help="Generate Oxbridge interview prep pages by subject (~18 pages)")
     parser.add_argument("--eleven-plus",         action="store_true", help="Generate 11+ grammar school preparation pages (~15 pages)")
     parser.add_argument("--borough-guides",      action="store_true", help="Generate 11+ borough guide pages (8 boroughs + hub, no CSV needed)")
+    parser.add_argument("--ib-tuition",           action="store_true", help="Generate IB tuition pages (hub + 8 subjects + 3 components = 12 pages)")
     parser.add_argument("--sitemap",           action="store_true", help="Generate sitemap.xml from output/ directory (no API)")
     parser.add_argument("--navbar",            action="store_true", help="Push canonical nav from templates.py to all HTML files in output/ (no API)")
     parser.add_argument("--all",               action="store_true", help="Generate everything (30-45 min)")
@@ -4724,6 +5090,7 @@ def main():
     (OUTPUT_DIR / "medical-schools").mkdir(parents=True, exist_ok=True)
     (OUTPUT_DIR / "oxbridge-interviews").mkdir(parents=True, exist_ok=True)
     (OUTPUT_DIR / "11-plus").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "ib-tuition").mkdir(parents=True, exist_ok=True)
 
     run_all = args.all
     new_only = args.new_only
@@ -4752,6 +5119,7 @@ def main():
     oxbridge_interviews_flag = getattr(args, "oxbridge_interviews", False)
     eleven_plus_flag         = getattr(args, "eleven_plus", False)
     borough_guides_flag      = getattr(args, "borough_guides", False)
+    ib_tuition_flag          = getattr(args, "ib_tuition", False)
 
     if admissions_tests_flag or run_all:
         generate_admissions_test_pages(limit=args.limit, new_only=new_only)
@@ -4768,6 +5136,9 @@ def main():
     if borough_guides_flag or run_all:
         generate_borough_guide_pages(new_only=new_only)
 
+    if ib_tuition_flag or run_all:
+        generate_ib_tuition_pages(new_only=new_only)
+
     # --navbar runs after all generators so manually-written pages get the same nav.
     # It can also be run standalone at any time (no API calls required).
     if args.navbar or run_all:
@@ -4781,9 +5152,4 @@ def main():
     if not any([args.static, args.specialist, args.subjects,
                 args.locations, args.city, args.blog, args.levels,
                 admissions_tests_flag, medical_schools_flag, oxbridge_interviews_flag,
-                eleven_plus_flag, borough_guides_flag, args.navbar, args.sitemap, run_all]):
-        parser.print_help()
-
-
-if __name__ == "__main__":
-    main()
+                eleven_plus_flag, borough_guides_flag, ib_tuition_flag, args.navbar, args.sitemap, run_all]):
