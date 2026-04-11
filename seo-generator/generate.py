@@ -5459,6 +5459,7 @@ SUCCESS_STORIES = [
         "cohort_size": 32,
         "offers": 30,
         "success_rate": "93.8",
+        "intro": "March 2021 arrived later than usual for many families. After a year of cancelled mock exams, online teaching and uncertain exam timelines, the 11+ results that had been delayed or reformatted finally arrived. For the children we had worked with throughout lockdown — many of them sitting papers in formats that had never existed before — this was the moment everything either came together or it did not. This post reflects on what we saw: the outcomes, what made the difference, and what we carried into the years that followed.",
         "schools": [
             ("Queen Elizabeth's School Barnet (QE Boys)", 7),
             ("Henrietta Barnett School", 3),
@@ -5477,6 +5478,7 @@ SUCCESS_STORIES = [
         "cohort_size": 38,
         "offers": 36,
         "success_rate": "94.7",
+        "intro": "The 2022 admissions cycle was the first in three years to run at something close to normal pace. Schools that had postponed, reformatted or modified their entrance examinations during 2020 and 2021 were running them in full again — and in several cases with updated formats that caught underprepared families off guard. For our cohort, the return to a standard calendar brought sharper focus: this was the year to find out whether the preparation we had maintained through the pandemic had held. This post covers what happened, and what this cycle taught us about how the selective admissions landscape had quietly shifted.",
         "schools": [
             ("Queen Elizabeth's School Barnet (QE Boys)", 9),
             ("Henrietta Barnett School", 4),
@@ -5497,6 +5499,7 @@ SUCCESS_STORIES = [
         "cohort_size": 35,
         "offers": 34,
         "success_rate": "97.1",
+        "intro": "The March 2023 offer letters were, for many of our families, the culmination of preparation that had started long before Year 6. Our 2023 cohort was our largest to date — and it delivered our strongest results. Ninety-seven per cent of the children we worked with received at least one offer from a school the family had genuinely targeted. This post reflects on what drove those outcomes: the preparation patterns that worked, the mistakes we saw others make, and the advice we would give to any family starting out on this journey now.",
         "schools": [
             ("Queen Elizabeth's School Barnet (QE Boys)", 8),
             ("Henrietta Barnett School", 5),
@@ -5519,6 +5522,7 @@ SUCCESS_STORIES = [
         "cohort_size": 39,
         "offers": 37,
         "success_rate": "94.9",
+        "intro": "March 2024 brought two sets of results for the first time in our history. Alongside the 11+ offers that arrive every spring, we were tracking the outcomes of students who had sat the ISEB Common Pre-Test in late 2022 and whose conditional offers — from Eton, Harrow, Winchester and others — were confirmed as they completed Common Entrance. This post covers both pathways: what our 11+ cohort achieved, what our first structured 13+ cohort achieved, and what families considering boarding school entry need to understand about how different the two processes really are.",
         "schools_11plus": [
             ("Queen Elizabeth's School Barnet (QE Boys)", 7),
             ("Henrietta Barnett School", 5),
@@ -5545,6 +5549,7 @@ SUCCESS_STORIES = [
         "cohort_size": 40,
         "offers": 38,
         "success_rate": "95.0",
+        "intro": "By the time the March 2025 offers arrived, most of our families had been building towards this moment for two or three years. Our 2025 cohort was our largest ever — forty students drawn from across London and the Home Counties — and the results reflected something we had been watching develop across several admissions cycles: school-specific preparation, done with enough time, is consistently outperforming generic exam practice. This post sets out the 2025 outcomes in full: what the numbers show, what our tutors observed, and what any family beginning this process now should take from it.",
         "schools": [
             ("Queen Elizabeth's School Barnet (QE Boys)", 9),
             ("Henrietta Barnett School", 6),
@@ -5585,6 +5590,7 @@ def generate_success_story_pages(new_only=False):
         rate = story["success_rate"]
         context = story["context"]
         insight = story["insight"]
+        intro = story["intro"]
 
         # Build school list HTML — handle 2024 which has split 11+/13+ lists
         if "schools_11plus" in story:
@@ -5607,9 +5613,7 @@ def generate_success_story_pages(new_only=False):
 {"".join(f"<li><strong>{s}</strong> — {n} student{'s' if n > 1 else ''}</li>" for s, n in schools)}
 </ul>"""
 
-        content = f"""<p>Every March, independent schools and grammar schools release their 11+ offers.
-For the families we work with, it is the culmination of months — and often years — of careful, specific preparation.
-This post reflects on the {date_pub[:4]} admissions cycle: the outcomes our students achieved, what worked, and what we learned.</p>
+        content = f"""<p>{intro}</p>
 
 <h2>The Numbers</h2>
 <p>In the {date_pub[:4]} admissions cycle, we worked with <strong>{cohort} students</strong> sitting selective school entrance examinations at 11+ and 13+.
