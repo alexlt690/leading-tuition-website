@@ -5455,7 +5455,7 @@ SUCCESS_STORIES = [
     {
         "slug": "2021-school-entrance-results",
         "title": "Year 6 Exam Season 2021 — Reflections From Our Tutors and Families",
-        "date_published": "2021-02-10",
+        "date_published": "2021-03-10",
         "cohort_size": 32,
         "offers": 30,
         "success_rate": "93.8",
@@ -5473,7 +5473,7 @@ SUCCESS_STORIES = [
     {
         "slug": "2022-school-entrance-results",
         "title": "11+ Offers 2022 — What This Year's Results Tell Us About Selective School Preparation",
-        "date_published": "2022-02-08",
+        "date_published": "2022-03-08",
         "cohort_size": 38,
         "offers": 36,
         "success_rate": "94.7",
@@ -5493,7 +5493,7 @@ SUCCESS_STORIES = [
     {
         "slug": "2023-school-entrance-results",
         "title": "2023 Selective School Results — Our Strongest Year",
-        "date_published": "2023-02-07",
+        "date_published": "2023-03-07",
         "cohort_size": 35,
         "offers": 34,
         "success_rate": "97.1",
@@ -5515,7 +5515,7 @@ SUCCESS_STORIES = [
     {
         "slug": "2024-school-entrance-results",
         "title": "11+ and 13+ Results 2024 — From ISEB Pre-Tests to Common Entrance",
-        "date_published": "2024-02-06",
+        "date_published": "2024-03-06",
         "cohort_size": 39,
         "offers": 37,
         "success_rate": "94.9",
@@ -5541,7 +5541,7 @@ SUCCESS_STORIES = [
     {
         "slug": "2025-school-entrance-results",
         "title": "Results Season 2025 — Why School-Specific Preparation Made the Difference",
-        "date_published": "2025-02-05",
+        "date_published": "2025-03-05",
         "cohort_size": 40,
         "offers": 38,
         "success_rate": "95.0",
@@ -5607,7 +5607,7 @@ def generate_success_story_pages(new_only=False):
 {"".join(f"<li><strong>{s}</strong> — {n} student{'s' if n > 1 else ''}</li>" for s, n in schools)}
 </ul>"""
 
-        content = f"""<p>Every February, independent schools and grammar schools release their 11+ offers.
+        content = f"""<p>Every March, independent schools and grammar schools release their 11+ offers.
 For the families we work with, it is the culmination of months — and often years — of careful, specific preparation.
 This post reflects on the {date_pub[:4]} admissions cycle: the outcomes our students achieved, what worked, and what we learned.</p>
 
@@ -5831,14 +5831,14 @@ def main():
     parser.add_argument("--locations",         action="store_true", help="Generate location pages")
     parser.add_argument("--blog",              action="store_true", help="Generate blog posts")
     parser.add_argument("--levels",            action="store_true", help="Generate level pages")
-    parser.add_argument("--admissions-tests",   action="store_true", help="Generate admissions test pages (LNAT, MAT, PAT, TSA, etc.)")
-    parser.add_argument("--medical-schools",    action="store_true", help="Generate medical school entry guide pages (~38 schools)")
-    parser.add_argument("--oxbridge-interviews", action="store_true", help="Generate Oxbridge interview prep pages by subject (~18 pages)")
-    parser.add_argument("--eleven-plus",         action="store_true", help="Generate 11+ grammar school preparation pages (~27 pages)")
-    parser.add_argument("--borough-guides",      action="store_true", help="Generate 11+ borough guide pages (12 boroughs + hub)")
-    parser.add_argument("--ib-tuition",           action="store_true", help="Generate IB tuition pages (hub + 8 subjects + 3 components = 12 pages)")
-    parser.add_argument("--13-plus",              action="store_true", help="Generate 13+ preparation pages (hub + 8 school/exam pages)")
-    parser.add_argument("--success-stories",      action="store_true", help="Generate backdated student success story blog posts (5 posts, 2021-2025, no API)")
+    parser.add_argument("--admissions-tests",  action="store_true", help="Generate admissions test pages")
+    parser.add_argument("--medical-schools",   action="store_true", help="Generate medical school pages")
+    parser.add_argument("--oxbridge-interviews", action="store_true", help="Generate Oxbridge interview pages")
+    parser.add_argument("--eleven-plus",       action="store_true", help="Generate 11+ school pages")
+    parser.add_argument("--borough-guides",    action="store_true", help="Generate borough guide pages")
+    parser.add_argument("--ib-tuition",        action="store_true", help="Generate IB tuition pages")
+    parser.add_argument("--13-plus",           action="store_true", help="Generate 13+ preparation pages (no API)")
+    parser.add_argument("--success-stories",   action="store_true", help="Generate backdated student success story blog posts (5 posts, 2021-2025, no API)")
     parser.add_argument("--sitemap",           action="store_true", help="Generate sitemap.xml from output/ directory (no API)")
     parser.add_argument("--navbar",            action="store_true", help="Push canonical nav from templates.py to all HTML files in output/ (no API)")
     parser.add_argument("--all",               action="store_true", help="Generate everything (30-45 min)")
@@ -5881,7 +5881,7 @@ def main():
     if args.levels or run_all:
         generate_level_pages(limit=args.limit)
 
-    # New Phase 3 page types
+    # Phase 3+ page types
     admissions_tests_flag    = getattr(args, "admissions_tests", False)
     medical_schools_flag     = getattr(args, "medical_schools", False)
     oxbridge_interviews_flag = getattr(args, "oxbridge_interviews", False)
@@ -5915,13 +5915,9 @@ def main():
     if success_stories_flag or run_all:
         generate_success_story_pages(new_only=new_only)
 
-    # --navbar runs after all generators so manually-written pages get the same nav.
-    # It can also be run standalone at any time (no API calls required).
     if args.navbar or run_all:
         generate_navbar()
 
-    # --sitemap runs last so the final sitemap reflects everything just generated.
-    # It can also be run standalone at any time (no API calls required).
     if args.sitemap or run_all:
         generate_sitemap()
 
