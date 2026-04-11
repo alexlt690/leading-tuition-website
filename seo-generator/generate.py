@@ -5831,4 +5831,105 @@ def main():
     parser.add_argument("--locations",         action="store_true", help="Generate location pages")
     parser.add_argument("--blog",              action="store_true", help="Generate blog posts")
     parser.add_argument("--levels",            action="store_true", help="Generate level pages")
-    
+    parser.add_argument("--admissions-tests",  action="store_true", help="Generate admissions test pages")
+    parser.add_argument("--medical-schools",   action="store_true", help="Generate medical school pages")
+    parser.add_argument("--oxbridge-interviews", action="store_true", help="Generate Oxbridge interview pages")
+    parser.add_argument("--eleven-plus",       action="store_true", help="Generate 11+ school pages")
+    parser.add_argument("--borough-guides",    action="store_true", help="Generate borough guide pages")
+    parser.add_argument("--ib-tuition",        action="store_true", help="Generate IB tuition pages")
+    parser.add_argument("--13-plus",           action="store_true", help="Generate 13+ preparation pages (no API)")
+    parser.add_argument("--success-stories",   action="store_true", help="Generate backdated student success story blog posts (5 posts, 2021-2025, no API)")
+    parser.add_argument("--sitemap",           action="store_true", help="Generate sitemap.xml from output/ directory (no API)")
+    parser.add_argument("--navbar",            action="store_true", help="Push canonical nav from templates.py to all HTML files in output/ (no API)")
+    parser.add_argument("--all",               action="store_true", help="Generate everything (30-45 min)")
+    parser.add_argument("--limit",    type=int, default=None,       help="Limit number of pages generated per category")
+    parser.add_argument("--city",     type=str, default=None,       help="Generate a single location page by city name (e.g. --city Slough)")
+    parser.add_argument("--new-only", action="store_true",          help="Skip pages whose output file already exists (useful for resuming or adding new pages)")
+    args = parser.parse_args()
+
+    OUTPUT_DIR.mkdir(exist_ok=True)
+    (OUTPUT_DIR / "services" / "subjects").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "services" / "levels").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "services" / "specialist-admissions").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "blog").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "locations").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "admissions-tests").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "medical-schools").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "oxbridge-interviews").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "11-plus").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "ib-tuition").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "13-plus").mkdir(parents=True, exist_ok=True)
+
+    run_all = args.all
+    new_only = args.new_only
+
+    if args.static or run_all:
+        generate_static_pages()
+
+    if args.specialist or run_all:
+        generate_specialist_pages(limit=args.limit)
+
+    if args.subjects or run_all:
+        generate_subject_pages(limit=args.limit)
+
+    if args.locations or args.city or run_all:
+        generate_location_pages(limit=args.limit, new_only=new_only, city_filter=args.city)
+
+    if args.blog or run_all:
+        generate_blog_pages(limit=args.limit, new_only=new_only)
+
+    if args.levels or run_all:
+        generate_level_pages(limit=args.limit)
+
+    # Phase 3+ page types
+    admissions_tests_flag    = getattr(args, "admissions_tests", False)
+    medical_schools_flag     = getattr(args, "medical_schools", False)
+    oxbridge_interviews_flag = getattr(args, "oxbridge_interviews", False)
+    eleven_plus_flag         = getattr(args, "eleven_plus", False)
+    borough_guides_flag      = getattr(args, "borough_guides", False)
+    ib_tuition_flag          = getattr(args, "ib_tuition", False)
+    thirteen_plus_flag       = getattr(args, "13_plus", False)
+    success_stories_flag     = getattr(args, "success_stories", False)
+
+    if admissions_tests_flag or run_all:
+        generate_admissions_test_pages(limit=args.limit, new_only=new_only)
+
+    if medical_schools_flag or run_all:
+        generate_medical_school_pages(limit=args.limit, new_only=new_only)
+
+    if oxbridge_interviews_flag or run_all:
+        generate_oxbridge_interview_pages(limit=args.limit, new_only=new_only)
+
+    if eleven_plus_flag or run_all:
+        generate_eleven_plus_pages(limit=args.limit, new_only=new_only)
+
+    if borough_guides_flag or run_all:
+        generate_borough_guide_pages(new_only=new_only)
+
+    if ib_tuition_flag or run_all:
+        generate_ib_tuition_pages(new_only=new_only)
+
+    if thirteen_plus_flag or run_all:
+        generate_13plus_pages(new_only=new_only)
+
+    if success_stories_flag or run_all:
+        generate_success_story_pages(new_only=new_only)
+
+    if args.navbar or run_all:
+        generate_navbar()
+
+    if args.sitemap or run_all:
+        generate_sitemap()
+
+    if not any([args.static, args.specialist, args.subjects,
+                args.locations, args.city, args.blog, args.levels,
+                admissions_tests_flag, medical_schools_flag, oxbridge_interviews_flag,
+                eleven_plus_flag, borough_guides_flag, ib_tuition_flag,
+                thirteen_plus_flag, success_stories_flag,
+                args.navbar, args.sitemap, run_all]):
+        print("No flags provided. Run with --help to see available options.")
+        print("Example: python generate.py --eleven-plus --new-only")
+
+
+if __name__ == "__main__":
+    main()
