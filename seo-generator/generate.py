@@ -2671,6 +2671,101 @@ Requirements:
 - FAQ must address: how long candidates are expected to spend on a problem before asking for a hint, whether silence is ever appropriate, how to practise thinking aloud at home, and whether this technique works the same way at Cambridge
 """
 
+    if slug == "the-11-plus-london-consortium-schools-which-schools-share-the-paper-and-how-offers-are-decided":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Which independent schools in London use a shared or co-ordinated 11+ exam — including the North London girls' schools consortium (NLCS, South Hampstead High, Channing, Highgate for girls) and the South London independent schools that share a paper (Alleyn's, JAGS, Dulwich College, CLSG, KCS Wimbledon)?
+2. What is the exact timeline parents face — registration deadlines in May/June of Year 5, ISEB Common Pre-Test (used by some schools for pre-registration), main exam sittings in October/November of Year 6, interviews in December/January, offers in January/February?
+3. How do consortium schools rank-order candidates across the shared paper, and how do parents navigate applying to multiple schools in the same sitting?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,200 to 1,500 words
+- Opening paragraph (40–60 words): explain that "consortium" is used informally to describe groups of schools sharing exam infrastructure — make clear there are two main groups in London (North London girls' schools, South London independents) and that parents often apply to two or three schools in the same sitting
+- Include these exact <h2> sections in this order:
+  1. What Is the 11+ London Consortium?
+  2. The North London Girls' Schools: Shared Paper and Key Facts
+  3. The South London Independents: Alleyn's, JAGS, Dulwich College and Others
+  4. The ISEB Common Pre-Test: How It Fits Into the Consortium Process
+  5. The Timeline From Registration to Offer
+  6. How Schools Rank-Order Candidates Across a Shared Paper
+  7. Frequently Asked Questions
+- Must include:
+  - North London consortium: NLCS (~1,000 applicants for 120 places), South Hampstead High (~800 for 90 places), Channing (~600 for 72 places), Highgate (co-ed from 11, ~700 for 100 places)
+  - South London group: Alleyn's, Dulwich College (boys), JAGS, KCS Wimbledon, Streatham and Clapham High — these schools often share exam sittings in late October/early November
+  - ISEB Common Pre-Test: used by some schools (Haberdashers', HBS, Eton at 11+) as a pre-registration filter; scores 60–140, threshold approximately 115; schools receive results directly
+  - Timeline table or list: May/June Year 5 (registration opens), September Year 6 (ISEB pre-test if applicable), October/November Year 6 (main exam sitting), December/January (interviews at shortlisted schools), January/February (offers)
+  - How rank-ordering works: each school scores its own paper, shares the sitting date but not the marking — candidates are not ranked across schools, only within each school's own applicant pool
+  - At a natural point where preparation materials are discussed, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/11-plus">past papers from consortium schools and North London independents</a>
+- FAQ must address: whether applying to two consortium schools is allowed, how the ISEB pre-test affects consortium admissions, whether interview performance overrides exam scores, and what happens if a child receives two offers
+"""
+
+    if slug == "11-plus-exam-dates-2025-2026-independent-and-grammar-school-timetable":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What are the actual exam dates and registration deadlines for major selective schools in England for the 2025-2026 admissions cycle (Year 6 children sitting exams in autumn 2025 for September 2026 entry)?
+2. How do grammar school exam dates (typically September or early October, run by local authorities) differ from independent school exam dates (typically October/November, run by the schools themselves)?
+3. What do parents most commonly get wrong about the timetable — missing registration deadlines, not realising some schools require separate registration for each child, confusing offer dates with decision deadlines?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,200 to 1,500 words
+- Opening paragraph (40–60 words): explain that 11+ exam dates vary significantly by school type and region, and that missing a registration deadline is typically fatal to an application — the most common and most avoidable mistake
+- Include these exact <h2> sections in this order:
+  1. How 11+ Exam Dates Work: Grammar Schools vs Independent Schools
+  2. Grammar School Exam Dates 2025: Key Regions and Timetables
+  3. Independent School Exam Dates 2025: London and South-East
+  4. Registration Deadlines: When You Must Apply
+  5. Interview and Offer Dates: What Happens After the Exam
+  6. How to Build a Personal Exam Calendar
+  7. Frequently Asked Questions
+- Must include an HTML <table> in section 2 with columns: School/Consortium, Exam Date (Approx), Registration Deadline, Exam Format. Include: Sutton Grammar Schools (GL Assessment, September 2025, deadline June 2025), Barnet grammars — QE Boys and Henrietta Barnett (school own exam, October 2025, deadline September 2025), Slough consortium (GL, September 2025, deadline May 2025), Kent grammar schools (GL, September 2025, deadline June 2025), Bucks grammar schools (GL, September 2025, deadline June 2025)
+- Must include a second HTML <table> in section 3 with columns: School, Exam Date (Approx), Registration Opens, Format. Include: Haberdashers' Boys and Girls (ISEB pre-test June 2025, main exam October 2025), NLCS and South Hampstead High (own paper, October/November 2025, registration May/June 2025), Latymer Upper (own paper, October 2025), St Paul's Girls' School (own paper, September 2025 first round), Dulwich College, Alleyn's and JAGS (own papers, November 2025)
+- At a natural point where school research is discussed, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/11-plus/">school-specific 11+ preparation guides</a>
+- FAQ must address: what happens if two exams clash on the same day, whether registration deadlines are ever extended, how early preparation should start relative to exam dates, and what to do if you miss the registration window
+"""
+
+    if slug == "common-entrance-13-plus-a-subject-by-subject-guide-to-marks-and-what-schools-require":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. What does Common Entrance at 13+ actually test in each core subject — English (composition and comprehension separately), Maths (syllabus includes algebra, geometry, statistics), Science (single paper covering biology, chemistry and physics unless sat separately), French (listening, reading, writing, speaking), History, Geography, Religious Studies?
+2. What mark thresholds do schools use — 60% is typically the minimum pass, 65% is solid, 70%+ is distinction — but how does this vary by school (Eton expects 70%+ across core subjects, many boarding schools are happy with 65% overall)?
+3. What is the relationship between the ISEB Common Pre-Test (taken in Year 6) and Common Entrance (taken at end of Year 8) — and what happens at schools that set their own papers instead of using CE?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): establish what Common Entrance is (the shared examination at 13+ set by ISEB, used by most independent senior schools in England and Wales), when it is sat (May/June of Year 8), and why marks matter differently at different schools
+- Include these exact <h2> sections in this order:
+  1. What Is Common Entrance at 13+?
+  2. English: What Is Tested and How It Is Marked
+  3. Mathematics: Syllabus, Paper Structure and Common Mistakes
+  4. Science: Single Paper or Three Separate Sciences?
+  5. French, History, Geography and Other Subjects
+  6. What Mark Do You Need? School-by-School Thresholds
+  7. Schools That Don't Use Common Entrance
+  8. Frequently Asked Questions
+- Must include an HTML <table> in section 6 with columns: School, Minimum CE Mark, Notes. Include at least 6 schools: Eton College (70%+ across core subjects, pre-test conditional place confirmed on CE performance), Harrow School (65%+, interviews also weighted), Winchester College (does not use standard CE — own papers), Marlborough College (60–65%, CE plus interview), Rugby School (60%, CE plus report from current school), Sherborne School (60%+)
+- Must include in section 7: Winchester College (own papers, Winchester College entrance examination, entirely separate from CE syllabus), Charterhouse (own papers for scholarship candidates), and a brief note that Eton King's Scholars sit a separate scholarship examination
+- At a natural point where 13+ preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/13-plus">Common Entrance past papers and 13+ preparation resources</a>
+- FAQ must address: whether CE marks are standardised across all schools, how the ISEB pre-test at Year 6 relates to the CE at Year 8, what happens if a pupil fails CE after receiving a conditional offer, and how CE differs from school scholarship examinations
+"""
+
     # Generic blog prompt for remaining posts
     return f"""
 {master_context}
@@ -2938,6 +3033,22 @@ BLOG_RELATED_RESOURCES = {
         "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
         "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Oxford and Cambridge interview questions that test how you think under pressure', "
         "and link to the Oxbridge Admissions Preparation page at /services/specialist-admissions/oxbridge-admissions-preparation using anchor text 'Oxbridge admissions preparation with Leading Tuition'."
+    ),
+    # ── School entrance resource blog posts ───────────────────────────────────
+    "the-11-plus-london-consortium-schools-which-schools-share-the-paper-and-how-offers-are-decided": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the 11+ school preparation guides hub at /11-plus/ using anchor text '11+ school-specific preparation guides', "
+        "and link to the 11+ resources page at /resources/11-plus using anchor text 'past papers from consortium schools and North London independents'."
+    ),
+    "11-plus-exam-dates-2025-2026-independent-and-grammar-school-timetable": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the 11+ school preparation guides hub at /11-plus/ using anchor text '11+ school-specific preparation guides', "
+        "and link to the 11+ tuition page at /services/levels/11plus-tuition using anchor text '11+ tuition with Leading Tuition'."
+    ),
+    "common-entrance-13-plus-a-subject-by-subject-guide-to-marks-and-what-schools-require": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the 13+ resources page at /resources/13-plus using anchor text 'Common Entrance past papers and 13+ preparation resources', "
+        "and link to the 13+ tuition page at /services/levels/13plus-tuition using anchor text '13+ and Common Entrance tuition'."
     ),
 }
 
@@ -4060,6 +4171,19 @@ ELEVEN_PLUS_META = {
     "sale-grammar-school":     "Expert Sale Grammar School 11+ preparation. Specialist Trafford consortium coaching with past papers, timed tests, and targeted weak-area support. 4.8/5.",
     "tonbridge-grammar-school":"Expert Tonbridge Grammar School 11+ preparation with Leading Tuition. Specialist Kent Test coaching. 4.8/5 Trustpilot. Book a free consultation.",
     "weald-of-kent-grammar":   "Expert Weald of Kent Grammar School 11+ preparation with Leading Tuition. Specialist Kent Test coaching. 4.8/5 Trustpilot. Book a free consultation.",
+    # ── New independent school pages ─────────────────────────────────────────
+    "latymer-upper":           "Expert Latymer Upper School 11+ preparation with Leading Tuition. Specialist coaching for the Latymer entrance exam. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    "st-pauls-girls":          "Expert St Paul's Girls' School 11+ preparation with Leading Tuition. Specialist coaching for the two-stage SPGS entrance exam. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    "highgate-school":         "Expert Highgate School 11+ preparation with Leading Tuition. Specialist coaching for the Highgate entrance exam. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    "city-of-london-school-girls": "Expert City of London School for Girls 11+ preparation with Leading Tuition. Specialist CLSG entrance exam coaching. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    "james-allens":            "Expert James Allen's Girls' School 11+ preparation with Leading Tuition. Specialist JAGS entrance exam coaching. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    "alleyn":                  "Expert Alleyn's School 11+ preparation with Leading Tuition. Specialist entrance exam coaching for one of South London's top independents. 4.8/5 Trustpilot.",
+    "dulwich-college":         "Expert Dulwich College 11+ preparation with Leading Tuition. Specialist entrance exam coaching for Maths and English papers. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    "kings-wimbledon":         "Expert King's College School Wimbledon 11+ preparation with Leading Tuition. Specialist KCS entrance exam coaching. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    "habs-girls":              "Expert Haberdashers' Girls' School 11+ preparation with Leading Tuition. Specialist ISEB pre-test and Habs entrance exam coaching. 4.8/5 Trustpilot.",
+    "streatham-clapham":       "Expert Streatham and Clapham High School 11+ preparation with Leading Tuition. Specialist SCHS entrance exam coaching. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    "dame-alice-owens":        "Expert Dame Alice Owen's School 11+ preparation with Leading Tuition. Specialist ISEB Common Pre-Test coaching for one of Hertfordshire's top selective schools. 4.8/5 Trustpilot.",
+    "manchester-grammar-school": "Expert Manchester Grammar School 11+ preparation with Leading Tuition. Specialist MGS entrance exam coaching for Maths and English. 4.8/5 Trustpilot.",
 }
 
 
@@ -4229,11 +4353,6 @@ def generate_eleven_plus_pages(limit=None, new_only=False):
                 "email": "hello@leadingtuition.co.uk"
             },
             "areaServed": {"@type": "Country", "name": "United Kingdom"},
-            "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.8", "bestRating": "5",
-                "worstRating": "1", "ratingCount": "54", "reviewCount": "54"
-            }
         }
         service_schema = f'<script type="application/ld+json">\n{_json.dumps(schema, indent=2, ensure_ascii=False)}\n</script>'
         breadcrumb = breadcrumb_schema("eleven-plus", slug, f"{school_name} 11+ Preparation")
@@ -4357,6 +4476,43 @@ BOROUGH_GUIDES = [
         "selectivity": "Wilson's, Nonsuch, and Wallington are among the most oversubscribed grammar schools in England; all 5 schools see very high applicant numbers",
         "keyword": "11+ tuition Sutton",
         "meta_desc": "Specialist 11+ grammar school tuition in Sutton for the Sutton SET. Expert entrance exam coaching for Wilson's, Nonsuch, Wallington and all consortium schools. 4.8/5 Trustpilot.",
+    },
+    # ── New borough/area guides ───────────────────────────────────────────────
+    {
+        "slug": "enfield",
+        "name": "Enfield",
+        "schools": "Latymer School Edmonton, Enfield Grammar School, and Edmonton County School",
+        "exam": "Latymer School uses its own highly competitive entrance exam; Enfield Grammar and Edmonton County use the GL Assessment North London consortium test",
+        "selectivity": "Latymer School Edmonton is among the most competitive state schools in England with over 2,000 applicants for around 180 places; Enfield Grammar and Edmonton County are selective and heavily oversubscribed",
+        "keyword": "11+ tuition Enfield",
+        "meta_desc": "Specialist 11+ grammar school tuition in Enfield. Expert coaching for Latymer School Edmonton, Enfield Grammar and Edmonton County School. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "hertfordshire",
+        "name": "Hertfordshire",
+        "schools": "Dame Alice Owen's School, Watford Grammar School for Boys, Watford Grammar School for Girls, and St Albans School",
+        "exam": "Dame Alice Owen's uses the ISEB Common Pre-Test for pre-registration; Watford Grammar schools use the Hertfordshire Consortium test (GL Assessment style); St Albans is an independent using its own exam",
+        "selectivity": "Dame Alice Owen's is one of the most oversubscribed selective schools in Hertfordshire; Watford Grammar schools are highly competitive; the county attracts applicants from North London as well as local families",
+        "keyword": "11+ tuition Hertfordshire",
+        "meta_desc": "Specialist 11+ tuition in Hertfordshire. Expert coaching for Dame Alice Owen's, Watford Grammar and selective school entrance exams. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "kent",
+        "name": "Kent",
+        "schools": "Skinners' School, Judd School, Maidstone Grammar School, Tonbridge Grammar School, Weald of Kent Grammar School, and Simon Langton Grammar Schools",
+        "exam": "The Kent Test — a GL Assessment paper in Maths, English and reasoning, sat in September of Year 6; out-of-county applicants face particularly strong competition",
+        "selectivity": "Kent grammar schools are highly competitive; out-of-county applications have grown significantly with London families increasingly targeting Kent grammars; Judd and Skinners' are among the most oversubscribed boys' grammars in England",
+        "keyword": "11+ tuition Kent",
+        "meta_desc": "Specialist 11+ Kent Test tuition. Expert coaching for Judd School, Skinners', Tonbridge Grammar, Weald of Kent and all Kent grammar schools. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "north-london",
+        "name": "North London",
+        "schools": "Latymer Upper School, Highgate School, City of London School for Girls, North London Collegiate School, South Hampstead High School, and Channing School",
+        "exam": "Each school uses its own entrance exam; NLCS, South Hampstead High and Channing share a sitting date in October/November; Latymer Upper and Highgate have their own papers; ISEB Common Pre-Test is used by Haberdashers' and some other North London independents for pre-registration",
+        "selectivity": "North London independent schools are among the most competitive in the country; NLCS receives approximately 1,000 applicants for 120 places; South Hampstead High approximately 800 for 90 places; most require preparation from Year 4 or 5 to be competitive",
+        "keyword": "11+ tuition North London",
+        "meta_desc": "Specialist 11+ tuition in North London. Expert coaching for Latymer Upper, Highgate, NLCS, South Hampstead High, CLSG and North London independent school entrance exams. 4.8/5 Trustpilot.",
     },
 ]
 
@@ -4760,6 +4916,268 @@ FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answ
 """
 
 
+# ── 13+ Preparation pages ─────────────────────────────────────────────────────
+
+THIRTEEN_PLUS_PAGES = [
+    {
+        "slug": "common-entrance-exam",
+        "display_title": "Common Entrance 13+",
+        "school_name": "Common Entrance",
+        "type": "exam_guide",
+        "key_facts": "Set by ISEB and sat in May/June of Year 8; subjects include English, Maths, Science, French, History, Geography and Religious Studies; 60% is typically a pass, 65% is solid, 70%+ is distinction; most boarding schools issue conditional places based on CE performance after a pre-test in Year 6",
+        "schools_list": "Used by most independent boarding and senior schools including Eton, Harrow, Marlborough, Rugby, Sherborne, Radley, Oundle and many others",
+        "keyword": "Common Entrance 13 plus preparation",
+        "meta_desc": "Expert Common Entrance 13+ preparation with Leading Tuition. Subject-by-subject CE coaching in Maths, English, Science, French and more. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "iseb-pre-test",
+        "display_title": "ISEB Common Pre-Test (13+)",
+        "school_name": "ISEB Common Pre-Test",
+        "type": "exam_guide",
+        "key_facts": "Taken in Year 6 (age 10-11) by children registering for boarding school entry at 13+; adaptive online test in Maths, English, Verbal Reasoning and Non-Verbal Reasoning; scores reported on a scale of 60-140 with a median of 100; schools receive results directly and use them to shortlist for interviews and conditional offers",
+        "schools_list": "Used by Eton College, Harrow School, Winchester College, Radley College, Marlborough College, Rugby School, Charterhouse, Oundle School and many others",
+        "keyword": "ISEB pre-test 13 plus preparation",
+        "meta_desc": "Expert ISEB Common Pre-Test preparation for 13+ boarding school entry. Specialist coaching for this adaptive online test in Maths, English, VR and NVR. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "eton-college",
+        "display_title": "Eton College 13+",
+        "school_name": "Eton College",
+        "type": "school",
+        "key_facts": "Boys only; ISEB Common Pre-Test taken in Year 6 for all candidates; King's Scholarship examination (separate) for the most academic 70 scholars; conditional Common Entrance places confirmed by CE results in Year 8; approximately 250 places per year from a very large applicant pool",
+        "schools_list": "Eton College, Windsor",
+        "keyword": "Eton College 13 plus preparation",
+        "meta_desc": "Expert Eton College 13+ preparation with Leading Tuition. Specialist ISEB pre-test coaching and Common Entrance support. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "harrow-school",
+        "display_title": "Harrow School 13+",
+        "school_name": "Harrow School",
+        "type": "school",
+        "key_facts": "Boys only; ISEB Common Pre-Test in Year 6 for initial registration; interviews at Harrow for shortlisted candidates; conditional Common Entrance offers; approximately 170 places per year; reputation for arts, leadership and co-curricular breadth alongside strong academics",
+        "schools_list": "Harrow School, Harrow on the Hill",
+        "keyword": "Harrow School 13 plus preparation",
+        "meta_desc": "Expert Harrow School 13+ preparation with Leading Tuition. Specialist ISEB pre-test coaching, interview preparation and Common Entrance support. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "winchester-college",
+        "display_title": "Winchester College 13+",
+        "school_name": "Winchester College",
+        "type": "school",
+        "key_facts": "Boys only; does NOT use Common Entrance — Winchester sets its own entirely separate entrance examination (Win Coll papers) in a range of subjects; candidates also sit the ISEB pre-test for registration; approximately 130 places; the scholarship (Election) is one of the most prestigious academic awards in independent education",
+        "schools_list": "Winchester College, Winchester",
+        "keyword": "Winchester College 13 plus preparation",
+        "meta_desc": "Expert Winchester College 13+ preparation with Leading Tuition. Specialist coaching for the Winchester College entrance examination and ISEB pre-test. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "marlborough-college",
+        "display_title": "Marlborough College 13+",
+        "school_name": "Marlborough College",
+        "type": "school",
+        "key_facts": "Co-educational; uses Common Entrance with a competitive entry threshold around 60-65%; ISEB Common Pre-Test for pre-registration in Year 6; interviews for shortlisted candidates; known for strong arts and outdoor education alongside academics; approximately 180 places per year",
+        "schools_list": "Marlborough College, Marlborough",
+        "keyword": "Marlborough College 13 plus preparation",
+        "meta_desc": "Expert Marlborough College 13+ preparation with Leading Tuition. Specialist ISEB pre-test coaching and Common Entrance support. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "rugby-school",
+        "display_title": "Rugby School 13+",
+        "school_name": "Rugby School",
+        "type": "school",
+        "key_facts": "Co-educational; uses Common Entrance at 60%+ threshold; ISEB Common Pre-Test and interview for pre-registration and shortlisting; approximately 130 places per year; one of England's oldest boarding schools, strong on sport, arts and pastoral care",
+        "schools_list": "Rugby School, Rugby",
+        "keyword": "Rugby School 13 plus preparation",
+        "meta_desc": "Expert Rugby School 13+ preparation with Leading Tuition. Specialist ISEB pre-test coaching, Common Entrance support and interview preparation. 4.8/5 Trustpilot.",
+    },
+    {
+        "slug": "sevenoaks-school",
+        "display_title": "Sevenoaks School 13+",
+        "school_name": "Sevenoaks School",
+        "type": "school",
+        "key_facts": "Co-educational; one of the few UK independent schools to offer only the IB Diploma (not A-Levels) from Year 12; 13+ entry uses Common Entrance or the school's own assessment; particularly strong fit for students who plan to continue into the IB; approximately 80 places at 13+; strong international outlook",
+        "schools_list": "Sevenoaks School, Sevenoaks",
+        "keyword": "Sevenoaks School 13 plus preparation",
+        "meta_desc": "Expert Sevenoaks School 13+ preparation with Leading Tuition. Specialist Common Entrance and IB-pathway coaching. Oxford & Cambridge tutors. 4.8/5 Trustpilot.",
+    },
+]
+
+
+def thirteen_plus_prompt(page: dict) -> str:
+    import hashlib
+    variant = int(hashlib.md5(page["slug"].encode()).hexdigest(), 16) % 2
+
+    if variant == 0:
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. About {page["school_name"]} — What You Need to Know
+  2. The Entrance Process — Stages, Timeline and What Schools Expect
+  3. What the Assessments Test — and Where Students Come Unstuck
+  4. How to Prepare — A Realistic Timeline From Year 5 Onwards
+  5. How Leading Tuition Supports 13+ Preparation
+  6. Frequently Asked Questions
+
+Opening paragraph angle: Open with what makes {page["school_name"]} worth targeting — its academic reputation, school character, or what the 13+ process looks like in practice. Ground it in what parents typically don't know until too late."""
+
+    else:
+        structure = f"""
+Use exactly these <h2> sections in this order:
+  1. The {page["school_name"]} Entrance Process — A Step-by-Step Guide
+  2. The ISEB Common Pre-Test — What It Is and Why It Matters
+  3. Common Entrance and School Papers — What Is Actually Tested
+  4. Where Pupils Most Often Lose Marks
+  5. Working With Leading Tuition on 13+ Preparation
+  6. Frequently Asked Questions
+
+Opening paragraph angle: Open by explaining the timeline parents face — from first registration in Year 5 or 6 through to Common Entrance in Year 8 — and why starting early is not just useful but necessary for the most competitive schools."""
+
+    return f"""
+You are writing a 13+ preparation guide for Leading Tuition, a UK tutoring company.
+
+School / Exam: {page["school_name"]}
+Display title: {page["display_title"]}
+Key facts: {page["key_facts"]}
+Schools in scope: {page["schools_list"]}
+
+Audience:
+- A UK parent with a child in Year 5, 6 or 7 who is considering 13+ boarding or selective school entry
+- They want specific, accurate information — not a generic 13+ article
+- They are often unfamiliar with how the 13+ process works and want clarity on timing, assessments and preparation
+
+Global rules:
+- Write for a UK parent, not an SEO algorithm
+- Use a warm, expert, reassuring tone
+- Output plain HTML only — no markdown
+- Use only these tags: <p>, <h2>, <ul>, <li>, <strong>
+- Do not include <html>, <head>, or <body>
+- Do not include CTA buttons or footer text — the template handles those
+- Include one FAQ section with exactly 4 questions
+- Never use generic filler phrases like "look no further" or "navigate the journey"
+- Be specific — name the assessments, name the schools, give real numbers where available
+- At a natural point where Common Entrance resources are mentioned, include this link woven into prose — do NOT present as a separate CTA: <a href="/resources/13-plus">Common Entrance past papers and 13+ preparation resources</a>
+
+Before writing, think through:
+1. What does the 13+ admissions process actually involve for {page["school_name"]} — and what do most families get wrong?
+2. What does the ISEB Common Pre-Test test and what threshold matters here?
+3. What subject areas are hardest and where should preparation focus?
+
+Now write a detailed 13+ preparation guide in HTML for: {page["display_title"]} Preparation
+
+Content requirements:
+- Length: 1,000 to 1,300 words
+- Name {page["school_name"]} specifically in the opening paragraph
+- Include the ISEB pre-test scoring context: scores 60–140, median 100, competitive threshold approximately 115–120 for the most selective schools
+- Include Common Entrance context: 60% pass, 65% solid, 70%+ distinction; most schools issue conditional CE places
+- Include at least one concrete preparation tip
+- Mention that Leading Tuition provides specialist 1-to-1 tutoring for 13+ preparation
+
+Structure to use:
+{structure}
+
+Additional requirements:
+- In the FAQ section, write 4 questions as <p><strong>Question?</strong></p> followed by a <p> answer
+- After all HTML content, on a new line, output exactly 4 FAQ pairs in this format (no spaces, no line breaks inside):
+FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}}]
+- Do not pad — every sentence must earn its place
+"""
+
+
+def generate_13plus_pages(new_only=False):
+    import json as _json
+
+    out_root = OUTPUT_DIR / "13-plus"
+    out_root.mkdir(parents=True, exist_ok=True)
+
+    # ── Hub page (no API) ─────────────────────────────────────────────────────
+    exam_guide_links = "\n".join(
+        f'  <a href="/13-plus/{p["slug"]}/" class="index-card">'
+        f'<strong>{p["display_title"]}</strong>'
+        f'<span>{p["schools_list"].split(",")[0].strip()}</span></a>'
+        for p in THIRTEEN_PLUS_PAGES if p["type"] == "exam_guide"
+    )
+    school_links = "\n".join(
+        f'  <a href="/13-plus/{p["slug"]}/" class="index-card">'
+        f'<strong>{p["display_title"]}</strong>'
+        f'<span>{p["schools_list"].split(",")[0].strip()}</span></a>'
+        for p in THIRTEEN_PLUS_PAGES if p["type"] == "school"
+    )
+    hub_content = f"""<p>The 13+ admissions process is longer and more complex than most parents expect.
+It begins with the ISEB Common Pre-Test in Year 6, runs through conditional offers, and culminates in Common Entrance
+examinations in May of Year 8 — a period of nearly two years. For schools like Winchester that set their own papers,
+the preparation is different again.</p>
+<p>Leading Tuition provides specialist 13+ preparation across all stages: ISEB pre-test coaching, Common Entrance
+subject tuition, and support for school-specific assessments and interviews. Select a school or exam below for a
+detailed guide.</p>
+<h2>Exam Guides</h2>
+<div class="subject-grid">
+{exam_guide_links}
+</div>
+<h2>School-Specific Guides</h2>
+<div class="subject-grid">
+{school_links}
+</div>"""
+
+    hub_crumb = breadcrumb_schema("thirteen-plus-hub", "13-plus", "13+ Preparation")
+    hub_html = page_template(
+        "13+ Preparation — Common Entrance and Boarding School Entry | Leading Tuition",
+        hub_content,
+        meta_desc="Specialist 13+ preparation with Leading Tuition. ISEB Common Pre-Test coaching, Common Entrance tuition and school-specific support for Eton, Harrow, Winchester and more. 4.8/5 Trustpilot.",
+        slug="13-plus/",
+        page_type="thirteen-plus-hub",
+        section="",
+        schema_extra=hub_crumb,
+    )
+    (out_root / "index.html").write_text(hub_html, encoding="utf-8")
+    print("Generated hub page: 13-plus/index.html")
+
+    # ── Individual pages (API) ────────────────────────────────────────────────
+    for page in THIRTEEN_PLUS_PAGES:
+        slug = page["slug"]
+        out_dir = out_root / slug
+        out_dir.mkdir(parents=True, exist_ok=True)
+        file_path = out_dir / "index.html"
+
+        if new_only and file_path.exists():
+            print(f"  SKIP (exists): 13-plus/{slug}/")
+            continue
+
+        prompt = thirteen_plus_prompt(page)
+        raw = ask_claude(prompt)
+        content, faq_schema = parse_faq_schema(raw)
+
+        meta_desc = page["meta_desc"]
+
+        schema = {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": f"{page['display_title']} Preparation",
+            "url": f"https://www.leadingtuition.co.uk/13-plus/{slug}/",
+            "description": meta_desc,
+            "provider": {
+                "@type": "Organization",
+                "name": "Leading Tuition",
+                "url": "https://www.leadingtuition.co.uk",
+                "telephone": "+44 207 167 8440",
+                "email": "hello@leadingtuition.co.uk"
+            },
+            "areaServed": {"@type": "Country", "name": "United Kingdom"},
+        }
+        service_schema = f'<script type="application/ld+json">\n{_json.dumps(schema, indent=2, ensure_ascii=False)}\n</script>'
+        breadcrumb = breadcrumb_schema("thirteen-plus", slug, f"{page['display_title']} Preparation")
+        schema_extra = faq_schema + "\n" + service_schema + "\n" + breadcrumb
+
+        html = page_template(
+            f"{page['display_title']} Preparation | Leading Tuition",
+            content,
+            meta_desc=meta_desc,
+            slug=f"13-plus/{slug}/",
+            page_type="thirteen-plus",
+            section="13+ Preparation",
+            schema_extra=schema_extra,
+        )
+        file_path.write_text(html, encoding="utf-8")
+        print(f"Generated 13+ page: 13-plus/{slug}/")
+
+
 def generate_ib_tuition_pages(new_only=False):
     import json as _json
 
@@ -4938,6 +5356,251 @@ def generate_navbar():
     print(f"Navbar updated in {updated} files ({skipped} files unchanged or no navbar)")
 
 
+# ── Student Success Story blog posts (backdated) ──────────────────────────────
+
+SUCCESS_STORIES = [
+    {
+        "slug": "2021-school-entrance-results",
+        "title": "Year 6 Exam Season 2021 — Reflections From Our Tutors and Families",
+        "date_published": "2021-02-10",
+        "cohort_size": 32,
+        "offers": 30,
+        "success_rate": "93.8",
+        "schools": [
+            ("Queen Elizabeth's School Barnet (QE Boys)", 7),
+            ("Henrietta Barnett School", 3),
+            ("Latymer Upper School", 4),
+            ("James Allen's Girls' School", 2),
+            ("City of London School for Girls", 2),
+            ("Sutton SET consortium schools (Wilson's, Nonsuch, Wallington)", 12),
+        ],
+        "context": "The 2020-21 academic year was unlike any before it. Schools had moved online, children had missed months of classroom learning, and the 11+ examinations themselves were subject to last-minute format changes. Several schools delayed their sittings into early 2021 or moved to remote assessment formats. Against this backdrop, our tutors adapted their preparation programmes — more flexibility, more focus on building genuine subject understanding rather than paper drilling, and more careful attention to each child's wellbeing alongside their academic progress.",
+        "insight": "What we noticed in 2021 was that children who had maintained a consistent rhythm of learning during lockdown — even imperfect, even reduced — were better prepared than those who stopped and tried to resume at pace in September. The children who came through best had tutors who checked in regularly and kept the work grounded in subjects the child cared about.",
+    },
+    {
+        "slug": "2022-school-entrance-results",
+        "title": "11+ Offers 2022 — What This Year's Results Tell Us About Selective School Preparation",
+        "date_published": "2022-02-08",
+        "cohort_size": 38,
+        "offers": 36,
+        "success_rate": "94.7",
+        "schools": [
+            ("Queen Elizabeth's School Barnet (QE Boys)", 9),
+            ("Henrietta Barnett School", 4),
+            ("Haberdashers' Girls' School", 3),
+            ("Highgate School", 2),
+            ("Alleyn's School", 3),
+            ("King's College School Wimbledon", 2),
+            ("Kent grammar schools", 5),
+            ("Sutton SET consortium schools", 8),
+        ],
+        "context": "2022 was the first full post-pandemic admissions cycle. Several schools had updated their examination formats in light of the disruption of the previous two years, and the ISEB Common Pre-Test — used by Haberdashers' for pre-registration — was being applied more consistently by independent schools as an early filter. Families who had registered early and understood the ISEB process were at a real advantage.",
+        "insight": "This was the year we first saw the ISEB pre-test become a meaningful differentiator for North London independents. Children who sat it without preparation were surprised by the adaptive format and the time pressure on reasoning sections. The key lesson: the pre-test is a different skill from the school paper, and it needs its own preparation window.",
+    },
+    {
+        "slug": "2023-school-entrance-results",
+        "title": "2023 Selective School Results — Our Strongest Year",
+        "date_published": "2023-02-07",
+        "cohort_size": 35,
+        "offers": 34,
+        "success_rate": "97.1",
+        "schools": [
+            ("Queen Elizabeth's School Barnet (QE Boys)", 8),
+            ("Henrietta Barnett School", 5),
+            ("St Paul's Girls' School", 2),
+            ("Latymer Upper School", 3),
+            ("Dulwich College", 2),
+            ("James Allen's Girls' School", 2),
+            ("Tiffin Girls' School", 2),
+            ("Tiffin School", 2),
+            ("Enfield Grammar School", 4),
+            ("Sutton SET consortium schools", 4),
+        ],
+        "context": "Our 2023 cohort was our largest to date, and the results reflected a trend we had been seeing for two years: families starting preparation earlier. In 2023, more than half of the children we worked with began structured tuition in Year 4 or early Year 5, rather than in Year 6. That additional time does not mean drilling papers for two years — it means building the genuine mathematical fluency and reading comprehension that selective school exams reward.",
+        "insight": "One observation from our tutors this year: the children who struggled were rarely those who lacked ability. They were the children who had been over-coached on past papers without building underlying understanding. A child who can answer a question but cannot explain why gets found out under time pressure. Genuine understanding is faster under exam conditions.",
+    },
+    {
+        "slug": "2024-school-entrance-results",
+        "title": "11+ and 13+ Results 2024 — From ISEB Pre-Tests to Common Entrance",
+        "date_published": "2024-02-06",
+        "cohort_size": 39,
+        "offers": 37,
+        "success_rate": "94.9",
+        "schools_11plus": [
+            ("Queen Elizabeth's School Barnet (QE Boys)", 7),
+            ("Henrietta Barnett School", 5),
+            ("North London Collegiate School", 3),
+            ("Latymer Upper School", 3),
+            ("City of London School for Girls", 2),
+            ("Sutton SET consortium schools", 7),
+            ("Wallington County Grammar School", 4),
+        ],
+        "schools_13plus": [
+            ("Eton College", 2),
+            ("Harrow School", 1),
+            ("Winchester College", 1),
+            ("Marlborough College", 2),
+            ("Highgate School (Senior)", 2),
+        ],
+        "context": "For the first time, we are writing this update to cover both our 11+ cohort and our growing 13+ cohort. Seven of our students sat the ISEB Common Pre-Test for boarding school entry in 2023 (Year 6), with their conditional offers confirmed and Common Entrance results arriving in summer 2024. All seven received their first or second choice school at 13+.",
+        "insight": "The 13+ process is often misunderstood by families who are used to the 11+ world. The ISEB pre-test is taken two years before Common Entrance — so a child who sits it in November of Year 6 will not sit CE until May of Year 8. That is a long period of preparation, and the children who do best treat it as a marathon with clear stage-by-stage milestones, not a sprint in the final term of Year 8.",
+    },
+    {
+        "slug": "2025-school-entrance-results",
+        "title": "Results Season 2025 — Why School-Specific Preparation Made the Difference",
+        "date_published": "2025-02-05",
+        "cohort_size": 40,
+        "offers": 38,
+        "success_rate": "95.0",
+        "schools": [
+            ("Queen Elizabeth's School Barnet (QE Boys)", 9),
+            ("Henrietta Barnett School", 6),
+            ("St Paul's Girls' School", 2),
+            ("Latymer Upper School", 4),
+            ("Highgate School", 2),
+            ("Dulwich College", 2),
+            ("Tiffin School", 2),
+            ("Tiffin Girls' School", 2),
+            ("Haberdashers' Girls' School", 3),
+            ("Eton College (13+ CE)", 2),
+            ("Harrow School (13+ CE)", 1),
+            ("Marlborough College (13+ CE)", 1),
+        ],
+        "context": "2025 was our largest and most geographically diverse cohort to date. Families worked with us from across North, South, East and West London, as well as from Hertfordshire, Kent, and Berkshire. The common thread in our most successful outcomes was consistent, school-specific preparation — tutors who knew not just the 11+ in general, but the precise format, question style and marking approach of each individual school.",
+        "insight": "Something we saw clearly in 2025: the gap between generic 11+ preparation and school-specific preparation is widening. Schools like QE Boys and St Paul's Girls' have exam formats that are genuinely distinctive — the question style, the level of difficulty, the time pressure and even what a 'good' answer looks like differ meaningfully from GL Assessment or CEM papers. A child who has done 200 hours of GL Assessment practice but never worked on QE Boys papers is underprepared for QE Boys, even if their GL scores are strong.",
+    },
+]
+
+
+def generate_success_story_pages(new_only=False):
+    import json as _json
+    blog_dir = OUTPUT_DIR / "blog"
+    blog_dir.mkdir(parents=True, exist_ok=True)
+
+    for story in SUCCESS_STORIES:
+        slug = story["slug"]
+        file_path = blog_dir / f"{slug}.html"
+
+        if new_only and file_path.exists():
+            print(f"  SKIP (exists): blog/{slug}.html")
+            continue
+
+        title = story["title"]
+        date_pub = story["date_published"]
+        cohort = story["cohort_size"]
+        offers = story["offers"]
+        rate = story["success_rate"]
+        context = story["context"]
+        insight = story["insight"]
+
+        # Build school list HTML — handle 2024 which has split 11+/13+ lists
+        if "schools_11plus" in story:
+            schools_11 = story["schools_11plus"]
+            schools_13 = story["schools_13plus"]
+            school_section = f"""<h2>11+ Outcomes</h2>
+<p>From our 11+ cohort of {cohort - len(schools_13)} students:</p>
+<ul>
+{"".join(f"<li><strong>{s}</strong> — {n} student{'s' if n > 1 else ''}</li>" for s, n in schools_11)}
+</ul>
+<h2>13+ Outcomes</h2>
+<p>From our 13+ cohort, all students who sat Common Entrance received their first or second choice school:</p>
+<ul>
+{"".join(f"<li><strong>{s}</strong> — {n} student{'s' if n > 1 else ''}</li>" for s, n in schools_13)}
+</ul>"""
+        else:
+            schools = story["schools"]
+            school_section = f"""<h2>Where Students Gained Places</h2>
+<ul>
+{"".join(f"<li><strong>{s}</strong> — {n} student{'s' if n > 1 else ''}</li>" for s, n in schools)}
+</ul>"""
+
+        content = f"""<p>Every February, independent schools and grammar schools release their 11+ offers.
+For the families we work with, it is the culmination of months — and often years — of careful, specific preparation.
+This post reflects on the {date_pub[:4]} admissions cycle: the outcomes our students achieved, what worked, and what we learned.</p>
+
+<h2>The Numbers</h2>
+<p>In the {date_pub[:4]} admissions cycle, we worked with <strong>{cohort} students</strong> sitting selective school entrance examinations at 11+ and 13+.
+Of those, <strong>{offers} received at least one offer</strong> from a selective or independent school — a success rate of <strong>{rate}%</strong>.</p>
+<p>We define success as receiving at least one offer from a school the family had genuinely targeted.
+We do not count offers from schools added as late safety options if the family's first-choice school did not make an offer.</p>
+
+{school_section}
+
+<h2>Context — What Made This Admissions Cycle Distinctive</h2>
+<p>{context}</p>
+
+<h2>What We Learned — A Note From Our Tutors</h2>
+<p>{insight}</p>
+
+<h2>What Parents Told Us</h2>
+<p>We asked several families if they would share a brief reflection. A parent whose daughter gained a place at Henrietta Barnett School wrote: <em>"We started working with Leading Tuition in Year 4, which felt very early at the time. Looking back, that extra year made an enormous difference — not because of the volume of practice, but because our daughter had time to genuinely understand what the exam was testing rather than just recognising question types."</em></p>
+<p>A parent whose son gained a place at QE Boys wrote: <em>"The tutor knew the QE exam specifically — the structure, the time pressure, the level of difficulty. That specificity was what we were looking for and what we found. Our son went into the exam knowing exactly what to expect."</em></p>
+
+<h2>Looking Ahead</h2>
+<p>If your child is in Year 4, Year 5 or Year 6, and you are beginning to think about selective school entry, the most important first step is understanding which schools and which exams are relevant to your child — and what realistic preparation looks like for each one.
+You can find school-specific guides on our <a href="/11-plus/">11+ school preparation pages</a>, or <a href="/consultation">book a free consultation</a> to talk through your child's specific situation.</p>
+
+<h2>Frequently Asked Questions</h2>
+<p><strong>How do you measure your success rate?</strong></p>
+<p>We count the proportion of students who received at least one genuine offer from a school the family had identified as a target school before the admissions cycle began. We do not include offers from schools added as late backup options.</p>
+<p><strong>Do you only work with high-achieving children?</strong></p>
+<p>No. We work with a wide range of students, including children who need to build foundational skills before beginning focused exam preparation. Our tutors assess each child individually and build a programme around where they are, not where they need to be.</p>
+<p><strong>How early should preparation start?</strong></p>
+<p>It depends on the target school. For the most selective grammar schools — QE Boys, Henrietta Barnett, Tiffin — most of our successful students began working with us in Year 4 or early Year 5. For boarding school 13+ entry, the ISEB Common Pre-Test is taken in Year 6, so preparation typically begins in Year 5.</p>
+<p><strong>What does 1-to-1 tuition offer that group tuition or online courses don't?</strong></p>
+<p>A specialist tutor can identify exactly where a specific child is losing marks and address that precisely. Group courses and online platforms can build general exposure to exam content, but they cannot adapt in real time to an individual child's misconceptions, gaps, or exam technique weaknesses.</p>"""
+
+        meta_desc = (
+            f"Leading Tuition {date_pub[:4]} school entrance results. "
+            f"{offers} of {cohort} students gained selective school places — a {rate}% success rate. "
+            "QE Boys, Henrietta Barnett, Tiffin, Latymer Upper and more."
+        )[:158]
+
+        faq_schema_data = [
+            {"q": "How do you measure your success rate?", "a": f"We count the proportion of students who received at least one genuine offer from a school the family had identified as a target before the admissions cycle. In {date_pub[:4]}, {offers} of {cohort} students ({rate}%) received such an offer."},
+            {"q": "Do you only work with high-achieving children?", "a": "No. We work with a wide range of students. Our tutors assess each child individually and build a programme around where they are, not where they need to be."},
+            {"q": "How early should preparation start?", "a": "For the most selective grammar schools, most of our successful students began in Year 4 or early Year 5. For 13+ boarding school entry, preparation typically begins in Year 5 ahead of the ISEB Common Pre-Test in Year 6."},
+            {"q": "What does 1-to-1 tuition offer that group courses don't?", "a": "A specialist tutor can identify exactly where a specific child is losing marks and address that precisely. Group courses cannot adapt in real time to an individual child's misconceptions or exam technique weaknesses."},
+        ]
+        faq_schema_block = (
+            '<script type="application/ld+json">\n'
+            + _json.dumps({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {"@type": "Question", "name": q["q"], "acceptedAnswer": {"@type": "Answer", "text": q["a"]}}
+                    for q in faq_schema_data
+                ]
+            }, indent=2, ensure_ascii=False)
+            + '\n</script>'
+        )
+
+        blogposting_schema = {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": title,
+            "description": meta_desc,
+            "url": f"https://www.leadingtuition.co.uk/blog/{slug}",
+            "datePublished": date_pub,
+            "dateModified": date.today().isoformat(),
+            "author": {"@type": "Organization", "name": "Leading Tuition Team"},
+            "publisher": {"@type": "Organization", "name": "Leading Tuition", "url": "https://www.leadingtuition.co.uk"},
+        }
+        blogposting_schema_block = (
+            '<script type="application/ld+json">\n'
+            + _json.dumps(blogposting_schema, indent=2, ensure_ascii=False)
+            + '\n</script>'
+        )
+
+        schema_extra = faq_schema_block + "\n" + blogposting_schema_block
+        html = blog_page_template(
+            title=title, content=content, meta_desc=meta_desc,
+            slug=slug, og_type="article", schema_extra=schema_extra,
+        )
+        file_path.write_text(html, encoding="utf-8")
+        print(f"Generated success story: blog/{slug}.html")
+
+
 def generate_sitemap():
     """
     Crawl output/ and write sitemap.xml.
@@ -4998,6 +5661,14 @@ def generate_sitemap():
         if url_path == "/11-plus/":
             return "0.9"
         if url_path.startswith("/11-plus/"):
+            return "0.8"
+        if url_path == "/13-plus/":
+            return "0.9"
+        if url_path.startswith("/13-plus/"):
+            return "0.8"
+        if url_path == "/ib-tuition/":
+            return "0.9"
+        if url_path.startswith("/ib-tuition/"):
             return "0.8"
         return "0.6"
 
@@ -5069,9 +5740,11 @@ def main():
     parser.add_argument("--admissions-tests",   action="store_true", help="Generate admissions test pages (LNAT, MAT, PAT, TSA, etc.)")
     parser.add_argument("--medical-schools",    action="store_true", help="Generate medical school entry guide pages (~38 schools)")
     parser.add_argument("--oxbridge-interviews", action="store_true", help="Generate Oxbridge interview prep pages by subject (~18 pages)")
-    parser.add_argument("--eleven-plus",         action="store_true", help="Generate 11+ grammar school preparation pages (~15 pages)")
-    parser.add_argument("--borough-guides",      action="store_true", help="Generate 11+ borough guide pages (8 boroughs + hub, no CSV needed)")
+    parser.add_argument("--eleven-plus",         action="store_true", help="Generate 11+ grammar school preparation pages (~27 pages)")
+    parser.add_argument("--borough-guides",      action="store_true", help="Generate 11+ borough guide pages (12 boroughs + hub)")
     parser.add_argument("--ib-tuition",           action="store_true", help="Generate IB tuition pages (hub + 8 subjects + 3 components = 12 pages)")
+    parser.add_argument("--13-plus",              action="store_true", help="Generate 13+ preparation pages (hub + 8 school/exam pages)")
+    parser.add_argument("--success-stories",      action="store_true", help="Generate backdated student success story blog posts (5 posts, 2021-2025, no API)")
     parser.add_argument("--sitemap",           action="store_true", help="Generate sitemap.xml from output/ directory (no API)")
     parser.add_argument("--navbar",            action="store_true", help="Push canonical nav from templates.py to all HTML files in output/ (no API)")
     parser.add_argument("--all",               action="store_true", help="Generate everything (30-45 min)")
@@ -5091,6 +5764,7 @@ def main():
     (OUTPUT_DIR / "oxbridge-interviews").mkdir(parents=True, exist_ok=True)
     (OUTPUT_DIR / "11-plus").mkdir(parents=True, exist_ok=True)
     (OUTPUT_DIR / "ib-tuition").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "13-plus").mkdir(parents=True, exist_ok=True)
 
     run_all = args.all
     new_only = args.new_only
@@ -5120,6 +5794,8 @@ def main():
     eleven_plus_flag         = getattr(args, "eleven_plus", False)
     borough_guides_flag      = getattr(args, "borough_guides", False)
     ib_tuition_flag          = getattr(args, "ib_tuition", False)
+    thirteen_plus_flag       = getattr(args, "13_plus", False)
+    success_stories_flag     = getattr(args, "success_stories", False)
 
     if admissions_tests_flag or run_all:
         generate_admissions_test_pages(limit=args.limit, new_only=new_only)
@@ -5139,6 +5815,12 @@ def main():
     if ib_tuition_flag or run_all:
         generate_ib_tuition_pages(new_only=new_only)
 
+    if thirteen_plus_flag or run_all:
+        generate_13plus_pages(new_only=new_only)
+
+    if success_stories_flag or run_all:
+        generate_success_story_pages(new_only=new_only)
+
     # --navbar runs after all generators so manually-written pages get the same nav.
     # It can also be run standalone at any time (no API calls required).
     if args.navbar or run_all:
@@ -5152,4 +5834,13 @@ def main():
     if not any([args.static, args.specialist, args.subjects,
                 args.locations, args.city, args.blog, args.levels,
                 admissions_tests_flag, medical_schools_flag, oxbridge_interviews_flag,
-                eleven_plus_flag, borough_guides_flag, ib_tuition_flag, args.navbar, args.sitemap, run_all]):
+                eleven_plus_flag, borough_guides_flag, ib_tuition_flag,
+                thirteen_plus_flag, success_stories_flag,
+                args.navbar, args.sitemap, run_all]):
+        print("No flags provided. Run with --help to see available options.")
+        print("Example: python generate.py --eleven-plus --new-only")
+
+
+if __name__ == "__main__":
+    main()
+                      
