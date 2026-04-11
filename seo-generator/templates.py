@@ -200,11 +200,23 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
             <div class="nav-flyout">
               <a href="/11-plus/">11+ School Guides</a>
               <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
-              <div class="nav-flyout-menu">
+              <div class="nav-flyout-menu nav-flyout-menu--two-cols">
                 <a href="/11-plus/henrietta-barnett-school/">Henrietta Barnett</a>
                 <a href="/11-plus/queens-elizabeth-barnet/">QE Boys Barnet</a>
                 <a href="/11-plus/tiffin-school/">Tiffin School</a>
                 <a href="/11-plus/tiffin-girls-school/">Tiffin Girls'</a>
+                <a href="/11-plus/latymer-upper/">Latymer Upper</a>
+                <a href="/11-plus/st-pauls-girls/">St Paul's Girls'</a>
+                <a href="/11-plus/highgate-school/">Highgate School</a>
+                <a href="/11-plus/city-of-london-school-girls/">City of London Girls</a>
+                <a href="/11-plus/james-allens/">James Allen's (JAGS)</a>
+                <a href="/11-plus/alleyn/">Alleyn's School</a>
+                <a href="/11-plus/dulwich-college/">Dulwich College</a>
+                <a href="/11-plus/kings-wimbledon/">King's Wimbledon</a>
+                <a href="/11-plus/habs-girls/">Haberdashers' Girls</a>
+                <a href="/11-plus/streatham-clapham/">Streatham &amp; Clapham</a>
+                <a href="/11-plus/dame-alice-owens/">Dame Alice Owen's</a>
+                <a href="/11-plus/manchester-grammar-school/">Manchester Grammar</a>
                 <a href="/11-plus/sutton-grammar-schools/">Sutton Grammars</a>
                 <a href="/11-plus/st-olaves-grammar-school/">St Olave's</a>
                 <a href="/11-plus/slough-grammar-schools/">Slough Grammars</a>
@@ -230,9 +242,26 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
                 <a href="/11-plus/slough/">Slough</a>
                 <a href="/11-plus/kingston/">Kingston</a>
                 <a href="/11-plus/sutton/">Sutton</a>
+                <a href="/11-plus/enfield/">Enfield</a>
+                <a href="/11-plus/hertfordshire/">Hertfordshire</a>
+                <a href="/11-plus/kent/">Kent</a>
+                <a href="/11-plus/north-london/">North London</a>
               </div>
             </div>
-            <a href="/services/levels/13plus-tuition">13+ Tuition</a>
+            <div class="nav-flyout">
+              <a href="/13-plus/">13+ Preparation</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <div class="nav-flyout-menu">
+                <a href="/13-plus/common-entrance-exam/">Common Entrance Guide</a>
+                <a href="/13-plus/iseb-pre-test/">ISEB Common Pre-Test</a>
+                <a href="/13-plus/eton-college/">Eton College</a>
+                <a href="/13-plus/harrow-school/">Harrow School</a>
+                <a href="/13-plus/winchester-college/">Winchester College</a>
+                <a href="/13-plus/marlborough-college/">Marlborough College</a>
+                <a href="/13-plus/rugby-school/">Rugby School</a>
+                <a href="/13-plus/sevenoaks-school/">Sevenoaks School</a>
+              </div>
+            </div>
             <div class="nav-flyout">
               <a href="/gcse/">GCSE Tuition</a>
               <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
@@ -397,10 +426,19 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
     <li class="nav-dropdown">
       <a href="/blog/" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
-        <span class="nav-dropdown-category">11+ &amp; Grammar School</span>
+        <span class="nav-dropdown-category">&#11088; Student Success Stories</span>
+        <a href="/blog/2025-school-entrance-results">Results 2025 — 95% Success Rate</a>
+        <a href="/blog/2024-school-entrance-results">Results 2024 — 11+ &amp; 13+</a>
+        <a href="/blog/2023-school-entrance-results">Results 2023 — Our Strongest Year</a>
+        <a href="/blog/2022-school-entrance-results">Results 2022</a>
+        <a href="/blog/2021-school-entrance-results">Results 2021</a>
+        <span class="nav-dropdown-category">11+ &amp; School Entrance</span>
         <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
         <a href="/blog/the-6-month-11-plus-countdown-a-monthly-study-milestone-plan">11 Plus 6-Month Countdown</a>
         <a href="/blog/2026-grammar-school-league-tables-top-schools-ranked-by-gcse-results">Grammar School League Tables 2026</a>
+        <a href="/blog/the-11-plus-london-consortium-schools-which-schools-share-the-paper-and-how-offers-are-decided">London Consortium Schools Guide</a>
+        <a href="/blog/11-plus-exam-dates-2025-2026-independent-and-grammar-school-timetable">11+ Exam Dates 2025–2026</a>
+        <a href="/blog/common-entrance-13-plus-a-subject-by-subject-guide-to-marks-and-what-schools-require">Common Entrance 13+ Guide</a>
         <span class="nav-dropdown-category">Medical &amp; Oxbridge</span>
         <a href="/blog/ucat-score-requirements-for-uk-medical-schools-2025">UCAT Score Requirements 2025</a>
         <a href="/blog/how-to-prepare-for-a-medical-school-mmi-interview">How to Prepare for MMI Interviews</a>
@@ -409,7 +447,7 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
         <a href="/blog/how-long-does-gcse-revision-take">How Long Does GCSE Revision Take?</a>
         <a href="/blog/how-to-find-a-good-private-tutor">How to Find a Good Private Tutor</a>
         <a href="/blog/is-private-tuition-worth-it-a-cost-benefit-analysis-of-1-to-1-learning">Is Private Tuition Worth It?</a>
-        <a href="/blog/" style="font-weight:600;color:#e63946;">View all 30 posts &rarr;</a>
+        <a href="/blog/" style="font-weight:600;color:#e63946;">View all posts &rarr;</a>
       </div>
     </li>
 
@@ -550,8 +588,19 @@ COPYRIGHT ©2026, Leading Tuition. ALL RIGHTS RESERVED.
 """
 
 
-def blog_page_template(title, content, meta_desc="", slug="", og_type="article", page_type="blog", section="", schema_extra=""):
+def blog_page_template(title, content, meta_desc="", slug="", og_type="article", page_type="blog", section="", schema_extra="", date_published=None):
     """Template for blog post pages — adds meta description and article-appropriate hero subtext."""
+    from datetime import date as _date
+    if date_published:
+        # Accept "YYYY-MM-DD" string or date object; format as "February 2021"
+        if isinstance(date_published, str):
+            import datetime as _dt
+            _d = _dt.datetime.strptime(date_published, "%Y-%m-%d").date()
+        else:
+            _d = date_published
+        date_published = _d.strftime("Published %B %Y")
+    else:
+        date_published = _date.today().strftime("Published %B %Y")
     full_slug = page_url_path(page_type, slug)
     head_extras = base_html(title, meta_desc, full_slug, og_type)
     breadcrumb = breadcrumb_schema(page_type, slug, title, section)
@@ -657,11 +706,23 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
             <div class="nav-flyout">
               <a href="/11-plus/">11+ School Guides</a>
               <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
-              <div class="nav-flyout-menu">
+              <div class="nav-flyout-menu nav-flyout-menu--two-cols">
                 <a href="/11-plus/henrietta-barnett-school/">Henrietta Barnett</a>
                 <a href="/11-plus/queens-elizabeth-barnet/">QE Boys Barnet</a>
                 <a href="/11-plus/tiffin-school/">Tiffin School</a>
                 <a href="/11-plus/tiffin-girls-school/">Tiffin Girls'</a>
+                <a href="/11-plus/latymer-upper/">Latymer Upper</a>
+                <a href="/11-plus/st-pauls-girls/">St Paul's Girls'</a>
+                <a href="/11-plus/highgate-school/">Highgate School</a>
+                <a href="/11-plus/city-of-london-school-girls/">City of London Girls</a>
+                <a href="/11-plus/james-allens/">James Allen's (JAGS)</a>
+                <a href="/11-plus/alleyn/">Alleyn's School</a>
+                <a href="/11-plus/dulwich-college/">Dulwich College</a>
+                <a href="/11-plus/kings-wimbledon/">King's Wimbledon</a>
+                <a href="/11-plus/habs-girls/">Haberdashers' Girls</a>
+                <a href="/11-plus/streatham-clapham/">Streatham &amp; Clapham</a>
+                <a href="/11-plus/dame-alice-owens/">Dame Alice Owen's</a>
+                <a href="/11-plus/manchester-grammar-school/">Manchester Grammar</a>
                 <a href="/11-plus/sutton-grammar-schools/">Sutton Grammars</a>
                 <a href="/11-plus/st-olaves-grammar-school/">St Olave's</a>
                 <a href="/11-plus/slough-grammar-schools/">Slough Grammars</a>
@@ -687,9 +748,26 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
                 <a href="/11-plus/slough/">Slough</a>
                 <a href="/11-plus/kingston/">Kingston</a>
                 <a href="/11-plus/sutton/">Sutton</a>
+                <a href="/11-plus/enfield/">Enfield</a>
+                <a href="/11-plus/hertfordshire/">Hertfordshire</a>
+                <a href="/11-plus/kent/">Kent</a>
+                <a href="/11-plus/north-london/">North London</a>
               </div>
             </div>
-            <a href="/services/levels/13plus-tuition">13+ Tuition</a>
+            <div class="nav-flyout">
+              <a href="/13-plus/">13+ Preparation</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <div class="nav-flyout-menu">
+                <a href="/13-plus/common-entrance-exam/">Common Entrance Guide</a>
+                <a href="/13-plus/iseb-pre-test/">ISEB Common Pre-Test</a>
+                <a href="/13-plus/eton-college/">Eton College</a>
+                <a href="/13-plus/harrow-school/">Harrow School</a>
+                <a href="/13-plus/winchester-college/">Winchester College</a>
+                <a href="/13-plus/marlborough-college/">Marlborough College</a>
+                <a href="/13-plus/rugby-school/">Rugby School</a>
+                <a href="/13-plus/sevenoaks-school/">Sevenoaks School</a>
+              </div>
+            </div>
             <div class="nav-flyout">
               <a href="/gcse/">GCSE Tuition</a>
               <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
@@ -854,10 +932,19 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
     <li class="nav-dropdown">
       <a href="/blog/" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
-        <span class="nav-dropdown-category">11+ &amp; Grammar School</span>
+        <span class="nav-dropdown-category">&#11088; Student Success Stories</span>
+        <a href="/blog/2025-school-entrance-results">Results 2025 — 95% Success Rate</a>
+        <a href="/blog/2024-school-entrance-results">Results 2024 — 11+ &amp; 13+</a>
+        <a href="/blog/2023-school-entrance-results">Results 2023 — Our Strongest Year</a>
+        <a href="/blog/2022-school-entrance-results">Results 2022</a>
+        <a href="/blog/2021-school-entrance-results">Results 2021</a>
+        <span class="nav-dropdown-category">11+ &amp; School Entrance</span>
         <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
         <a href="/blog/the-6-month-11-plus-countdown-a-monthly-study-milestone-plan">11 Plus 6-Month Countdown</a>
         <a href="/blog/2026-grammar-school-league-tables-top-schools-ranked-by-gcse-results">Grammar School League Tables 2026</a>
+        <a href="/blog/the-11-plus-london-consortium-schools-which-schools-share-the-paper-and-how-offers-are-decided">London Consortium Schools Guide</a>
+        <a href="/blog/11-plus-exam-dates-2025-2026-independent-and-grammar-school-timetable">11+ Exam Dates 2025–2026</a>
+        <a href="/blog/common-entrance-13-plus-a-subject-by-subject-guide-to-marks-and-what-schools-require">Common Entrance 13+ Guide</a>
         <span class="nav-dropdown-category">Medical &amp; Oxbridge</span>
         <a href="/blog/ucat-score-requirements-for-uk-medical-schools-2025">UCAT Score Requirements 2025</a>
         <a href="/blog/how-to-prepare-for-a-medical-school-mmi-interview">How to Prepare for MMI Interviews</a>
@@ -866,7 +953,7 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
         <a href="/blog/how-long-does-gcse-revision-take">How Long Does GCSE Revision Take?</a>
         <a href="/blog/how-to-find-a-good-private-tutor">How to Find a Good Private Tutor</a>
         <a href="/blog/is-private-tuition-worth-it-a-cost-benefit-analysis-of-1-to-1-learning">Is Private Tuition Worth It?</a>
-        <a href="/blog/" style="font-weight:600;color:#e63946;">View all 30 posts &rarr;</a>
+        <a href="/blog/" style="font-weight:600;color:#e63946;">View all posts &rarr;</a>
       </div>
     </li>
 
@@ -928,7 +1015,7 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
 
 <section class="section section--cream" style="padding:70px 60px;">
 <div class="container" style="max-width:900px;">
-<div class="post-meta">By <strong>Leading Tuition Team</strong> &nbsp;|&nbsp; <time>Published March 2026</time></div>
+<div class="post-meta">By <strong>Leading Tuition Team</strong> &nbsp;|&nbsp; <time>{date_published}</time></div>
 {content}
 </div>
 </section>
@@ -1146,11 +1233,23 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
             <div class="nav-flyout">
               <a href="/11-plus/">11+ School Guides</a>
               <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
-              <div class="nav-flyout-menu">
+              <div class="nav-flyout-menu nav-flyout-menu--two-cols">
                 <a href="/11-plus/henrietta-barnett-school/">Henrietta Barnett</a>
                 <a href="/11-plus/queens-elizabeth-barnet/">QE Boys Barnet</a>
                 <a href="/11-plus/tiffin-school/">Tiffin School</a>
                 <a href="/11-plus/tiffin-girls-school/">Tiffin Girls'</a>
+                <a href="/11-plus/latymer-upper/">Latymer Upper</a>
+                <a href="/11-plus/st-pauls-girls/">St Paul's Girls'</a>
+                <a href="/11-plus/highgate-school/">Highgate School</a>
+                <a href="/11-plus/city-of-london-school-girls/">City of London Girls</a>
+                <a href="/11-plus/james-allens/">James Allen's (JAGS)</a>
+                <a href="/11-plus/alleyn/">Alleyn's School</a>
+                <a href="/11-plus/dulwich-college/">Dulwich College</a>
+                <a href="/11-plus/kings-wimbledon/">King's Wimbledon</a>
+                <a href="/11-plus/habs-girls/">Haberdashers' Girls</a>
+                <a href="/11-plus/streatham-clapham/">Streatham &amp; Clapham</a>
+                <a href="/11-plus/dame-alice-owens/">Dame Alice Owen's</a>
+                <a href="/11-plus/manchester-grammar-school/">Manchester Grammar</a>
                 <a href="/11-plus/sutton-grammar-schools/">Sutton Grammars</a>
                 <a href="/11-plus/st-olaves-grammar-school/">St Olave's</a>
                 <a href="/11-plus/slough-grammar-schools/">Slough Grammars</a>
@@ -1176,9 +1275,26 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
                 <a href="/11-plus/slough/">Slough</a>
                 <a href="/11-plus/kingston/">Kingston</a>
                 <a href="/11-plus/sutton/">Sutton</a>
+                <a href="/11-plus/enfield/">Enfield</a>
+                <a href="/11-plus/hertfordshire/">Hertfordshire</a>
+                <a href="/11-plus/kent/">Kent</a>
+                <a href="/11-plus/north-london/">North London</a>
               </div>
             </div>
-            <a href="/services/levels/13plus-tuition">13+ Tuition</a>
+            <div class="nav-flyout">
+              <a href="/13-plus/">13+ Preparation</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <div class="nav-flyout-menu">
+                <a href="/13-plus/common-entrance-exam/">Common Entrance Guide</a>
+                <a href="/13-plus/iseb-pre-test/">ISEB Common Pre-Test</a>
+                <a href="/13-plus/eton-college/">Eton College</a>
+                <a href="/13-plus/harrow-school/">Harrow School</a>
+                <a href="/13-plus/winchester-college/">Winchester College</a>
+                <a href="/13-plus/marlborough-college/">Marlborough College</a>
+                <a href="/13-plus/rugby-school/">Rugby School</a>
+                <a href="/13-plus/sevenoaks-school/">Sevenoaks School</a>
+              </div>
+            </div>
             <div class="nav-flyout">
               <a href="/gcse/">GCSE Tuition</a>
               <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
@@ -1343,10 +1459,19 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
     <li class="nav-dropdown">
       <a href="/blog/" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
-        <span class="nav-dropdown-category">11+ &amp; Grammar School</span>
+        <span class="nav-dropdown-category">&#11088; Student Success Stories</span>
+        <a href="/blog/2025-school-entrance-results">Results 2025 — 95% Success Rate</a>
+        <a href="/blog/2024-school-entrance-results">Results 2024 — 11+ &amp; 13+</a>
+        <a href="/blog/2023-school-entrance-results">Results 2023 — Our Strongest Year</a>
+        <a href="/blog/2022-school-entrance-results">Results 2022</a>
+        <a href="/blog/2021-school-entrance-results">Results 2021</a>
+        <span class="nav-dropdown-category">11+ &amp; School Entrance</span>
         <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
         <a href="/blog/the-6-month-11-plus-countdown-a-monthly-study-milestone-plan">11 Plus 6-Month Countdown</a>
         <a href="/blog/2026-grammar-school-league-tables-top-schools-ranked-by-gcse-results">Grammar School League Tables 2026</a>
+        <a href="/blog/the-11-plus-london-consortium-schools-which-schools-share-the-paper-and-how-offers-are-decided">London Consortium Schools Guide</a>
+        <a href="/blog/11-plus-exam-dates-2025-2026-independent-and-grammar-school-timetable">11+ Exam Dates 2025–2026</a>
+        <a href="/blog/common-entrance-13-plus-a-subject-by-subject-guide-to-marks-and-what-schools-require">Common Entrance 13+ Guide</a>
         <span class="nav-dropdown-category">Medical &amp; Oxbridge</span>
         <a href="/blog/ucat-score-requirements-for-uk-medical-schools-2025">UCAT Score Requirements 2025</a>
         <a href="/blog/how-to-prepare-for-a-medical-school-mmi-interview">How to Prepare for MMI Interviews</a>
@@ -1355,7 +1480,7 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
         <a href="/blog/how-long-does-gcse-revision-take">How Long Does GCSE Revision Take?</a>
         <a href="/blog/how-to-find-a-good-private-tutor">How to Find a Good Private Tutor</a>
         <a href="/blog/is-private-tuition-worth-it-a-cost-benefit-analysis-of-1-to-1-learning">Is Private Tuition Worth It?</a>
-        <a href="/blog/" style="font-weight:600;color:#e63946;">View all 30 posts &rarr;</a>
+        <a href="/blog/" style="font-weight:600;color:#e63946;">View all posts &rarr;</a>
       </div>
     </li>
 
@@ -1615,11 +1740,23 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
             <div class="nav-flyout">
               <a href="/11-plus/">11+ School Guides</a>
               <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
-              <div class="nav-flyout-menu">
+              <div class="nav-flyout-menu nav-flyout-menu--two-cols">
                 <a href="/11-plus/henrietta-barnett-school/">Henrietta Barnett</a>
                 <a href="/11-plus/queens-elizabeth-barnet/">QE Boys Barnet</a>
                 <a href="/11-plus/tiffin-school/">Tiffin School</a>
                 <a href="/11-plus/tiffin-girls-school/">Tiffin Girls'</a>
+                <a href="/11-plus/latymer-upper/">Latymer Upper</a>
+                <a href="/11-plus/st-pauls-girls/">St Paul's Girls'</a>
+                <a href="/11-plus/highgate-school/">Highgate School</a>
+                <a href="/11-plus/city-of-london-school-girls/">City of London Girls</a>
+                <a href="/11-plus/james-allens/">James Allen's (JAGS)</a>
+                <a href="/11-plus/alleyn/">Alleyn's School</a>
+                <a href="/11-plus/dulwich-college/">Dulwich College</a>
+                <a href="/11-plus/kings-wimbledon/">King's Wimbledon</a>
+                <a href="/11-plus/habs-girls/">Haberdashers' Girls</a>
+                <a href="/11-plus/streatham-clapham/">Streatham &amp; Clapham</a>
+                <a href="/11-plus/dame-alice-owens/">Dame Alice Owen's</a>
+                <a href="/11-plus/manchester-grammar-school/">Manchester Grammar</a>
                 <a href="/11-plus/sutton-grammar-schools/">Sutton Grammars</a>
                 <a href="/11-plus/st-olaves-grammar-school/">St Olave's</a>
                 <a href="/11-plus/slough-grammar-schools/">Slough Grammars</a>
@@ -1645,9 +1782,26 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
                 <a href="/11-plus/slough/">Slough</a>
                 <a href="/11-plus/kingston/">Kingston</a>
                 <a href="/11-plus/sutton/">Sutton</a>
+                <a href="/11-plus/enfield/">Enfield</a>
+                <a href="/11-plus/hertfordshire/">Hertfordshire</a>
+                <a href="/11-plus/kent/">Kent</a>
+                <a href="/11-plus/north-london/">North London</a>
               </div>
             </div>
-            <a href="/services/levels/13plus-tuition">13+ Tuition</a>
+            <div class="nav-flyout">
+              <a href="/13-plus/">13+ Preparation</a>
+              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
+              <div class="nav-flyout-menu">
+                <a href="/13-plus/common-entrance-exam/">Common Entrance Guide</a>
+                <a href="/13-plus/iseb-pre-test/">ISEB Common Pre-Test</a>
+                <a href="/13-plus/eton-college/">Eton College</a>
+                <a href="/13-plus/harrow-school/">Harrow School</a>
+                <a href="/13-plus/winchester-college/">Winchester College</a>
+                <a href="/13-plus/marlborough-college/">Marlborough College</a>
+                <a href="/13-plus/rugby-school/">Rugby School</a>
+                <a href="/13-plus/sevenoaks-school/">Sevenoaks School</a>
+              </div>
+            </div>
             <div class="nav-flyout">
               <a href="/gcse/">GCSE Tuition</a>
               <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
@@ -1812,10 +1966,19 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
     <li class="nav-dropdown">
       <a href="/blog/" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
-        <span class="nav-dropdown-category">11+ &amp; Grammar School</span>
+        <span class="nav-dropdown-category">&#11088; Student Success Stories</span>
+        <a href="/blog/2025-school-entrance-results">Results 2025 — 95% Success Rate</a>
+        <a href="/blog/2024-school-entrance-results">Results 2024 — 11+ &amp; 13+</a>
+        <a href="/blog/2023-school-entrance-results">Results 2023 — Our Strongest Year</a>
+        <a href="/blog/2022-school-entrance-results">Results 2022</a>
+        <a href="/blog/2021-school-entrance-results">Results 2021</a>
+        <span class="nav-dropdown-category">11+ &amp; School Entrance</span>
         <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
         <a href="/blog/the-6-month-11-plus-countdown-a-monthly-study-milestone-plan">11 Plus 6-Month Countdown</a>
         <a href="/blog/2026-grammar-school-league-tables-top-schools-ranked-by-gcse-results">Grammar School League Tables 2026</a>
+        <a href="/blog/the-11-plus-london-consortium-schools-which-schools-share-the-paper-and-how-offers-are-decided">London Consortium Schools Guide</a>
+        <a href="/blog/11-plus-exam-dates-2025-2026-independent-and-grammar-school-timetable">11+ Exam Dates 2025–2026</a>
+        <a href="/blog/common-entrance-13-plus-a-subject-by-subject-guide-to-marks-and-what-schools-require">Common Entrance 13+ Guide</a>
         <span class="nav-dropdown-category">Medical &amp; Oxbridge</span>
         <a href="/blog/ucat-score-requirements-for-uk-medical-schools-2025">UCAT Score Requirements 2025</a>
         <a href="/blog/how-to-prepare-for-a-medical-school-mmi-interview">How to Prepare for MMI Interviews</a>
@@ -1824,7 +1987,7 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
         <a href="/blog/how-long-does-gcse-revision-take">How Long Does GCSE Revision Take?</a>
         <a href="/blog/how-to-find-a-good-private-tutor">How to Find a Good Private Tutor</a>
         <a href="/blog/is-private-tuition-worth-it-a-cost-benefit-analysis-of-1-to-1-learning">Is Private Tuition Worth It?</a>
-        <a href="/blog/" style="font-weight:600;color:#e63946;">View all 30 posts &rarr;</a>
+        <a href="/blog/" style="font-weight:600;color:#e63946;">View all posts &rarr;</a>
       </div>
     </li>
 
