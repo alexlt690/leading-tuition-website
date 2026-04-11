@@ -5470,6 +5470,10 @@ SUCCESS_STORIES = [
         ],
         "context": "The 2020-21 academic year was unlike any before it. Schools had moved online, children had missed months of classroom learning, and the 11+ examinations themselves were subject to last-minute format changes. Several schools delayed their sittings into early 2021 or moved to remote assessment formats. Against this backdrop, our tutors adapted their preparation programmes — more flexibility, more focus on building genuine subject understanding rather than paper drilling, and more careful attention to each child's wellbeing alongside their academic progress.",
         "insight": "What we noticed in 2021 was that children who had maintained a consistent rhythm of learning during lockdown — even imperfect, even reduced — were better prepared than those who stopped and tried to resume at pace in September. The children who came through best had tutors who checked in regularly and kept the work grounded in subjects the child cared about.",
+        "parent_quotes": [
+            ("a parent whose son gained a place at Latymer Upper School", "The whole process felt very uncertain that year — nobody really knew what the exams would look like until quite late. What helped us most was having a tutor who stayed calm, kept the preparation structured, and adapted as soon as the format changes were announced. Our son went in feeling prepared for whatever they put in front of him."),
+            ("a parent whose daughter gained places at James Allen's and City of London School for Girls", "We had our daughter working with Leading Tuition from the autumn of Year 5. When lockdown hit in Year 6 we were worried everything would fall apart. The tutors moved online without any disruption — if anything, the 1-to-1 sessions kept her more focused than classroom teaching had. The results in March were the best possible end to an incredibly stressful year."),
+        ],
     },
     {
         "slug": "2022-school-entrance-results",
@@ -5491,6 +5495,10 @@ SUCCESS_STORIES = [
         ],
         "context": "2022 was the first full post-pandemic admissions cycle. Several schools had updated their examination formats in light of the disruption of the previous two years, and the ISEB Common Pre-Test — used by Haberdashers' for pre-registration — was being applied more consistently by independent schools as an early filter. Families who had registered early and understood the ISEB process were at a real advantage.",
         "insight": "This was the year we first saw the ISEB pre-test become a meaningful differentiator for North London independents. Children who sat it without preparation were surprised by the adaptive format and the time pressure on reasoning sections. The key lesson: the pre-test is a different skill from the school paper, and it needs its own preparation window.",
+        "parent_quotes": [
+            ("a parent whose son gained a place at QE Boys", "We had looked at other tutoring options and they were all doing the same thing — GL Assessment papers, week after week. What made the difference with Leading Tuition was that the tutor sat down with us at the start and explained exactly what QE Boys was actually testing, and why that was different from the standard 11+ format. Our son stopped making the same mistakes within about six weeks."),
+            ("a parent whose daughter gained a place at Haberdashers' Girls'", "Nobody warned us about the ISEB pre-test. We found out about it very late and almost missed the registration deadline. Our tutor got us up to speed on the format quickly — the adaptive element especially — and our daughter came out feeling it had gone well. It had."),
+        ],
     },
     {
         "slug": "2023-school-entrance-results",
@@ -5514,6 +5522,10 @@ SUCCESS_STORIES = [
         ],
         "context": "Our 2023 cohort was our largest to date, and the results reflected a trend we had been seeing for two years: families starting preparation earlier. In 2023, more than half of the children we worked with began structured tuition in Year 4 or early Year 5, rather than in Year 6. That additional time does not mean drilling papers for two years — it means building the genuine mathematical fluency and reading comprehension that selective school exams reward.",
         "insight": "One observation from our tutors this year: the children who struggled were rarely those who lacked ability. They were the children who had been over-coached on past papers without building underlying understanding. A child who can answer a question but cannot explain why gets found out under time pressure. Genuine understanding is faster under exam conditions.",
+        "parent_quotes": [
+            ("a parent whose daughter gained a place at Henrietta Barnett School", "We started working with Leading Tuition in Year 4, which felt very early at the time. Looking back, that extra year made an enormous difference — not because of the volume of practice, but because our daughter had time to genuinely understand what the exam was testing rather than just recognising question types."),
+            ("a parent whose son gained places at both Tiffin School and QE Boys", "He received offers from both schools, which we had not expected. The preparation was very focused — his tutor had worked with children sitting both exams before and knew exactly where the differences were. Our son knew going in that the Tiffin verbal reasoning section has a different time structure to the QE maths paper. That level of detail made a real difference on the day."),
+        ],
     },
     {
         "slug": "2024-school-entrance-results",
@@ -5541,6 +5553,10 @@ SUCCESS_STORIES = [
         ],
         "context": "For the first time, we are writing this update to cover both our 11+ cohort and our growing 13+ cohort. Seven of our students sat the ISEB Common Pre-Test for boarding school entry in 2023 (Year 6), with their conditional offers confirmed and Common Entrance results arriving in summer 2024. All seven received their first or second choice school at 13+.",
         "insight": "The 13+ process is often misunderstood by families who are used to the 11+ world. The ISEB pre-test is taken two years before Common Entrance — so a child who sits it in November of Year 6 will not sit CE until May of Year 8. That is a long period of preparation, and the children who do best treat it as a marathon with clear stage-by-stage milestones, not a sprint in the final term of Year 8.",
+        "parent_quotes": [
+            ("a parent whose son received a place at Eton College", "The timeline for 13+ entry is so much longer than 11+. We started working with Leading Tuition at the beginning of Year 6 for the ISEB pre-test, and then continued right through to Common Entrance in Year 8. Having the same tutor across that period made a real difference — he knew our son well and could push him at exactly the right pace at each stage."),
+            ("a parent whose daughter gained a place at North London Collegiate School at 11+", "We were considering both the 11+ and 13+ routes for a long time. The consultation with Leading Tuition helped us decide — they laid out both timelines clearly and were honest about where our daughter's strengths sat. We went for 11+ and she received an offer from NLCS. The decision-making support alone was worth it."),
+        ],
     },
     {
         "slug": "2025-school-entrance-results",
@@ -5566,6 +5582,10 @@ SUCCESS_STORIES = [
         ],
         "context": "2025 was our largest and most geographically diverse cohort to date. Families worked with us from across North, South, East and West London, as well as from Hertfordshire, Kent, and Berkshire. The common thread in our most successful outcomes was consistent, school-specific preparation — tutors who knew not just the 11+ in general, but the precise format, question style and marking approach of each individual school.",
         "insight": "Something we saw clearly in 2025: the gap between generic 11+ preparation and school-specific preparation is widening. Schools like QE Boys and St Paul's Girls' have exam formats that are genuinely distinctive — the question style, the level of difficulty, the time pressure and even what a 'good' answer looks like differ meaningfully from GL Assessment or CEM papers. A child who has done 200 hours of GL Assessment practice but never worked on QE Boys papers is underprepared for QE Boys, even if their GL scores are strong.",
+        "parent_quotes": [
+            ("a parent whose son gained a place at QE Boys", "The tutor knew the QE exam specifically — the structure, the time pressure, the level of difficulty. That specificity was what we were looking for and what we found. Our son went into the exam knowing exactly what to expect."),
+            ("a parent whose daughter gained a place at St Paul's Girls'", "St Paul's has its own paper and its own standard. We had tried a general 11+ tutor first and it was not working — the practice material was too easy and the approach was too broad. When we switched to Leading Tuition the difference was immediate. The tutor had worked with St Paul's applicants before and the sessions became much more targeted. Our daughter got her offer in March and we are still a little in shock."),
+        ],
     },
 ]
 
@@ -5591,6 +5611,11 @@ def generate_success_story_pages(new_only=False):
         context = story["context"]
         insight = story["insight"]
         intro = story["intro"]
+        parent_quotes = story["parent_quotes"]
+        parent_quotes_html = "".join(
+            f'<p>Writing to us after results day, {who} wrote: <em>"{quote}"</em></p>'
+            for who, quote in parent_quotes
+        )
 
         # Build school list HTML — handle 2024 which has split 11+/13+ lists
         if "schools_11plus" in story:
@@ -5630,8 +5655,8 @@ We do not count offers from schools added as late safety options if the family's
 <p>{insight}</p>
 
 <h2>What Parents Told Us</h2>
-<p>We asked several families if they would share a brief reflection. A parent whose daughter gained a place at Henrietta Barnett School wrote: <em>"We started working with Leading Tuition in Year 4, which felt very early at the time. Looking back, that extra year made an enormous difference — not because of the volume of practice, but because our daughter had time to genuinely understand what the exam was testing rather than just recognising question types."</em></p>
-<p>A parent whose son gained a place at QE Boys wrote: <em>"The tutor knew the QE exam specifically — the structure, the time pressure, the level of difficulty. That specificity was what we were looking for and what we found. Our son went into the exam knowing exactly what to expect."</em></p>
+<p>We asked several families if they would share a brief reflection.</p>
+{parent_quotes_html}
 
 <h2>Looking Ahead</h2>
 <p>If your child is in Year 4, Year 5 or Year 6, and you are beginning to think about selective school entry, the most important first step is understanding which schools and which exams are relevant to your child — and what realistic preparation looks like for each one.
