@@ -645,24 +645,117 @@ subjects across AQA, Edexcel, OCR, and WJEC exam boards.</p>
 
     # ── 6: Blog index ─────────────────────────────────────────────────────────
     posts = load_csv("blog_topics.csv")
-    blog_items = []
-    for row in posts:
-        title = row["title"]
-        slug = title.lower()
-        slug = re.sub(r"[^\w\s-]", "", slug)
-        slug = re.sub(r"\s+", "-", slug).strip("-")
-        blog_items.append(f'  <p><a href="{slug}"><strong>{title}</strong></a></p>')
+
+    # Build slug from title (same logic as generate_blog_pages)
+    def _slugify(title):
+        s = title.lower()
+        s = re.sub(r"[^\w\s-]", "", s)
+        return re.sub(r"\s+", "-", s).strip("-")
+
+    # ── Success stories (pinned at top) ───────────────────────────────────────
+    success_items = []
+    for story in SUCCESS_STORIES:
+        success_items.append(
+            f'  <p><a href="{story["slug"]}"><strong>{story["title"]}</strong></a>'
+            f' <em style="color:#666;font-size:0.9em;">— {story["success_rate"]}% success rate</em></p>'
+        )
+
+    # ── Categorised blog posts ─────────────────────────────────────────────────
+    BLOG_CATEGORIES = {
+        "11+ &amp; School Entrance": [
+            "what-is-the-11-plus-exam",
+            "the-6-month-11-plus-countdown-a-monthly-study-milestone-plan",
+            "11-plus-pass-marks-by-region-how-high-do-you-need-to-score",
+            "gl-assessment-vs-cem-vs-local-school-exams-the-2026-format-guide",
+            "iseb-common-pre-test-a-parents-guide-for-2026",
+            "the-north-london-girls-schools-11-what-parents-need-to-know",
+            "the-11-plus-london-consortium-schools-which-schools-share-the-paper-and-how-offers-are-decided",
+            "11-plus-exam-dates-2025-2026-independent-and-grammar-school-timetable",
+            "common-entrance-13-plus-a-subject-by-subject-guide-to-marks-and-what-schools-require",
+            "2026-grammar-school-league-tables-top-schools-ranked-by-gcse-results",
+            "grammar-school-vs-private-school-which-is-best-for-your-child",
+            "fsce-11-exam-2026-what-it-is-and-how-to-prepare",
+            "manchester-grammar-school-11-format-past-papers-and-how-to-prepare",
+            "creative-writing-for-the-11-plus-how-to-score-in-the-top-5",
+            "11-english-comprehension-question-types-mark-schemes-and-practice-advice",
+            "11-answer-sheet-practice-how-to-fill-in-bubble-sheets-and-avoid-costly-mistakes",
+            "is-my-child-on-track-for-the-11-a-year-by-year-readiness-guide",
+            "is-the-11-plus-too-stressful-how-to-build-resilience-in-your-child",
+        ],
+        "Medical School &amp; Oxbridge": [
+            "ucat-score-requirements-for-uk-medical-schools-2025",
+            "how-to-prepare-for-a-medical-school-mmi-interview",
+            "a-level-subject-choices-for-medicine-applications",
+            "ucat-cut-offs-for-every-uk-medical-school-5-year-trends-and-2026-predictions",
+            "oxford-cambridge-and-ucl-medicine-mastering-the-ucat-for-elite-universities",
+            "low-ucat-score-top-5-strategic-uk-medical-schools-to-apply-to-in-2026",
+            "mmi-interviews-2026-50-real-scenarios-and-model-answer-frameworks",
+            "medical-schools-that-dont-care-about-gcses-a-strategic-selection-guide",
+            "how-to-get-2800-in-the-ucat-a-week-by-week-revision-roadmap",
+            "oxbridge-interview-questions-100-real-examples-for-every-major-subject",
+            "what-is-super-curricular-how-to-build-a-profile-for-oxford-and-cambridge",
+            "oxford-vs-cambridge-which-university-is-easier-for-your-subject",
+            "oxford-vs-cambridge-interview-key-differences-by-subject-2026",
+            "contextual-admissions-how-your-background-can-lower-your-offer-requirements",
+            "the-new-esat-and-tmua-exams-a-preparation-guide-for-oxbridge-2026",
+            "oxford-maths-interview-questions-2026-with-step-by-step-model-answers",
+            "cambridge-medicine-interview-questions-2026-science-questions-and-how-to-answer-them",
+            "oxford-ppe-interview-questions-2026-with-model-answers",
+            "cambridge-law-interview-questions-2026-real-examples-and-how-to-structure-answers",
+            "oxford-physics-interview-questions-2026-estimation-problems-and-worked-solutions",
+            "the-hardest-oxford-and-cambridge-interview-questions-2026-with-model-answers",
+            "how-to-answer-oxford-interview-questions-when-you-dont-know-the-answer",
+            "what-grade-do-you-need-for-oxbridge-chemistry",
+        ],
+        "GCSE, A-Level &amp; Tuition": [
+            "how-long-does-gcse-revision-take",
+            "triple-vs-double-science-gcse",
+            "online-tutoring-vs-in-person-tutoring-for-gcse",
+            "how-to-find-a-good-private-tutor",
+            "is-private-tuition-worth-it-a-cost-benefit-analysis-of-1-to-1-learning",
+            "ucas-personal-statement-guide",
+            "the-new-ucas-personal-statement-2026-a-guide-to-the-3-question-format",
+        ],
+    }
+
+    # Build a lookup: slug → title from CSV
+    slug_to_title = {_slugify(row["title"]): row["title"] for row in posts}
+
+    categorised_slugs = {s for slugs in BLOG_CATEGORIES.values() for s in slugs}
+
+    category_html = ""
+    for cat_name, slugs in BLOG_CATEGORIES.items():
+        category_html += f"<h2>{cat_name}</h2>\n"
+        for slug in slugs:
+            title = slug_to_title.get(slug, slug.replace("-", " ").title())
+            category_html += f'  <p><a href="{slug}"><strong>{title}</strong></a></p>\n'
+
+    # Any posts in the CSV that weren't manually categorised go into a catch-all
+    uncategorised = [
+        row for row in posts
+        if _slugify(row["title"]) not in categorised_slugs
+        and _slugify(row["title"]) not in {s["slug"] for s in SUCCESS_STORIES}
+    ]
+    if uncategorised:
+        category_html += "<h2>More Articles</h2>\n"
+        for row in uncategorised:
+            slug = _slugify(row["title"])
+            category_html += f'  <p><a href="{slug}"><strong>{row["title"]}</strong></a></p>\n'
+
     blog_content = (
-        "<p>Practical, expert-backed guidance for UK parents and students on GCSEs, "
-        "A-Levels, medical school applications, and more.</p>\n"
-        + "\n".join(blog_items)
+        "<p>Practical, expert-backed guidance for UK parents and students on selective school "
+        "entry, GCSEs, A-Levels, medical school applications, Oxbridge, and more.</p>\n"
+        "<h2>&#11088; Student Success Stories</h2>\n"
+        + "\n".join(success_items)
+        + "\n" + category_html
     )
+
     blog_crumb = breadcrumb_schema("blog", "blog", "Blog")
     blog_html = page_template(
         "Tutoring Advice and Guides",
         blog_content,
-        meta_desc=("Expert tutoring advice for UK parents and students. Guides on GCSEs, A-Levels, "
-                   "UCAT, MMI, Oxbridge, and 11+. From Leading Tuition."),
+        meta_desc=("Expert tutoring advice for UK parents and students. School entrance results, "
+                   "11+ guides, Oxbridge interview prep, UCAT, GCSE and A-Level advice from Leading Tuition."),
         slug="blog",
         page_type="blog",
         section="",
@@ -5843,4 +5936,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-                      

@@ -426,10 +426,19 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
     <li class="nav-dropdown">
       <a href="/blog/" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
-        <span class="nav-dropdown-category">11+ &amp; Grammar School</span>
+        <span class="nav-dropdown-category">&#11088; Student Success Stories</span>
+        <a href="/blog/2025-school-entrance-results">Results 2025 — 95% Success Rate</a>
+        <a href="/blog/2024-school-entrance-results">Results 2024 — 11+ &amp; 13+</a>
+        <a href="/blog/2023-school-entrance-results">Results 2023 — Our Strongest Year</a>
+        <a href="/blog/2022-school-entrance-results">Results 2022</a>
+        <a href="/blog/2021-school-entrance-results">Results 2021</a>
+        <span class="nav-dropdown-category">11+ &amp; School Entrance</span>
         <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
         <a href="/blog/the-6-month-11-plus-countdown-a-monthly-study-milestone-plan">11 Plus 6-Month Countdown</a>
         <a href="/blog/2026-grammar-school-league-tables-top-schools-ranked-by-gcse-results">Grammar School League Tables 2026</a>
+        <a href="/blog/the-11-plus-london-consortium-schools-which-schools-share-the-paper-and-how-offers-are-decided">London Consortium Schools Guide</a>
+        <a href="/blog/11-plus-exam-dates-2025-2026-independent-and-grammar-school-timetable">11+ Exam Dates 2025–2026</a>
+        <a href="/blog/common-entrance-13-plus-a-subject-by-subject-guide-to-marks-and-what-schools-require">Common Entrance 13+ Guide</a>
         <span class="nav-dropdown-category">Medical &amp; Oxbridge</span>
         <a href="/blog/ucat-score-requirements-for-uk-medical-schools-2025">UCAT Score Requirements 2025</a>
         <a href="/blog/how-to-prepare-for-a-medical-school-mmi-interview">How to Prepare for MMI Interviews</a>
@@ -438,7 +447,7 @@ def service_page_template(title, content, meta_desc="", slug="", og_type="websit
         <a href="/blog/how-long-does-gcse-revision-take">How Long Does GCSE Revision Take?</a>
         <a href="/blog/how-to-find-a-good-private-tutor">How to Find a Good Private Tutor</a>
         <a href="/blog/is-private-tuition-worth-it-a-cost-benefit-analysis-of-1-to-1-learning">Is Private Tuition Worth It?</a>
-        <a href="/blog/" style="font-weight:600;color:#e63946;">View all 30 posts &rarr;</a>
+        <a href="/blog/" style="font-weight:600;color:#e63946;">View all posts &rarr;</a>
       </div>
     </li>
 
@@ -912,10 +921,19 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
     <li class="nav-dropdown">
       <a href="/blog/" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
-        <span class="nav-dropdown-category">11+ &amp; Grammar School</span>
+        <span class="nav-dropdown-category">&#11088; Student Success Stories</span>
+        <a href="/blog/2025-school-entrance-results">Results 2025 — 95% Success Rate</a>
+        <a href="/blog/2024-school-entrance-results">Results 2024 — 11+ &amp; 13+</a>
+        <a href="/blog/2023-school-entrance-results">Results 2023 — Our Strongest Year</a>
+        <a href="/blog/2022-school-entrance-results">Results 2022</a>
+        <a href="/blog/2021-school-entrance-results">Results 2021</a>
+        <span class="nav-dropdown-category">11+ &amp; School Entrance</span>
         <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
         <a href="/blog/the-6-month-11-plus-countdown-a-monthly-study-milestone-plan">11 Plus 6-Month Countdown</a>
         <a href="/blog/2026-grammar-school-league-tables-top-schools-ranked-by-gcse-results">Grammar School League Tables 2026</a>
+        <a href="/blog/the-11-plus-london-consortium-schools-which-schools-share-the-paper-and-how-offers-are-decided">London Consortium Schools Guide</a>
+        <a href="/blog/11-plus-exam-dates-2025-2026-independent-and-grammar-school-timetable">11+ Exam Dates 2025–2026</a>
+        <a href="/blog/common-entrance-13-plus-a-subject-by-subject-guide-to-marks-and-what-schools-require">Common Entrance 13+ Guide</a>
         <span class="nav-dropdown-category">Medical &amp; Oxbridge</span>
         <a href="/blog/ucat-score-requirements-for-uk-medical-schools-2025">UCAT Score Requirements 2025</a>
         <a href="/blog/how-to-prepare-for-a-medical-school-mmi-interview">How to Prepare for MMI Interviews</a>
@@ -924,7 +942,7 @@ def blog_page_template(title, content, meta_desc="", slug="", og_type="article",
         <a href="/blog/how-long-does-gcse-revision-take">How Long Does GCSE Revision Take?</a>
         <a href="/blog/how-to-find-a-good-private-tutor">How to Find a Good Private Tutor</a>
         <a href="/blog/is-private-tuition-worth-it-a-cost-benefit-analysis-of-1-to-1-learning">Is Private Tuition Worth It?</a>
-        <a href="/blog/" style="font-weight:600;color:#e63946;">View all 30 posts &rarr;</a>
+        <a href="/blog/" style="font-weight:600;color:#e63946;">View all posts &rarr;</a>
       </div>
     </li>
 
@@ -1430,10 +1448,19 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
     <li class="nav-dropdown">
       <a href="/blog/" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
-        <span class="nav-dropdown-category">11+ &amp; Grammar School</span>
+        <span class="nav-dropdown-category">&#11088; Student Success Stories</span>
+        <a href="/blog/2025-school-entrance-results">Results 2025 — 95% Success Rate</a>
+        <a href="/blog/2024-school-entrance-results">Results 2024 — 11+ &amp; 13+</a>
+        <a href="/blog/2023-school-entrance-results">Results 2023 — Our Strongest Year</a>
+        <a href="/blog/2022-school-entrance-results">Results 2022</a>
+        <a href="/blog/2021-school-entrance-results">Results 2021</a>
+        <span class="nav-dropdown-category">11+ &amp; School Entrance</span>
         <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
         <a href="/blog/the-6-month-11-plus-countdown-a-monthly-study-milestone-plan">11 Plus 6-Month Countdown</a>
         <a href="/blog/2026-grammar-school-league-tables-top-schools-ranked-by-gcse-results">Grammar School League Tables 2026</a>
+        <a href="/blog/the-11-plus-london-consortium-schools-which-schools-share-the-paper-and-how-offers-are-decided">London Consortium Schools Guide</a>
+        <a href="/blog/11-plus-exam-dates-2025-2026-independent-and-grammar-school-timetable">11+ Exam Dates 2025–2026</a>
+        <a href="/blog/common-entrance-13-plus-a-subject-by-subject-guide-to-marks-and-what-schools-require">Common Entrance 13+ Guide</a>
         <span class="nav-dropdown-category">Medical &amp; Oxbridge</span>
         <a href="/blog/ucat-score-requirements-for-uk-medical-schools-2025">UCAT Score Requirements 2025</a>
         <a href="/blog/how-to-prepare-for-a-medical-school-mmi-interview">How to Prepare for MMI Interviews</a>
@@ -1442,7 +1469,7 @@ def location_page_template(city, title, content, meta_desc="", slug="", og_type=
         <a href="/blog/how-long-does-gcse-revision-take">How Long Does GCSE Revision Take?</a>
         <a href="/blog/how-to-find-a-good-private-tutor">How to Find a Good Private Tutor</a>
         <a href="/blog/is-private-tuition-worth-it-a-cost-benefit-analysis-of-1-to-1-learning">Is Private Tuition Worth It?</a>
-        <a href="/blog/" style="font-weight:600;color:#e63946;">View all 30 posts &rarr;</a>
+        <a href="/blog/" style="font-weight:600;color:#e63946;">View all posts &rarr;</a>
       </div>
     </li>
 
@@ -1928,10 +1955,19 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
     <li class="nav-dropdown">
       <a href="/blog/" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
-        <span class="nav-dropdown-category">11+ &amp; Grammar School</span>
+        <span class="nav-dropdown-category">&#11088; Student Success Stories</span>
+        <a href="/blog/2025-school-entrance-results">Results 2025 — 95% Success Rate</a>
+        <a href="/blog/2024-school-entrance-results">Results 2024 — 11+ &amp; 13+</a>
+        <a href="/blog/2023-school-entrance-results">Results 2023 — Our Strongest Year</a>
+        <a href="/blog/2022-school-entrance-results">Results 2022</a>
+        <a href="/blog/2021-school-entrance-results">Results 2021</a>
+        <span class="nav-dropdown-category">11+ &amp; School Entrance</span>
         <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
         <a href="/blog/the-6-month-11-plus-countdown-a-monthly-study-milestone-plan">11 Plus 6-Month Countdown</a>
         <a href="/blog/2026-grammar-school-league-tables-top-schools-ranked-by-gcse-results">Grammar School League Tables 2026</a>
+        <a href="/blog/the-11-plus-london-consortium-schools-which-schools-share-the-paper-and-how-offers-are-decided">London Consortium Schools Guide</a>
+        <a href="/blog/11-plus-exam-dates-2025-2026-independent-and-grammar-school-timetable">11+ Exam Dates 2025–2026</a>
+        <a href="/blog/common-entrance-13-plus-a-subject-by-subject-guide-to-marks-and-what-schools-require">Common Entrance 13+ Guide</a>
         <span class="nav-dropdown-category">Medical &amp; Oxbridge</span>
         <a href="/blog/ucat-score-requirements-for-uk-medical-schools-2025">UCAT Score Requirements 2025</a>
         <a href="/blog/how-to-prepare-for-a-medical-school-mmi-interview">How to Prepare for MMI Interviews</a>
@@ -1940,7 +1976,7 @@ def page_template(title, content, meta_desc="", slug="", og_type="website", page
         <a href="/blog/how-long-does-gcse-revision-take">How Long Does GCSE Revision Take?</a>
         <a href="/blog/how-to-find-a-good-private-tutor">How to Find a Good Private Tutor</a>
         <a href="/blog/is-private-tuition-worth-it-a-cost-benefit-analysis-of-1-to-1-learning">Is Private Tuition Worth It?</a>
-        <a href="/blog/" style="font-weight:600;color:#e63946;">View all 30 posts &rarr;</a>
+        <a href="/blog/" style="font-weight:600;color:#e63946;">View all posts &rarr;</a>
       </div>
     </li>
 
