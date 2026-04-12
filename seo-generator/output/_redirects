@@ -10,9 +10,7 @@
 /get-started                                    /consultation                              301
 /get-started/                                   /consultation                              301
 /contact/                                       /contact                                   301
-/blog/oxford-vs-cambridge-which-university-is-easier-for-your-subject/  /blog/oxford-vs-cambridge-which-university-is-easier-for-your-subject  301
-/blog/triple-vs-double-science-gcse/            /blog/triple-vs-double-science-gcse            301
-/blog/ucat-cut-offs-for-every-uk-medical-school-5-year-trends-and-2026-predictions/  /blog/ucat-cut-offs-for-every-uk-medical-school-5-year-trends-and-2026-predictions  301
+# Blog trailing-slash redirects removed — Cloudflare Pages handles .html files natively at both /slug and /slug/
 
 # ── Ghost URLs (seo-generator/output prefix — crawled when repo root was served)
 /seo-generator/output/index.html                /                                          301
