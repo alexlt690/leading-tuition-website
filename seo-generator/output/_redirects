@@ -27,3 +27,7 @@
 /seo-generator/output/how-to-find-a-good-private-tutor.html /blog/how-to-find-a-good-private-tutor 301
 /seo-generator/output/what-grade-do-you-need-for-oxbridge-chemistry.html /blog/what-grade-do-you-need-for-oxbridge-chemistry 301
 /seo-generator/output/what-is-the-11-plus-exam.html /blog/what-is-the-11-plus-exam        301
+
+# ── PPE blog post → oxbridge interview page
+/blog/oxford-ppe-interview-questions-2026-with-model-answers      /oxbridge-interviews/ppe-interview/  301
+/blog/oxford-ppe-interview-questions-2026-with-model-answers/     /oxbridge-interviews/ppe-interview/  301
