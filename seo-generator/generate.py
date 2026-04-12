@@ -3861,12 +3861,7 @@ def generate_admissions_test_pages(limit=None, new_only=False):
                 "telephone": "+44 207 167 8440",
                 "email": "hello@leadingtuition.co.uk"
             },
-            "areaServed": {"@type": "Country", "name": "United Kingdom"},
-            "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.8", "bestRating": "5",
-                "worstRating": "1", "ratingCount": "54", "reviewCount": "54"
-            }
+            "areaServed": {"@type": "Country", "name": "United Kingdom"}
         }
         import json as _json
         service_schema = f'<script type="application/ld+json">\n{_json.dumps(schema, indent=2, ensure_ascii=False)}\n</script>'
@@ -4222,12 +4217,7 @@ def generate_oxbridge_interview_pages(limit=None, new_only=False):
                 "telephone": "+44 207 167 8440",
                 "email": "hello@leadingtuition.co.uk"
             },
-            "areaServed": {"@type": "Country", "name": "United Kingdom"},
-            "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.8", "bestRating": "5",
-                "worstRating": "1", "ratingCount": "54", "reviewCount": "54"
-            }
+            "areaServed": {"@type": "Country", "name": "United Kingdom"}
         }
         service_schema = f'<script type="application/ld+json">\n{_json.dumps(schema, indent=2, ensure_ascii=False)}\n</script>'
         breadcrumb = breadcrumb_schema("oxbridge-interview", slug, title)
