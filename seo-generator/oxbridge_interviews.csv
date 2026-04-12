@@ -17,3 +17,30 @@ geography-interview,Oxford and Cambridge Geography Interviews,Geography,No writt
 psychology-interview,Oxford and Cambridge Psychology Interviews,Experimental Psychology / Psychological and Behavioural Sciences,No written test,No written test,oxford cambridge psychology interview preparation
 natural-sciences-interview,Cambridge Natural Sciences Interviews,Natural Sciences,N/A (Oxford has separate sciences),ESAT,cambridge natural sciences interview preparation
 philosophy-interview,Oxford and Cambridge Philosophy Interviews,Philosophy,PHIL,No written test,oxford cambridge philosophy interview preparation
+oxford-maths-interview,Oxford Mathematics Interview,Mathematics,MAT,N/A,oxford maths interview preparation
+oxford-physics-interview,Oxford Physics Interview,Physics,PAT,N/A,oxford physics interview preparation
+oxford-chemistry-interview,Oxford Chemistry Interview,Chemistry,CAT (Chemistry Aptitude Test),N/A,oxford chemistry interview preparation
+oxford-computer-science-interview,Oxford Computer Science Interview,Computer Science,MAT,N/A,oxford computer science interview preparation
+oxford-engineering-interview,Oxford Engineering Science Interview,Engineering Science,PAT,N/A,oxford engineering interview preparation
+oxford-biology-interview,Oxford Biological Sciences Interview,Biological Sciences,No written test,N/A,oxford biology interview preparation
+oxford-medicine-interview,Oxford Medicine Interview,Medicine,No written test (UCAT + interview),N/A,oxford medicine interview preparation
+oxford-economics-management-interview,Oxford Economics and Management Interview,Economics and Management,TSA,N/A,oxford economics and management interview preparation
+oxford-english-interview,Oxford English Interview,English Language and Literature,ELAT,N/A,oxford english interview preparation
+oxford-history-interview,Oxford History Interview,History,HAT,N/A,oxford history interview preparation
+oxford-philosophy-interview,Oxford Philosophy Interview,Philosophy (PPE and combined courses),TSA / PHIL,N/A,oxford philosophy interview preparation
+oxford-geography-interview,Oxford Geography Interview,Geography,No written test,N/A,oxford geography interview preparation
+oxford-modern-languages-interview,Oxford Modern Languages Interview,Modern Languages,MLAT,N/A,oxford modern languages interview preparation
+oxford-veterinary-medicine-interview,Oxford Veterinary Medicine Interview,Veterinary Medicine,No written test,N/A,oxford veterinary medicine interview preparation
+cambridge-maths-interview,Cambridge Mathematics Interview,Mathematics,N/A,STEP / TMUA,cambridge maths interview preparation
+cambridge-natural-sciences-interview,Cambridge Natural Sciences Interview,Natural Sciences,N/A,ESAT,cambridge natural sciences interview preparation
+cambridge-computer-science-interview,Cambridge Computer Science Interview,Computer Science,N/A,TMUA,cambridge computer science interview preparation
+cambridge-engineering-interview,Cambridge Engineering Interview,Engineering,N/A,ESAT,cambridge engineering interview preparation
+cambridge-economics-interview,Cambridge Economics Interview,Economics,N/A,TMUA,cambridge economics interview preparation
+cambridge-english-interview,Cambridge English Interview,English,N/A,No written test,cambridge english interview preparation
+cambridge-history-interview,Cambridge History Interview,History,N/A,No written test,cambridge history interview preparation
+cambridge-philosophy-interview,Cambridge Philosophy Interview,Philosophy,N/A,No written test,cambridge philosophy interview preparation
+cambridge-geography-interview,Cambridge Geography Interview,Geography,N/A,No written test,cambridge geography interview preparation
+cambridge-modern-languages-interview,Cambridge Modern Languages Interview,Modern and Medieval Languages,N/A,No written test,cambridge modern languages interview preparation
+cambridge-hsps-interview,Cambridge HSPS Interview,Human Social and Political Sciences,N/A,No written test,cambridge hsps interview preparation
+cambridge-veterinary-medicine-interview,Cambridge Veterinary Medicine Interview,Veterinary Medicine,N/A,No written test,cambridge veterinary medicine interview preparation
+cambridge-medicine-interview,Cambridge Medicine Interview,Medicine,N/A,No written test (UCAT + interview),cambridge medicine interview preparation
