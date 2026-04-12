@@ -2568,31 +2568,33 @@ Requirements:
 {master_context}
 
 Before writing, think through:
-1. Oxford PPE interviews test three disciplines — what question types appear for each (Philosophy: logic and thought experiments; Politics: current affairs + political theory; Economics: micro/macro concepts and data)?
-2. How does Oxford PPE differ from similar multi-discipline interviews — what is the Oxford tutorial style and how does it show up in interview?
-3. What does a strong PPE answer look like — how should candidates link 2026 current affairs to philosophical and economic frameworks?
+1. Oxford PPE interviews test three disciplines — what question types appear for each (Philosophy: logic, thought experiments, conceptual analysis; Politics: current affairs + political theory; Economics: micro/macro concepts, graphs, data)?
+2. Philosophy is the discipline most candidates underprepare for — what does a strong philosophical argument look like under interview pressure? How do tutors push back and what should candidates do when challenged?
+3. What does a strong PPE answer look like — how should candidates link 2026 current affairs to philosophical and economic frameworks in a single coherent answer?
 
 Now write a detailed blog post in HTML: {title}
 
 Target keyword: {keyword}
 
 Requirements:
-- Length: 1,100 to 1,400 words
-- Opening paragraph (40–60 words): direct answer — what Oxford PPE interviews test across all three disciplines, the tutorial format, and why model answers help. Include "Updated March 2026 for 2026/27 entry."
+- Length: 1,400 to 1,700 words
+- Opening paragraph (40–60 words): direct answer — what Oxford PPE interviews test across all three disciplines, the tutorial format, and why model answers help. Include "Updated April 2026 for 2026/27 entry."
 - Include these exact <h2> sections in this order:
   1. What Do Oxford PPE Interviews Actually Test in 2026?
-  2. Philosophy Questions: Logic Problems and Thought Experiments with Model Answers
-  3. Politics Questions: Current Affairs and Political Theory — 4 Real-Style Examples
-  4. Economics Questions: Microeconomics, Data and Opportunity Cost Problems
-  5. Linking Current Affairs to PPE Frameworks: A 2026 Cheat Sheet
-  6. How Oxford PPE Interviews Are Structured and What to Expect
-  7. Frequently Asked Questions
+  2. Philosophy Questions: Thought Experiments and Logic — 4 Full Model Answers
+  3. Philosophy Under Pressure: How to Handle Tutor Push-Back and Maintain Your Argument
+  4. Politics Questions: Current Affairs and Political Theory — 4 Real-Style Examples
+  5. Economics Questions: Graphs, Opportunity Cost, and Microeconomics Problems with Worked Solutions
+  6. Linking All Three Disciplines: A 2026 Cheat Sheet for PPE
+  7. How Oxford PPE Interviews Are Structured and What to Expect
+  8. Frequently Asked Questions
 - Must include:
   - A table: Discipline | Example question | Framework to use | What tutors reward
-  - Philosophy examples: thought experiments (trolley problem variations, personal identity), syllogisms, logic puzzles
-  - Politics examples: 2026-relevant topics (AI regulation, fiscal policy) linked to social contract, legitimacy, democratic theory
-  - Economics examples: supply/demand shifts, opportunity cost problems, interpreting a simple graph or statistic
-  - The cheat sheet: 3–4 current 2026 news items mapped to core PPE concepts
+  - Philosophy section must be the most detailed: 4 worked examples covering (a) a trolley-problem variation with a full model answer and defence, (b) a personal identity puzzle, (c) a logic/syllogism problem, (d) a "what is justice?" style open question — each with a 3–4 sentence model answer AND a note on how to respond if the tutor challenges your position
+  - Philosophy push-back section: a sample tutor challenge ("But doesn't that imply X?") and 3 techniques for maintaining a position while genuinely engaging with the objection
+  - Politics examples: 2026-relevant topics (AI governance, fiscal austerity, democratic backsliding) linked to social contract theory, Rawls, democratic legitimacy
+  - Economics examples: supply/demand shift with a graph description, a simple opportunity cost problem with full workings, one data interpretation question
+  - The cheat sheet: 4 current 2026 news items each mapped to a Philosophy concept, a Politics theory, and an Economics principle
   - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Oxford PPE and philosophy interview questions with model answers</a>
 - FAQ must address: whether candidates need prior economics A-level, how many Oxford PPE interviews candidates have, whether interviewers share questions across colleges, and how much current affairs knowledge is required
 """
@@ -2603,31 +2605,34 @@ Requirements:
 
 Before writing, think through:
 1. What are the genuine structural differences between Oxford and Cambridge interviews (format, number, length, use of material, college variation)?
-2. For each major subject — Maths, Medicine, PPE/HSS, Law, Natural Sciences/Physics — how does the question style and emphasis differ between the two universities?
-3. What should a candidate do differently in preparation depending on whether they applied to Oxford or Cambridge?
+2. For each major subject — Maths, Medicine, Sciences, Engineering, Economics, History, English, Philosophy/PPE, Geography — how does the question style and emphasis differ?
+3. What concrete example question would an Oxford interviewer vs Cambridge interviewer ask for the same subject — and why does that difference matter for preparation?
 
 Now write a detailed blog post in HTML: {title}
+
+Use this as the page H1: Oxford vs Cambridge Interview 2026: Key Differences by Subject with Model Questions
 
 Target keyword: {keyword}
 
 Requirements:
-- Length: 1,200 to 1,500 words
-- Opening paragraph (40–60 words): direct answer — Oxford and Cambridge both use subject-based interviews, but the style, format, and emphasis differ in ways that matter for preparation. Include "Updated March 2026 for 2026/27 entry."
+- Length: 1,500 to 1,800 words
+- Opening paragraph (40–60 words): direct answer — Oxford and Cambridge both use subject-based tutorial/supervision-style interviews, but the question style, format, and depth of follow-up differ in ways that fundamentally change how candidates should prepare. Include "Updated April 2026 for 2026/27 entry."
 - Include these exact <h2> sections in this order:
   1. Oxford vs Cambridge Interview Format: Structure, Length, and Number of Interviews
-  2. Maths: Oxford First Principles vs Cambridge Scaffolded Problems
-  3. Medicine: Oxford's Ethics Mix vs Cambridge's Science Focus
-  4. Law: Oxford Unseen Passages vs Cambridge Legal Logic
-  5. Sciences and Engineering: How Practical and Theoretical Questions Differ
-  6. PPE, History, and Humanities: Tutorial-Style vs Supervision-Style Questions
+  2. Maths: Oxford First Principles vs Cambridge Applied Problems — with Real Example Questions
+  3. Medicine: Oxford's Ethics and Science Mix vs Cambridge's Pure Science Focus
+  4. Sciences and Engineering: How Practical and Theoretical Emphasis Differs
+  5. Economics, PPE, and Social Sciences: Conceptual Frameworks vs Current Affairs
+  6. English, History, and Humanities: Tutorial-Style Close Reading vs Supervision-Style Debate
   7. Frequently Asked Questions
 - Must include:
-  - A master comparison table: Subject | Oxford style | Cambridge style | Key preparation difference
-  - Concrete examples of a question type for each university per subject
-  - The college variation point: both universities show significant college-to-college variation — candidates should research their specific college
-  - Practical takeaways: "If you applied to Oxford Maths, prioritise X; if Cambridge Maths, prioritise Y"
+  - A master comparison table with columns: Subject | Oxford question style | Cambridge question style | Key prep difference
+  - For each subject section: one concrete example Oxford question AND one concrete Cambridge question for the same subject, showing the stylistic difference
+  - Model answer sketch (2–3 sentences) showing the approach for each example question
+  - The college variation point: both universities show significant college-to-college variation — candidates must research their specific college
+  - Practical "If you applied to Oxford [Subject], prioritise X; if Cambridge [Subject], prioritise Y" takeaways throughout
   - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">subject-specific Oxford and Cambridge interview questions and model answers</a>
-- FAQ must address: whether candidates can apply to both Oxford and Cambridge (they cannot), how to find college-specific interview styles, whether subject choice affects the number of interviews, and whether interview performance outweighs predicted grades
+- FAQ must address: whether candidates can apply to both Oxford and Cambridge (they cannot in the same year), how to find college-specific interview styles, whether subject choice affects the number of interviews, and whether interview performance outweighs predicted grades
 """
 
     if slug == "cambridge-law-interview-questions-2026-real-examples-and-how-to-structure-answers":
@@ -2857,6 +2862,742 @@ Requirements:
 - Must include in section 7: Winchester College (own papers, Winchester College entrance examination, entirely separate from CE syllabus), Charterhouse (own papers for scholarship candidates), and a brief note that Eton King's Scholars sit a separate scholarship examination
 - At a natural point where 13+ preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/13-plus">Common Entrance past papers and 13+ preparation resources</a>
 - FAQ must address: whether CE marks are standardised across all schools, how the ISEB pre-test at Year 6 relates to the CE at Year 8, what happens if a pupil fails CE after receiving a conditional offer, and how CE differs from school scholarship examinations
+"""
+
+    # ── New Oxbridge interview subject pages ──────────────────────────────────
+
+    if slug == "oxford-chemistry-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Oxford Chemistry interviews test both A-level mastery and genuine curiosity — what question types appear (organic mechanism arrow-pushing, periodic trends, electrochemistry, spectroscopy, reaction kinetics, novel synthesis problems)?
+2. What does a strong Oxford Chemistry answer look like — how do candidates show chemical intuition rather than just reciting facts?
+3. Which topics most frequently trip up candidates and why?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Oxford Chemistry interviews go beyond A-level recall, testing how candidates apply chemical principles to unfamiliar problems. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. What Oxford Chemistry Interviews Test in 2026
+  2. Organic Chemistry Questions: Mechanism Arrow-Pushing with Full Model Answers
+  3. Inorganic and Physical Chemistry: Trends, Bonding, and Energetics Problems
+  4. Novel and Unfamiliar Problems: Applying Principles You Know to Situations You Haven't Seen
+  5. The Most Common Mistakes Oxford Chemistry Candidates Make
+  6. How to Prepare: What to Read and Practise Before Interview Day
+  7. Frequently Asked Questions
+- Must include:
+  - 5 fully worked Q&A examples across the subject sections, each with the question, a model answer, and a note on what the interviewer is actually assessing
+  - At least one organic mechanism problem shown step by step (with arrow notation described in text)
+  - A "common mistakes" table: Mistake | Why it happens | What to do instead
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Oxford Chemistry interview questions with full model answers</a>
+- FAQ must address: whether the Oxford Chemistry Aptitude Test (CAT) is used in the interview, how many interviews Oxford Chemistry applicants have, whether university-level chemistry is expected, and how to handle being given a mechanism you have never seen before
+"""
+
+    if slug == "cambridge-natural-sciences-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Cambridge Natural Sciences is unique — applicants are interviewed by two departments and must show breadth across sciences. What question types appear across Biology, Chemistry, Physics, and Earth Sciences tracks?
+2. What does it mean to show "cross-disciplinary thinking" and how do interviewers test for it?
+3. How does the NatSci interview differ from applying to a single science subject — what should candidates emphasise that a pure Chemistry or Biology applicant would not?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Cambridge NatSci interviews test breadth as well as depth, with candidates typically interviewed in two subjects. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. How Cambridge Natural Sciences Interviews Work in 2026
+  2. Biology Track Questions: Experimental Design and Data Interpretation with Model Answers
+  3. Chemistry Track Questions: Mechanisms, Trends, and Applied Problems with Model Answers
+  4. Physics Track Questions: Conceptual Problems and Estimation with Model Answers
+  5. Showing Cross-Disciplinary Thinking: What Cambridge NatSci Tutors Actually Look For
+  6. Frequently Asked Questions
+- Must include:
+  - 5 worked Q&As across the subject tracks, each with model answer and tutor note
+  - A table: NatSci track | Typical interview format | Example question type | Key preparation focus
+  - A specific section on cross-disciplinary questions (e.g. applying physics principles to a biology problem) with one worked example
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Cambridge Natural Sciences interview questions and worked solutions</a>
+- FAQ must address: how many NatSci interviews Cambridge candidates typically have, whether candidates can be interviewed in subjects outside their A-level choices, how the pre-interview assessment relates to the interview, and what happens if a candidate underperforms in one of the two subject interviews
+"""
+
+    if slug == "cambridge-maths-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Cambridge Maths interviews emphasise applied problem-solving and the ability to work through unfamiliar problems under guidance — how does this differ from Oxford Maths (which leans to pure/proof-based)?
+2. What problem types appear (graph sketching, integration, series, proof by induction, combinatorics, geometry, real analysis introduction)?
+3. What does a strong Cambridge Maths interview answer look like — how should candidates vocalise their reasoning and handle being guided toward a solution?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Cambridge Maths interviews test how you think through problems, not just whether you know the answer. No formula sheets; reasoning aloud is essential. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. What Cambridge Maths Interviews Test in 2026
+  2. Graph Sketching and Calculus: 3 Worked Problems with Full Solutions
+  3. Proof and Pure Mathematics: How Cambridge Tests Mathematical Rigour
+  4. Problem-Solving Under Guidance: What to Do When You Get Stuck
+  5. Cambridge Maths vs Oxford Maths Interviews: Key Differences
+  6. Frequently Asked Questions
+- Must include:
+  - 5 fully worked problems across the sections, each with full step-by-step solution and a note on what reasoning the interviewer expects to see verbalised
+  - A graph sketching example with key features described (asymptotes, turning points, behaviour at infinity)
+  - A practical "what to say when you don't know where to start" script for candidates
+  - Connection to STEP preparation: Cambridge expects STEP preparation and problem-sets — explain how to use STEP for interview prep
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Cambridge Maths interview questions with step-by-step worked solutions</a>
+- FAQ must address: whether Cambridge Maths interviews use the STEP paper directly, how many interviews Cambridge Maths candidates typically have, whether A-level Further Maths is essential, and how to prepare if you find STEP questions too hard
+"""
+
+    if slug == "oxford-computer-science-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Oxford CS interviews test algorithmic thinking, logic, and mathematical reasoning — what problem types appear (algorithm tracing, big-O complexity, data structures, graph problems, logic puzzles, mathematical induction)?
+2. What does a strong Oxford CS answer look like — how do candidates show structured thinking rather than just producing code?
+3. How much programming experience is assumed and what mathematical background matters most?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Oxford CS interviews test how you think algorithmically and mathematically, not your coding fluency. No specific programming language is required. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. What Oxford Computer Science Interviews Test in 2026
+  2. Algorithm and Data Structure Questions: 4 Worked Examples
+  3. Logic and Discrete Mathematics Problems with Model Answers
+  4. Complexity and Problem Analysis: What Big-O Questions Actually Test
+  5. How to Think Aloud in an Oxford CS Interview
+  6. Frequently Asked Questions
+- Must include:
+  - 5 worked Q&As including: one algorithm trace (walk through a sorting algorithm step by step), one data structure choice question with justification, one logic puzzle, one big-O analysis
+  - Pseudo-code style used (not tied to any specific language) for any algorithm examples
+  - A "thinking aloud" model script: what a candidate says when working through an algorithm they haven't seen before
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Oxford Computer Science interview questions with worked solutions</a>
+- FAQ must address: whether candidates need to know a specific programming language, whether A-level Further Maths is required, how many interviews Oxford CS applicants typically have, and whether the MAT is used during the interview
+"""
+
+    if slug == "cambridge-economics-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Cambridge Economics interviews test economic reasoning from first principles — what question types appear (supply/demand shifts, game theory, market failure, current economic policy, data interpretation, elasticity problems)?
+2. What does a strong Cambridge Economics answer look like — how do candidates apply microeconomic and macroeconomic frameworks to unfamiliar scenarios?
+3. What 2026 economic events and policy debates are most relevant for candidates to know?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Cambridge Economics interviews test your ability to apply economic logic, not recall of textbook content. Graph drawing and thinking through trade-offs are central. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. What Cambridge Economics Interviews Test in 2026
+  2. Microeconomics Questions: Markets, Elasticity, and Game Theory with Model Answers
+  3. Macroeconomics Questions: Policy, Inflation, and Growth with Worked Answers
+  4. Data and Graph Interpretation: How to Analyse an Unfamiliar Chart Under Pressure
+  5. Current Affairs for Cambridge Economics: 2026 Topics You Should Know
+  6. Frequently Asked Questions
+- Must include:
+  - 5 worked Q&As with full model answers and tutor commentary
+  - One graph description (supply-demand shift or AD-AS) with the analysis narrated step by step
+  - A current affairs section linking 2026 economic issues (e.g. UK fiscal policy, interest rates, AI and labour markets) to core economic frameworks
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Cambridge Economics interview questions with model answers</a>
+- FAQ must address: whether A-level Economics is required for Cambridge Economics, how many interviews candidates typically have, whether Mathematics A-level is needed, and how much current affairs knowledge is expected
+"""
+
+    if slug == "oxford-medicine-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Oxford Medicine uses a traditional panel interview format (NOT MMI) — what question types appear (scientific reasoning, ethical dilemmas, motivation, data interpretation, news in medicine)?
+2. Oxford Medicine interviews are known for pushing candidates on scientific reasoning — what does "thinking like a scientist" look like in practice in the interview room?
+3. What ethical frameworks are most relevant and how should candidates apply them without sounding like they memorised a textbook?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Oxford Medicine uses a traditional panel interview (not MMI), testing scientific reasoning, ethics, and genuine motivation for medicine. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. How Oxford Medicine Interviews Work in 2026 (Panel Format, Not MMI)
+  2. Scientific Reasoning Questions: Data, Biology, and Medical Science with Model Answers
+  3. Ethical Scenarios: How to Apply a Framework Without Sounding Robotic
+  4. Motivation and Personal Statement Questions: What Oxford Medicine Tutors Look For
+  5. Current Issues in Medicine: 2026 Topics Every Applicant Should Know
+  6. Frequently Asked Questions
+- Must include:
+  - 5 worked Q&As across the sections, each with model answer and specific note on what makes it strong
+  - An ethics framework presented naturally (not as a numbered list to memorise but as a way of thinking): considering consequences, duties, patient autonomy, and systemic fairness
+  - One scientific data interpretation question (e.g. interpret a graph or explain a medical phenomenon) with full model answer
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Oxford Medicine interview questions with model answers</a>
+- FAQ must address: how many interviews Oxford Medicine applicants typically have, whether the BMAT is still used (it was discontinued — clarify), what the difference is between Oxford and Cambridge Medicine interviews, and whether work experience is discussed in depth
+"""
+
+    if slug == "oxford-engineering-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Oxford Engineering interviews combine physics application, mathematics, and materials/structural reasoning — what question types appear (mechanics, stress and strain, fluid dynamics, electrical circuits, dimensional analysis, design problems)?
+2. What does a strong Oxford Engineering answer look like — how do candidates show engineering intuition rather than just A-level recall?
+3. What makes Oxford Engineering interviews distinctive from Cambridge Engineering?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Oxford Engineering interviews test applied physics and mathematical reasoning, not engineering knowledge specifically. Thinking through novel problems under guidance is the key skill. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. What Oxford Engineering Interviews Test in 2026
+  2. Mechanics and Applied Physics: 3 Worked Problems with Full Solutions
+  3. Materials, Structures, and Design Questions with Model Answers
+  4. Mathematical Reasoning in Engineering Contexts
+  5. Oxford Engineering vs Cambridge Engineering: Interview Style Differences
+  6. Frequently Asked Questions
+- Must include:
+  - 5 worked Q&As with full step-by-step solutions and tutor notes on reasoning
+  - One estimation/Fermi problem relevant to engineering (e.g. estimate the force on a bridge support)
+  - One design-a-solution problem with a worked reasoning approach (not a fixed answer, but a structured way to think through it)
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Oxford Engineering interview questions with worked solutions</a>
+- FAQ must address: whether A-level Physics is essential, how many interviews Oxford Engineering applicants have, whether the PAT is used during the interview, and whether candidates are expected to have engineering work experience
+"""
+
+    if slug == "cambridge-engineering-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Cambridge Engineering interviews lean more mathematical than Oxford's — what question types appear (differential equations, mathematical modelling, mechanics, electrical theory, dimensional analysis)?
+2. What does a strong Cambridge Engineering answer look like — how do candidates demonstrate mathematical engineering rather than just applied physics?
+3. How does the Cambridge Engineering interview connect to the ENGAA (Engineering Admissions Assessment)?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Cambridge Engineering interviews are more mathematically rigorous than Oxford's, testing differential equations, mathematical modelling, and physical reasoning. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. How Cambridge Engineering Interviews Work in 2026
+  2. Mathematical Engineering Problems: Differential Equations and Modelling with Worked Solutions
+  3. Applied Physics and Mechanics Questions with Model Answers
+  4. The ENGAA Connection: What Carries Over from the Admissions Assessment
+  5. Cambridge Engineering vs Oxford Engineering: Key Interview Differences
+  6. Frequently Asked Questions
+- Must include:
+  - 5 worked Q&As, with at least one involving a differential equation set up from a physical scenario
+  - A comparison of Oxford vs Cambridge Engineering interview style (Oxford: more intuitive/estimation; Cambridge: more formal mathematics)
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Cambridge Engineering interview questions with worked solutions</a>
+- FAQ must address: whether Further Maths A-level is expected, how many interviews Cambridge Engineering candidates have, what the ENGAA tests and how it relates to the interview, and whether candidates need prior engineering knowledge
+"""
+
+    if slug == "oxford-biology-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Oxford Biology interviews test experimental thinking and the ability to reason from data — what question types appear (experimental design, data interpretation, genetics, evolution, physiology, ecology, biochemistry at A-level)?
+2. What does a strong Oxford Biology answer look like — how do candidates demonstrate scientific rigour while remaining genuinely curious?
+3. What are the most commonly tested A-level Biology extension topics in Oxford interviews?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Oxford Biology interviews test your ability to think like a scientist: designing experiments, interpreting data, and extending familiar concepts into unfamiliar territory. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. What Oxford Biology Interviews Test in 2026
+  2. Experimental Design Questions: How to Plan and Critique an Experiment
+  3. Data Interpretation: Graphs, Tables, and Statistical Questions with Model Answers
+  4. Genetics, Evolution, and Physiology: 3 Worked Q&As
+  5. Extending Beyond A-Level: Questions That Go Further
+  6. Frequently Asked Questions
+- Must include:
+  - 5 worked Q&As with full model answers and tutor notes
+  - One experimental design question with a worked answer showing controls, variables, and how to critique a flawed experimental setup
+  - One data interpretation question (describe the graph, then explain the biological mechanism)
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Oxford Biology interview questions with worked solutions</a>
+- FAQ must address: whether A-level Chemistry is needed for Oxford Biology, how many interviews candidates have, whether candidates are expected to have read beyond A-level, and how the Oxford Biology admissions test relates to the interview
+"""
+
+    if slug == "cambridge-computer-science-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Cambridge CS interviews are heavily mathematical — what problem types appear (combinatorics, graph theory, logic, algorithm design, formal proof, probability)?
+2. How does Cambridge CS interview style differ from Oxford CS — Cambridge is more mathematically formal while Oxford emphasises algorithmic intuition?
+3. What does a strong Cambridge CS answer look like under interview pressure?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Cambridge Computer Science interviews are among the most mathematically rigorous at any UK university, combining algorithm design, discrete mathematics, and formal logic. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. What Cambridge Computer Science Interviews Test in 2026
+  2. Algorithm Design and Complexity: 3 Worked Problems with Full Solutions
+  3. Mathematical Logic and Discrete Mathematics Questions
+  4. Cambridge CS vs Oxford CS: Interview Style Differences
+  5. How to Prepare for the Most Mathematical CS Interview in the UK
+  6. Frequently Asked Questions
+- Must include:
+  - 5 worked Q&As with full solutions and reasoning notes
+  - One formal proof or induction example
+  - A comparison table: Cambridge CS vs Oxford CS — question type, mathematical rigour, expected background
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Cambridge Computer Science interview questions with worked solutions</a>
+- FAQ must address: whether candidates need A-level Further Mathematics, whether coding knowledge is tested, how many interviews Cambridge CS applicants have, and whether the Cambridge CS admissions test feeds into the interview
+"""
+
+    if slug == "oxford-economics-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Oxford Economics interviews test mathematical reasoning and economic intuition — what question types appear (supply/demand, game theory, welfare economics, current policy, mathematical problem-solving, graph interpretation)?
+2. Oxford Economics is mathematically demanding — how do interviews test the mathematical side alongside economic reasoning?
+3. What 2026 UK and global economic events should candidates know about?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Oxford Economics interviews combine mathematical problem-solving with economic reasoning. Candidates who can apply economic logic to novel scenarios and interpret data confidently perform best. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. What Oxford Economics Interviews Test in 2026
+  2. Microeconomics and Market Analysis: 3 Worked Q&As with Model Answers
+  3. Mathematical Economics Problems: Graphs, Functions, and Optimisation
+  4. Current Affairs for Oxford Economics: 2026 Events and Frameworks
+  5. Oxford Economics vs Cambridge Economics: Interview Style Comparison
+  6. Frequently Asked Questions
+- Must include:
+  - 5 worked Q&As with full model answers and tutor notes
+  - One mathematical economics problem (e.g. find the profit-maximising output given a demand function)
+  - Current affairs section linking 2026 economic events to core frameworks
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Oxford Economics interview questions with model answers</a>
+- FAQ must address: whether A-level Economics is required, how much mathematics is expected, how many interviews Oxford Economics applicants have, and whether candidates need to have a specific economic viewpoint
+"""
+
+    if slug == "oxford-english-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Oxford English interviews are famous for unseen passage analysis — candidates are given a passage they have never read and must construct an argument about it in real time. What does a high-scoring response look like?
+2. What literary and analytical frameworks does a candidate need — and how do they apply them without sounding mechanical?
+3. How does Oxford English differ from Cambridge English in interview style?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Oxford English interviews centre on unseen passage analysis. Tutors want to see candidates read carefully, form an argument quickly, and defend it intelligently. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. How Oxford English Interviews Work in 2026
+  2. Unseen Passage Analysis: A Step-by-Step Method with Worked Example
+  3. Building and Defending a Literary Argument Under Pressure
+  4. Personal Statement and Reading Questions: What to Expect
+  5. Oxford English vs Cambridge English: Interview Style Differences
+  6. Frequently Asked Questions
+- Must include:
+  - A worked unseen passage example: present a short passage (approximately 8–10 lines of verse or prose), then model a strong candidate response showing close reading, argument formation, and a specific analytical claim
+  - A "mock dialogue" transcript showing tutor follow-up questions and strong candidate responses
+  - The key distinction between a strong and average response (strong: makes a specific, arguable claim; average: describes what happens in the text)
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Oxford English interview questions with model answers</a>
+- FAQ must address: whether candidates need to have read the whole text their passage is taken from, how many Oxford English interviews candidates have, whether creative writing appears in English interviews, and whether studying English A-level is necessary
+"""
+
+    if slug == "cambridge-english-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Cambridge English interviews emphasise historical and contextual reading alongside close textual analysis — how does this differ from Oxford English's primarily text-first approach?
+2. Candidates are often given a passage and asked to situate it historically or generically — what does a strong contextualising response look like?
+3. What personal statement questions commonly arise in Cambridge English interviews and what do tutors look for?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Cambridge English interviews test close reading alongside historical and contextual understanding. Tutors want to see how you situate a text, not just what you notice about it. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. How Cambridge English Interviews Work in 2026
+  2. Close Reading with Historical Context: A Worked Passage Example
+  3. Period and Genre Questions: Situating Texts in Literary History
+  4. Personal Statement Deep-Dives: What Cambridge English Tutors Probe
+  5. Cambridge English vs Oxford English: Key Interview Differences
+  6. Frequently Asked Questions
+- Must include:
+  - A worked passage example with model response showing both close reading and contextual placement
+  - A "mock dialogue" showing tutor push-back on a contextual claim and a strong candidate response
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Cambridge English interview questions with model answers</a>
+- FAQ must address: how many Cambridge English interviews candidates have, whether Medieval English is tested, whether candidates are expected to know Old English, and how much weight personal statement reading carries
+"""
+
+    if slug == "oxford-history-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Oxford History interviews typically involve source analysis and historical argument construction — what types of sources appear and what are candidates expected to do with them?
+2. What makes a strong historical argument in an interview — how do tutors distinguish between descriptive and genuinely analytical responses?
+3. What is the "defend a counter-intuitive position" approach that appears in Oxford History interviews and how should candidates handle it?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Oxford History interviews test source analysis, argument construction, and willingness to engage with difficult historical questions. Tutors want analytical sharpness, not factual recall. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. How Oxford History Interviews Work in 2026
+  2. Source Analysis: A Step-by-Step Method with Worked Example
+  3. Constructing a Historical Argument Under Pressure
+  4. Counter-Intuitive Positions: Defending an Uncomfortable Claim
+  5. Personal Statement and Reading Questions in Oxford History Interviews
+  6. Frequently Asked Questions
+- Must include:
+  - A worked source analysis example: provide a short primary source extract, model the analytical approach (provenance, purpose, context, significance) and show a candidate's worked response
+  - A "counter-intuitive position" worked example: e.g. "Argue that the Black Death had positive long-term consequences" — model how to construct and sustain this argument
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Oxford History interview questions with model answers</a>
+- FAQ must address: which historical periods Oxford History interviews favour, how many interviews candidates have, whether prior History A-level is required, and whether world history or only British/European history appears
+"""
+
+    if slug == "cambridge-history-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Cambridge History interviews push deeper into historiography than Oxford — what does a historiographical debate question look like and how do candidates engage with competing historians' interpretations?
+2. Cambridge History often asks candidates to defend a specific interpretive position against tutor challenge — what techniques help candidates hold their argument?
+3. How does Cambridge History interview style differ from Oxford in terms of source use vs historiographical debate?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Cambridge History interviews go beyond source analysis into historiographical debate — you need to engage with how historians have disagreed and defend your own interpretation. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. How Cambridge History Interviews Work in 2026
+  2. Historiographical Debate Questions: Engaging with Competing Interpretations
+  3. Source Analysis at Cambridge: Similarities and Differences from Oxford
+  4. Defending Your Interpretation: What Cambridge History Tutors Look For
+  5. Cambridge History vs Oxford History: Interview Style Comparison
+  6. Frequently Asked Questions
+- Must include:
+  - A worked historiographical debate example: present two conflicting historical interpretations of an event, then model how a candidate engages with both and defends their own position
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Cambridge History interview questions with model answers</a>
+- FAQ must address: how many Cambridge History interviews candidates have, whether specific historical periods are favoured, whether candidates need to cite historians by name, and how much personal statement reading features in Cambridge History interviews
+"""
+
+    if slug == "oxford-philosophy-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Oxford Philosophy interviews (including Philosophy within PPE) test logical argument construction, conceptual analysis, and the ability to defend a position under sustained challenge — what question types appear (thought experiments, logical inference, conceptual distinctions, ethical dilemmas)?
+2. What does a genuinely philosophical answer look like — how do candidates show precision and rigour without being mechanical?
+3. How should candidates respond when a tutor challenges their position — what techniques preserve intellectual integrity while engaging with the objection?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Oxford Philosophy interviews test how you construct and defend an argument, not what philosophical positions you hold. Precision, intellectual honesty, and the ability to engage with push-back are what tutors reward. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. What Oxford Philosophy Interviews Test in 2026
+  2. Thought Experiments: 4 Real-Style Questions with Full Model Answers
+  3. Handling Tutor Push-Back: Defending Your Position Without Being Stubborn
+  4. Conceptual Analysis Questions: Defining Terms Under Pressure
+  5. Logic and Formal Reasoning in Philosophy Interviews
+  6. Frequently Asked Questions
+- Must include:
+  - 5 worked philosophical Q&As: at least one thought experiment (trolley problem variation), one personal identity puzzle, one knowledge/epistemology question, one ethics dilemma, one conceptual analysis ("What do we mean by 'freedom'?")
+  - Each worked answer must show: initial claim, the reasoning, a strong objection, and the candidate's response to that objection
+  - A "push-back techniques" guide: 3 ways to respond when a tutor challenges your position (distinguish the objection, concede partially and reformulate, ask for clarification of the counterargument)
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Oxford Philosophy interview questions with model answers</a>
+- FAQ must address: whether candidates need prior Philosophy A-level or study, how many Oxford Philosophy interviews candidates have, whether formal logic is tested, and whether candidates are expected to know named philosophers
+"""
+
+    if slug == "cambridge-philosophy-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Cambridge Philosophy interviews test rigorous argument construction and conceptual precision — what question types appear and how do they differ from Oxford Philosophy?
+2. Cambridge Philosophy often connects to formal logic and analytic philosophy — how does this shape the question types that appear?
+3. What does defending a philosophical claim look like in a Cambridge supervision-style interview?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Cambridge Philosophy interviews test argument rigour and conceptual precision, often with a more analytic and formal emphasis than Oxford. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. How Cambridge Philosophy Interviews Work in 2026
+  2. Analytic Philosophy Questions: Logic and Conceptual Analysis with Model Answers
+  3. Thought Experiments and Ethical Reasoning at Cambridge
+  4. Cambridge Philosophy vs Oxford Philosophy: Key Differences
+  5. How to Prepare: What to Read and Practise
+  6. Frequently Asked Questions
+- Must include:
+  - 5 worked Q&As with model answers and notes on what the interviewer is assessing
+  - At least one formal logic question (simple valid/invalid argument assessment)
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Cambridge Philosophy interview questions with model answers</a>
+- FAQ must address: whether candidates need A-level Philosophy, how many Cambridge Philosophy interviews candidates have, whether Cambridge Philosophy is part of a combined course, and what reading tutors most commonly ask about
+"""
+
+    if slug == "oxford-geography-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Oxford Geography interviews span both physical and human geography — what question types appear across these tracks (climate systems, geomorphology, urban policy, globalisation, migration, sustainability)?
+2. What does data or map interpretation look like in an Oxford Geography interview and how should candidates approach it?
+3. What current events in 2026 are most relevant for Oxford Geography candidates to know?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Oxford Geography interviews span physical and human geography, including data interpretation, policy analysis, and current global issues. Breadth of genuine interest matters. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. How Oxford Geography Interviews Work in 2026
+  2. Physical Geography Questions: Climate, Geomorphology, and Systems Thinking
+  3. Human Geography Questions: Policy, Globalisation, and Inequality
+  4. Data and Map Interpretation: Worked Examples
+  5. Current Issues for Oxford Geography Candidates: 2026 Topics
+  6. Frequently Asked Questions
+- Must include:
+  - 5 worked Q&As with full model answers and tutor notes
+  - One data/map interpretation question with a worked analysis (describe what the data shows, explain the geographical process, consider limitations)
+  - A 2026 current issues section linking recent events (climate policy, urban migration, resource conflicts) to geographical frameworks
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Oxford Geography interview questions with model answers</a>
+- FAQ must address: whether candidates need both physical and human Geography A-level, how many Oxford Geography interviews candidates have, whether fieldwork experience features in the interview, and what the Oxford Geography admissions test covers
+"""
+
+    if slug == "cambridge-geography-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Cambridge Geography interviews have a strong theoretical and conceptual emphasis — how does this show up in questions compared to Oxford Geography?
+2. Cambridge Geography candidates are often asked to engage with a geographical debate or contested concept — what does a strong response to this look like?
+3. What 2026 geographical issues are most relevant for Cambridge Geography applicants?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Cambridge Geography interviews are theoretically rigorous, pushing candidates to engage with contested geographical concepts and current global debates. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. How Cambridge Geography Interviews Work in 2026
+  2. Theoretical and Conceptual Geography Questions with Model Answers
+  3. Physical Geography: Process, Systems, and Change
+  4. Human Geography: Policy, Power, and Global Debates
+  5. Cambridge Geography vs Oxford Geography: Interview Style Comparison
+  6. Frequently Asked Questions
+- Must include:
+  - 5 worked Q&As with full model answers
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Cambridge Geography interview questions with model answers</a>
+- FAQ must address: whether candidates need A-level Geography, how many Cambridge Geography interviews candidates have, whether the Cambridge Geography pre-interview assessment features in the interview, and how the Cambridge and Oxford interview styles compare
+"""
+
+    if slug == "oxford-modern-languages-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Oxford Modern Languages (MML) interviews are conducted partly in the target language — what does this involve and how should candidates prepare to discuss literature, film, and culture in their language?
+2. What types of questions appear in the English-language component (translation discussion, cultural analysis, literary interpretation)?
+3. How does the Oxford MML interview differ from a language A-level oral exam — what does genuine academic engagement with a language look like?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Oxford Modern Languages interviews are partly conducted in your target language and test literary analysis, cultural knowledge, and genuine academic interest. Language fluency alone is not enough. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. How Oxford Modern Languages Interviews Work in 2026
+  2. In-Language Discussion: What to Expect and How to Prepare
+  3. Literary Analysis Questions: Approaching an Unseen Text in Your Language
+  4. Cultural Knowledge and Current Affairs in MML Interviews
+  5. Translation Discussion and Linguistic Questions
+  6. Frequently Asked Questions
+- Must include:
+  - Worked examples for both French and German/Spanish tracks where relevant
+  - A worked in-language literary passage discussion (e.g. a short French poem or German prose extract) with model candidate responses
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Oxford Modern Languages interview questions with model answers</a>
+- FAQ must address: whether candidates must achieve native-level fluency, how many Oxford MML interviews candidates have, whether candidates who took only one language can apply, and whether the Oxford MML interview includes linguistics questions
+"""
+
+    if slug == "cambridge-modern-languages-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Cambridge Modern and Medieval Languages (MML) interviews cover similar ground to Oxford MML but with more emphasis on close textual analysis and linguistic study — how does this show up in questions?
+2. Cambridge MML includes Medieval languages as a track — what does this involve in interview?
+3. How should candidates prepare for in-language discussion and literary analysis at Cambridge?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Cambridge Modern and Medieval Languages interviews test in-language literary analysis, linguistic curiosity, and cultural knowledge. Tutors want to see genuine intellectual engagement with language beyond A-level. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. How Cambridge MML Interviews Work in 2026
+  2. In-Language Literary Analysis: Worked Examples for French, German, and Spanish
+  3. Linguistic and Translation Questions at Cambridge
+  4. Cambridge MML vs Oxford MML: Interview Style Differences
+  5. How to Prepare for the Cambridge MML Interview
+  6. Frequently Asked Questions
+- Must include:
+  - 5 worked Q&As including at least one in-language example
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Cambridge Modern Languages interview questions with model answers</a>
+- FAQ must address: whether candidates need prior linguistics study, how many Cambridge MML interviews candidates have, whether the Medieval languages track involves Old or Middle English, and how in-language discussion is assessed
+"""
+
+    if slug == "cambridge-hsps-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Cambridge HSPS (Human, Social and Political Sciences) is an interdisciplinary degree — what does the interview test across its component disciplines (Sociology, Politics, Social Anthropology, Criminology)?
+2. What does interdisciplinary thinking look like in an HSPS interview — how do candidates show they can move between social science frameworks?
+3. What 2026 social and political events are most relevant for HSPS candidates to discuss?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Cambridge HSPS interviews test interdisciplinary social science reasoning across Politics, Sociology, and Social Anthropology. Tutors want candidates who can move between frameworks and engage with complex social questions. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. What Cambridge HSPS Interviews Test in 2026
+  2. Politics and Political Theory Questions with Model Answers
+  3. Sociology and Social Anthropology Questions with Model Answers
+  4. Interdisciplinary Questions: Using Multiple Frameworks to Analyse One Problem
+  5. Current Affairs for HSPS: 2026 Events and How to Frame Them
+  6. Frequently Asked Questions
+- Must include:
+  - 5 worked Q&As across the disciplines, each showing a candidate drawing on a relevant social science framework
+  - One interdisciplinary example where a candidate is asked to analyse a social issue using both political and sociological lenses
+  - A 2026 current affairs section linking recent events (political polarisation, immigration policy, social inequality) to HSPS frameworks
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Cambridge HSPS interview questions with model answers</a>
+- FAQ must address: whether candidates need A-level Politics or Sociology, how many Cambridge HSPS interviews candidates have, how HSPS differs from PPE at Oxford, and whether criminology features in HSPS interviews
+"""
+
+    if slug == "oxford-veterinary-medicine-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Oxford Veterinary Medicine interviews combine scientific reasoning, animal biology, and ethical scenarios specific to veterinary practice — what question types appear?
+2. What does a strong Vet Med answer look like — how do candidates show genuine passion for animal welfare alongside scientific rigour?
+3. How does the Oxford Vet Med interview differ from the Cambridge Vet Med interview?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Oxford Veterinary Medicine interviews combine animal biology, ethical reasoning, and scientific problem-solving. Genuine experience with animals and scientific curiosity both matter. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. How Oxford Veterinary Medicine Interviews Work in 2026
+  2. Animal Biology and Science Questions with Model Answers
+  3. Ethical Scenarios in Vet Med: Animal Welfare, Owner Decisions, and Systemic Issues
+  4. Motivation and Work Experience Questions: What Oxford Vet Med Tutors Look For
+  5. Oxford Vet Med vs Cambridge Vet Med: Interview Differences
+  6. Frequently Asked Questions
+- Must include:
+  - 5 worked Q&As across the sections with full model answers and tutor notes
+  - One ethical scenario worked in full (e.g. an owner refuses treatment their animal needs — how do you approach this?)
+  - One scientific reasoning question (e.g. explain why cats cannot taste sweetness — what does this tell us about evolution?)
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Oxford Veterinary Medicine interview questions with model answers</a>
+- FAQ must address: how much animal work experience is expected, how many interviews Oxford Vet Med applicants have, whether A-level Biology and Chemistry are both required, and whether the BMAT (discontinued) or other tests now apply
+"""
+
+    if slug == "cambridge-veterinary-medicine-interview-questions-2026-with-model-answers":
+        return f"""
+{master_context}
+
+Before writing, think through:
+1. Cambridge Veterinary Medicine interviews emphasise scientific reasoning alongside genuine commitment to animal welfare — what question types appear and how do they differ from Oxford Vet Med?
+2. Cambridge Vet Med applicants are expected to have substantial animal experience — how does this come up in interview and what makes a strong answer about experience?
+3. What scientific topics (physiology, anatomy, evolutionary biology, biochemistry) are most commonly tested?
+
+Now write a detailed blog post in HTML: {title}
+
+Target keyword: {keyword}
+
+Requirements:
+- Length: 1,300 to 1,600 words
+- Opening paragraph (40–60 words): direct answer — Cambridge Veterinary Medicine interviews combine scientific problem-solving with animal welfare ethics and genuine passion for the profession. Substantial animal experience is expected and will be probed. Include "Updated April 2026 for 2026/27 entry."
+- Include these exact <h2> sections in this order:
+  1. How Cambridge Veterinary Medicine Interviews Work in 2026
+  2. Scientific Reasoning Questions: Biology, Physiology, and Biochemistry with Model Answers
+  3. Animal Welfare Ethics at Cambridge: Worked Scenarios
+  4. Discussing Your Animal Experience: What Cambridge Vet Med Tutors Look For
+  5. Cambridge Vet Med vs Oxford Vet Med: Key Interview Differences
+  6. Frequently Asked Questions
+- Must include:
+  - 5 worked Q&As with full model answers
+  - One detailed worked ethical scenario specific to veterinary medicine
+  - At a natural point where preparation resources are mentioned, include this link woven into the prose — do NOT present it as a CTA or separate section: <a href="/resources/oxbridge-interview-questions">Cambridge Veterinary Medicine interview questions with model answers</a>
+- FAQ must address: how much animal experience is expected, how many Cambridge Vet Med interviews applicants have, whether A-level Chemistry is required alongside Biology, and how the Cambridge Vet Med interview differs from a medical school interview
 """
 
     # Generic blog prompt for remaining posts
@@ -3142,6 +3883,127 @@ BLOG_RELATED_RESOURCES = {
         "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
         "link to the 13+ resources page at /resources/13-plus using anchor text 'Common Entrance past papers and 13+ preparation resources', "
         "and link to the 13+ tuition page at /services/levels/13plus-tuition using anchor text '13+ and Common Entrance tuition'."
+    ),
+    # ── New Oxbridge interview subject pages ──────────────────────────────────
+    "oxford-chemistry-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Oxford Chemistry interview questions with organic, inorganic and physical chemistry model answers', "
+        "and link to the Chemistry interview preparation page at /oxbridge-interviews/chemistry-interview/ using anchor text 'Oxford Chemistry interview preparation with Leading Tuition'."
+    ),
+    "cambridge-natural-sciences-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Cambridge Natural Sciences interview questions across biology, chemistry and physics', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Cambridge Natural Sciences interview preparation with Leading Tuition'."
+    ),
+    "cambridge-maths-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Cambridge Maths interview questions with step-by-step worked solutions', "
+        "and link to the Maths interview preparation page at /oxbridge-interviews/maths-interview/ using anchor text 'Cambridge Maths interview preparation with Leading Tuition'."
+    ),
+    "oxford-computer-science-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Oxford Computer Science interview questions with algorithm and logic worked solutions', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Oxford Computer Science interview preparation with Leading Tuition'."
+    ),
+    "cambridge-economics-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Cambridge Economics interview questions with microeconomics and macroeconomics model answers', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Cambridge Economics interview preparation with Leading Tuition'."
+    ),
+    "oxford-medicine-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Oxford Medicine interview questions including science reasoning and ethics scenarios', "
+        "and link to the Medicine interview preparation page at /oxbridge-interviews/medicine-interview/ using anchor text 'Oxford Medicine interview preparation with Leading Tuition'."
+    ),
+    "oxford-engineering-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Oxford Engineering interview questions with mechanics and applied physics solutions', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Oxford Engineering interview preparation with Leading Tuition'."
+    ),
+    "cambridge-engineering-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Cambridge Engineering interview questions with mathematical engineering worked solutions', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Cambridge Engineering interview preparation with Leading Tuition'."
+    ),
+    "oxford-biology-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Oxford Biology interview questions with experimental design and data interpretation model answers', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Oxford Biology interview preparation with Leading Tuition'."
+    ),
+    "cambridge-computer-science-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Cambridge Computer Science interview questions with algorithm and discrete mathematics solutions', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Cambridge Computer Science interview preparation with Leading Tuition'."
+    ),
+    "oxford-economics-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Oxford Economics interview questions with microeconomics and graph interpretation model answers', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Oxford Economics interview preparation with Leading Tuition'."
+    ),
+    "oxford-english-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Oxford English interview questions with unseen passage analysis model answers', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Oxford English interview preparation with Leading Tuition'."
+    ),
+    "cambridge-english-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Cambridge English interview questions with close reading and contextual analysis model answers', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Cambridge English interview preparation with Leading Tuition'."
+    ),
+    "oxford-history-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Oxford History interview questions with source analysis and argument construction model answers', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Oxford History interview preparation with Leading Tuition'."
+    ),
+    "cambridge-history-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Cambridge History interview questions with historiographical debate model answers', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Cambridge History interview preparation with Leading Tuition'."
+    ),
+    "oxford-philosophy-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Oxford Philosophy interview questions with thought experiment and argument model answers', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Oxford Philosophy interview preparation with Leading Tuition'."
+    ),
+    "cambridge-philosophy-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Cambridge Philosophy interview questions with analytic philosophy and logic model answers', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Cambridge Philosophy interview preparation with Leading Tuition'."
+    ),
+    "oxford-geography-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Oxford Geography interview questions with physical and human geography model answers', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Oxford Geography interview preparation with Leading Tuition'."
+    ),
+    "cambridge-geography-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Cambridge Geography interview questions with physical and human geography model answers', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Cambridge Geography interview preparation with Leading Tuition'."
+    ),
+    "oxford-modern-languages-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Oxford Modern Languages interview questions with in-language literary analysis model answers', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Oxford Modern Languages interview preparation with Leading Tuition'."
+    ),
+    "cambridge-modern-languages-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Cambridge Modern Languages interview questions with literary analysis and in-language discussion model answers', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Cambridge Modern Languages interview preparation with Leading Tuition'."
+    ),
+    "cambridge-hsps-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Cambridge HSPS interview questions with politics, sociology, and social science model answers', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Cambridge HSPS interview preparation with Leading Tuition'."
+    ),
+    "oxford-veterinary-medicine-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Oxford Veterinary Medicine interview questions with science reasoning and animal welfare ethics model answers', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Oxford Veterinary Medicine interview preparation with Leading Tuition'."
+    ),
+    "cambridge-veterinary-medicine-interview-questions-2026-with-model-answers": (
+        "At the end of this blog post, add a section titled 'Related Resources' containing these contextual links: "
+        "link to the Oxbridge Interview Questions resources page at /resources/oxbridge-interview-questions using anchor text 'Cambridge Veterinary Medicine interview questions with biology, ethics, and animal welfare model answers', "
+        "and link to the Oxbridge Interviews hub at /oxbridge-interviews/ using anchor text 'Cambridge Veterinary Medicine interview preparation with Leading Tuition'."
     ),
 }
 
