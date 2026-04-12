@@ -4952,6 +4952,318 @@ def oxbridge_interview_prompt(slug: str, title: str, subjects: str,
     import hashlib
     variant = int(hashlib.md5(slug.encode()).hexdigest(), 16) % 2
 
+    # ── University-specific metadata ─────────────────────────────────────────
+    # Maps slug → (university, admissions_test, blog_url, blog_anchor,
+    #              cross_link_url, cross_link_title, resources_anchor)
+    OXFORD_SPECIFIC = {
+        "oxford-maths-interview": (
+            "Oxford", "MAT (Mathematics Admissions Test)",
+            "/blog/oxford-maths-interview-questions-2026-with-step-by-step-model-answers",
+            "Oxford Maths interview questions with step-by-step worked solutions",
+            "/oxbridge-interviews/cambridge-maths-interview/",
+            "Cambridge Mathematics Interview preparation",
+            "Oxford Maths interview questions and model answers",
+        ),
+        "oxford-physics-interview": (
+            "Oxford", "PAT (Physics Aptitude Test)",
+            "/blog/oxford-physics-interview-questions-2026-estimation-problems-and-worked-solutions",
+            "Oxford Physics interview questions including estimation and mechanics problems",
+            "/oxbridge-interviews/cambridge-natural-sciences-interview/",
+            "Cambridge Natural Sciences Interview preparation",
+            "Oxford Physics interview questions with worked solutions",
+        ),
+        "oxford-chemistry-interview": (
+            "Oxford", "CAT (Chemistry Aptitude Test)",
+            "/blog/oxford-chemistry-interview-questions-2026-with-model-answers",
+            "Oxford Chemistry interview questions with organic, inorganic and physical chemistry model answers",
+            "/oxbridge-interviews/cambridge-natural-sciences-interview/",
+            "Cambridge Natural Sciences Interview preparation",
+            "Oxford Chemistry interview questions with model answers",
+        ),
+        "oxford-computer-science-interview": (
+            "Oxford", "MAT (Mathematics Admissions Test)",
+            "/blog/oxford-computer-science-interview-questions-2026-with-model-answers",
+            "Oxford Computer Science interview questions with algorithm and problem-solving worked examples",
+            "/oxbridge-interviews/cambridge-computer-science-interview/",
+            "Cambridge Computer Science Interview preparation",
+            "Oxford Computer Science interview questions and model answers",
+        ),
+        "oxford-engineering-interview": (
+            "Oxford", "PAT (Physics Aptitude Test)",
+            "/blog/oxford-engineering-interview-questions-2026-with-model-answers",
+            "Oxford Engineering interview questions with mechanics and applied physics worked solutions",
+            "/oxbridge-interviews/cambridge-engineering-interview/",
+            "Cambridge Engineering Interview preparation",
+            "Oxford Engineering interview questions with model answers",
+        ),
+        "oxford-biology-interview": (
+            "Oxford", "No written test required",
+            "/blog/oxford-biology-interview-questions-2026-with-model-answers",
+            "Oxford Biology interview questions with experimental design and genetics worked examples",
+            "/oxbridge-interviews/cambridge-natural-sciences-interview/",
+            "Cambridge Natural Sciences Interview preparation",
+            "Oxford Biology interview questions and model answers",
+        ),
+        "oxford-medicine-interview": (
+            "Oxford", "No written test (UCAT required for shortlisting)",
+            "/blog/oxford-medicine-interview-questions-2026-with-model-answers",
+            "Oxford Medicine interview questions with ethics and scientific reasoning model answers",
+            "/oxbridge-interviews/cambridge-medicine-interview/",
+            "Cambridge Medicine Interview preparation",
+            "Oxford Medicine interview questions with model answers",
+        ),
+        "oxford-economics-management-interview": (
+            "Oxford", "TSA (Thinking Skills Assessment)",
+            "/blog/oxford-economics-interview-questions-2026-with-model-answers",
+            "Oxford Economics and Management interview questions with supply and demand and game theory worked examples",
+            "/oxbridge-interviews/cambridge-economics-interview/",
+            "Cambridge Economics Interview preparation",
+            "Oxford Economics and Management interview questions and model answers",
+        ),
+        "oxford-english-interview": (
+            "Oxford", "ELAT (English Literature Admissions Test, now discontinued — check current requirements)",
+            "/blog/oxford-english-interview-questions-2026-with-model-answers",
+            "Oxford English interview questions with unseen passage and literary argument model answers",
+            "/oxbridge-interviews/cambridge-english-interview/",
+            "Cambridge English Interview preparation",
+            "Oxford English interview questions with model answers",
+        ),
+        "oxford-history-interview": (
+            "Oxford", "HAT (History Aptitude Test)",
+            "/blog/oxford-history-interview-questions-2026-with-model-answers",
+            "Oxford History interview questions with source analysis and historical argument model answers",
+            "/oxbridge-interviews/cambridge-history-interview/",
+            "Cambridge History Interview preparation",
+            "Oxford History interview questions with model answers",
+        ),
+        "oxford-philosophy-interview": (
+            "Oxford", "TSA or PHIL test depending on course (PPE uses TSA; Philosophy & Theology uses PHIL)",
+            "/blog/oxford-philosophy-interview-questions-2026-with-model-answers",
+            "Oxford Philosophy interview questions with thought experiment and logical argument model answers",
+            "/oxbridge-interviews/cambridge-philosophy-interview/",
+            "Cambridge Philosophy Interview preparation",
+            "Oxford Philosophy interview questions with model answers",
+        ),
+        "oxford-geography-interview": (
+            "Oxford", "No written test required",
+            "/blog/oxford-geography-interview-questions-2026-with-model-answers",
+            "Oxford Geography interview questions with physical and human geography model answers",
+            "/oxbridge-interviews/cambridge-geography-interview/",
+            "Cambridge Geography Interview preparation",
+            "Oxford Geography interview questions with model answers",
+        ),
+        "oxford-modern-languages-interview": (
+            "Oxford", "MLAT (Modern Languages Admissions Test)",
+            "/blog/oxford-modern-languages-interview-questions-2026-with-model-answers",
+            "Oxford Modern Languages interview questions with literary discussion and language analysis model answers",
+            "/oxbridge-interviews/cambridge-modern-languages-interview/",
+            "Cambridge Modern Languages (MML) Interview preparation",
+            "Oxford Modern Languages interview questions with model answers",
+        ),
+        "oxford-veterinary-medicine-interview": (
+            "Oxford", "No written test required",
+            "/blog/oxford-veterinary-medicine-interview-questions-2026-with-model-answers",
+            "Oxford Veterinary Medicine interview questions with scientific reasoning and ethics model answers",
+            "/oxbridge-interviews/cambridge-veterinary-medicine-interview/",
+            "Cambridge Veterinary Medicine Interview preparation",
+            "Oxford Veterinary Medicine interview questions with model answers",
+        ),
+    }
+
+    CAMBRIDGE_SPECIFIC = {
+        "cambridge-maths-interview": (
+            "Cambridge", "STEP and/or TMUA",
+            "/blog/cambridge-maths-interview-questions-2026-with-model-answers",
+            "Cambridge Maths interview questions with step-by-step worked solutions",
+            "/oxbridge-interviews/oxford-maths-interview/",
+            "Oxford Mathematics Interview preparation",
+            "Cambridge Maths interview questions and model answers",
+        ),
+        "cambridge-natural-sciences-interview": (
+            "Cambridge", "ESAT (Engineering and Science Admissions Test)",
+            "/blog/cambridge-natural-sciences-interview-questions-2026-with-model-answers",
+            "Cambridge Natural Sciences interview questions with biology, chemistry and physics model answers",
+            "/oxbridge-interviews/oxford-physics-interview/",
+            "Oxford Physics Interview preparation",
+            "Cambridge Natural Sciences interview questions with model answers",
+        ),
+        "cambridge-computer-science-interview": (
+            "Cambridge", "TMUA (Test of Mathematics for University Admission)",
+            "/blog/cambridge-computer-science-interview-questions-2026-with-model-answers",
+            "Cambridge Computer Science interview questions with algorithm and mathematical reasoning model answers",
+            "/oxbridge-interviews/oxford-computer-science-interview/",
+            "Oxford Computer Science Interview preparation",
+            "Cambridge Computer Science interview questions and model answers",
+        ),
+        "cambridge-engineering-interview": (
+            "Cambridge", "ESAT (Engineering and Science Admissions Test)",
+            "/blog/cambridge-engineering-interview-questions-2026-with-model-answers",
+            "Cambridge Engineering interview questions with applied mathematics and physics model answers",
+            "/oxbridge-interviews/oxford-engineering-interview/",
+            "Oxford Engineering Interview preparation",
+            "Cambridge Engineering interview questions and model answers",
+        ),
+        "cambridge-economics-interview": (
+            "Cambridge", "TMUA (Test of Mathematics for University Admission)",
+            "/blog/cambridge-economics-interview-questions-2026-with-model-answers",
+            "Cambridge Economics interview questions with micro, macro and data interpretation model answers",
+            "/oxbridge-interviews/oxford-economics-management-interview/",
+            "Oxford Economics and Management Interview preparation",
+            "Cambridge Economics interview questions with model answers",
+        ),
+        "cambridge-english-interview": (
+            "Cambridge", "No written test required",
+            "/blog/cambridge-english-interview-questions-2026-with-model-answers",
+            "Cambridge English interview questions with contextual reading and literary argument model answers",
+            "/oxbridge-interviews/oxford-english-interview/",
+            "Oxford English Interview preparation",
+            "Cambridge English interview questions with model answers",
+        ),
+        "cambridge-history-interview": (
+            "Cambridge", "No written test required",
+            "/blog/cambridge-history-interview-questions-2026-with-model-answers",
+            "Cambridge History interview questions with historiographical debate and source analysis model answers",
+            "/oxbridge-interviews/oxford-history-interview/",
+            "Oxford History Interview preparation",
+            "Cambridge History interview questions with model answers",
+        ),
+        "cambridge-philosophy-interview": (
+            "Cambridge", "No written test required",
+            "/blog/cambridge-philosophy-interview-questions-2026-with-model-answers",
+            "Cambridge Philosophy interview questions with conceptual analysis and argument evaluation model answers",
+            "/oxbridge-interviews/oxford-philosophy-interview/",
+            "Oxford Philosophy Interview preparation",
+            "Cambridge Philosophy interview questions with model answers",
+        ),
+        "cambridge-geography-interview": (
+            "Cambridge", "No written test required",
+            "/blog/cambridge-geography-interview-questions-2026-with-model-answers",
+            "Cambridge Geography interview questions with physical and human geography model answers",
+            "/oxbridge-interviews/oxford-geography-interview/",
+            "Oxford Geography Interview preparation",
+            "Cambridge Geography interview questions with model answers",
+        ),
+        "cambridge-modern-languages-interview": (
+            "Cambridge", "No written test required",
+            "/blog/cambridge-modern-languages-interview-questions-2026-with-model-answers",
+            "Cambridge Modern Languages interview questions with translation, literature and language in context model answers",
+            "/oxbridge-interviews/oxford-modern-languages-interview/",
+            "Oxford Modern Languages Interview preparation",
+            "Cambridge Modern Languages (MML) interview questions with model answers",
+        ),
+        "cambridge-hsps-interview": (
+            "Cambridge", "No written test required",
+            "/blog/cambridge-hsps-interview-questions-2026-with-model-answers",
+            "Cambridge HSPS interview questions with social science reasoning and policy analysis model answers",
+            "/oxbridge-interviews/ppe-interview/",
+            "Oxford PPE Interview preparation",
+            "Cambridge HSPS interview questions with model answers",
+        ),
+        "cambridge-veterinary-medicine-interview": (
+            "Cambridge", "No written test required",
+            "/blog/cambridge-veterinary-medicine-interview-questions-2026-with-model-answers",
+            "Cambridge Veterinary Medicine interview questions with scientific reasoning and animal welfare ethics model answers",
+            "/oxbridge-interviews/oxford-veterinary-medicine-interview/",
+            "Oxford Veterinary Medicine Interview preparation",
+            "Cambridge Veterinary Medicine interview questions with model answers",
+        ),
+        "cambridge-medicine-interview": (
+            "Cambridge", "No written test (UCAT required for shortlisting)",
+            "/blog/cambridge-medicine-interview-questions-2026-science-questions-and-how-to-answer-them",
+            "Cambridge Medicine interview questions with science problem-solving and reasoning model answers",
+            "/oxbridge-interviews/oxford-medicine-interview/",
+            "Oxford Medicine Interview preparation",
+            "Cambridge Medicine interview questions with model answers",
+        ),
+    }
+
+    # Detect university-specific slugs
+    uni_data = OXFORD_SPECIFIC.get(slug) or CAMBRIDGE_SPECIFIC.get(slug)
+    if uni_data:
+        university, admissions_test, blog_url, blog_anchor, cross_url, cross_title, resources_anchor = uni_data
+
+        if variant == 0:
+            structure = f"""
+Use exactly these <h2> sections in this order:
+  1. What to Expect in a {subjects} {university} Interview
+  2. The Admissions Test: {admissions_test}
+  3. How to Prepare for Your {university} {subjects} Interview
+  4. Example {university} {subjects} Interview Questions
+  5. Common Mistakes and How to Avoid Them
+  6. Frequently Asked Questions about {university} {subjects} Interviews
+
+Opening paragraph angle: Immediately explain what makes {subjects} {university} interviews distinctive — the college-based format, what tutors are actually assessing, and why standard revision alone will not prepare you.
+
+FAQ focus: How long {university} {subjects} interviews last, whether prior knowledge is tested, how to practise effectively for {university}'s specific format, and what to do if you do not know the answer to a question."""
+        else:
+            structure = f"""
+Use exactly these <h2> sections in this order:
+  1. What {university} {subjects} Interviewers Are Really Looking For
+  2. Example {university} {subjects} Interview Questions — and How to Approach Them
+  3. The Admissions Test: {admissions_test}
+  4. Building Your {university} {subjects} Preparation — A Practical Plan
+  5. The Mistakes That Cost Candidates {university} Offers
+  6. Frequently Asked Questions
+
+Opening paragraph angle: Open with a specific example of the kind of thinking {university} {subjects} interviews demand — something that surprises candidates who expected a more traditional format.
+
+FAQ focus: How many interviews {university} {subjects} candidates typically have, what super-curricular preparation matters most for {university}, whether mock interviews are worth doing, and how {university} {subjects} interviews compare to other universities."""
+
+        return f"""
+You are writing a university-specific interview preparation service page for Leading Tuition, a UK tutoring company.
+
+University: {university}
+Subject(s): {subjects}
+Admissions test: {admissions_test}
+
+Audience:
+- A Year 12 or Year 13 student (or their parent) preparing specifically for {university} interviews in {subjects}
+- They want {university}-specific, actionable guidance — not generic Oxbridge tips
+- They are anxious but ambitious, and want to know exactly what {university} expects
+
+Global rules:
+- Write for a UK student, not an SEO algorithm
+- Use a clear, warm, authoritative tone
+- Output plain HTML only — no markdown
+- Use only these tags: <p>, <h2>, <ul>, <li>, <strong>
+- Do not include <html>, <head>, or <body>
+- Do not include CTA buttons or footer text — the template handles those
+- Include one FAQ section with exactly 4 questions
+- Never mention BMAT as a current admissions test — it was abolished in 2023
+- Never use filler phrases like "look no further" or "we've got you covered"
+- After all HTML content, on a new line, output exactly 4 FAQ pairs in this format (no spaces, no line breaks inside):
+FAQ_JSON:[{{"q":"Question one","a":"Answer one"}},{{"q":"Question two","a":"Answer two"}},{{"q":"Question three","a":"Answer three"}},{{"q":"Question four","a":"Answer four"}}]
+
+Before writing, think through:
+1. What makes the {university} {subjects} interview specifically distinctive — including college variation, format, and what tutors reward?
+2. What are the most common mistakes candidates make in {university} {subjects} interviews?
+3. What does a top-1% {university} {subjects} interview performance actually look like?
+
+Now write a detailed {university} {subjects} interview preparation service page in HTML: {title}
+
+Content requirements:
+- Length: 1,100 to 1,350 words
+- At least 5 genuine, intellectually challenging example {university} {subjects} interview questions in a <ul>
+- Specific advice on thinking aloud and engaging with questions even when uncertain
+- {university}-specific detail: college interviews, format, typical number of interviews
+- Admissions test context: how {admissions_test} relates to interview preparation
+- A brief note on super-curricular preparation relevant to {university} {subjects}
+- Include one short bullet list
+- Internal links (must appear as natural anchor text within a sentence):
+    * Link to the blog post at {blog_url} using anchor text '{blog_anchor}'
+    * Link to the resources page at /resources/oxbridge-interview-questions using anchor text '{resources_anchor}'
+    * Link to {cross_url} using anchor text '{cross_title}' as a brief note that candidates sometimes also consider the other university
+
+Structure to use:
+{structure}
+
+Additional requirements:
+- In the FAQ section, write 4 questions as <p><strong>Question?</strong></p> followed by a <p> answer
+- Do not pad — every sentence must earn its place
+- Focus entirely on {university} — do not write a generic Oxbridge page
+"""
+
+    # ── Generic Oxbridge prompt (existing subjects) ───────────────────────────
     if variant == 0:
         # Leads with what to expect; admissions tests then preparation then example questions
         structure = f"""
