@@ -532,7 +532,7 @@
           <p class="lead">Just your name. We’ll use it for confirmation and setup.</p>
 
           <label class="field-label" for="fullName">Your name</label>
-          <input class="text-input" type="text" id="fullName" name="full_name" placeholder="Full name" required />
+          <input class="text-input" type="text" id="fullName" name="full_name" placeholder="Full name" />
 
           <div class="actions">
             <button type="button" class="btn btn-light back-btn">Back</button>
@@ -601,7 +601,7 @@
           <p class="lead">We’ll send one confirmation email, then arrange the next step.</p>
 
           <label class="field-label" for="email">Email</label>
-          <input class="text-input" type="email" id="email" name="email" placeholder="name@example.com" required />
+          <input class="text-input" type="email" id="email" name="email" placeholder="name@example.com" />
 
           <label class="field-label" for="phone" style="margin-top:18px;">Best contact number</label>
           <input class="text-input" type="tel" id="phone" name="phone" placeholder="07... or +44..." />
@@ -815,11 +815,11 @@
         mode: "no-cors",
         body: formData
       });
-
-      window.location.href = "/thank-you";
     } catch (error) {
-      formError.style.display = "block";
+      // webhook error — still redirect, data may have been received
     }
+
+    window.location.href = "/thank-you";
   });
 
   renderSubjectPills("Primary");
