@@ -670,7 +670,6 @@
   const subjectCountNote = document.getElementById("subjectCountNote");
   const levelTabs = document.querySelectorAll(".chip-tab");
   const form = document.getElementById("consultationForm");
-  const formSuccess = document.getElementById("formSuccess");
   const formError = document.getElementById("formError");
   const thankYouScreen = document.getElementById("thankYouScreen");
 
@@ -796,7 +795,6 @@
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    formSuccess.style.display = "none";
     formError.style.display = "none";
 
     const name = document.getElementById("fullName").value.trim();
