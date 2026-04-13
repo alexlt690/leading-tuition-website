@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Book a Free Consultation | Leading Tuition</title>
-<meta name="description" content="Book a free, no-obligation consultation with Leading Tuition. We'll match your child with the right tutor and create a tailored support plan. Speak to us today." />
   <link rel="stylesheet" href="/style.css" />
   <link rel="icon" type="image/png" href="/images/favicon.png" />
   <style>
@@ -259,20 +258,6 @@
       font-size: 0.95rem;
     }
 
-    .consent-box {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      background: rgba(255,255,255,0.6);
-      border-radius: 18px;
-      padding: 16px 18px;
-      margin-top: 18px;
-    }
-
-    .consent-box input {
-      margin-top: 5px;
-    }
-
     .actions {
       display: flex;
       gap: 16px;
@@ -376,17 +361,14 @@
     <li><a href="/">Home</a></li>
     <li><a href="/about">About Us</a></li>
 
-    <!-- Services mega-dropdown (4 columns) -->
+    <!-- Services mega-dropdown -->
     <li class="nav-dropdown">
       <a href="/services" class="nav-dropdown-toggle">Services <span class="nav-caret">&#9660;</span></a>
       <div class="nav-mega-menu">
         <div class="nav-mega-header">
           <a href="/services">&#8592; Our Services</a>
         </div>
-
         <div class="nav-mega-cols">
-
-          <!-- Column 1: Subjects -->
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Subjects</div>
             <a href="/services/subjects/maths-tutor">Maths</a>
@@ -405,302 +387,44 @@
             <a href="/services/subjects/further-maths-tutor">Further Maths</a>
             <a href="/services/subjects/statistics-tutor">Statistics</a>
           </div>
-
-          <!-- Column 2: Levels -->
           <div class="nav-mega-col">
             <div class="nav-mega-col-title">Levels</div>
-            <a href="/services/levels/11plus-tuition">11+ Tuition</a>
-            <div class="nav-flyout">
-              <a href="/11-plus/">11+ School Guides</a>
-              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
-              <div class="nav-flyout-menu nav-flyout-menu--two-cols">
-                <a href="/11-plus/henrietta-barnett-school/">Henrietta Barnett</a>
-                <a href="/11-plus/queens-elizabeth-barnet/">QE Boys Barnet</a>
-                <a href="/11-plus/tiffin-school/">Tiffin School</a>
-                <a href="/11-plus/tiffin-girls-school/">Tiffin Girls'</a>
-                <a href="/11-plus/latymer-upper/">Latymer Upper</a>
-                <a href="/11-plus/st-pauls-girls/">St Paul's Girls'</a>
-                <a href="/11-plus/highgate-school/">Highgate School</a>
-                <a href="/11-plus/city-of-london-school-girls/">City of London Girls</a>
-                <a href="/11-plus/james-allens/">James Allen's (JAGS)</a>
-                <a href="/11-plus/alleyn/">Alleyn's School</a>
-                <a href="/11-plus/dulwich-college/">Dulwich College</a>
-                <a href="/11-plus/kings-wimbledon/">King's Wimbledon</a>
-                <a href="/11-plus/habs-girls/">Haberdashers' Girls</a>
-                <a href="/11-plus/streatham-clapham/">Streatham &amp; Clapham</a>
-                <a href="/11-plus/dame-alice-owens/">Dame Alice Owen's</a>
-                <a href="/11-plus/manchester-grammar-school/">Manchester Grammar</a>
-                <a href="/11-plus/sutton-grammar-schools/">Sutton Grammars</a>
-                <a href="/11-plus/st-olaves-grammar-school/">St Olave's</a>
-                <a href="/11-plus/slough-grammar-schools/">Slough Grammars</a>
-                <a href="/11-plus/bucks-grammar-schools/">Bucks Grammars</a>
-                <a href="/11-plus/dr-challoners-grammar/">Dr Challoner's</a>
-                <a href="/11-plus/kegs-chelmsford/">KEGS Chelmsford</a>
-                <a href="/11-plus/chelmsford-county-high/">Chelmsford County High</a>
-                <a href="/11-plus/altrincham-grammar-schools/">Altrincham Grammars</a>
-                <a href="/11-plus/sale-grammar-school/">Sale Grammar</a>
-                <a href="/11-plus/tonbridge-grammar-school/">Tonbridge Grammar</a>
-                <a href="/11-plus/weald-of-kent-grammar/">Weald of Kent</a>
-              </div>
-            </div>
-            <div class="nav-flyout">
-              <a href="/11-plus/boroughs/">11+ Borough Guides</a>
-              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
-              <div class="nav-flyout-menu">
-                <a href="/11-plus/barnet/">Barnet</a>
-                <a href="/11-plus/harrow/">Harrow</a>
-                <a href="/11-plus/bromley/">Bromley</a>
-                <a href="/11-plus/croydon/">Croydon</a>
-                <a href="/11-plus/ealing/">Ealing</a>
-                <a href="/11-plus/slough/">Slough</a>
-                <a href="/11-plus/kingston/">Kingston</a>
-                <a href="/11-plus/sutton/">Sutton</a>
-                <a href="/11-plus/enfield/">Enfield</a>
-                <a href="/11-plus/hertfordshire/">Hertfordshire</a>
-                <a href="/11-plus/kent/">Kent</a>
-                <a href="/11-plus/north-london/">North London</a>
-              </div>
-            </div>
-            <div class="nav-flyout">
-              <a href="/13-plus/">13+ Preparation</a>
-              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
-              <div class="nav-flyout-menu">
-                <a href="/13-plus/common-entrance-exam/">Common Entrance Guide</a>
-                <a href="/13-plus/iseb-pre-test/">ISEB Common Pre-Test</a>
-                <a href="/13-plus/eton-college/">Eton College</a>
-                <a href="/13-plus/harrow-school/">Harrow School</a>
-                <a href="/13-plus/winchester-college/">Winchester College</a>
-                <a href="/13-plus/marlborough-college/">Marlborough College</a>
-                <a href="/13-plus/rugby-school/">Rugby School</a>
-                <a href="/13-plus/sevenoaks-school/">Sevenoaks School</a>
-              </div>
-            </div>
-            <div class="nav-flyout">
-              <a href="/gcse/">GCSE Tuition</a>
-              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
-              <div class="nav-flyout-menu">
-                <a href="/subjects/gcse-maths/">Maths</a>
-                <a href="/subjects/gcse-chemistry/">Chemistry</a>
-              </div>
-            </div>
-            <div class="nav-flyout">
-              <a href="/a-level/">A-Level Tuition</a>
-              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
-              <div class="nav-flyout-menu">
-                <a href="/subjects/a-level-maths/">Maths</a>
-                <a href="/subjects/a-level-biology/">Biology</a>
-                <a href="/subjects/a-level-chemistry/">Chemistry</a>
-                <a href="/subjects/a-level-english/">English</a>
-              </div>
-            </div>
-            <div class="nav-flyout">
-              <a href="/ib-tuition/">IB Tuition</a>
-              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
-              <div class="nav-flyout-menu">
-                <a href="/ib-tuition/maths/">IB Maths</a>
-                <a href="/ib-tuition/chemistry/">IB Chemistry</a>
-                <a href="/ib-tuition/physics/">IB Physics</a>
-                <a href="/ib-tuition/biology/">IB Biology</a>
-                <a href="/ib-tuition/english/">IB English</a>
-                <a href="/ib-tuition/economics/">IB Economics</a>
-                <a href="/ib-tuition/history/">IB History</a>
-                <a href="/ib-tuition/psychology/">IB Psychology</a>
-                <a href="/ib-tuition/extended-essay/">Extended Essay</a>
-                <a href="/ib-tuition/tok/">Theory of Knowledge</a>
-                <a href="/ib-tuition/internal-assessment/">Internal Assessment</a>
-              </div>
-            </div>
+            <a href="/a-level/">A-Level Tuition</a>
+            <a href="/gcse/">GCSE Tuition</a>
             <a href="/services/levels/primary-tuition">Primary Tuition</a>
             <a href="/services/levels/sats-tuition">SATs Tuition</a>
+            <a href="/services/levels/11plus-tuition">11+ Tuition</a>
+            <a href="/services/levels/13plus-tuition">13+ Tuition</a>
             <a href="/services/levels/university-tuition">University Tuition</a>
           </div>
-
-          <!-- Column 3: Medicine -->
           <div class="nav-mega-col">
-            <div class="nav-mega-col-title">Medicine</div>
+            <div class="nav-mega-col-title">Specialist &amp; Admissions</div>
             <a href="/services/specialist-admissions/medicine-prep-hub">Medicine Prep Hub</a>
-            <div class="nav-flyout">
-              <a href="/medical-schools/">Medical School Guides</a>
-              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
-              <div class="nav-flyout-menu nav-flyout-menu--cols">
-                <a href="/medical-schools/aberdeen">Aberdeen</a>
-                <a href="/medical-schools/anglia-ruskin">Anglia Ruskin</a>
-                <a href="/medical-schools/aston">Aston</a>
-                <a href="/medical-schools/barts">Barts &amp; London</a>
-                <a href="/medical-schools/birmingham">Birmingham</a>
-                <a href="/medical-schools/brighton-sussex">Brighton &amp; Sussex</a>
-                <a href="/medical-schools/bristol">Bristol</a>
-                <a href="/medical-schools/cambridge">Cambridge</a>
-                <a href="/medical-schools/cardiff">Cardiff</a>
-                <a href="/medical-schools/dundee">Dundee</a>
-                <a href="/medical-schools/east-anglia">East Anglia</a>
-                <a href="/medical-schools/edinburgh">Edinburgh</a>
-                <a href="/medical-schools/exeter">Exeter</a>
-                <a href="/medical-schools/glasgow">Glasgow</a>
-                <a href="/medical-schools/hull-york">Hull York</a>
-                <a href="/medical-schools/imperial">Imperial</a>
-                <a href="/medical-schools/keele">Keele</a>
-                <a href="/medical-schools/kings">King's College London</a>
-                <a href="/medical-schools/lancaster">Lancaster</a>
-                <a href="/medical-schools/leeds">Leeds</a>
-                <a href="/medical-schools/leicester">Leicester</a>
-                <a href="/medical-schools/lincoln">Lincoln</a>
-                <a href="/medical-schools/liverpool">Liverpool</a>
-                <a href="/medical-schools/manchester">Manchester</a>
-                <a href="/medical-schools/newcastle">Newcastle</a>
-                <a href="/medical-schools/nottingham">Nottingham</a>
-                <a href="/medical-schools/oxford">Oxford</a>
-                <a href="/medical-schools/plymouth">Plymouth</a>
-                <a href="/medical-schools/queens-belfast">Queen's Belfast</a>
-                <a href="/medical-schools/sheffield">Sheffield</a>
-                <a href="/medical-schools/southampton">Southampton</a>
-                <a href="/medical-schools/st-andrews">St Andrews</a>
-                <a href="/medical-schools/st-georges">St George's</a>
-                <a href="/medical-schools/sunderland">Sunderland</a>
-                <a href="/medical-schools/swansea">Swansea</a>
-                <a href="/medical-schools/ucl">UCL</a>
-                <a href="/medical-schools/uclan">UCLAN</a>
-                <a href="/medical-schools/warwick">Warwick</a>
-              </div>
-            </div>
             <a href="/services/specialist-admissions/medical-school-interviews/">Medical School Interviews</a>
             <a href="/services/specialist-admissions/ucat-tutor">UCAT Tutor</a>
             <a href="/services/specialist-admissions/mmi-interview-coaching">MMI Interview Coaching</a>
+            <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions</a>
+            <a href="/services/specialist-admissions/oxbridge-subject-preparation">Oxbridge Subject Prep</a>
+            <a href="/services/specialist-admissions/university-personal-statement">University Personal Statement</a>
           </div>
-
-          <!-- Column 4: Oxbridge -->
-          <div class="nav-mega-col">
-            <div class="nav-mega-col-title">Oxbridge</div>
-            <div class="nav-flyout">
-              <a href="/oxbridge-interviews/oxford-maths-interview/">Oxford Interviews</a>
-              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
-              <div class="nav-flyout-menu nav-flyout-menu--two-cols">
-                <a href="/oxbridge-interviews/oxford-biology-interview/">Biology</a>
-                <a href="/oxbridge-interviews/oxford-chemistry-interview/">Chemistry</a>
-                <a href="/oxbridge-interviews/oxford-computer-science-interview/">Computer Science</a>
-                <a href="/oxbridge-interviews/oxford-economics-management-interview/">Economics &amp; Management</a>
-                <a href="/oxbridge-interviews/oxford-engineering-interview/">Engineering</a>
-                <a href="/oxbridge-interviews/oxford-english-interview/">English</a>
-                <a href="/oxbridge-interviews/oxford-geography-interview/">Geography</a>
-                <a href="/oxbridge-interviews/oxford-history-interview/">History</a>
-                <a href="/oxbridge-interviews/oxford-maths-interview/">Mathematics</a>
-                <a href="/oxbridge-interviews/oxford-medicine-interview/">Medicine</a>
-                <a href="/oxbridge-interviews/oxford-modern-languages-interview/">Modern Languages</a>
-                <a href="/oxbridge-interviews/oxford-philosophy-interview/">Philosophy</a>
-                <a href="/oxbridge-interviews/oxford-physics-interview/">Physics</a>
-                <a href="/oxbridge-interviews/ppe-interview/">PPE</a>
-                <a href="/oxbridge-interviews/oxford-veterinary-medicine-interview/">Veterinary Medicine</a>
-              </div>
-            </div>
-            <div class="nav-flyout">
-              <a href="/oxbridge-interviews/cambridge-maths-interview/">Cambridge Interviews</a>
-              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
-              <div class="nav-flyout-menu nav-flyout-menu--two-cols">
-                <a href="/oxbridge-interviews/cambridge-computer-science-interview/">Computer Science</a>
-                <a href="/oxbridge-interviews/cambridge-economics-interview/">Economics</a>
-                <a href="/oxbridge-interviews/cambridge-engineering-interview/">Engineering</a>
-                <a href="/oxbridge-interviews/cambridge-english-interview/">English</a>
-                <a href="/oxbridge-interviews/cambridge-geography-interview/">Geography</a>
-                <a href="/oxbridge-interviews/cambridge-history-interview/">History</a>
-                <a href="/oxbridge-interviews/cambridge-hsps-interview/">HSPS</a>
-                <a href="/oxbridge-interviews/cambridge-maths-interview/">Mathematics</a>
-                <a href="/oxbridge-interviews/cambridge-medicine-interview/">Medicine</a>
-                <a href="/oxbridge-interviews/cambridge-modern-languages-interview/">Modern Languages</a>
-                <a href="/oxbridge-interviews/cambridge-natural-sciences-interview/">Natural Sciences</a>
-                <a href="/oxbridge-interviews/cambridge-philosophy-interview/">Philosophy</a>
-                <a href="/oxbridge-interviews/cambridge-veterinary-medicine-interview/">Veterinary Medicine</a>
-              </div>
-            </div>
-            <div class="nav-flyout">
-              <a href="/oxbridge-interviews/">Oxbridge Overviews</a>
-              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
-              <div class="nav-flyout-menu nav-flyout-menu--two-cols">
-                <a href="/oxbridge-interviews/biology-interview/">Biology</a>
-                <a href="/oxbridge-interviews/chemistry-interview/">Chemistry</a>
-                <a href="/oxbridge-interviews/classics-interview/">Classics</a>
-                <a href="/oxbridge-interviews/computer-science-interview/">Computer Science</a>
-                <a href="/oxbridge-interviews/economics-interview/">Economics</a>
-                <a href="/oxbridge-interviews/engineering-interview/">Engineering</a>
-                <a href="/oxbridge-interviews/english-interview/">English</a>
-                <a href="/oxbridge-interviews/geography-interview/">Geography</a>
-                <a href="/oxbridge-interviews/history-interview/">History</a>
-                <a href="/oxbridge-interviews/law-interview/">Law</a>
-                <a href="/oxbridge-interviews/maths-interview/">Mathematics</a>
-                <a href="/oxbridge-interviews/medicine-interview/">Medicine</a>
-                <a href="/oxbridge-interviews/modern-languages-interview/">Modern Languages</a>
-                <a href="/oxbridge-interviews/natural-sciences-interview/">Natural Sciences</a>
-                <a href="/oxbridge-interviews/philosophy-interview/">Philosophy</a>
-                <a href="/oxbridge-interviews/physics-interview/">Physics</a>
-                <a href="/oxbridge-interviews/ppe-interview/">PPE</a>
-                <a href="/oxbridge-interviews/psychology-interview/">Psychology</a>
-              </div>
-            </div>
-            <a href="/services/specialist-admissions/oxbridge-admissions-preparation">Oxbridge Admissions Preparation</a>
-            <a href="/services/specialist-admissions/oxbridge-subject-preparation">Oxbridge Subject Preparation</a>
-            <a href="/services/specialist-admissions/university-personal-statement">University Personal Statement Help</a>
-            <div class="nav-flyout">
-              <a href="/admissions-tests/">Oxbridge Admissions Tests</a>
-              <button class="nav-flyout-toggle" aria-label="Show sub-pages" aria-expanded="false">▾</button>
-              <div class="nav-flyout-menu nav-flyout-menu--two-cols">
-                <a href="/admissions-tests/lnat-preparation/">LNAT (Law)</a>
-                <a href="/admissions-tests/mat-preparation/">MAT (Maths)</a>
-                <a href="/admissions-tests/tsa-preparation/">TSA</a>
-                <a href="/admissions-tests/pat-preparation/">PAT (Physics)</a>
-                <a href="/admissions-tests/step-preparation/">STEP (Maths)</a>
-                <a href="/admissions-tests/tmua-preparation/">TMUA</a>
-                <a href="/admissions-tests/esat-preparation/">ESAT (Engineering)</a>
-                <a href="/admissions-tests/hat-preparation/">HAT (History)</a>
-                <a href="/admissions-tests/elat-preparation/">ELAT (English)</a>
-                <a href="/admissions-tests/mlat-preparation/">MLAT (Languages)</a>
-                <a href="/admissions-tests/phil-preparation/">Philosophy Test</a>
-                <a href="/admissions-tests/bmat-history/">BMAT History</a>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </li>
 
-    <!-- Resources dropdown -->
+    <!-- Blog dropdown -->
     <li class="nav-dropdown">
-      <a href="/resources/" class="nav-dropdown-toggle">Resources <span class="nav-caret">&#9660;</span></a>
+      <a href="#" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
       <div class="nav-dropdown-menu">
-        <a href="/resources/pre-11-plus">Pre 11+ Resources</a>
-        <a href="/resources/11-plus">11+ Resources</a>
-        <a href="/resources/13-plus">13+ Resources</a>
-        <a href="/resources/oxbridge-interview-questions">Oxbridge Interview Questions</a>
-        <a href="/resources/gcse-resources-for-parents">GCSE Resources for Parents</a>
-        <a href="/resources/" style="font-weight:600;color:#e63946;">View all resources &rarr;</a>
-      </div>
-    </li>
-
-    <!-- Blog dropdown (grouped by topic) -->
-    <li class="nav-dropdown">
-      <a href="/blog/" class="nav-dropdown-toggle">Blog <span class="nav-caret">&#9660;</span></a>
-      <div class="nav-dropdown-menu">
-        <span class="nav-dropdown-category">&#11088; Student Success Stories</span>
-        <a href="/blog/2025-school-entrance-results">Results 2025 — 95% Success Rate</a>
-        <a href="/blog/2024-school-entrance-results">Results 2024 — 11+ &amp; 13+</a>
-        <a href="/blog/2023-school-entrance-results">Results 2023 — Our Strongest Year</a>
-        <a href="/blog/2022-school-entrance-results">Results 2022</a>
-        <a href="/blog/2021-school-entrance-results">Results 2021</a>
-        <span class="nav-dropdown-category">11+ &amp; School Entrance</span>
-        <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
-        <a href="/blog/the-6-month-11-plus-countdown-a-monthly-study-milestone-plan">11 Plus 6-Month Countdown</a>
-        <a href="/blog/2026-grammar-school-league-tables-top-schools-ranked-by-gcse-results">Grammar School League Tables 2026</a>
-        <a href="/blog/the-11-plus-london-consortium-schools-which-schools-share-the-paper-and-how-offers-are-decided">London Consortium Schools Guide</a>
-        <a href="/blog/11-plus-exam-dates-2025-2026-independent-and-grammar-school-timetable">11+ Exam Dates 2025–2026</a>
-        <a href="/blog/common-entrance-13-plus-a-subject-by-subject-guide-to-marks-and-what-schools-require">Common Entrance 13+ Guide</a>
-        <span class="nav-dropdown-category">Medical &amp; Oxbridge</span>
-        <a href="/blog/ucat-score-requirements-for-uk-medical-schools-2025">UCAT Score Requirements 2025</a>
-        <a href="/blog/how-to-prepare-for-a-medical-school-mmi-interview">How to Prepare for MMI Interviews</a>
-        <a href="/blog/oxbridge-interview-questions-100-real-examples-for-every-major-subject">Oxbridge Interview Questions</a>
-        <span class="nav-dropdown-category">GCSE &amp; Tuition</span>
         <a href="/blog/how-long-does-gcse-revision-take">How Long Does GCSE Revision Take?</a>
         <a href="/blog/how-to-find-a-good-private-tutor">How to Find a Good Private Tutor</a>
-        <a href="/blog/is-private-tuition-worth-it-a-cost-benefit-analysis-of-1-to-1-learning">Is Private Tuition Worth It?</a>
-        <a href="/blog/" style="font-weight:600;color:#e63946;">View all posts &rarr;</a>
+        <a href="/blog/how-to-prepare-for-a-medical-school-mmi-interview">How to Prepare for MMI Interviews</a>
+        <a href="/blog/online-tutoring-vs-in-person-tutoring-for-gcse">Online vs In-Person Tutoring for GCSE</a>
+        <a href="/blog/triple-vs-double-science-gcse">Triple vs Double Science GCSE</a>
+        <a href="/blog/what-grade-do-you-need-for-oxbridge-chemistry">What Grade for Oxbridge Chemistry?</a>
+        <a href="/blog/what-is-the-11-plus-exam">What is the 11 Plus Exam?</a>
+        <a href="/blog/a-level-subject-choices-for-medicine-applications">A-Level Subjects for Medicine</a>
+        <a href="/blog/ucat-score-requirements-for-uk-medical-schools-2025">UCAT Score Requirements 2025</a>
+        <a href="/blog/ucas-personal-statement-guide">UCAS Personal Statement Guide</a>
       </div>
     </li>
 
@@ -738,7 +462,6 @@
         <a href="/locations/northampton">Northampton</a>
         <a href="/locations/norwich">Norwich</a>
         <a href="/locations/portsmouth">Portsmouth</a>
-        <a href="/locations/slough">Slough</a>
         <a href="/locations/twickenham">Twickenham</a>
         <a href="/locations/watford">Watford</a>
         <a href="/locations/wimbledon">Wimbledon</a>
@@ -805,7 +528,7 @@
         <!-- Step 2 -->
         <div class="form-step" data-step="2">
           <span class="step-pill">Step 2</span>
-          <h3>What should we call you?</h3>
+          <h1>What should we call you?</h1>
           <p class="lead">Just your name. We’ll use it for confirmation and setup.</p>
 
           <label class="field-label" for="fullName">Your name</label>
@@ -820,7 +543,7 @@
         <!-- Step 3 -->
         <div class="form-step" data-step="3">
           <span class="step-pill">Step 3</span>
-          <h3>What support is this for?</h3>
+          <h1>What support is this for?</h1>
           <p class="lead">Pick the closest match. This helps us route your enquiry quickly.</p>
 
           <div class="pill-panel">
@@ -848,7 +571,7 @@
         <!-- Step 4 -->
         <div class="form-step" data-step="4">
           <span class="step-pill">Step 4</span>
-          <h3>Which subject is it for?</h3>
+          <h1>Which subject is it for?</h1>
           <p class="lead">Pick up to 3. If it’s admissions support, choose the nearest academic subject or leave it general.</p>
 
           <div class="chip-tabs" id="levelTabs">
@@ -874,7 +597,7 @@
         <!-- Step 5 -->
         <div class="form-step" data-step="5">
           <span class="step-pill">Step 5</span>
-          <h3>Where should we send confirmation?</h3>
+          <h1>Where should we send confirmation?</h1>
           <p class="lead">We’ll send one confirmation email, then arrange the next step.</p>
 
           <label class="field-label" for="email">Email</label>
@@ -894,41 +617,25 @@
         <!-- Step 6 -->
         <div class="form-step" data-step="6">
           <span class="step-pill">Step 6</span>
-          <h3>Last step, how should we contact you?</h3>
-          <p class="lead">We’ll confirm the consultation details and next step. No chasing.</p>
+          <h1>Almost there — any final details?</h1>
+          <p class="lead">This is optional, but extra context helps us prepare better for your consultation.</p>
 
-          <label class="field-label" for="contactMethod">Contact method</label>
-          <select class="select-input" id="contactMethod" name="contact_method" required>
-            <option value="Email">Email (Recommended)</option>
-            <option value="Phone">Phone</option>
-            <option value="WhatsApp">WhatsApp</option>
-          </select>
-
-          <label class="field-label" for="notes" style="margin-top:18px;">Anything useful to know?</label>
+          <label class="field-label" for="notes">Anything useful to know?</label>
           <textarea class="textarea-input" id="notes" name="notes" placeholder="Year group, exam board, target grades, school, or anything else that helps us prepare."></textarea>
-
-          <div class="consent-box">
-            <input type="checkbox" id="consent" name="consent" required />
-            <label for="consent">
-              I agree to the storage and use of my details to arrange my free consultation, in line with the
-              <a href="YOUR_PRIVACY_POLICY_URL" target="_blank" rel="noopener noreferrer"><strong>Privacy Policy</strong></a>.
-            </label>
-          </div>
 
           <div class="actions">
             <button type="button" class="btn btn-light back-btn">Back</button>
-            <button type="submit" class="btn btn-dark">Submit</button>
+            <button type="submit" class="btn btn-dark">Submit &#8594;</button>
           </div>
 
           <p class="microcopy">We’ll send a confirmation automatically after submission.</p>
-          <div class="form-success" id="formSuccess">Thanks, your enquiry has been sent successfully.</div>
           <div class="form-error" id="formError">Something went wrong. Please try again or email us directly.</div>
         </div>
       </form>
 
       <div id="thankYouScreen" class="thank-you-screen">
         <span class="step-pill">Done</span>
-        <h3>Thank you</h3>
+        <h1>Thank you</h1>
         <p class="lead">
           Your consultation request has been sent successfully. We’ll be in touch shortly to confirm the next step.
         </p>
@@ -945,7 +652,7 @@
     <p>+44 207 167 8440</p>
     <p>hello@leadingtuition.co.uk</p>
   </div>
-  <div class="copyright">COPYRIGHT ©2026, Leading Tuition. ALL RIGHTS RESERVED.</div>
+  <div class="copyright">COPYRIGHT ©2023, Leading Tuition. ALL RIGHTS RESERVED.</div>
 </footer>
 
 <script>
@@ -1092,11 +799,15 @@
     formSuccess.style.display = "none";
     formError.style.display = "none";
 
-    const consent = document.getElementById("consent");
-    if (!consent.checked) {
-      alert("Please confirm consent before submitting.");
-      return;
-    }
+    const name = document.getElementById("fullName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const role = roleInput.value.trim();
+    const support = selectedSupportInput.value.trim();
+
+    if (!role) { alert("Please choose who the consultation is for."); return; }
+    if (!name) { alert("Please enter your name."); return; }
+    if (!support) { alert("Please choose the type of support needed."); return; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert("Please enter a valid email address."); return; }
 
     const formData = new FormData(form);
 
@@ -1107,8 +818,7 @@
         body: formData
       });
 
-      form.style.display = "none";
-      thankYouScreen.style.display = "block";
+      window.location.href = "/thank-you";
     } catch (error) {
       formError.style.display = "block";
     }
@@ -1119,4 +829,4 @@
 </script>
 
 </body>
-</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+</html>

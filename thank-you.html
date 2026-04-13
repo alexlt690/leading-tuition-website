@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You | Leading Tuition</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <style>
+    .ty-shell {
+      background: linear-gradient(180deg, #eef4fb 0%, #e6f0f9 100%);
+      min-height: calc(100vh - 58px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 56px 24px 80px;
+    }
+
+    .ty-card {
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(61,11,31,0.08);
+      border-radius: 28px;
+      padding: 56px 44px 48px;
+      box-shadow: 0 18px 40px rgba(61,11,31,0.08);
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .ty-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3558e5 0%, #13b1e7 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+    }
+
+    .ty-icon svg {
+      width: 36px;
+      height: 36px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .ty-card h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: #172139;
+      margin-bottom: 14px;
+    }
+
+    .ty-card .lead {
+      font-size: 1.1rem;
+      color: #48596d;
+      line-height: 1.65;
+      margin-bottom: 32px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .ty-steps {
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(61,11,31,0.08);
+      border-radius: 18px;
+      padding: 24px 28px;
+      text-align: left;
+      margin-bottom: 36px;
+    }
+
+    .ty-steps p {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #45576a;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .ty-step-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .ty-step-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .ty-step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3558e5 0%, #13b1e7 100%);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .ty-step-text {
+      font-size: 0.95rem;
+      color: #172139;
+      line-height: 1.55;
+    }
+
+    .ty-step-text strong {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .ty-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .ty-actions .btn {
+      min-width: 180px;
+    }
+
+    .btn-outline {
+      background: rgba(255,255,255,0.82);
+      border: 2px solid rgba(61,11,31,0.1);
+      color: #172139;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.95rem;
+      display: inline-block;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(61,11,31,0.22);
+      box-shadow: 0 4px 12px rgba(61,11,31,0.07);
+    }
+
+    @media (max-width: 600px) {
+      .ty-card {
+        padding: 38px 22px 36px;
+        border-radius: 22px;
+      }
+      .ty-actions .btn,
+      .ty-actions .btn-outline {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D49V0X7BHL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D49V0X7BHL');
+    // Fire a conversion event so you can track completed enquiries
+    gtag('event', 'consultation_submitted', { event_category: 'lead' });
+  </script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="/" class="navbar-brand">
+    <img src="/images/logo.png" alt="Leading Tuition logo" />
+    Leading Tuition
+  </a>
+
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <ul class="navbar-nav" id="navbarNav">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About Us</a></li>
+    <li><a href="/services">Services</a></li>
+    <li><a href="/tutors">Our Tutors</a></li>
+    <li><a href="/faqs">FAQs</a></li>
+    <li><a href="/contact">Contact Us</a></li>
+  </ul>
+</nav>
+
+<div class="ty-shell">
+  <div class="ty-card">
+
+    <div class="ty-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+
+    <h1>You're all set!</h1>
+    <p class="lead">
+      Your consultation request has been received. A member of our team will be in touch within one working day to arrange the next step.
+    </p>
+
+    <div class="ty-steps">
+      <p>What happens next</p>
+      <div class="ty-step-row">
+        <div class="ty-step-num">1</div>
+        <div class="ty-step-text">
+          <strong>We review your request</strong>
+          Within one working day, we'll review your requirements and identify the right specialist for your child.
+        </div>
+      </div>
+      <div class="ty-step-row">
+        <div class="ty-step-num">2</div>
+        <div class="ty-step-text">
+          <strong>We reach out to confirm</strong>
+          We'll contact you by email to confirm details, answer any questions, and introduce your tutor.
+        </div>
+      </div>
+      <div class="ty-step-row">
+        <div class="ty-step-num">3</div>
+        <div class="ty-step-text">
+          <strong>Your first session is scheduled</strong>
+          We'll arrange a convenient time and you're ready to go — no lengthy onboarding, just results.
+        </div>
+      </div>
+    </div>
+
+    <div class="ty-actions">
+      <a href="/" class="btn btn-dark">Return to Home</a>
+      <a href="/services" class="btn-outline">Explore Our Services</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <h3>Get In Touch</h3>
+  <hr />
+  <div class="footer-contact">
+    <p>+44 207 167 8440</p>
+    <p>hello@leadingtuition.co.uk</p>
+  </div>
+  <div class="copyright">COPYRIGHT ©2025, Leading Tuition. ALL RIGHTS RESERVED.</div>
+</footer>
+
+<script>
+(function() {
+  var hamburger = document.getElementById('navHamburger');
+  var nav       = document.getElementById('navbarNav');
+  if (!hamburger || !nav) return;
+  hamburger.addEventListener('click', function() {
+    var open = nav.classList.toggle('open');
+    hamburger.classList.toggle('active', open);
+    hamburger.setAttribute('aria-expanded', open);
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.navbar')) {
+      nav.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
